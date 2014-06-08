@@ -438,6 +438,21 @@ public class otapiJNI {
   public final static native void delete_OT_ME(long jarg1);
   public final static native void OT_ME_opentxs_copy_variables(long jarg1, OT_ME jarg1_);
   public final static native int OT_ME_opentxs_main_loop(long jarg1, OT_ME jarg1_);
+  public final static native int OT_ME_VerifyMessageSuccess(long jarg1, OT_ME jarg1_, String jarg2);
+  public final static native int OT_ME_VerifyMsgBalanceAgrmntSuccess(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
+  public final static native int OT_ME_VerifyMsgTrnxSuccess(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
+  public final static native int OT_ME_InterpretTransactionMsgReply(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5, String jarg6);
+  public final static native String OT_ME_ExecuteScript_ReturnString__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
+  public final static native String OT_ME_ExecuteScript_ReturnString__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
+  public final static native boolean OT_ME_ExecuteScript_ReturnBool__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
+  public final static native boolean OT_ME_ExecuteScript_ReturnBool__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
+  public final static native int OT_ME_ExecuteScript_ReturnInt__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
+  public final static native int OT_ME_ExecuteScript_ReturnInt__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
+  public final static native void OT_ME_ExecuteScript_ReturnVoid__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
+  public final static native void OT_ME_ExecuteScript_ReturnVoid__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
+  public final static native void OT_ME_AddVariable(long jarg1, OT_ME jarg1_, String jarg2, long jarg3);
+  public final static native long OT_ME_FindVariable(long jarg1, OT_ME jarg1_, String jarg2);
+  public final static native long OT_ME_FindVariable2(String jarg1);
   public final static native boolean OT_ME_make_sure_enough_trans_nums(long jarg1, OT_ME jarg1_, int jarg2, String jarg3, String jarg4);
   public final static native String OT_ME_register_nym(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
   public final static native String OT_ME_check_user(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
@@ -449,10 +464,10 @@ public class otapiJNI {
   public final static native String OT_ME_load_or_retrieve_contract(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
   public final static native String OT_ME_create_asset_acct(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
   public final static native String OT_ME_stat_asset_account(long jarg1, OT_ME jarg1_, String jarg2);
-  public final static native boolean OT_ME_retrieve_account__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
-  public final static native boolean OT_ME_retrieve_account__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, boolean jarg5);
-  public final static native boolean OT_ME_retrieve_nym__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
-  public final static native boolean OT_ME_retrieve_nym__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, boolean jarg4);
+  public final static native boolean OT_ME_retrieve_account__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, boolean jarg5);
+  public final static native boolean OT_ME_retrieve_account__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
+  public final static native boolean OT_ME_retrieve_nym__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, boolean jarg4);
+  public final static native boolean OT_ME_retrieve_nym__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
   public final static native String OT_ME_send_transfer(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5, long jarg6, String jarg7);
   public final static native String OT_ME_process_inbox(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
   public final static native boolean OT_ME_accept_inbox_items(long jarg1, OT_ME jarg1_, String jarg2, int jarg3, String jarg4);
@@ -470,8 +485,8 @@ public class otapiJNI {
   public final static native String OT_ME_send_user_payment(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
   public final static native String OT_ME_send_user_cash(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5, String jarg6);
   public final static native boolean OT_ME_withdraw_and_send_cash(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, long jarg5);
-  public final static native String OT_ME_get_payment_instrument__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, int jarg4);
-  public final static native String OT_ME_get_payment_instrument__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, int jarg4, String jarg5);
+  public final static native String OT_ME_get_payment_instrument__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, int jarg4, String jarg5);
+  public final static native String OT_ME_get_payment_instrument__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, int jarg4);
   public final static native String OT_ME_get_box_receipt(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, int jarg5, long jarg6);
   public final static native String OT_ME_retrieve_mint(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
   public final static native String OT_ME_load_or_retrieve_mint(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
@@ -495,21 +510,6 @@ public class otapiJNI {
   public final static native String OT_ME_get_nym_market_offers(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
   public final static native String OT_ME_get_market_recent_trades(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4);
   public final static native String OT_ME_adjust_usage_credits(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
-  public final static native int OT_ME_VerifyMessageSuccess(long jarg1, OT_ME jarg1_, String jarg2);
-  public final static native int OT_ME_VerifyMsgBalanceAgrmntSuccess(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
-  public final static native int OT_ME_VerifyMsgTrnxSuccess(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5);
-  public final static native int OT_ME_InterpretTransactionMsgReply(long jarg1, OT_ME jarg1_, String jarg2, String jarg3, String jarg4, String jarg5, String jarg6);
-  public final static native String OT_ME_ExecuteScript_ReturnString__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
-  public final static native String OT_ME_ExecuteScript_ReturnString__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
-  public final static native boolean OT_ME_ExecuteScript_ReturnBool__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
-  public final static native boolean OT_ME_ExecuteScript_ReturnBool__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
-  public final static native int OT_ME_ExecuteScript_ReturnInt__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
-  public final static native int OT_ME_ExecuteScript_ReturnInt__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
-  public final static native void OT_ME_ExecuteScript_ReturnVoid__SWIG_0(long jarg1, OT_ME jarg1_, String jarg2, String jarg3);
-  public final static native void OT_ME_ExecuteScript_ReturnVoid__SWIG_1(long jarg1, OT_ME jarg1_, String jarg2);
-  public final static native void OT_ME_AddVariable(long jarg1, OT_ME jarg1_, String jarg2, long jarg3);
-  public final static native long OT_ME_FindVariable(long jarg1, OT_ME jarg1_, String jarg2);
-  public final static native long OT_ME_FindVariable2(String jarg1);
   public final static native int PACK_MESSAGE_PACK_get();
   public final static native int PACK_PROTOCOL_BUFFERS_get();
   public final static native int PACK_TYPE_ERROR_get();
@@ -1014,6 +1014,9 @@ public class otapiJNI {
   public final static native int OTRecord_Receipt_get();
   public final static native int OTRecord_Instrument_get();
   public final static native int OTRecord_ErrorState_get();
+  public final static native void OTRecord_SetSpecialMail__SWIG_0(long jarg1, OTRecord jarg1_, boolean jarg2);
+  public final static native void OTRecord_SetSpecialMail__SWIG_1(long jarg1, OTRecord jarg1_);
+  public final static native boolean OTRecord_IsSpecialMail(long jarg1, OTRecord jarg1_);
   public final static native boolean OTRecord_IsPending(long jarg1, OTRecord jarg1_);
   public final static native boolean OTRecord_IsOutgoing(long jarg1, OTRecord jarg1_);
   public final static native boolean OTRecord_IsRecord(long jarg1, OTRecord jarg1_);
@@ -1049,6 +1052,14 @@ public class otapiJNI {
   public final static native boolean OTRecord_DiscardOutgoingCash(long jarg1, OTRecord jarg1_);
   public final static native int OTRecord_GetBoxIndex(long jarg1, OTRecord jarg1_);
   public final static native void OTRecord_SetBoxIndex(long jarg1, OTRecord jarg1_, int jarg2);
+  public final static native int OTRecord_GetMethodID(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetMethodID(long jarg1, OTRecord jarg1_, int jarg2);
+  public final static native String OTRecord_GetMsgID(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetMsgID(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native String OTRecord_GetMsgType(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetMsgType(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native String OTRecord_GetMsgTypeDisplay(long jarg1, OTRecord jarg1_);
+  public final static native void OTRecord_SetMsgTypeDisplay(long jarg1, OTRecord jarg1_, String jarg2);
   public final static native long OTRecord_GetTransactionNum(long jarg1, OTRecord jarg1_);
   public final static native void OTRecord_SetTransactionNum(long jarg1, OTRecord jarg1_, long jarg2);
   public final static native long OTRecord_GetTransNumForDisplay(long jarg1, OTRecord jarg1_);
@@ -1059,8 +1070,10 @@ public class otapiJNI {
   public final static native String OTRecord_GetCurrencyTLA(long jarg1, OTRecord jarg1_);
   public final static native String OTRecord_GetNymID(long jarg1, OTRecord jarg1_);
   public final static native String OTRecord_GetAccountID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetAddress(long jarg1, OTRecord jarg1_);
   public final static native String OTRecord_GetOtherNymID(long jarg1, OTRecord jarg1_);
   public final static native String OTRecord_GetOtherAccountID(long jarg1, OTRecord jarg1_);
+  public final static native String OTRecord_GetOtherAddress(long jarg1, OTRecord jarg1_);
   public final static native String OTRecord_GetName(long jarg1, OTRecord jarg1_);
   public final static native String OTRecord_GetDate(long jarg1, OTRecord jarg1_);
   public final static native String OTRecord_GetAmount(long jarg1, OTRecord jarg1_);
@@ -1069,6 +1082,8 @@ public class otapiJNI {
   public final static native String OTRecord_GetContents(long jarg1, OTRecord jarg1_);
   public final static native void OTRecord_SetOtherNymID(long jarg1, OTRecord jarg1_, String jarg2);
   public final static native void OTRecord_SetOtherAccountID(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native void OTRecord_SetAddress(long jarg1, OTRecord jarg1_, String jarg2);
+  public final static native void OTRecord_SetOtherAddress(long jarg1, OTRecord jarg1_, String jarg2);
   public final static native void OTRecord_SetMemo(long jarg1, OTRecord jarg1_, String jarg2);
   public final static native void OTRecord_SetContents(long jarg1, OTRecord jarg1_, String jarg2);
   public final static native boolean OTRecord_HasInitialPayment(long jarg1, OTRecord jarg1_);
@@ -1099,6 +1114,8 @@ public class otapiJNI {
   public final static native String OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_2(long jarg1, OTNameLookup jarg1_, String jarg2, long jarg3);
   public final static native String OTNameLookup_GetAcctName__SWIG_3(long jarg1, OTNameLookup jarg1_, String jarg2);
   public final static native String OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_3(long jarg1, OTNameLookup jarg1_, String jarg2);
+  public final static native String OTNameLookup_GetAddressName(long jarg1, OTNameLookup jarg1_, String jarg2);
+  public final static native String OTNameLookup_GetAddressNameSwigExplicitOTNameLookup(long jarg1, OTNameLookup jarg1_, String jarg2);
   public final static native void OTNameLookup_director_connect(OTNameLookup obj, long cptr, boolean mem_own, boolean weak_global);
   public final static native void OTNameLookup_change_ownership(OTNameLookup obj, long cptr, boolean take_or_release);
   public final static native long new_OTLookupCaller();
@@ -1113,6 +1130,7 @@ public class otapiJNI {
   public final static native String OTLookupCaller_GetAcctName__SWIG_1(long jarg1, OTLookupCaller jarg1_, String jarg2, long jarg3, long jarg4);
   public final static native String OTLookupCaller_GetAcctName__SWIG_2(long jarg1, OTLookupCaller jarg1_, String jarg2, long jarg3);
   public final static native String OTLookupCaller_GetAcctName__SWIG_3(long jarg1, OTLookupCaller jarg1_, String jarg2);
+  public final static native String OTLookupCaller_GetAddressName(long jarg1, OTLookupCaller jarg1_, String jarg2);
   public final static native boolean OT_API_Set_AddrBookCallback(long jarg1, OTLookupCaller jarg1_);
   public final static native boolean OTRecordList_setAddrBookCaller(long jarg1, OTLookupCaller jarg1_);
   public final static native long OTRecordList_getAddrBookCaller();
@@ -1136,6 +1154,7 @@ public class otapiJNI {
   public final static native void OTRecordList_SetAccountID(long jarg1, OTRecordList jarg1_, String jarg2);
   public final static native void OTRecordList_AddAccountID(long jarg1, OTRecordList jarg1_, String jarg2);
   public final static native void OTRecordList_ClearAccounts(long jarg1, OTRecordList jarg1_);
+  public final static native long OTRecordList_GetNyms(long jarg1, OTRecordList jarg1_);
   public final static native void OTRecordList_AcceptChequesAutomatically__SWIG_0(long jarg1, OTRecordList jarg1_, boolean jarg2);
   public final static native void OTRecordList_AcceptChequesAutomatically__SWIG_1(long jarg1, OTRecordList jarg1_);
   public final static native void OTRecordList_AcceptReceiptsAutomatically__SWIG_0(long jarg1, OTRecordList jarg1_, boolean jarg2);
@@ -1151,6 +1170,10 @@ public class otapiJNI {
   public final static native boolean OTRecordList_PerformAutoAccept(long jarg1, OTRecordList jarg1_);
   public final static native boolean OTRecordList_Populate(long jarg1, OTRecordList jarg1_);
   public final static native void OTRecordList_ClearContents(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_SortRecords(long jarg1, OTRecordList jarg1_);
+  public final static native void OTRecordList_AddSpecialMsg__SWIG_0(long jarg1, OTRecordList jarg1_, String jarg2, boolean jarg3, int jarg4, String jarg5, String jarg6, String jarg7, String jarg8, String jarg9, String jarg10, long jarg11);
+  public final static native void OTRecordList_AddSpecialMsg__SWIG_1(long jarg1, OTRecordList jarg1_, String jarg2, boolean jarg3, int jarg4, String jarg5, String jarg6, String jarg7, String jarg8, String jarg9, String jarg10);
+  public final static native void OTRecordList_AddSpecialMsg__SWIG_2(long jarg1, OTRecordList jarg1_, String jarg2, boolean jarg3, int jarg4, String jarg5, String jarg6, String jarg7, String jarg8, String jarg9);
   public final static native int OTRecordList_size(long jarg1, OTRecordList jarg1_);
   public final static native long OTRecordList_GetRecord(long jarg1, OTRecordList jarg1_, int jarg2);
   public final static native boolean OTRecordList_RemoveRecord(long jarg1, OTRecordList jarg1_, int jarg2);
@@ -1201,6 +1224,9 @@ public class otapiJNI {
   }
   public static String SwigDirector_OTNameLookup_GetAcctName__SWIG_3(OTNameLookup self, String str_id) {
     return self.GetAcctName(str_id);
+  }
+  public static String SwigDirector_OTNameLookup_GetAddressName(OTNameLookup self, String str_address) {
+    return self.GetAddressName(str_address);
   }
 
   private final static native void swig_module_init();

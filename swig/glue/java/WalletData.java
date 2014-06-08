@@ -35,10 +35,10 @@ public class WalletData extends Storable {
     super.delete();
   }
 // ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,135,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:otapi/OTAPI.i,135,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefBitcoinServer(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
@@ -98,7 +98,7 @@ private Long getCPtrAddRefBitcoinServer(BitcoinServer element) {
 	return BitcoinServer.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefBitcoinAcct(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
@@ -158,7 +158,7 @@ private Long getCPtrAddRefBitcoinAcct(BitcoinAcct element) {
 	return BitcoinAcct.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefRippleServer(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
@@ -218,7 +218,7 @@ private Long getCPtrAddRefRippleServer(RippleServer element) {
 	return RippleServer.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefLoomServer(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one

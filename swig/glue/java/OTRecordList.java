@@ -120,6 +120,10 @@ public class OTRecordList {
     otapiJNI.OTRecordList_ClearAccounts(swigCPtr, this);
   }
 
+  public SWIGTYPE_p_std__listT_std__string_t GetNyms() {
+    return new SWIGTYPE_p_std__listT_std__string_t(otapiJNI.OTRecordList_GetNyms(swigCPtr, this), false);
+  }
+
   public void AcceptChequesAutomatically(boolean bVal) {
     otapiJNI.OTRecordList_AcceptChequesAutomatically__SWIG_0(swigCPtr, this, bVal);
   }
@@ -178,6 +182,22 @@ public class OTRecordList {
 
   public void ClearContents() {
     otapiJNI.OTRecordList_ClearContents(swigCPtr, this);
+  }
+
+  public void SortRecords() {
+    otapiJNI.OTRecordList_SortRecords(swigCPtr, this);
+  }
+
+  public void AddSpecialMsg(String str_msg_id, boolean bIsOutgoing, int nMethodID, String str_contents, String str_address, String str_other_address, String str_type, String str_type_display, String str_my_nym_id, SWIGTYPE_p_time64_t tDate) {
+    otapiJNI.OTRecordList_AddSpecialMsg__SWIG_0(swigCPtr, this, str_msg_id, bIsOutgoing, nMethodID, str_contents, str_address, str_other_address, str_type, str_type_display, str_my_nym_id, SWIGTYPE_p_time64_t.getCPtr(tDate));
+  }
+
+  public void AddSpecialMsg(String str_msg_id, boolean bIsOutgoing, int nMethodID, String str_contents, String str_address, String str_other_address, String str_type, String str_type_display, String str_my_nym_id) {
+    otapiJNI.OTRecordList_AddSpecialMsg__SWIG_1(swigCPtr, this, str_msg_id, bIsOutgoing, nMethodID, str_contents, str_address, str_other_address, str_type, str_type_display, str_my_nym_id);
+  }
+
+  public void AddSpecialMsg(String str_msg_id, boolean bIsOutgoing, int nMethodID, String str_contents, String str_address, String str_other_address, String str_type, String str_type_display) {
+    otapiJNI.OTRecordList_AddSpecialMsg__SWIG_2(swigCPtr, this, str_msg_id, bIsOutgoing, nMethodID, str_contents, str_address, str_other_address, str_type, str_type_display);
   }
 
   public int size() {

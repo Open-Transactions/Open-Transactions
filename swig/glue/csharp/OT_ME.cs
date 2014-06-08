@@ -50,6 +50,95 @@ public class OT_ME : global::System.IDisposable {
     return ret;
   }
 
+  public int VerifyMessageSuccess(string str_Message) {
+    int ret = otapiPINVOKE.OT_ME_VerifyMessageSuccess(swigCPtr, str_Message);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public int VerifyMsgBalanceAgrmntSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string str_Message) {
+    int ret = otapiPINVOKE.OT_ME_VerifyMsgBalanceAgrmntSuccess(swigCPtr, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public int VerifyMsgTrnxSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string str_Message) {
+    int ret = otapiPINVOKE.OT_ME_VerifyMsgTrnxSuccess(swigCPtr, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public int InterpretTransactionMsgReply(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string str_Attempt, string str_Response) {
+    int ret = otapiPINVOKE.OT_ME_InterpretTransactionMsgReply(swigCPtr, SERVER_ID, USER_ID, ACCOUNT_ID, str_Attempt, str_Response);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public string ExecuteScript_ReturnString(string str_Code, string str_DisplayName) {
+    string ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnString__SWIG_0(swigCPtr, str_Code, str_DisplayName);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public string ExecuteScript_ReturnString(string str_Code) {
+    string ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnString__SWIG_1(swigCPtr, str_Code);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ExecuteScript_ReturnBool(string str_Code, string str_DisplayName) {
+    bool ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnBool__SWIG_0(swigCPtr, str_Code, str_DisplayName);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool ExecuteScript_ReturnBool(string str_Code) {
+    bool ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnBool__SWIG_1(swigCPtr, str_Code);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public int ExecuteScript_ReturnInt(string str_Code, string str_DisplayName) {
+    int ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnInt__SWIG_0(swigCPtr, str_Code, str_DisplayName);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public int ExecuteScript_ReturnInt(string str_Code) {
+    int ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnInt__SWIG_1(swigCPtr, str_Code);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public void ExecuteScript_ReturnVoid(string str_Code, string str_DisplayName) {
+    otapiPINVOKE.OT_ME_ExecuteScript_ReturnVoid__SWIG_0(swigCPtr, str_Code, str_DisplayName);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void ExecuteScript_ReturnVoid(string str_Code) {
+    otapiPINVOKE.OT_ME_ExecuteScript_ReturnVoid__SWIG_1(swigCPtr, str_Code);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void AddVariable(string str_var_name, SWIGTYPE_p_OTVariable theVar) {
+    otapiPINVOKE.OT_ME_AddVariable(swigCPtr, str_var_name, SWIGTYPE_p_OTVariable.getCPtr(theVar));
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public SWIGTYPE_p_OTVariable FindVariable(string str_var_name) {
+    global::System.IntPtr cPtr = otapiPINVOKE.OT_ME_FindVariable(swigCPtr, str_var_name);
+    SWIGTYPE_p_OTVariable ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static SWIGTYPE_p_OTVariable FindVariable2(string str_var_name) {
+    global::System.IntPtr cPtr = otapiPINVOKE.OT_ME_FindVariable2(str_var_name);
+    SWIGTYPE_p_OTVariable ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   public bool make_sure_enough_trans_nums(int nNumberNeeded, string SERVER_ID, string NYM_ID) {
     bool ret = otapiPINVOKE.OT_ME_make_sure_enough_trans_nums(swigCPtr, nNumberNeeded, SERVER_ID, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
@@ -116,26 +205,26 @@ public class OT_ME : global::System.IDisposable {
     return ret;
   }
 
-  public bool retrieve_account(string SERVER_ID, string NYM_ID, string ACCOUNT_ID) {
-    bool ret = otapiPINVOKE.OT_ME_retrieve_account__SWIG_0(swigCPtr, SERVER_ID, NYM_ID, ACCOUNT_ID);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
   public bool retrieve_account(string SERVER_ID, string NYM_ID, string ACCOUNT_ID, bool bForceDownload) {
-    bool ret = otapiPINVOKE.OT_ME_retrieve_account__SWIG_1(swigCPtr, SERVER_ID, NYM_ID, ACCOUNT_ID, bForceDownload);
+    bool ret = otapiPINVOKE.OT_ME_retrieve_account__SWIG_0(swigCPtr, SERVER_ID, NYM_ID, ACCOUNT_ID, bForceDownload);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public bool retrieve_nym(string SERVER_ID, string NYM_ID) {
-    bool ret = otapiPINVOKE.OT_ME_retrieve_nym__SWIG_0(swigCPtr, SERVER_ID, NYM_ID);
+  public bool retrieve_account(string SERVER_ID, string NYM_ID, string ACCOUNT_ID) {
+    bool ret = otapiPINVOKE.OT_ME_retrieve_account__SWIG_1(swigCPtr, SERVER_ID, NYM_ID, ACCOUNT_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public bool retrieve_nym(string SERVER_ID, string NYM_ID, bool bForceDownload) {
-    bool ret = otapiPINVOKE.OT_ME_retrieve_nym__SWIG_1(swigCPtr, SERVER_ID, NYM_ID, bForceDownload);
+    bool ret = otapiPINVOKE.OT_ME_retrieve_nym__SWIG_0(swigCPtr, SERVER_ID, NYM_ID, bForceDownload);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public bool retrieve_nym(string SERVER_ID, string NYM_ID) {
+    bool ret = otapiPINVOKE.OT_ME_retrieve_nym__SWIG_1(swigCPtr, SERVER_ID, NYM_ID);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -242,14 +331,14 @@ public class OT_ME : global::System.IDisposable {
     return ret;
   }
 
-  public string get_payment_instrument(string SERVER_ID, string NYM_ID, int nIndex) {
-    string ret = otapiPINVOKE.OT_ME_get_payment_instrument__SWIG_0(swigCPtr, SERVER_ID, NYM_ID, nIndex);
+  public string get_payment_instrument(string SERVER_ID, string NYM_ID, int nIndex, string PRELOADED_INBOX) {
+    string ret = otapiPINVOKE.OT_ME_get_payment_instrument__SWIG_0(swigCPtr, SERVER_ID, NYM_ID, nIndex, PRELOADED_INBOX);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
-  public string get_payment_instrument(string SERVER_ID, string NYM_ID, int nIndex, string PRELOADED_INBOX) {
-    string ret = otapiPINVOKE.OT_ME_get_payment_instrument__SWIG_1(swigCPtr, SERVER_ID, NYM_ID, nIndex, PRELOADED_INBOX);
+  public string get_payment_instrument(string SERVER_ID, string NYM_ID, int nIndex) {
+    string ret = otapiPINVOKE.OT_ME_get_payment_instrument__SWIG_1(swigCPtr, SERVER_ID, NYM_ID, nIndex);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -388,95 +477,6 @@ public class OT_ME : global::System.IDisposable {
 
   public string adjust_usage_credits(string SERVER_ID, string USER_NYM_ID, string TARGET_NYM_ID, string ADJUSTMENT) {
     string ret = otapiPINVOKE.OT_ME_adjust_usage_credits(swigCPtr, SERVER_ID, USER_NYM_ID, TARGET_NYM_ID, ADJUSTMENT);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int VerifyMessageSuccess(string str_Message) {
-    int ret = otapiPINVOKE.OT_ME_VerifyMessageSuccess(swigCPtr, str_Message);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int VerifyMsgBalanceAgrmntSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string str_Message) {
-    int ret = otapiPINVOKE.OT_ME_VerifyMsgBalanceAgrmntSuccess(swigCPtr, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int VerifyMsgTrnxSuccess(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string str_Message) {
-    int ret = otapiPINVOKE.OT_ME_VerifyMsgTrnxSuccess(swigCPtr, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int InterpretTransactionMsgReply(string SERVER_ID, string USER_ID, string ACCOUNT_ID, string str_Attempt, string str_Response) {
-    int ret = otapiPINVOKE.OT_ME_InterpretTransactionMsgReply(swigCPtr, SERVER_ID, USER_ID, ACCOUNT_ID, str_Attempt, str_Response);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public string ExecuteScript_ReturnString(string str_Code, string str_DisplayName) {
-    string ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnString__SWIG_0(swigCPtr, str_Code, str_DisplayName);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public string ExecuteScript_ReturnString(string str_Code) {
-    string ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnString__SWIG_1(swigCPtr, str_Code);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ExecuteScript_ReturnBool(string str_Code, string str_DisplayName) {
-    bool ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnBool__SWIG_0(swigCPtr, str_Code, str_DisplayName);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public bool ExecuteScript_ReturnBool(string str_Code) {
-    bool ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnBool__SWIG_1(swigCPtr, str_Code);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int ExecuteScript_ReturnInt(string str_Code, string str_DisplayName) {
-    int ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnInt__SWIG_0(swigCPtr, str_Code, str_DisplayName);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public int ExecuteScript_ReturnInt(string str_Code) {
-    int ret = otapiPINVOKE.OT_ME_ExecuteScript_ReturnInt__SWIG_1(swigCPtr, str_Code);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public void ExecuteScript_ReturnVoid(string str_Code, string str_DisplayName) {
-    otapiPINVOKE.OT_ME_ExecuteScript_ReturnVoid__SWIG_0(swigCPtr, str_Code, str_DisplayName);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void ExecuteScript_ReturnVoid(string str_Code) {
-    otapiPINVOKE.OT_ME_ExecuteScript_ReturnVoid__SWIG_1(swigCPtr, str_Code);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public void AddVariable(string str_var_name, SWIGTYPE_p_OTVariable theVar) {
-    otapiPINVOKE.OT_ME_AddVariable(swigCPtr, str_var_name, SWIGTYPE_p_OTVariable.getCPtr(theVar));
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-  }
-
-  public SWIGTYPE_p_OTVariable FindVariable(string str_var_name) {
-    global::System.IntPtr cPtr = otapiPINVOKE.OT_ME_FindVariable(swigCPtr, str_var_name);
-    SWIGTYPE_p_OTVariable ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
-    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
-    return ret;
-  }
-
-  public static SWIGTYPE_p_OTVariable FindVariable2(string str_var_name) {
-    global::System.IntPtr cPtr = otapiPINVOKE.OT_ME_FindVariable2(str_var_name);
-    SWIGTYPE_p_OTVariable ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }

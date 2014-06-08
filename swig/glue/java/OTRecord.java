@@ -35,6 +35,18 @@ public class OTRecord {
     }
   }
 
+  public void SetSpecialMail(boolean bIsSpecial) {
+    otapiJNI.OTRecord_SetSpecialMail__SWIG_0(swigCPtr, this, bIsSpecial);
+  }
+
+  public void SetSpecialMail() {
+    otapiJNI.OTRecord_SetSpecialMail__SWIG_1(swigCPtr, this);
+  }
+
+  public boolean IsSpecialMail() {
+    return otapiJNI.OTRecord_IsSpecialMail(swigCPtr, this);
+  }
+
   public boolean IsPending() {
     return otapiJNI.OTRecord_IsPending(swigCPtr, this);
   }
@@ -175,6 +187,38 @@ public class OTRecord {
     otapiJNI.OTRecord_SetBoxIndex(swigCPtr, this, nBoxIndex);
   }
 
+  public int GetMethodID() {
+    return otapiJNI.OTRecord_GetMethodID(swigCPtr, this);
+  }
+
+  public void SetMethodID(int nMethodID) {
+    otapiJNI.OTRecord_SetMethodID(swigCPtr, this, nMethodID);
+  }
+
+  public String GetMsgID() {
+    return otapiJNI.OTRecord_GetMsgID(swigCPtr, this);
+  }
+
+  public void SetMsgID(String str_id) {
+    otapiJNI.OTRecord_SetMsgID(swigCPtr, this, str_id);
+  }
+
+  public String GetMsgType() {
+    return otapiJNI.OTRecord_GetMsgType(swigCPtr, this);
+  }
+
+  public void SetMsgType(String str_type) {
+    otapiJNI.OTRecord_SetMsgType(swigCPtr, this, str_type);
+  }
+
+  public String GetMsgTypeDisplay() {
+    return otapiJNI.OTRecord_GetMsgTypeDisplay(swigCPtr, this);
+  }
+
+  public void SetMsgTypeDisplay(String str_type) {
+    otapiJNI.OTRecord_SetMsgTypeDisplay(swigCPtr, this, str_type);
+  }
+
   public long GetTransactionNum() {
     return otapiJNI.OTRecord_GetTransactionNum(swigCPtr, this);
   }
@@ -215,12 +259,20 @@ public class OTRecord {
     return otapiJNI.OTRecord_GetAccountID(swigCPtr, this);
   }
 
+  public String GetAddress() {
+    return otapiJNI.OTRecord_GetAddress(swigCPtr, this);
+  }
+
   public String GetOtherNymID() {
     return otapiJNI.OTRecord_GetOtherNymID(swigCPtr, this);
   }
 
   public String GetOtherAccountID() {
     return otapiJNI.OTRecord_GetOtherAccountID(swigCPtr, this);
+  }
+
+  public String GetOtherAddress() {
+    return otapiJNI.OTRecord_GetOtherAddress(swigCPtr, this);
   }
 
   public String GetName() {
@@ -253,6 +305,14 @@ public class OTRecord {
 
   public void SetOtherAccountID(String str_ID) {
     otapiJNI.OTRecord_SetOtherAccountID(swigCPtr, this, str_ID);
+  }
+
+  public void SetAddress(String str_Address) {
+    otapiJNI.OTRecord_SetAddress(swigCPtr, this, str_Address);
+  }
+
+  public void SetOtherAddress(String str_Address) {
+    otapiJNI.OTRecord_SetOtherAddress(swigCPtr, this, str_Address);
   }
 
   public void SetMemo(String str_memo) {

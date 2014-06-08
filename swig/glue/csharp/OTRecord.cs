@@ -38,6 +38,19 @@ public class OTRecord : global::System.IDisposable {
     }
   }
 
+  public void SetSpecialMail(bool bIsSpecial) {
+    otapiPINVOKE.OTRecord_SetSpecialMail__SWIG_0(swigCPtr, bIsSpecial);
+  }
+
+  public void SetSpecialMail() {
+    otapiPINVOKE.OTRecord_SetSpecialMail__SWIG_1(swigCPtr);
+  }
+
+  public bool IsSpecialMail() {
+    bool ret = otapiPINVOKE.OTRecord_IsSpecialMail(swigCPtr);
+    return ret;
+  }
+
   public bool IsPending() {
     bool ret = otapiPINVOKE.OTRecord_IsPending(swigCPtr);
     return ret;
@@ -212,6 +225,45 @@ public class OTRecord : global::System.IDisposable {
     otapiPINVOKE.OTRecord_SetBoxIndex(swigCPtr, nBoxIndex);
   }
 
+  public int GetMethodID() {
+    int ret = otapiPINVOKE.OTRecord_GetMethodID(swigCPtr);
+    return ret;
+  }
+
+  public void SetMethodID(int nMethodID) {
+    otapiPINVOKE.OTRecord_SetMethodID(swigCPtr, nMethodID);
+  }
+
+  public string GetMsgID() {
+    string ret = otapiPINVOKE.OTRecord_GetMsgID(swigCPtr);
+    return ret;
+  }
+
+  public void SetMsgID(string str_id) {
+    otapiPINVOKE.OTRecord_SetMsgID(swigCPtr, str_id);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public string GetMsgType() {
+    string ret = otapiPINVOKE.OTRecord_GetMsgType(swigCPtr);
+    return ret;
+  }
+
+  public void SetMsgType(string str_type) {
+    otapiPINVOKE.OTRecord_SetMsgType(swigCPtr, str_type);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public string GetMsgTypeDisplay() {
+    string ret = otapiPINVOKE.OTRecord_GetMsgTypeDisplay(swigCPtr);
+    return ret;
+  }
+
+  public void SetMsgTypeDisplay(string str_type) {
+    otapiPINVOKE.OTRecord_SetMsgTypeDisplay(swigCPtr, str_type);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
   public long GetTransactionNum() {
     long ret = otapiPINVOKE.OTRecord_GetTransactionNum(swigCPtr);
     return ret;
@@ -260,6 +312,11 @@ public class OTRecord : global::System.IDisposable {
     return ret;
   }
 
+  public string GetAddress() {
+    string ret = otapiPINVOKE.OTRecord_GetAddress(swigCPtr);
+    return ret;
+  }
+
   public string GetOtherNymID() {
     string ret = otapiPINVOKE.OTRecord_GetOtherNymID(swigCPtr);
     return ret;
@@ -267,6 +324,11 @@ public class OTRecord : global::System.IDisposable {
 
   public string GetOtherAccountID() {
     string ret = otapiPINVOKE.OTRecord_GetOtherAccountID(swigCPtr);
+    return ret;
+  }
+
+  public string GetOtherAddress() {
+    string ret = otapiPINVOKE.OTRecord_GetOtherAddress(swigCPtr);
     return ret;
   }
 
@@ -307,6 +369,16 @@ public class OTRecord : global::System.IDisposable {
 
   public void SetOtherAccountID(string str_ID) {
     otapiPINVOKE.OTRecord_SetOtherAccountID(swigCPtr, str_ID);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetAddress(string str_Address) {
+    otapiPINVOKE.OTRecord_SetAddress(swigCPtr, str_Address);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void SetOtherAddress(string str_Address) {
+    otapiPINVOKE.OTRecord_SetOtherAddress(swigCPtr, str_Address);
     if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 

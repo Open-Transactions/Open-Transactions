@@ -2015,6 +2015,65 @@ class OT_ME {
 		return OT_ME_opentxs_main_loop($this->_cPtr);
 	}
 
+	function VerifyMessageSuccess($str_Message) {
+		return OT_ME_VerifyMessageSuccess($this->_cPtr,$str_Message);
+	}
+
+	function VerifyMsgBalanceAgrmntSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message) {
+		return OT_ME_VerifyMsgBalanceAgrmntSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
+	}
+
+	function VerifyMsgTrnxSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message) {
+		return OT_ME_VerifyMsgTrnxSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
+	}
+
+	function InterpretTransactionMsgReply($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Attempt,$str_Response) {
+		return OT_ME_InterpretTransactionMsgReply($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Attempt,$str_Response);
+	}
+
+	function ExecuteScript_ReturnString($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: $r=OT_ME_ExecuteScript_ReturnString($this->_cPtr,$str_Code); break;
+		default: $r=OT_ME_ExecuteScript_ReturnString($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+		return $r;
+	}
+
+	function ExecuteScript_ReturnBool($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: $r=OT_ME_ExecuteScript_ReturnBool($this->_cPtr,$str_Code); break;
+		default: $r=OT_ME_ExecuteScript_ReturnBool($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+		return $r;
+	}
+
+	function ExecuteScript_ReturnInt($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: $r=OT_ME_ExecuteScript_ReturnInt($this->_cPtr,$str_Code); break;
+		default: $r=OT_ME_ExecuteScript_ReturnInt($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+		return $r;
+	}
+
+	function ExecuteScript_ReturnVoid($str_Code,$str_DisplayName=null) {
+		switch (func_num_args()) {
+		case 1: OT_ME_ExecuteScript_ReturnVoid($this->_cPtr,$str_Code); break;
+		default: OT_ME_ExecuteScript_ReturnVoid($this->_cPtr,$str_Code,$str_DisplayName);
+		}
+	}
+
+	function AddVariable($str_var_name,$theVar) {
+		OT_ME_AddVariable($this->_cPtr,$str_var_name,$theVar);
+	}
+
+	function FindVariable($str_var_name) {
+		return OT_ME_FindVariable($this->_cPtr,$str_var_name);
+	}
+
+	static function FindVariable2($str_var_name) {
+		return OT_ME_FindVariable2($str_var_name);
+	}
+
 	function make_sure_enough_trans_nums($nNumberNeeded,$SERVER_ID,$NYM_ID) {
 		return OT_ME_make_sure_enough_trans_nums($this->_cPtr,$nNumberNeeded,$SERVER_ID,$NYM_ID);
 	}
@@ -2059,20 +2118,12 @@ class OT_ME {
 		return OT_ME_stat_asset_account($this->_cPtr,$ACCOUNT_ID);
 	}
 
-	function retrieve_account($SERVER_ID,$NYM_ID,$ACCOUNT_ID,$bForceDownload=null) {
-		switch (func_num_args()) {
-		case 3: $r=OT_ME_retrieve_account($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID); break;
-		default: $r=OT_ME_retrieve_account($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID,$bForceDownload);
-		}
-		return $r;
+	function retrieve_account($SERVER_ID,$NYM_ID,$ACCOUNT_ID,$bForceDownload=false) {
+		return OT_ME_retrieve_account($this->_cPtr,$SERVER_ID,$NYM_ID,$ACCOUNT_ID,$bForceDownload);
 	}
 
-	function retrieve_nym($SERVER_ID,$NYM_ID,$bForceDownload=null) {
-		switch (func_num_args()) {
-		case 2: $r=OT_ME_retrieve_nym($this->_cPtr,$SERVER_ID,$NYM_ID); break;
-		default: $r=OT_ME_retrieve_nym($this->_cPtr,$SERVER_ID,$NYM_ID,$bForceDownload);
-		}
-		return $r;
+	function retrieve_nym($SERVER_ID,$NYM_ID,$bForceDownload=true) {
+		return OT_ME_retrieve_nym($this->_cPtr,$SERVER_ID,$NYM_ID,$bForceDownload);
 	}
 
 	function send_transfer($SERVER_ID,$NYM_ID,$ACCT_FROM,$ACCT_TO,$AMOUNT,$NOTE) {
@@ -2241,65 +2292,6 @@ class OT_ME {
 
 	function adjust_usage_credits($SERVER_ID,$USER_NYM_ID,$TARGET_NYM_ID,$ADJUSTMENT) {
 		return OT_ME_adjust_usage_credits($this->_cPtr,$SERVER_ID,$USER_NYM_ID,$TARGET_NYM_ID,$ADJUSTMENT);
-	}
-
-	function VerifyMessageSuccess($str_Message) {
-		return OT_ME_VerifyMessageSuccess($this->_cPtr,$str_Message);
-	}
-
-	function VerifyMsgBalanceAgrmntSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message) {
-		return OT_ME_VerifyMsgBalanceAgrmntSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
-	}
-
-	function VerifyMsgTrnxSuccess($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message) {
-		return OT_ME_VerifyMsgTrnxSuccess($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Message);
-	}
-
-	function InterpretTransactionMsgReply($SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Attempt,$str_Response) {
-		return OT_ME_InterpretTransactionMsgReply($this->_cPtr,$SERVER_ID,$USER_ID,$ACCOUNT_ID,$str_Attempt,$str_Response);
-	}
-
-	function ExecuteScript_ReturnString($str_Code,$str_DisplayName=null) {
-		switch (func_num_args()) {
-		case 1: $r=OT_ME_ExecuteScript_ReturnString($this->_cPtr,$str_Code); break;
-		default: $r=OT_ME_ExecuteScript_ReturnString($this->_cPtr,$str_Code,$str_DisplayName);
-		}
-		return $r;
-	}
-
-	function ExecuteScript_ReturnBool($str_Code,$str_DisplayName=null) {
-		switch (func_num_args()) {
-		case 1: $r=OT_ME_ExecuteScript_ReturnBool($this->_cPtr,$str_Code); break;
-		default: $r=OT_ME_ExecuteScript_ReturnBool($this->_cPtr,$str_Code,$str_DisplayName);
-		}
-		return $r;
-	}
-
-	function ExecuteScript_ReturnInt($str_Code,$str_DisplayName=null) {
-		switch (func_num_args()) {
-		case 1: $r=OT_ME_ExecuteScript_ReturnInt($this->_cPtr,$str_Code); break;
-		default: $r=OT_ME_ExecuteScript_ReturnInt($this->_cPtr,$str_Code,$str_DisplayName);
-		}
-		return $r;
-	}
-
-	function ExecuteScript_ReturnVoid($str_Code,$str_DisplayName=null) {
-		switch (func_num_args()) {
-		case 1: OT_ME_ExecuteScript_ReturnVoid($this->_cPtr,$str_Code); break;
-		default: OT_ME_ExecuteScript_ReturnVoid($this->_cPtr,$str_Code,$str_DisplayName);
-		}
-	}
-
-	function AddVariable($str_var_name,$theVar) {
-		OT_ME_AddVariable($this->_cPtr,$str_var_name,$theVar);
-	}
-
-	function FindVariable($str_var_name) {
-		return OT_ME_FindVariable($this->_cPtr,$str_var_name);
-	}
-
-	static function FindVariable2($str_var_name) {
-		return OT_ME_FindVariable2($str_var_name);
 	}
 }
 
@@ -3837,6 +3829,14 @@ class OTRecord {
 
 	const ErrorState = OTRecord_ErrorState;
 
+	function SetSpecialMail($bIsSpecial=true) {
+		OTRecord_SetSpecialMail($this->_cPtr,$bIsSpecial);
+	}
+
+	function IsSpecialMail() {
+		return OTRecord_IsSpecialMail($this->_cPtr);
+	}
+
 	function IsPending() {
 		return OTRecord_IsPending($this->_cPtr);
 	}
@@ -3977,6 +3977,38 @@ class OTRecord {
 		OTRecord_SetBoxIndex($this->_cPtr,$nBoxIndex);
 	}
 
+	function GetMethodID() {
+		return OTRecord_GetMethodID($this->_cPtr);
+	}
+
+	function SetMethodID($nMethodID) {
+		OTRecord_SetMethodID($this->_cPtr,$nMethodID);
+	}
+
+	function GetMsgID() {
+		return OTRecord_GetMsgID($this->_cPtr);
+	}
+
+	function SetMsgID($str_id) {
+		OTRecord_SetMsgID($this->_cPtr,$str_id);
+	}
+
+	function GetMsgType() {
+		return OTRecord_GetMsgType($this->_cPtr);
+	}
+
+	function SetMsgType($str_type) {
+		OTRecord_SetMsgType($this->_cPtr,$str_type);
+	}
+
+	function GetMsgTypeDisplay() {
+		return OTRecord_GetMsgTypeDisplay($this->_cPtr);
+	}
+
+	function SetMsgTypeDisplay($str_type) {
+		OTRecord_SetMsgTypeDisplay($this->_cPtr,$str_type);
+	}
+
 	function GetTransactionNum() {
 		return OTRecord_GetTransactionNum($this->_cPtr);
 	}
@@ -4017,12 +4049,20 @@ class OTRecord {
 		return OTRecord_GetAccountID($this->_cPtr);
 	}
 
+	function GetAddress() {
+		return OTRecord_GetAddress($this->_cPtr);
+	}
+
 	function GetOtherNymID() {
 		return OTRecord_GetOtherNymID($this->_cPtr);
 	}
 
 	function GetOtherAccountID() {
 		return OTRecord_GetOtherAccountID($this->_cPtr);
+	}
+
+	function GetOtherAddress() {
+		return OTRecord_GetOtherAddress($this->_cPtr);
 	}
 
 	function GetName() {
@@ -4055,6 +4095,14 @@ class OTRecord {
 
 	function SetOtherAccountID($str_ID) {
 		OTRecord_SetOtherAccountID($this->_cPtr,$str_ID);
+	}
+
+	function SetAddress($str_Address) {
+		OTRecord_SetAddress($this->_cPtr,$str_Address);
+	}
+
+	function SetOtherAddress($str_Address) {
+		OTRecord_SetOtherAddress($this->_cPtr,$str_Address);
 	}
 
 	function SetMemo($str_memo) {
@@ -4161,6 +4209,10 @@ class OTNameLookup {
 	function GetAcctName($str_id,$p_nym_id=null,$p_server_id=null,$p_asset_id=null) {
 		return OTNameLookup_GetAcctName($this->_cPtr,$str_id,$p_nym_id,$p_server_id,$p_asset_id);
 	}
+
+	function GetAddressName($str_address) {
+		return OTNameLookup_GetAddressName($this->_cPtr,$str_address);
+	}
 }
 
 class OTLookupCaller {
@@ -4218,6 +4270,10 @@ class OTLookupCaller {
 
 	function GetAcctName($str_id,$p_nym_id=null,$p_server_id=null,$p_asset_id=null) {
 		return OTLookupCaller_GetAcctName($this->_cPtr,$str_id,$p_nym_id,$p_server_id,$p_asset_id);
+	}
+
+	function GetAddressName($str_address) {
+		return OTLookupCaller_GetAddressName($this->_cPtr,$str_address);
 	}
 }
 
@@ -4333,6 +4389,10 @@ class OTRecordList {
 		OTRecordList_ClearAccounts($this->_cPtr);
 	}
 
+	function GetNyms() {
+		return OTRecordList_GetNyms($this->_cPtr);
+	}
+
 	function AcceptChequesAutomatically($bVal=true) {
 		OTRecordList_AcceptChequesAutomatically($this->_cPtr,$bVal);
 	}
@@ -4375,6 +4435,18 @@ class OTRecordList {
 
 	function ClearContents() {
 		OTRecordList_ClearContents($this->_cPtr);
+	}
+
+	function SortRecords() {
+		OTRecordList_SortRecords($this->_cPtr);
+	}
+
+	function AddSpecialMsg($str_msg_id,$bIsOutgoing,$nMethodID,$str_contents,$str_address,$str_other_address,$str_type,$str_type_display,$str_my_nym_id=null,$tDate=null) {
+		switch (func_num_args()) {
+		case 8: OTRecordList_AddSpecialMsg($this->_cPtr,$str_msg_id,$bIsOutgoing,$nMethodID,$str_contents,$str_address,$str_other_address,$str_type,$str_type_display); break;
+		case 9: OTRecordList_AddSpecialMsg($this->_cPtr,$str_msg_id,$bIsOutgoing,$nMethodID,$str_contents,$str_address,$str_other_address,$str_type,$str_type_display,$str_my_nym_id); break;
+		default: OTRecordList_AddSpecialMsg($this->_cPtr,$str_msg_id,$bIsOutgoing,$nMethodID,$str_contents,$str_address,$str_other_address,$str_type,$str_type_display,$str_my_nym_id,$tDate);
+		}
 	}
 
 	function size() {

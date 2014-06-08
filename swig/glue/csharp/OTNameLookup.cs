@@ -78,6 +78,12 @@ public class OTNameLookup : global::System.IDisposable {
     return ret;
   }
 
+  public virtual string GetAddressName(string str_address) {
+    string ret = (SwigDerivedClassHasMethod("GetAddressName", swigMethodTypes6) ? otapiPINVOKE.OTNameLookup_GetAddressNameSwigExplicitOTNameLookup(swigCPtr, str_address) : otapiPINVOKE.OTNameLookup_GetAddressName(swigCPtr, str_address));
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
   private void SwigDirectorConnect() {
     if (SwigDerivedClassHasMethod("GetNymName", swigMethodTypes0))
       swigDelegate0 = new SwigDelegateOTNameLookup_0(SwigDirectorGetNymName__SWIG_0);
@@ -91,7 +97,9 @@ public class OTNameLookup : global::System.IDisposable {
       swigDelegate4 = new SwigDelegateOTNameLookup_4(SwigDirectorGetAcctName__SWIG_2);
     if (SwigDerivedClassHasMethod("GetAcctName", swigMethodTypes5))
       swigDelegate5 = new SwigDelegateOTNameLookup_5(SwigDirectorGetAcctName__SWIG_3);
-    otapiPINVOKE.OTNameLookup_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5);
+    if (SwigDerivedClassHasMethod("GetAddressName", swigMethodTypes6))
+      swigDelegate6 = new SwigDelegateOTNameLookup_6(SwigDirectorGetAddressName);
+    otapiPINVOKE.OTNameLookup_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6);
   }
 
   private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes) {
@@ -124,12 +132,17 @@ public class OTNameLookup : global::System.IDisposable {
     return GetAcctName(str_id);
   }
 
+  private string SwigDirectorGetAddressName(string str_address) {
+    return GetAddressName(str_address);
+  }
+
   public delegate string SwigDelegateOTNameLookup_0(string str_id, global::System.IntPtr p_server_id);
   public delegate string SwigDelegateOTNameLookup_1(string str_id);
   public delegate string SwigDelegateOTNameLookup_2(string str_id, global::System.IntPtr p_nym_id, global::System.IntPtr p_server_id, global::System.IntPtr p_asset_id);
   public delegate string SwigDelegateOTNameLookup_3(string str_id, global::System.IntPtr p_nym_id, global::System.IntPtr p_server_id);
   public delegate string SwigDelegateOTNameLookup_4(string str_id, global::System.IntPtr p_nym_id);
   public delegate string SwigDelegateOTNameLookup_5(string str_id);
+  public delegate string SwigDelegateOTNameLookup_6(string str_address);
 
   private SwigDelegateOTNameLookup_0 swigDelegate0;
   private SwigDelegateOTNameLookup_1 swigDelegate1;
@@ -137,6 +150,7 @@ public class OTNameLookup : global::System.IDisposable {
   private SwigDelegateOTNameLookup_3 swigDelegate3;
   private SwigDelegateOTNameLookup_4 swigDelegate4;
   private SwigDelegateOTNameLookup_5 swigDelegate5;
+  private SwigDelegateOTNameLookup_6 swigDelegate6;
 
   private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(string), typeof(SWIGTYPE_p_std__string) };
   private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(string) };
@@ -144,6 +158,7 @@ public class OTNameLookup : global::System.IDisposable {
   private static global::System.Type[] swigMethodTypes3 = new global::System.Type[] { typeof(string), typeof(SWIGTYPE_p_std__string), typeof(SWIGTYPE_p_std__string) };
   private static global::System.Type[] swigMethodTypes4 = new global::System.Type[] { typeof(string), typeof(SWIGTYPE_p_std__string) };
   private static global::System.Type[] swigMethodTypes5 = new global::System.Type[] { typeof(string) };
+  private static global::System.Type[] swigMethodTypes6 = new global::System.Type[] { typeof(string) };
 }
 
 }

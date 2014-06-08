@@ -47,6 +47,68 @@ public class OT_ME {
     return otapiJNI.OT_ME_opentxs_main_loop(swigCPtr, this);
   }
 
+  public int VerifyMessageSuccess(String str_Message) {
+    return otapiJNI.OT_ME_VerifyMessageSuccess(swigCPtr, this, str_Message);
+  }
+
+  public int VerifyMsgBalanceAgrmntSuccess(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String str_Message) {
+    return otapiJNI.OT_ME_VerifyMsgBalanceAgrmntSuccess(swigCPtr, this, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
+  }
+
+  public int VerifyMsgTrnxSuccess(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String str_Message) {
+    return otapiJNI.OT_ME_VerifyMsgTrnxSuccess(swigCPtr, this, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
+  }
+
+  public int InterpretTransactionMsgReply(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String str_Attempt, String str_Response) {
+    return otapiJNI.OT_ME_InterpretTransactionMsgReply(swigCPtr, this, SERVER_ID, USER_ID, ACCOUNT_ID, str_Attempt, str_Response);
+  }
+
+  public String ExecuteScript_ReturnString(String str_Code, String str_DisplayName) {
+    return otapiJNI.OT_ME_ExecuteScript_ReturnString__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
+  }
+
+  public String ExecuteScript_ReturnString(String str_Code) {
+    return otapiJNI.OT_ME_ExecuteScript_ReturnString__SWIG_1(swigCPtr, this, str_Code);
+  }
+
+  public boolean ExecuteScript_ReturnBool(String str_Code, String str_DisplayName) {
+    return otapiJNI.OT_ME_ExecuteScript_ReturnBool__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
+  }
+
+  public boolean ExecuteScript_ReturnBool(String str_Code) {
+    return otapiJNI.OT_ME_ExecuteScript_ReturnBool__SWIG_1(swigCPtr, this, str_Code);
+  }
+
+  public int ExecuteScript_ReturnInt(String str_Code, String str_DisplayName) {
+    return otapiJNI.OT_ME_ExecuteScript_ReturnInt__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
+  }
+
+  public int ExecuteScript_ReturnInt(String str_Code) {
+    return otapiJNI.OT_ME_ExecuteScript_ReturnInt__SWIG_1(swigCPtr, this, str_Code);
+  }
+
+  public void ExecuteScript_ReturnVoid(String str_Code, String str_DisplayName) {
+    otapiJNI.OT_ME_ExecuteScript_ReturnVoid__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
+  }
+
+  public void ExecuteScript_ReturnVoid(String str_Code) {
+    otapiJNI.OT_ME_ExecuteScript_ReturnVoid__SWIG_1(swigCPtr, this, str_Code);
+  }
+
+  public void AddVariable(String str_var_name, SWIGTYPE_p_OTVariable theVar) {
+    otapiJNI.OT_ME_AddVariable(swigCPtr, this, str_var_name, SWIGTYPE_p_OTVariable.getCPtr(theVar));
+  }
+
+  public SWIGTYPE_p_OTVariable FindVariable(String str_var_name) {
+    long cPtr = otapiJNI.OT_ME_FindVariable(swigCPtr, this, str_var_name);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
+  }
+
+  public static SWIGTYPE_p_OTVariable FindVariable2(String str_var_name) {
+    long cPtr = otapiJNI.OT_ME_FindVariable2(str_var_name);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
+  }
+
   public boolean make_sure_enough_trans_nums(int nNumberNeeded, String SERVER_ID, String NYM_ID) {
     return otapiJNI.OT_ME_make_sure_enough_trans_nums(swigCPtr, this, nNumberNeeded, SERVER_ID, NYM_ID);
   }
@@ -91,20 +153,20 @@ public class OT_ME {
     return otapiJNI.OT_ME_stat_asset_account(swigCPtr, this, ACCOUNT_ID);
   }
 
-  public boolean retrieve_account(String SERVER_ID, String NYM_ID, String ACCOUNT_ID) {
-    return otapiJNI.OT_ME_retrieve_account__SWIG_0(swigCPtr, this, SERVER_ID, NYM_ID, ACCOUNT_ID);
-  }
-
   public boolean retrieve_account(String SERVER_ID, String NYM_ID, String ACCOUNT_ID, boolean bForceDownload) {
-    return otapiJNI.OT_ME_retrieve_account__SWIG_1(swigCPtr, this, SERVER_ID, NYM_ID, ACCOUNT_ID, bForceDownload);
+    return otapiJNI.OT_ME_retrieve_account__SWIG_0(swigCPtr, this, SERVER_ID, NYM_ID, ACCOUNT_ID, bForceDownload);
   }
 
-  public boolean retrieve_nym(String SERVER_ID, String NYM_ID) {
-    return otapiJNI.OT_ME_retrieve_nym__SWIG_0(swigCPtr, this, SERVER_ID, NYM_ID);
+  public boolean retrieve_account(String SERVER_ID, String NYM_ID, String ACCOUNT_ID) {
+    return otapiJNI.OT_ME_retrieve_account__SWIG_1(swigCPtr, this, SERVER_ID, NYM_ID, ACCOUNT_ID);
   }
 
   public boolean retrieve_nym(String SERVER_ID, String NYM_ID, boolean bForceDownload) {
-    return otapiJNI.OT_ME_retrieve_nym__SWIG_1(swigCPtr, this, SERVER_ID, NYM_ID, bForceDownload);
+    return otapiJNI.OT_ME_retrieve_nym__SWIG_0(swigCPtr, this, SERVER_ID, NYM_ID, bForceDownload);
+  }
+
+  public boolean retrieve_nym(String SERVER_ID, String NYM_ID) {
+    return otapiJNI.OT_ME_retrieve_nym__SWIG_1(swigCPtr, this, SERVER_ID, NYM_ID);
   }
 
   public String send_transfer(String SERVER_ID, String NYM_ID, String ACCT_FROM, String ACCT_TO, long AMOUNT, String NOTE) {
@@ -175,12 +237,12 @@ public class OT_ME {
     return otapiJNI.OT_ME_withdraw_and_send_cash(swigCPtr, this, ACCT_ID, RECIPIENT_NYM_ID, MEMO, AMOUNT);
   }
 
-  public String get_payment_instrument(String SERVER_ID, String NYM_ID, int nIndex) {
-    return otapiJNI.OT_ME_get_payment_instrument__SWIG_0(swigCPtr, this, SERVER_ID, NYM_ID, nIndex);
+  public String get_payment_instrument(String SERVER_ID, String NYM_ID, int nIndex, String PRELOADED_INBOX) {
+    return otapiJNI.OT_ME_get_payment_instrument__SWIG_0(swigCPtr, this, SERVER_ID, NYM_ID, nIndex, PRELOADED_INBOX);
   }
 
-  public String get_payment_instrument(String SERVER_ID, String NYM_ID, int nIndex, String PRELOADED_INBOX) {
-    return otapiJNI.OT_ME_get_payment_instrument__SWIG_1(swigCPtr, this, SERVER_ID, NYM_ID, nIndex, PRELOADED_INBOX);
+  public String get_payment_instrument(String SERVER_ID, String NYM_ID, int nIndex) {
+    return otapiJNI.OT_ME_get_payment_instrument__SWIG_1(swigCPtr, this, SERVER_ID, NYM_ID, nIndex);
   }
 
   public String get_box_receipt(String SERVER_ID, String NYM_ID, String ACCT_ID, int nBoxType, long TRANS_NUM) {
@@ -273,68 +335,6 @@ public class OT_ME {
 
   public String adjust_usage_credits(String SERVER_ID, String USER_NYM_ID, String TARGET_NYM_ID, String ADJUSTMENT) {
     return otapiJNI.OT_ME_adjust_usage_credits(swigCPtr, this, SERVER_ID, USER_NYM_ID, TARGET_NYM_ID, ADJUSTMENT);
-  }
-
-  public int VerifyMessageSuccess(String str_Message) {
-    return otapiJNI.OT_ME_VerifyMessageSuccess(swigCPtr, this, str_Message);
-  }
-
-  public int VerifyMsgBalanceAgrmntSuccess(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String str_Message) {
-    return otapiJNI.OT_ME_VerifyMsgBalanceAgrmntSuccess(swigCPtr, this, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
-  }
-
-  public int VerifyMsgTrnxSuccess(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String str_Message) {
-    return otapiJNI.OT_ME_VerifyMsgTrnxSuccess(swigCPtr, this, SERVER_ID, USER_ID, ACCOUNT_ID, str_Message);
-  }
-
-  public int InterpretTransactionMsgReply(String SERVER_ID, String USER_ID, String ACCOUNT_ID, String str_Attempt, String str_Response) {
-    return otapiJNI.OT_ME_InterpretTransactionMsgReply(swigCPtr, this, SERVER_ID, USER_ID, ACCOUNT_ID, str_Attempt, str_Response);
-  }
-
-  public String ExecuteScript_ReturnString(String str_Code, String str_DisplayName) {
-    return otapiJNI.OT_ME_ExecuteScript_ReturnString__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
-  }
-
-  public String ExecuteScript_ReturnString(String str_Code) {
-    return otapiJNI.OT_ME_ExecuteScript_ReturnString__SWIG_1(swigCPtr, this, str_Code);
-  }
-
-  public boolean ExecuteScript_ReturnBool(String str_Code, String str_DisplayName) {
-    return otapiJNI.OT_ME_ExecuteScript_ReturnBool__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
-  }
-
-  public boolean ExecuteScript_ReturnBool(String str_Code) {
-    return otapiJNI.OT_ME_ExecuteScript_ReturnBool__SWIG_1(swigCPtr, this, str_Code);
-  }
-
-  public int ExecuteScript_ReturnInt(String str_Code, String str_DisplayName) {
-    return otapiJNI.OT_ME_ExecuteScript_ReturnInt__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
-  }
-
-  public int ExecuteScript_ReturnInt(String str_Code) {
-    return otapiJNI.OT_ME_ExecuteScript_ReturnInt__SWIG_1(swigCPtr, this, str_Code);
-  }
-
-  public void ExecuteScript_ReturnVoid(String str_Code, String str_DisplayName) {
-    otapiJNI.OT_ME_ExecuteScript_ReturnVoid__SWIG_0(swigCPtr, this, str_Code, str_DisplayName);
-  }
-
-  public void ExecuteScript_ReturnVoid(String str_Code) {
-    otapiJNI.OT_ME_ExecuteScript_ReturnVoid__SWIG_1(swigCPtr, this, str_Code);
-  }
-
-  public void AddVariable(String str_var_name, SWIGTYPE_p_OTVariable theVar) {
-    otapiJNI.OT_ME_AddVariable(swigCPtr, this, str_var_name, SWIGTYPE_p_OTVariable.getCPtr(theVar));
-  }
-
-  public SWIGTYPE_p_OTVariable FindVariable(String str_var_name) {
-    long cPtr = otapiJNI.OT_ME_FindVariable(swigCPtr, this, str_var_name);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
-  }
-
-  public static SWIGTYPE_p_OTVariable FindVariable2(String str_var_name) {
-    long cPtr = otapiJNI.OT_ME_FindVariable2(str_var_name);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_OTVariable(cPtr, false);
   }
 
 }

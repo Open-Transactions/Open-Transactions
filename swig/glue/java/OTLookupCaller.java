@@ -80,4 +80,8 @@ public class OTLookupCaller {
     return otapiJNI.OTLookupCaller_GetAcctName__SWIG_3(swigCPtr, this, str_id);
   }
 
+  public String GetAddressName(String str_address) {
+    return otapiJNI.OTLookupCaller_GetAddressName(swigCPtr, this, str_address);
+  }
+
 }
