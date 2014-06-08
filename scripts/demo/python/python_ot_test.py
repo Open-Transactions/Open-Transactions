@@ -10,26 +10,24 @@
 #
 # Also, make sure the server is running ('otserver')
 #
-nb = raw_input('\n\nBefore running this script, make sure the _otapi.so and\nthe otapi.py are both in a folder on the path:  $PYTHONPATH\nPersonally I put them in /usr/local/lib/python2.7/site-packages\nand then I set $PYTHONPATH to contain that path.\n\nAlso, make sure the server is running (otserver)\n\nOkay, ready to test?\nPress enter TWICE to try out the OT API... ')
+nb = raw_input('\n\
+    nBefore running this script, make sure the _otapi.so and\nthe otapi.py are both in a folder on the path:  $PYTHONPATH\nPersonally I put them in /usr/local/lib/python2.7/site-packages\nand then I set $PYTHONPATH to contain that path.\n\nAlso, make sure the server is running (otserver)\n\nOkay, ready to test?\nPress enter TWICE to try out the OT API... ')
 
 # ---------------------------------------------------------
 import otapi
 
-otapi.OTAPI_Basic_AppStartup()
-
 # These functions are perfect examples of the 'Low-level API',
 # which is useful for simple functions that don't require messaging
-# any OT servers. See OTAPI_Basic.h and OTAPI.h for the complete
-# low-level API.
+# any OT servers. See OTAPI.hpp for the complete low-level API.
 
-otapi.OTAPI_Basic_Init()
-otapi.OTAPI_Basic_LoadWallet()
+otapi.OTAPI_Wrap_AppInit()
+otapi.OTAPI_Wrap_LoadWallet()
 
 # ---------------------------------------------------------
 # Use the low-level API to see how many server contracts
 # are in the user's wallet.
 
-count = otapi.OTAPI_Basic_GetServerCount()
+count = otapi.OTAPI_Wrap_GetServerCount()
 print 'Server count: ', count
 
 # ---------------------------------------------------------
@@ -38,10 +36,10 @@ print 'Server count: ', count
 #
 # This object handles all the request/response going on with
 # any servers, plus all the retries and synchronization. It's
-# the 'High-level API'. See OTMadeEasy.h and OT_ME.h for the
-# complete set of high-level API functions.
+# the 'High-level API'. See OT_ME.h for the complete set of
+# high-level API functions.
 
-objEasy = otapi.OTMadeEasy()
+objEasy = otapi.OT_ME()
 
 # ---------------------------------------------------------
 #
@@ -132,17 +130,16 @@ else:
 # So... we're done. Let's shutdown OT and finish execution.
 # (Using the low-level API...)
 
-otapi.OTAPI_Basic_Output(0, "\nOne more thing: Successfully used OT_API_Output.\n")
+otapi.OTAPI_Wrap_Output(0, "\nOne more thing: Successfully used OT_API_Output.\n")
 
-otapi.OTAPI_Basic_AppShutdown()
+otapi.OTAPI_Wrap_AppCleanup()
 
 
-# P.S. to see the complete OT high-level API:  OTMadeEasy.h
-#  and to see the complete OT low-level  API:  OTAPI_Basic.h
+# P.S. to see the complete OT high-level API:  OT_ME.hpp
+#  and to see the complete OT low-level  API:  OTAPI.hpp
 #
 # See the Open-Transactions/include/otapi folder for all
-# relevant headers. OTMadeEasy is a wrapper for OT_ME, and
-# OTAPI_Basic is a wrapper for OTAPI.
+# relevant headers.
 #
 # One more thing: If you want to see a lot of free sample code
 # similar to the above code, which shows you how to use all the
@@ -153,4 +150,3 @@ otapi.OTAPI_Basic_AppShutdown()
 # (It contains the complete implementation for a command-line
 #  Open-Transactions client.)
 # --------------------------------------
-
