@@ -47,18 +47,6 @@ libot_la_LDFLAGS	=	--no-undefined
 
 
 
-#### Transport ZMQ 'option'
-
-if TRANSPORT_ZMQ4
-
-libot_la_LIBADD		+=	$(top_builddir)/deps/src/zmq/libzmq.la
-
-libot_la_DEPENDENCIES	+=	$(top_builddir)/deps/src/zmq/libzmq.la
-
-endif
-
-
-
 #### KEYRING Options
 
 if KEYRING_WINDOWS
@@ -151,7 +139,6 @@ otlib_sources     =	OTAccount.cpp		\
 			OTSignature.cpp		\
 			OTSignedFile.cpp	\
 			OTSmartContract.cpp	\
-			OTSocket.cpp		\
 			OTStash.cpp		\
 			OTStashItem.cpp		\
 			OTStorage.cpp		\
@@ -263,7 +250,6 @@ otlib_headers_ext	=	$(top_builddir)/include/otlib/ot_config.h   	\
 				$(otlib_headers_dir)/OTSmartContract.hpp	\
 				$(otlib_headers_dir)/OTStash.hpp		\
 				$(otlib_headers_dir)/OTStashItem.hpp		\
-				$(otlib_headers_dir)/OTSocket.hpp		\
 				$(otlib_headers_dir)/OTStorage.hpp		\
 				$(otlib_headers_dir)/OTString.hpp		\
 				$(otlib_headers_dir)/OTStringXML.hpp		\
