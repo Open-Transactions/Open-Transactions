@@ -31,8 +31,8 @@ opentxs_SOURCES         =  $(opentxs_sources) $(otapi_headers)
 
 opentxs_CXXFLAGS        =  $(common_includes) -I$(otapi_headers_dir)
 
-opentxs_LDADD           =  otapi/libotapi.la otlib/libot.la otextensions/libotextensions.la $(DEPS_LIBS)
-opentxs_DEPENDENCIES    =  otapi/libotapi.la otlib/libot.la otextensions/libotextensions.la
+opentxs_LDADD           =  otapi/libotapi.la otextensions/libotextensions.la otlib/libot.la $(DEPS_LIBS)
+opentxs_DEPENDENCIES    =  otapi/libotapi.la otextensions/libotextensions.la otlib/libot.la
 
 #### OT Server
 
@@ -40,8 +40,8 @@ otserver_SOURCES        =   $(otserver_common) $(otserver_sources) $(otserver_he
 
 otserver_CXXFLAGS       =   $(common_includes) -I$(otserver_headers_dir) -I$(opentxs_include_dir)/otextensions
 
-otserver_LDADD          =   otlib/libot.la otextensions/libotextensions.la $(DEPS_LIBS)
-otserver_DEPENDENCIES   =   otlib/libot.la otextensions/libotextensions.la
+otserver_LDADD          =   otextensions/libotextensions.la otlib/libot.la $(DEPS_LIBS)
+otserver_DEPENDENCIES   =   otextensions/libotextensions.la otlib/libot.la
 
 
 #### Createmint  (includes files from OT Server)

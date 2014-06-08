@@ -20,23 +20,23 @@ common_includes		=	$(AM_CXXFLAGS)          		\
 				-I$(opentxs_include_dir)/otlib		\
 				-I$(opentxs_include_dir)/otextensions	\
 				-I$(opentxs_include_dir)/otapi		\
+				-I$(top_srcdir)/deps/include/simpleini	\
 				-I$(top_srcdir)/deps/include/misc	\
 				-I$(top_srcdir)/deps/include/
 
 
 ########################
 
-libotapi_la_SOURCES		=	$(otapi_sources) $(otapi_headers)	\
-					$(simpleini_headers)
+libotapi_la_SOURCES		=	$(otapi_sources) $(otapi_headers)
 
 libotapi_la_CXXFLAGS		=	$(common_includes)
 
-libotapi_la_LIBADD		=	$(otlib_build_dir)/libot.la		\
-					$(otextensions_build_dir)/libotextensions.la	\
+libotapi_la_LIBADD		=	$(otextensions_build_dir)/libotextensions.la	\
+					$(otlib_build_dir)/libot.la			\
 					$(DEPS_LIBS)
 					
-libotapi_la_DEPENDENCIES	=	$(otlib_build_dir)/libot.la		\
-					$(otextensions_build_dir)/libotextensions.la
+libotapi_la_DEPENDENCIES	=	$(otextensions_build_dir)/libotextensions.la	\
+					$(otlib_build_dir)/libot.la
 
 libotapi_la_LDFLAGS		=	--no-undefined
 
@@ -215,18 +215,6 @@ libotapi_go_la_CXXFLAGS		+=	-DOT_ZMQ_MODE
 endif
 
 ########################
-
-####	Simple Ini
-
-simpleini_headers_dir	=	$(top_srcdir)/deps/include/simpleini
-
-simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h		\
-				$(simpleini_headers_dir)/SimpleIni.hpp
-
-simpleini_sources_dir	= 	$(top_srcdir)/deps/src/simpleini
-
-simpleini_sources	=	$(simpleini_sources_dir)/ConvertUTF.cpp		\
-				$(simpleini_sources_dir)/snippets.cpp
 
 ####  OTAPI
 
