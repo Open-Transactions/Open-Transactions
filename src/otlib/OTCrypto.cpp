@@ -145,10 +145,12 @@
 #include "OTPaths.hpp"
 #include "OTPseudonym.hpp"
 #include "OTSignature.hpp"
+#include "OTStorage.hpp"
 
 #include <bigint/BigIntegerLibrary.hh>
 
 #include "stacktrace.h"
+
 
 extern "C"
 {

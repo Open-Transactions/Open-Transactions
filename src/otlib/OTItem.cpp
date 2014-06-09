@@ -139,6 +139,7 @@
 #include "OTLedger.hpp"
 #include "OTLog.hpp"
 #include "OTPseudonym.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

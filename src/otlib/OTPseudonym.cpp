@@ -143,6 +143,7 @@
 #include "OTPasswordData.hpp"
 #include "OTPayment.hpp"
 #include "OTSignedFile.hpp"
+#include "OTStorage.hpp"
 #include "OTSubkey.hpp"
 #include "OTSymmetricKey.hpp"
 

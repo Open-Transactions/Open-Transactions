@@ -103,7 +103,6 @@
     <ClInclude Include="..\..\include\otlib\OTSignatureMetadata.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSignedFile.hpp" />
     <ClInclude Include="..\..\include\otlib\OTSmartContract.hpp" />
-    <ClInclude Include="..\..\include\otlib\OTSocket.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStash.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStashItem.hpp" />
     <ClInclude Include="..\..\include\otlib\OTStorage.hpp" />
@@ -262,7 +261,6 @@
     <ClCompile Include="..\..\src\otlib\OTSignature.cpp" />
     <ClCompile Include="..\..\src\otlib\OTSignedFile.cpp" />
     <ClCompile Include="..\..\src\otlib\OTSmartContract.cpp" />
-    <ClCompile Include="..\..\src\otlib\OTSocket.cpp" />
     <ClCompile Include="..\..\src\otlib\OTStash.cpp" />
     <ClCompile Include="..\..\src\otlib\OTStashItem.cpp" />
     <ClCompile Include="..\..\src\otlib\OTStorage.cpp" />
@@ -329,9 +327,6 @@
     </ProjectReference>
     <ProjectReference Include="..\zlib\zlib.vcxproj">
       <Project>{ed9f5a89-f38c-4283-bf35-6808300dca94}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\zmq\zmq.vcxproj">
-      <Project>{bfe44f12-f1b5-4298-a3df-5a6b3ce7cdfb}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

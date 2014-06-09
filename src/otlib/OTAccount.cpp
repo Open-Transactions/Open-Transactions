@@ -139,6 +139,7 @@
 #include "OTLedger.hpp"
 #include "OTLog.hpp"
 #include "OTMessage.hpp"
+#include "OTStorage.hpp"
 #include "OTPaths.hpp"
 #include "OTPayload.hpp"
 #include "OTPseudonym.hpp"

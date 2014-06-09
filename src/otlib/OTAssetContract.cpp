@@ -140,6 +140,7 @@
 #include "OTBasket.hpp"
 #include "OTFolders.hpp"
 #include "OTLog.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

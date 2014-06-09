@@ -139,6 +139,7 @@
 #include "OTPartyAccount.hpp"
 #include "OTPseudonym.hpp"
 #include "OTSmartContract.hpp"
+#include "OTStorage.hpp"
 
 
 // Checks opening number on party, and closing numbers on his accounts.

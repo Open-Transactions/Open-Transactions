@@ -152,6 +152,7 @@
 #include <OTPaymentPlan.hpp>
 #include <OTPseudonym.hpp>
 #include <OTPurse.hpp>
+#include <OTStorage.hpp>
 #include <OTToken.hpp>
 #include <OTTrade.hpp>
 #include <OTWallet.hpp>

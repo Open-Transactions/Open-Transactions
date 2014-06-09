@@ -171,6 +171,7 @@
 #include <OTPurse.hpp>
 #include <OTSmartContract.hpp>
 #include <OTSymmetricKey.hpp>
+#include <OTStorage.hpp>
 #include <OTToken.hpp>
 #include <OTTrade.hpp>
 #include <OTWallet.hpp>

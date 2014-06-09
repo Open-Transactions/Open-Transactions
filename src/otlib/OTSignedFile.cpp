@@ -136,6 +136,7 @@
 
 #include "OTASCIIArmor.hpp"
 #include "OTLog.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

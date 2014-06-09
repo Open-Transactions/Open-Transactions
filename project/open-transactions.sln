@@ -43,6 +43,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zmq", "zmq\zmq.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chaiscript", "chaiscript\chaiscript.vcxproj", "{4E17AB8D-ABCC-49B5-8DE4-56CEA6D92854}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "otextensions", "otextensions\otextensions.vcxproj", "{5404670D-B2E7-439F-B26F-E31D8D4FE055}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -170,6 +172,12 @@ Global
 		{4E17AB8D-ABCC-49B5-8DE4-56CEA6D92854}.Release|Win32.ActiveCfg = Release|Win32
 		{4E17AB8D-ABCC-49B5-8DE4-56CEA6D92854}.Release|Win32.Build.0 = Release|Win32
 		{4E17AB8D-ABCC-49B5-8DE4-56CEA6D92854}.Release|x64.ActiveCfg = Release|Win32
+		{5404670D-B2E7-439F-B26F-E31D8D4FE055}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5404670D-B2E7-439F-B26F-E31D8D4FE055}.Debug|Win32.Build.0 = Debug|Win32
+		{5404670D-B2E7-439F-B26F-E31D8D4FE055}.Debug|x64.ActiveCfg = Debug|Win32
+		{5404670D-B2E7-439F-B26F-E31D8D4FE055}.Release|Win32.ActiveCfg = Release|Win32
+		{5404670D-B2E7-439F-B26F-E31D8D4FE055}.Release|Win32.Build.0 = Release|Win32
+		{5404670D-B2E7-439F-B26F-E31D8D4FE055}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

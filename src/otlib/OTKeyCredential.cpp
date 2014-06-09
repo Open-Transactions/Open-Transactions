@@ -151,6 +151,7 @@
 #include "OTCredential.hpp"
 #include "OTLog.hpp"
 #include "OTSignature.hpp"
+#include "OTStorage.hpp"
 
 
 bool OTKeyCredential::VerifySignedBySelf()

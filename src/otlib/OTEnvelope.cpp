@@ -138,6 +138,7 @@
 #include "OTLog.hpp"
 #include "OTPassword.hpp"
 #include "OTPseudonym.hpp"
+#include "OTStorage.hpp"
 #include "OTSymmetricKey.hpp"
 
 extern "C"

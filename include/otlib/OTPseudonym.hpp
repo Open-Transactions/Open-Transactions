@@ -136,7 +136,11 @@
 #include "OTASCIIArmor.hpp"
 #include "OTIdentifier.hpp"
 
+#include <deque>
+#include <map>
+#include <list>
 #include <set>
+
 
 class OTAsymmetricKey;
 class OTCredential;

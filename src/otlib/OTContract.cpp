@@ -151,6 +151,7 @@
 #include "OTSignature.hpp"
 #include "OTSignedFile.hpp"
 #include "OTSmartContract.hpp"
+#include "OTStorage.hpp"
 #include "OTToken.hpp"
 #include "OTTrade.hpp"
 
