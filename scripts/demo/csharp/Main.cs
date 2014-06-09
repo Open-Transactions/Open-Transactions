@@ -29,15 +29,14 @@ namespace OTAPITest
     {
         public static void Main (string[] args)
         {
-            OTAPI_Basic.AppStartup();
 
             // These functions are perfect examples of the 'Low-level API',
 		        // which is useful for simple functions that don't require messaging
-		        // any OT servers. See OTAPI_Basic.h and OTAPI.h for the complete
+		        // any OT servers. See OTAPI_Wrap.h and OTAPI.h for the complete
 		        // low-level API.
 
-            OTAPI_Basic.Init();
-            OTAPI_Basic.LoadWallet();
+            OTAPI_Wrap.AppInit();
+            OTAPI_Wrap.LoadWallet();
 
             
             // ---------------------------------------------------------
@@ -45,7 +44,7 @@ namespace OTAPITest
             // are in the user's wallet.
 
 
-            int count = OTAPI_Basic.GetServerCount();
+            int count = OTAPI_Wrap.GetServerCount();
 
             Console.Out.WriteLine("Server count {0}", count.ToString());
 
@@ -55,10 +54,10 @@ namespace OTAPITest
 
             // This object handles all the request/response going on with
             // any servers, plus all the retries and synchronization. It's
-            // the 'High-level API'. See OTMadeEasy.h and OT_ME.h for the
-            // complete set of high-level API functions.
+            // the 'High-level API'. See OT_ME.hpp for the complete set of
+            // high-level API functions.
 
-            OTMadeEasy otme = new OTMadeEasy();
+            OT_ME otme = new OT_ME();
 
             // ---------------------------------------------------------
             //
@@ -160,17 +159,16 @@ namespace OTAPITest
 
             // So... we're done. Let's shutdown OT and finish execution.
             // (Using the low-level API...)
-            OTAPI_Basic.Output(0, "One more thing: Successfully used OT_API_Output.");
+            OTAPI_Wrap.Output(0, "One more thing: Successfully used OT_API_Output.");
 
 
-            OTAPI_Basic.AppShutdown();
+            OTAPI_Wrap.AppCleanup();
 
-            // P.S. to see the complete OT high-level API:  OTMadeEasy.h
-            //  and to see the complete OT low-level  API:  OTAPI_Basic.h
+            // P.S. to see the complete OT high-level API:  OT_ME.hpp
+            //  and to see the complete OT low-level  API:  OTAPI.hpp
             //
             // See the Open-Transactions/include/otapi folder for all
-            // relevant headers. OTMadeEasy is a wrapper for OT_ME, and
-            // OTAPI_Basic is a wrapper for OTAPI.
+            // relevant headers.
             //
             // One more thing: If you want to see a lot of free sample code
             // similar to the above code, which shows you how to use all the

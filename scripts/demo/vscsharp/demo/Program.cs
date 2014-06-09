@@ -16,10 +16,10 @@ namespace demo
 
             // These functions are perfect examples of the 'Low-level API',
             // which is useful for simple functions that don't require messaging
-            // any OT servers. See OTAPI_Basic.h and OTAPI.h for the complete
+            // any OT servers. See OTAPI_Wrap.h and OTAPI.h for the complete
             // low-level API.
 
-            if (!otapi.OTAPI_Basic.Init())
+            if (!otapi.OTAPI_Wrap.AppInit())
             {
                 Console.Out.WriteLine();
                 Console.Out.WriteLine("Press any key to close window...");
@@ -27,7 +27,7 @@ namespace demo
                 return;
             }
 
-            otapi.OTAPI_Basic.LoadWallet();
+            otapi.OTAPI_Wrap.LoadWallet();
 
             System.Console.Out.WriteLine("Loaded Wallet!");
 
@@ -37,7 +37,7 @@ namespace demo
             // are in the user's wallet.
 
 
-            int count = otapi.OTAPI_Basic.GetServerCount();
+            int count = otapi.OTAPI_Wrap.GetServerCount();
 
             Console.Out.WriteLine("Server count {0}", count.ToString());
 
@@ -50,7 +50,7 @@ namespace demo
             // the 'High-level API'. See OTMadeEasy.h and OT_ME.h for the
             // complete set of high-level API functions.
 
-            otapi.OTMadeEasy otme = new otapi.OTMadeEasy();
+            otapi.OT_ME otme = new otapi.OT_ME();
 
             // ---------------------------------------------------------
             //
@@ -142,7 +142,7 @@ namespace demo
 
             // So... we're done. Let's shutdown OT and finish execution.
             // (Using the low-level API...)
-            otapi.OTAPI_Basic.Output(0, "One more thing: Successfully used OT_API_Output.");
+            otapi.OTAPI_Wrap.Output(0, "One more thing: Successfully used OT_API_Output.");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine("All tests finished...");
