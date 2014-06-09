@@ -1676,20 +1676,21 @@ SWIG_Tcl_GetArgs(Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[], const char
 #define SWIGTYPE_p_short swig_types[50]
 #define SWIGTYPE_p_signed_char swig_types[51]
 #define SWIGTYPE_p_size_type swig_types[52]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[53]
-#define SWIGTYPE_p_std__out_of_range swig_types[54]
-#define SWIGTYPE_p_std__string swig_types[55]
-#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[56]
-#define SWIGTYPE_p_time64_t swig_types[57]
-#define SWIGTYPE_p_unsigned_char swig_types[58]
-#define SWIGTYPE_p_unsigned_int swig_types[59]
-#define SWIGTYPE_p_unsigned_long_long swig_types[60]
-#define SWIGTYPE_p_unsigned_short swig_types[61]
-#define SWIGTYPE_p_void swig_types[62]
-#define SWIGTYPE_std__ptrdiff_t swig_types[63]
-#define SWIGTYPE_std__size_t swig_types[64]
-static swig_type_info *swig_types[66];
-static swig_module_info swig_module = {swig_types, 65, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__listT_std__string_t swig_types[53]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[54]
+#define SWIGTYPE_p_std__out_of_range swig_types[55]
+#define SWIGTYPE_p_std__string swig_types[56]
+#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[57]
+#define SWIGTYPE_p_time64_t swig_types[58]
+#define SWIGTYPE_p_unsigned_char swig_types[59]
+#define SWIGTYPE_p_unsigned_int swig_types[60]
+#define SWIGTYPE_p_unsigned_long_long swig_types[61]
+#define SWIGTYPE_p_unsigned_short swig_types[62]
+#define SWIGTYPE_p_void swig_types[63]
+#define SWIGTYPE_std__ptrdiff_t swig_types[64]
+#define SWIGTYPE_std__size_t swig_types[65]
+static swig_type_info *swig_types[67];
+static swig_module_info swig_module = {swig_types, 66, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -21149,6 +21150,908 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OT_ME_VerifyMessageSuccess(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int32_t result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_VerifyMessageSuccess self str_Message ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_VerifyMessageSuccess" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_VerifyMessageSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMessageSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
+  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  int res5 = SWIG_OLDOBJ ;
+  int32_t result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooooo:OT_ME_VerifyMsgBalanceAgrmntSuccess self SERVER_ID USER_ID ACCOUNT_ID str_Message ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    arg4 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    arg5 = ptr;
+  }
+  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_VerifyMsgTrnxSuccess(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  int res5 = SWIG_OLDOBJ ;
+  int32_t result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooooo:OT_ME_VerifyMsgTrnxSuccess self SERVER_ID USER_ID ACCOUNT_ID str_Message ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    arg4 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    arg5 = ptr;
+  }
+  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_InterpretTransactionMsgReply(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int32_t result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oooooo:OT_ME_InterpretTransactionMsgReply self SERVER_ID USER_ID ACCOUNT_ID str_Attempt str_Response ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    arg4 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[6], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    arg6 = ptr;
+  }
+  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnString self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "3"" of type '" "std::string""'"); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnString self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnString(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  Tcl_Obj *CONST *argv = objv+1;
+  int argc = objc-1;
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(clientData, interp, objc, argv - 1);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(clientData, interp, objc, argv - 1);
+        }
+      }
+    }
+  }
+  
+  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnString'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    OT_ME::ExecuteScript_ReturnString(std::string const &,std::string)\n"
+    "    OT_ME::ExecuteScript_ReturnString(std::string const &)\n", TCL_STATIC);
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnBool self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "3"" of type '" "std::string""'"); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
+  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnBool self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
+  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnBool(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  Tcl_Obj *CONST *argv = objv+1;
+  int argc = objc-1;
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(clientData, interp, objc, argv - 1);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(clientData, interp, objc, argv - 1);
+        }
+      }
+    }
+  }
+  
+  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnBool'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    OT_ME::ExecuteScript_ReturnBool(std::string const &,std::string)\n"
+    "    OT_ME::ExecuteScript_ReturnBool(std::string const &)\n", TCL_STATIC);
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int32_t result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnInt self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "3"" of type '" "std::string""'"); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
+  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int32_t result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnInt self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
+  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnInt(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  Tcl_Obj *CONST *argv = objv+1;
+  int argc = objc-1;
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(clientData, interp, objc, argv - 1);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(clientData, interp, objc, argv - 1);
+        }
+      }
+    }
+  }
+  
+  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnInt'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    OT_ME::ExecuteScript_ReturnInt(std::string const &,std::string)\n"
+    "    OT_ME::ExecuteScript_ReturnInt(std::string const &)\n", TCL_STATIC);
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnVoid self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "3"" of type '" "std::string""'"); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnVoid self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_ExecuteScript_ReturnVoid(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  Tcl_Obj *CONST *argv = objv+1;
+  int argc = objc-1;
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(clientData, interp, objc, argv - 1);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(clientData, interp, objc, argv - 1);
+        }
+      }
+    }
+  }
+  
+  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnVoid'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    OT_ME::ExecuteScript_ReturnVoid(std::string const &,std::string)\n"
+    "    OT_ME::ExecuteScript_ReturnVoid(std::string const &)\n", TCL_STATIC);
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_AddVariable(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_AddVariable self str_var_name theVar ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_AddVariable" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_AddVariable" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_AddVariable" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  res3 = SWIG_ConvertPtr(objv[3], &argp3, SWIGTYPE_p_OTVariable,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_AddVariable" "', argument " "3"" of type '" "OTVariable &""'"); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_AddVariable" "', argument " "3"" of type '" "OTVariable &""'"); 
+  }
+  arg3 = reinterpret_cast< OTVariable * >(argp3);
+  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_FindVariable(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  OTVariable *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_FindVariable self str_var_name ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_FindVariable" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_FindVariable" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_FindVariable" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
+  Tcl_SetObjResult(interp, SWIG_NewInstanceObj( SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable,0));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OT_ME_FindVariable2(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  std::string *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  OTVariable *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OT_ME_FindVariable2 str_var_name ",(void *)0) == TCL_ERROR) SWIG_fail;
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[1], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_FindVariable2" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_FindVariable2" "', argument " "1"" of type '" "std::string const &""'"); 
+    }
+    arg1 = ptr;
+  }
+  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
+  Tcl_SetObjResult(interp, SWIG_NewInstanceObj( SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable,0));
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OT_ME_make_sure_enough_trans_nums(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   OT_ME *arg1 = (OT_ME *) 0 ;
   int32_t arg2 ;
@@ -21859,72 +22762,6 @@ _wrap_OT_ME_retrieve_account__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Inter
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  bool result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oooo:OT_ME_retrieve_account self SERVER_ID NYM_ID ACCOUNT_ID ",(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_retrieve_account" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_retrieve_account" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_account" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_retrieve_account" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_account" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_retrieve_account" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_account" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    arg4 = ptr;
-  }
-  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_retrieve_account__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
   bool arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -21994,6 +22831,72 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OT_ME_retrieve_account__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  bool result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oooo:OT_ME_retrieve_account self SERVER_ID NYM_ID ACCOUNT_ID ",(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_retrieve_account" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_retrieve_account" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_account" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_retrieve_account" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_account" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_retrieve_account" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_account" "', argument " "4"" of type '" "std::string const &""'"); 
+    }
+    arg4 = ptr;
+  }
+  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OT_ME_retrieve_account(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   Tcl_Obj *CONST *argv = objv+1;
   int argc = objc-1;
@@ -22012,7 +22915,7 @@ _wrap_OT_ME_retrieve_account(ClientData clientData SWIGUNUSED, Tcl_Interp *inter
           int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[3], (std::string**)(0));
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_OT_ME_retrieve_account__SWIG_0(clientData, interp, objc, argv - 1);
+            return _wrap_OT_ME_retrieve_account__SWIG_1(clientData, interp, objc, argv - 1);
           }
         }
       }
@@ -22038,7 +22941,7 @@ _wrap_OT_ME_retrieve_account(ClientData clientData SWIGUNUSED, Tcl_Interp *inter
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_OT_ME_retrieve_account__SWIG_1(clientData, interp, objc, argv - 1);
+              return _wrap_OT_ME_retrieve_account__SWIG_0(clientData, interp, objc, argv - 1);
             }
           }
         }
@@ -22048,65 +22951,14 @@ _wrap_OT_ME_retrieve_account(ClientData clientData SWIGUNUSED, Tcl_Interp *inter
   
   Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_retrieve_account'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    OT_ME::retrieve_account(std::string const &,std::string const &,std::string const &)\n"
-    "    OT_ME::retrieve_account(std::string const &,std::string const &,std::string const &,bool const)\n", TCL_STATIC);
+    "    OT_ME::retrieve_account(std::string const &,std::string const &,std::string const &,bool const)\n"
+    "    OT_ME::retrieve_account(std::string const &,std::string const &,std::string const &)\n", TCL_STATIC);
   return TCL_ERROR;
 }
 
 
 SWIGINTERN int
 _wrap_OT_ME_retrieve_nym__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  bool result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_retrieve_nym self SERVER_ID NYM_ID ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_retrieve_nym" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_retrieve_nym" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_nym" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_retrieve_nym" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_nym" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    arg3 = ptr;
-  }
-  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
-  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_retrieve_nym__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -22165,6 +23017,57 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OT_ME_retrieve_nym__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  bool result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_retrieve_nym self SERVER_ID NYM_ID ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_retrieve_nym" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_retrieve_nym" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_nym" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_retrieve_nym" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_retrieve_nym" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    arg3 = ptr;
+  }
+  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
+  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OT_ME_retrieve_nym(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   Tcl_Obj *CONST *argv = objv+1;
   int argc = objc-1;
@@ -22180,7 +23083,7 @@ _wrap_OT_ME_retrieve_nym(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, i
         int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_OT_ME_retrieve_nym__SWIG_0(clientData, interp, objc, argv - 1);
+          return _wrap_OT_ME_retrieve_nym__SWIG_1(clientData, interp, objc, argv - 1);
         }
       }
     }
@@ -22202,7 +23105,7 @@ _wrap_OT_ME_retrieve_nym(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, i
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_OT_ME_retrieve_nym__SWIG_1(clientData, interp, objc, argv - 1);
+            return _wrap_OT_ME_retrieve_nym__SWIG_0(clientData, interp, objc, argv - 1);
           }
         }
       }
@@ -22211,8 +23114,8 @@ _wrap_OT_ME_retrieve_nym(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, i
   
   Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_retrieve_nym'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    OT_ME::retrieve_nym(std::string const &,std::string const &)\n"
-    "    OT_ME::retrieve_nym(std::string const &,std::string const &,bool const)\n", TCL_STATIC);
+    "    OT_ME::retrieve_nym(std::string const &,std::string const &,bool const)\n"
+    "    OT_ME::retrieve_nym(std::string const &,std::string const &)\n", TCL_STATIC);
   return TCL_ERROR;
 }
 
@@ -23504,65 +24407,6 @@ _wrap_OT_ME_get_payment_instrument__SWIG_0(ClientData clientData SWIGUNUSED, Tcl
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   int32_t arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int val4 ;
-  int ecode4 = 0 ;
-  std::string result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oooo:OT_ME_get_payment_instrument self SERVER_ID NYM_ID nIndex ",(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_get_payment_instrument" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_get_payment_instrument" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_get_payment_instrument" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_get_payment_instrument" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_get_payment_instrument" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    arg3 = ptr;
-  }
-  ecode4 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[4], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "OT_ME_get_payment_instrument" "', argument " "4"" of type '" "int32_t""'");
-  } 
-  arg4 = static_cast< int32_t >(val4);
-  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
-  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_get_payment_instrument__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int32_t arg4 ;
   std::string *arg5 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -23632,6 +24476,65 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OT_ME_get_payment_instrument__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int val4 ;
+  int ecode4 = 0 ;
+  std::string result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oooo:OT_ME_get_payment_instrument self SERVER_ID NYM_ID nIndex ",(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_get_payment_instrument" "', argument " "1"" of type '" "OT_ME *""'"); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_get_payment_instrument" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_get_payment_instrument" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_get_payment_instrument" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_get_payment_instrument" "', argument " "3"" of type '" "std::string const &""'"); 
+    }
+    arg3 = ptr;
+  }
+  ecode4 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[4], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "OT_ME_get_payment_instrument" "', argument " "4"" of type '" "int32_t""'");
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OT_ME_get_payment_instrument(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   Tcl_Obj *CONST *argv = objv+1;
   int argc = objc-1;
@@ -23652,7 +24555,7 @@ _wrap_OT_ME_get_payment_instrument(ClientData clientData SWIGUNUSED, Tcl_Interp 
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_OT_ME_get_payment_instrument__SWIG_0(clientData, interp, objc, argv - 1);
+            return _wrap_OT_ME_get_payment_instrument__SWIG_1(clientData, interp, objc, argv - 1);
           }
         }
       }
@@ -23678,7 +24581,7 @@ _wrap_OT_ME_get_payment_instrument(ClientData clientData SWIGUNUSED, Tcl_Interp 
             int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[4], (std::string**)(0));
             _v = SWIG_CheckState(res);
             if (_v) {
-              return _wrap_OT_ME_get_payment_instrument__SWIG_1(clientData, interp, objc, argv - 1);
+              return _wrap_OT_ME_get_payment_instrument__SWIG_0(clientData, interp, objc, argv - 1);
             }
           }
         }
@@ -23688,8 +24591,8 @@ _wrap_OT_ME_get_payment_instrument(ClientData clientData SWIGUNUSED, Tcl_Interp 
   
   Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_get_payment_instrument'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    OT_ME::get_payment_instrument(std::string const &,std::string const &,int32_t const)\n"
-    "    OT_ME::get_payment_instrument(std::string const &,std::string const &,int32_t const,std::string const &)\n", TCL_STATIC);
+    "    OT_ME::get_payment_instrument(std::string const &,std::string const &,int32_t const,std::string const &)\n"
+    "    OT_ME::get_payment_instrument(std::string const &,std::string const &,int32_t const)\n", TCL_STATIC);
   return TCL_ERROR;
 }
 
@@ -23985,7 +24888,7 @@ _wrap_OT_ME_create_market_offer(ClientData clientData SWIGUNUSED, Tcl_Interp *in
   int64_t arg7 ;
   bool arg8 ;
   int64_t arg9 ;
-  std::string arg10 ;
+  std::string *arg10 = 0 ;
   int64_t arg11 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -24003,6 +24906,7 @@ _wrap_OT_ME_create_market_offer(ClientData clientData SWIGUNUSED, Tcl_Interp *in
   int ecode8 = 0 ;
   long long val9 ;
   int ecode9 = 0 ;
+  int res10 = SWIG_OLDOBJ ;
   long long val11 ;
   int ecode11 = 0 ;
   std::string result;
@@ -24067,26 +24971,30 @@ _wrap_OT_ME_create_market_offer(ClientData clientData SWIGUNUSED, Tcl_Interp *in
   arg9 = static_cast< int64_t >(val9);
   {
     std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[10], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_create_market_offer" "', argument " "10"" of type '" "std::string const""'"); 
+    res10 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[10], &ptr);
+    if (!SWIG_IsOK(res10)) {
+      SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "OT_ME_create_market_offer" "', argument " "10"" of type '" "std::string const &""'"); 
     }
-    arg10 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_create_market_offer" "', argument " "10"" of type '" "std::string const &""'"); 
+    }
+    arg10 = ptr;
   }
   ecode11 = SWIG_AsVal_long_SS_long SWIG_TCL_CALL_ARGS_2(objv[11], &val11);
   if (!SWIG_IsOK(ecode11)) {
     SWIG_exception_fail(SWIG_ArgError(ecode11), "in method '" "OT_ME_create_market_offer" "', argument " "11"" of type '" "int64_t""'");
   } 
   arg11 = static_cast< int64_t >(val11);
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,(std::string const &)*arg10,arg11);
   Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res10)) delete arg10;
   return TCL_OK;
 fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res10)) delete arg10;
   return TCL_ERROR;
 }
 
@@ -25497,908 +26405,6 @@ fail:
 }
 
 
-SWIGINTERN int
-_wrap_OT_ME_VerifyMessageSuccess(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int32_t result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_VerifyMessageSuccess self str_Message ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_VerifyMessageSuccess" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_VerifyMessageSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMessageSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
-  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int32_t result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooooo:OT_ME_VerifyMsgBalanceAgrmntSuccess self SERVER_ID USER_ID ACCOUNT_ID str_Message ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgBalanceAgrmntSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    arg5 = ptr;
-  }
-  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_VerifyMsgTrnxSuccess(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int32_t result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooooo:OT_ME_VerifyMsgTrnxSuccess self SERVER_ID USER_ID ACCOUNT_ID str_Message ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_VerifyMsgTrnxSuccess" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    arg5 = ptr;
-  }
-  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_InterpretTransactionMsgReply(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int res6 = SWIG_OLDOBJ ;
-  int32_t result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oooooo:OT_ME_InterpretTransactionMsgReply self SERVER_ID USER_ID ACCOUNT_ID str_Attempt str_Response ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "3"" of type '" "std::string const &""'"); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[4], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "4"" of type '" "std::string const &""'"); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "5"" of type '" "std::string const &""'"); 
-    }
-    arg5 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res6 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[6], &ptr);
-    if (!SWIG_IsOK(res6)) {
-      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "6"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_InterpretTransactionMsgReply" "', argument " "6"" of type '" "std::string const &""'"); 
-    }
-    arg6 = ptr;
-  }
-  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  if (SWIG_IsNewObj(res6)) delete arg6;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  if (SWIG_IsNewObj(res6)) delete arg6;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  std::string result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnString self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "3"" of type '" "std::string""'"); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
-  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  std::string result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnString self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnString" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
-  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnString(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  Tcl_Obj *CONST *argv = objv+1;
-  int argc = objc-1;
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(clientData, interp, objc, argv - 1);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(clientData, interp, objc, argv - 1);
-        }
-      }
-    }
-  }
-  
-  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnString'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    OT_ME::ExecuteScript_ReturnString(std::string const &,std::string)\n"
-    "    OT_ME::ExecuteScript_ReturnString(std::string const &)\n", TCL_STATIC);
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  bool result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnBool self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "3"" of type '" "std::string""'"); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
-  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  bool result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnBool self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnBool" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
-  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnBool(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  Tcl_Obj *CONST *argv = objv+1;
-  int argc = objc-1;
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(clientData, interp, objc, argv - 1);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(clientData, interp, objc, argv - 1);
-        }
-      }
-    }
-  }
-  
-  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnBool'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    OT_ME::ExecuteScript_ReturnBool(std::string const &,std::string)\n"
-    "    OT_ME::ExecuteScript_ReturnBool(std::string const &)\n", TCL_STATIC);
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int32_t result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnInt self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "3"" of type '" "std::string""'"); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
-  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int32_t result;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnInt self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnInt" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
-  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnInt(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  Tcl_Obj *CONST *argv = objv+1;
-  int argc = objc-1;
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(clientData, interp, objc, argv - 1);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(clientData, interp, objc, argv - 1);
-        }
-      }
-    }
-  }
-  
-  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnInt'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    OT_ME::ExecuteScript_ReturnInt(std::string const &,std::string)\n"
-    "    OT_ME::ExecuteScript_ReturnInt(std::string const &)\n", TCL_STATIC);
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_ExecuteScript_ReturnVoid self str_Code str_DisplayName ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[3], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "3"" of type '" "std::string""'"); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
-  
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_ExecuteScript_ReturnVoid self str_Code ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_ExecuteScript_ReturnVoid" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
-  
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_ExecuteScript_ReturnVoid(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  Tcl_Obj *CONST *argv = objv+1;
-  int argc = objc-1;
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(clientData, interp, objc, argv - 1);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(clientData, interp, objc, argv - 1);
-        }
-      }
-    }
-  }
-  
-  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OT_ME_ExecuteScript_ReturnVoid'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    OT_ME::ExecuteScript_ReturnVoid(std::string const &,std::string)\n"
-    "    OT_ME::ExecuteScript_ReturnVoid(std::string const &)\n", TCL_STATIC);
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_AddVariable(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  OTVariable *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"ooo:OT_ME_AddVariable self str_var_name theVar ",(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_AddVariable" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_AddVariable" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_AddVariable" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  res3 = SWIG_ConvertPtr(objv[3], &argp3, SWIGTYPE_p_OTVariable,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "OT_ME_AddVariable" "', argument " "3"" of type '" "OTVariable &""'"); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_AddVariable" "', argument " "3"" of type '" "OTVariable &""'"); 
-  }
-  arg3 = reinterpret_cast< OTVariable * >(argp3);
-  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
-  
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_FindVariable(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  OTVariable *result = 0 ;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"oo:OT_ME_FindVariable self str_var_name ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
-  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_FindVariable" "', argument " "1"" of type '" "OT_ME *""'"); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OT_ME_FindVariable" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_FindVariable" "', argument " "2"" of type '" "std::string const &""'"); 
-    }
-    arg2 = ptr;
-  }
-  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
-  Tcl_SetObjResult(interp, SWIG_NewInstanceObj( SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable,0));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return TCL_ERROR;
-}
-
-
-SWIGINTERN int
-_wrap_OT_ME_FindVariable2(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
-  OTVariable *result = 0 ;
-  
-  if (SWIG_GetArgs(interp, objc, objv,"o:OT_ME_FindVariable2 str_var_name ",(void *)0) == TCL_ERROR) SWIG_fail;
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[1], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OT_ME_FindVariable2" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OT_ME_FindVariable2" "', argument " "1"" of type '" "std::string const &""'"); 
-    }
-    arg1 = ptr;
-  }
-  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
-  Tcl_SetObjResult(interp, SWIG_NewInstanceObj( SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable,0));
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  return TCL_OK;
-fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  return TCL_ERROR;
-}
-
-
 SWIGINTERN void swig_delete_OT_ME(void *obj) {
 OT_ME *arg1 = (OT_ME *) obj;
 delete arg1;
@@ -26406,6 +26412,16 @@ delete arg1;
 static swig_method swig_OT_ME_methods[] = {
     {"opentxs_copy_variables", _wrap_OT_ME_opentxs_copy_variables}, 
     {"opentxs_main_loop", _wrap_OT_ME_opentxs_main_loop}, 
+    {"VerifyMessageSuccess", _wrap_OT_ME_VerifyMessageSuccess}, 
+    {"VerifyMsgBalanceAgrmntSuccess", _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess}, 
+    {"VerifyMsgTrnxSuccess", _wrap_OT_ME_VerifyMsgTrnxSuccess}, 
+    {"InterpretTransactionMsgReply", _wrap_OT_ME_InterpretTransactionMsgReply}, 
+    {"ExecuteScript_ReturnString", _wrap_OT_ME_ExecuteScript_ReturnString}, 
+    {"ExecuteScript_ReturnBool", _wrap_OT_ME_ExecuteScript_ReturnBool}, 
+    {"ExecuteScript_ReturnInt", _wrap_OT_ME_ExecuteScript_ReturnInt}, 
+    {"ExecuteScript_ReturnVoid", _wrap_OT_ME_ExecuteScript_ReturnVoid}, 
+    {"AddVariable", _wrap_OT_ME_AddVariable}, 
+    {"FindVariable", _wrap_OT_ME_FindVariable}, 
     {"make_sure_enough_trans_nums", _wrap_OT_ME_make_sure_enough_trans_nums}, 
     {"register_nym", _wrap_OT_ME_register_nym}, 
     {"check_user", _wrap_OT_ME_check_user}, 
@@ -26460,16 +26476,6 @@ static swig_method swig_OT_ME_methods[] = {
     {"get_nym_market_offers", _wrap_OT_ME_get_nym_market_offers}, 
     {"get_market_recent_trades", _wrap_OT_ME_get_market_recent_trades}, 
     {"adjust_usage_credits", _wrap_OT_ME_adjust_usage_credits}, 
-    {"VerifyMessageSuccess", _wrap_OT_ME_VerifyMessageSuccess}, 
-    {"VerifyMsgBalanceAgrmntSuccess", _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess}, 
-    {"VerifyMsgTrnxSuccess", _wrap_OT_ME_VerifyMsgTrnxSuccess}, 
-    {"InterpretTransactionMsgReply", _wrap_OT_ME_InterpretTransactionMsgReply}, 
-    {"ExecuteScript_ReturnString", _wrap_OT_ME_ExecuteScript_ReturnString}, 
-    {"ExecuteScript_ReturnBool", _wrap_OT_ME_ExecuteScript_ReturnBool}, 
-    {"ExecuteScript_ReturnInt", _wrap_OT_ME_ExecuteScript_ReturnInt}, 
-    {"ExecuteScript_ReturnVoid", _wrap_OT_ME_ExecuteScript_ReturnVoid}, 
-    {"AddVariable", _wrap_OT_ME_AddVariable}, 
-    {"FindVariable", _wrap_OT_ME_FindVariable}, 
     {0,0}
 };
 static swig_attribute swig_OT_ME_attributes[] = {
@@ -42974,7 +42980,7 @@ static const char * swig_OTDB_AddressBook_base_names[] = {"OTDB::Storable *",0};
 static swig_class _wrap_class_OTDB_AddressBook = { "AddressBook", &SWIGTYPE_p_OTDB__AddressBook,0, swig_delete_AddressBook, swig_OTDB_AddressBook_methods, swig_OTDB_AddressBook_attributes, swig_OTDB_AddressBook_bases,swig_OTDB_AddressBook_base_names, &swig_module };
 SWIGINTERN int
 _wrap_OTRecord_GetTypeString(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
-  int arg1 ;
+  int32_t arg1 ;
   int val1 ;
   int ecode1 = 0 ;
   std::string *result = 0 ;
@@ -42982,11 +42988,117 @@ _wrap_OTRecord_GetTypeString(ClientData clientData SWIGUNUSED, Tcl_Interp *inter
   if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_GetTypeString theType ",(void *)0) == TCL_ERROR) SWIG_fail;
   ecode1 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[1], &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "OTRecord_GetTypeString" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "OTRecord_GetTypeString" "', argument " "1"" of type '" "int32_t""'");
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< int32_t >(val1);
   result = (std::string *) &OTRecord_GetTypeString(arg1);
   Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(*result)));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetSpecialMail__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTRecord_SetSpecialMail self bIsSpecial ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetSpecialMail" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  ecode2 = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(objv[2], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "OTRecord_SetSpecialMail" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  (arg1)->SetSpecialMail(arg2);
+  
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetSpecialMail__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_SetSpecialMail self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetSpecialMail" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  (arg1)->SetSpecialMail();
+  
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetSpecialMail(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  Tcl_Obj *CONST *argv = objv+1;
+  int argc = objc-1;
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecord, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_OTRecord_SetSpecialMail__SWIG_1(clientData, interp, objc, argv - 1);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecord, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_OTRecord_SetSpecialMail__SWIG_0(clientData, interp, objc, argv - 1);
+      }
+    }
+  }
+  
+  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OTRecord_SetSpecialMail'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    OTRecord::SetSpecialMail(bool)\n"
+    "    OTRecord::SetSpecialMail()\n", TCL_STATIC);
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_IsSpecialMail(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_IsSpecialMail self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_IsSpecialMail" "', argument " "1"" of type '" "OTRecord const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (bool)((OTRecord const *)arg1)->IsSpecialMail();
+  Tcl_SetObjResult(interp,SWIG_From_bool(static_cast< bool >(result)));
   return TCL_OK;
 fail:
   return TCL_ERROR;
@@ -43786,6 +43898,223 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OTRecord_GetMethodID(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int32_t result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_GetMethodID self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetMethodID" "', argument " "1"" of type '" "OTRecord const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (int32_t)((OTRecord const *)arg1)->GetMethodID();
+  Tcl_SetObjResult(interp,SWIG_From_int(static_cast< int >(result)));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetMethodID(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTRecord_SetMethodID self nMethodID ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetMethodID" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  ecode2 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[2], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "OTRecord_SetMethodID" "', argument " "2"" of type '" "int32_t""'");
+  } 
+  arg2 = static_cast< int32_t >(val2);
+  (arg1)->SetMethodID(arg2);
+  
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_GetMsgID(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_GetMsgID self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetMsgID" "', argument " "1"" of type '" "OTRecord const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgID();
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(*result)));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetMsgID(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTRecord_SetMsgID self str_id ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetMsgID" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecord_SetMsgID" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetMsgID" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetMsgID((std::string const &)*arg2);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_GetMsgType(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_GetMsgType self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetMsgType" "', argument " "1"" of type '" "OTRecord const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgType();
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(*result)));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetMsgType(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTRecord_SetMsgType self str_type ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetMsgType" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecord_SetMsgType" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetMsgType" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetMsgType((std::string const &)*arg2);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_GetMsgTypeDisplay(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_GetMsgTypeDisplay self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetMsgTypeDisplay" "', argument " "1"" of type '" "OTRecord const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgTypeDisplay();
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(*result)));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetMsgTypeDisplay(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTRecord_SetMsgTypeDisplay self str_type ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetMsgTypeDisplay" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecord_SetMsgTypeDisplay" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetMsgTypeDisplay" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetMsgTypeDisplay((std::string const &)*arg2);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OTRecord_GetTransactionNum(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   OTRecord *arg1 = (OTRecord *) 0 ;
   void *argp1 = 0 ;
@@ -44010,6 +44339,27 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OTRecord_GetAddress(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_GetAddress self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetAddress" "', argument " "1"" of type '" "OTRecord const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetAddress();
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(*result)));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OTRecord_GetOtherNymID(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   OTRecord *arg1 = (OTRecord *) 0 ;
   void *argp1 = 0 ;
@@ -44044,6 +44394,27 @@ _wrap_OTRecord_GetOtherAccountID(ClientData clientData SWIGUNUSED, Tcl_Interp *i
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
   result = (std::string *) &((OTRecord const *)arg1)->GetOtherAccountID();
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(*result)));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_GetOtherAddress(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecord_GetOtherAddress self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_GetOtherAddress" "', argument " "1"" of type '" "OTRecord const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetOtherAddress();
   Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(*result)));
   return TCL_OK;
 fail:
@@ -44238,6 +44609,76 @@ _wrap_OTRecord_SetOtherAccountID(ClientData clientData SWIGUNUSED, Tcl_Interp *i
     arg2 = ptr;
   }
   (arg1)->SetOtherAccountID((std::string const &)*arg2);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetAddress(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTRecord_SetAddress self str_Address ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetAddress" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecord_SetAddress" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetAddress" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetAddress((std::string const &)*arg2);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecord_SetOtherAddress(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTRecord_SetOtherAddress self str_Address ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecord_SetOtherAddress" "', argument " "1"" of type '" "OTRecord *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecord_SetOtherAddress" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecord_SetOtherAddress" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetOtherAddress((std::string const &)*arg2);
   
   if (SWIG_IsNewObj(res2)) delete arg2;
   return TCL_OK;
@@ -44826,6 +45267,8 @@ OTRecord *arg1 = (OTRecord *) obj;
 delete arg1;
 }
 static swig_method swig_OTRecord_methods[] = {
+    {"SetSpecialMail", _wrap_OTRecord_SetSpecialMail}, 
+    {"IsSpecialMail", _wrap_OTRecord_IsSpecialMail}, 
     {"IsPending", _wrap_OTRecord_IsPending}, 
     {"IsOutgoing", _wrap_OTRecord_IsOutgoing}, 
     {"IsRecord", _wrap_OTRecord_IsRecord}, 
@@ -44861,6 +45304,14 @@ static swig_method swig_OTRecord_methods[] = {
     {"DiscardOutgoingCash", _wrap_OTRecord_DiscardOutgoingCash}, 
     {"GetBoxIndex", _wrap_OTRecord_GetBoxIndex}, 
     {"SetBoxIndex", _wrap_OTRecord_SetBoxIndex}, 
+    {"GetMethodID", _wrap_OTRecord_GetMethodID}, 
+    {"SetMethodID", _wrap_OTRecord_SetMethodID}, 
+    {"GetMsgID", _wrap_OTRecord_GetMsgID}, 
+    {"SetMsgID", _wrap_OTRecord_SetMsgID}, 
+    {"GetMsgType", _wrap_OTRecord_GetMsgType}, 
+    {"SetMsgType", _wrap_OTRecord_SetMsgType}, 
+    {"GetMsgTypeDisplay", _wrap_OTRecord_GetMsgTypeDisplay}, 
+    {"SetMsgTypeDisplay", _wrap_OTRecord_SetMsgTypeDisplay}, 
     {"GetTransactionNum", _wrap_OTRecord_GetTransactionNum}, 
     {"SetTransactionNum", _wrap_OTRecord_SetTransactionNum}, 
     {"GetTransNumForDisplay", _wrap_OTRecord_GetTransNumForDisplay}, 
@@ -44871,8 +45322,10 @@ static swig_method swig_OTRecord_methods[] = {
     {"GetCurrencyTLA", _wrap_OTRecord_GetCurrencyTLA}, 
     {"GetNymID", _wrap_OTRecord_GetNymID}, 
     {"GetAccountID", _wrap_OTRecord_GetAccountID}, 
+    {"GetAddress", _wrap_OTRecord_GetAddress}, 
     {"GetOtherNymID", _wrap_OTRecord_GetOtherNymID}, 
     {"GetOtherAccountID", _wrap_OTRecord_GetOtherAccountID}, 
+    {"GetOtherAddress", _wrap_OTRecord_GetOtherAddress}, 
     {"GetName", _wrap_OTRecord_GetName}, 
     {"GetDate", _wrap_OTRecord_GetDate}, 
     {"GetAmount", _wrap_OTRecord_GetAmount}, 
@@ -44881,6 +45334,8 @@ static swig_method swig_OTRecord_methods[] = {
     {"GetContents", _wrap_OTRecord_GetContents}, 
     {"SetOtherNymID", _wrap_OTRecord_SetOtherNymID}, 
     {"SetOtherAccountID", _wrap_OTRecord_SetOtherAccountID}, 
+    {"SetAddress", _wrap_OTRecord_SetAddress}, 
+    {"SetOtherAddress", _wrap_OTRecord_SetOtherAddress}, 
     {"SetMemo", _wrap_OTRecord_SetMemo}, 
     {"SetContents", _wrap_OTRecord_SetContents}, 
     {"HasInitialPayment", _wrap_OTRecord_HasInitialPayment}, 
@@ -45342,6 +45797,42 @@ _wrap_OTNameLookup_GetAcctName(ClientData clientData SWIGUNUSED, Tcl_Interp *int
 }
 
 
+SWIGINTERN int
+_wrap_OTNameLookup_GetAddressName(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTNameLookup_GetAddressName self str_address ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTNameLookup, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTNameLookup_GetAddressName" "', argument " "1"" of type '" "OTNameLookup const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTNameLookup * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTNameLookup_GetAddressName" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTNameLookup_GetAddressName" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  result = ((OTNameLookup const *)arg1)->GetAddressName((std::string const &)*arg2);
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
 SWIGINTERN void swig_delete_OTNameLookup(void *obj) {
 OTNameLookup *arg1 = (OTNameLookup *) obj;
 delete arg1;
@@ -45349,6 +45840,7 @@ delete arg1;
 static swig_method swig_OTNameLookup_methods[] = {
     {"GetNymName", _wrap_OTNameLookup_GetNymName}, 
     {"GetAcctName", _wrap_OTNameLookup_GetAcctName}, 
+    {"GetAddressName", _wrap_OTNameLookup_GetAddressName}, 
     {0,0}
 };
 static swig_attribute swig_OTNameLookup_attributes[] = {
@@ -45886,6 +46378,42 @@ _wrap_OTLookupCaller_GetAcctName(ClientData clientData SWIGUNUSED, Tcl_Interp *i
 }
 
 
+SWIGINTERN int
+_wrap_OTLookupCaller_GetAddressName(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oo:OTLookupCaller_GetAddressName self str_address ",(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTLookupCaller, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTLookupCaller_GetAddressName" "', argument " "1"" of type '" "OTLookupCaller const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTLookupCaller * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTLookupCaller_GetAddressName" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTLookupCaller_GetAddressName" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  result = ((OTLookupCaller const *)arg1)->GetAddressName((std::string const &)*arg2);
+  Tcl_SetObjResult(interp,SWIG_From_std_string(static_cast< std::string >(result)));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return TCL_ERROR;
+}
+
+
 SWIGINTERN void swig_delete_OTLookupCaller(void *obj) {
 OTLookupCaller *arg1 = (OTLookupCaller *) obj;
 delete arg1;
@@ -45897,6 +46425,7 @@ static swig_method swig_OTLookupCaller_methods[] = {
     {"isCallbackSet", _wrap_OTLookupCaller_isCallbackSet}, 
     {"GetNymName", _wrap_OTLookupCaller_GetNymName}, 
     {"GetAcctName", _wrap_OTLookupCaller_GetAcctName}, 
+    {"GetAddressName", _wrap_OTLookupCaller_GetAddressName}, 
     {0,0}
 };
 static swig_attribute swig_OTLookupCaller_attributes[] = {
@@ -46459,6 +46988,27 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OTRecordList_GetNyms(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  list_of_strings *result = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecordList_GetNyms self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecordList_GetNyms" "', argument " "1"" of type '" "OTRecordList const *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  result = (list_of_strings *) &((OTRecordList const *)arg1)->GetNyms();
+  Tcl_SetObjResult(interp, SWIG_NewInstanceObj( SWIG_as_voidptr(result), SWIGTYPE_p_std__listT_std__string_t,0));
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   OTRecordList *arg1 = (OTRecordList *) 0 ;
   bool arg2 ;
@@ -46945,6 +47495,600 @@ fail:
 
 
 SWIGINTERN int
+_wrap_OTRecordList_SortRecords(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"o:OTRecordList_SortRecords self ",(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecordList_SortRecords" "', argument " "1"" of type '" "OTRecordList *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  (arg1)->SortRecords();
+  
+  return TCL_OK;
+fail:
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecordList_AddSpecialMsg__SWIG_0(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  time64_t arg11 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int res7 = SWIG_OLDOBJ ;
+  int res8 = SWIG_OLDOBJ ;
+  int res9 = SWIG_OLDOBJ ;
+  void *argp11 ;
+  int res11 = 0 ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooooooooooo:OTRecordList_AddSpecialMsg self str_msg_id bIsOutgoing nMethodID str_contents str_address str_other_address str_type str_type_display str_my_nym_id tDate ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "1"" of type '" "OTRecordList *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  ecode3 = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(objv[3], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "3"" of type '" "bool""'");
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[4], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "4"" of type '" "int32_t""'");
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[6], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    arg6 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res7 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[7], &ptr);
+    if (!SWIG_IsOK(res7)) {
+      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "7"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "7"" of type '" "std::string const &""'"); 
+    }
+    arg7 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res8 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[8], &ptr);
+    if (!SWIG_IsOK(res8)) {
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "8"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "8"" of type '" "std::string const &""'"); 
+    }
+    arg8 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res9 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[9], &ptr);
+    if (!SWIG_IsOK(res9)) {
+      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "9"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "9"" of type '" "std::string const &""'"); 
+    }
+    arg9 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[10], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "10"" of type '" "std::string const""'"); 
+    }
+    arg10 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  {
+    res11 = SWIG_ConvertPtr(objv[11], &argp11, SWIGTYPE_p_time64_t,  0 );
+    if (!SWIG_IsOK(res11)) {
+      SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "11"" of type '" "time64_t""'"); 
+    }  
+    if (!argp11) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "11"" of type '" "time64_t""'");
+    } else {
+      arg11 = *(reinterpret_cast< time64_t * >(argp11));
+    }
+  }
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10,arg11);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecordList_AddSpecialMsg__SWIG_1(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int res7 = SWIG_OLDOBJ ;
+  int res8 = SWIG_OLDOBJ ;
+  int res9 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"oooooooooo:OTRecordList_AddSpecialMsg self str_msg_id bIsOutgoing nMethodID str_contents str_address str_other_address str_type str_type_display str_my_nym_id ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "1"" of type '" "OTRecordList *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  ecode3 = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(objv[3], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "3"" of type '" "bool""'");
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[4], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "4"" of type '" "int32_t""'");
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[6], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    arg6 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res7 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[7], &ptr);
+    if (!SWIG_IsOK(res7)) {
+      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "7"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "7"" of type '" "std::string const &""'"); 
+    }
+    arg7 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res8 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[8], &ptr);
+    if (!SWIG_IsOK(res8)) {
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "8"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "8"" of type '" "std::string const &""'"); 
+    }
+    arg8 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res9 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[9], &ptr);
+    if (!SWIG_IsOK(res9)) {
+      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "9"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "9"" of type '" "std::string const &""'"); 
+    }
+    arg9 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[10], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "10"" of type '" "std::string const""'"); 
+    }
+    arg10 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecordList_AddSpecialMsg__SWIG_2(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int res7 = SWIG_OLDOBJ ;
+  int res8 = SWIG_OLDOBJ ;
+  int res9 = SWIG_OLDOBJ ;
+  
+  if (SWIG_GetArgs(interp, objc, objv,"ooooooooo:OTRecordList_AddSpecialMsg self str_msg_id bIsOutgoing nMethodID str_contents str_address str_other_address str_type str_type_display ",(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0,(void *)0) == TCL_ERROR) SWIG_fail;
+  res1 = SWIG_ConvertPtr(objv[1], &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "1"" of type '" "OTRecordList *""'"); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[2], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "2"" of type '" "std::string const &""'"); 
+    }
+    arg2 = ptr;
+  }
+  ecode3 = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(objv[3], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "3"" of type '" "bool""'");
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(objv[4], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "4"" of type '" "int32_t""'");
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[5], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "5"" of type '" "std::string const &""'"); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[6], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "6"" of type '" "std::string const &""'"); 
+    }
+    arg6 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res7 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[7], &ptr);
+    if (!SWIG_IsOK(res7)) {
+      SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "7"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "7"" of type '" "std::string const &""'"); 
+    }
+    arg7 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res8 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[8], &ptr);
+    if (!SWIG_IsOK(res8)) {
+      SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "8"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "8"" of type '" "std::string const &""'"); 
+    }
+    arg8 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res9 = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(objv[9], &ptr);
+    if (!SWIG_IsOK(res9)) {
+      SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "OTRecordList_AddSpecialMsg" "', argument " "9"" of type '" "std::string const &""'"); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "OTRecordList_AddSpecialMsg" "', argument " "9"" of type '" "std::string const &""'"); 
+    }
+    arg9 = ptr;
+  }
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9);
+  
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return TCL_OK;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
+_wrap_OTRecordList_AddSpecialMsg(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
+  Tcl_Obj *CONST *argv = objv+1;
+  int argc = objc-1;
+  if (argc == 9) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecordList, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[4], (std::string**)(0));
+            _v = SWIG_CheckState(res);
+            if (_v) {
+              int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[5], (std::string**)(0));
+              _v = SWIG_CheckState(res);
+              if (_v) {
+                int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[6], (std::string**)(0));
+                _v = SWIG_CheckState(res);
+                if (_v) {
+                  int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[7], (std::string**)(0));
+                  _v = SWIG_CheckState(res);
+                  if (_v) {
+                    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[8], (std::string**)(0));
+                    _v = SWIG_CheckState(res);
+                    if (_v) {
+                      return _wrap_OTRecordList_AddSpecialMsg__SWIG_2(clientData, interp, objc, argv - 1);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 10) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecordList, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[4], (std::string**)(0));
+            _v = SWIG_CheckState(res);
+            if (_v) {
+              int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[5], (std::string**)(0));
+              _v = SWIG_CheckState(res);
+              if (_v) {
+                int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[6], (std::string**)(0));
+                _v = SWIG_CheckState(res);
+                if (_v) {
+                  int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[7], (std::string**)(0));
+                  _v = SWIG_CheckState(res);
+                  if (_v) {
+                    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[8], (std::string**)(0));
+                    _v = SWIG_CheckState(res);
+                    if (_v) {
+                      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[9], (std::string**)(0));
+                      _v = SWIG_CheckState(res);
+                      if (_v) {
+                        return _wrap_OTRecordList_AddSpecialMsg__SWIG_1(clientData, interp, objc, argv - 1);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 11) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecordList, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool SWIG_TCL_CALL_ARGS_2(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int SWIG_TCL_CALL_ARGS_2(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[4], (std::string**)(0));
+            _v = SWIG_CheckState(res);
+            if (_v) {
+              int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[5], (std::string**)(0));
+              _v = SWIG_CheckState(res);
+              if (_v) {
+                int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[6], (std::string**)(0));
+                _v = SWIG_CheckState(res);
+                if (_v) {
+                  int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[7], (std::string**)(0));
+                  _v = SWIG_CheckState(res);
+                  if (_v) {
+                    int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[8], (std::string**)(0));
+                    _v = SWIG_CheckState(res);
+                    if (_v) {
+                      int res = SWIG_AsPtr_std_string SWIG_TCL_CALL_ARGS_2(argv[9], (std::string**)(0));
+                      _v = SWIG_CheckState(res);
+                      if (_v) {
+                        void *vptr = 0;
+                        int res = SWIG_ConvertPtr(argv[10], &vptr, SWIGTYPE_p_time64_t, 0);
+                        _v = SWIG_CheckState(res);
+                        if (_v) {
+                          return _wrap_OTRecordList_AddSpecialMsg__SWIG_0(clientData, interp, objc, argv - 1);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  Tcl_SetResult(interp,(char *) "Wrong number or type of arguments for overloaded function 'OTRecordList_AddSpecialMsg'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    OTRecordList::AddSpecialMsg(std::string const &,bool,int32_t,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const,time64_t)\n"
+    "    OTRecordList::AddSpecialMsg(std::string const &,bool,int32_t,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &,std::string const)\n"
+    "    OTRecordList::AddSpecialMsg(std::string const &,bool,int32_t,std::string const &,std::string const &,std::string const &,std::string const &,std::string const &)\n", TCL_STATIC);
+  return TCL_ERROR;
+}
+
+
+SWIGINTERN int
 _wrap_OTRecordList_size(ClientData clientData SWIGUNUSED, Tcl_Interp *interp, int objc, Tcl_Obj *CONST objv[]) {
   OTRecordList *arg1 = (OTRecordList *) 0 ;
   void *argp1 = 0 ;
@@ -47041,6 +48185,7 @@ static swig_method swig_OTRecordList_methods[] = {
     {"SetAccountID", _wrap_OTRecordList_SetAccountID}, 
     {"AddAccountID", _wrap_OTRecordList_AddAccountID}, 
     {"ClearAccounts", _wrap_OTRecordList_ClearAccounts}, 
+    {"GetNyms", _wrap_OTRecordList_GetNyms}, 
     {"AcceptChequesAutomatically", _wrap_OTRecordList_AcceptChequesAutomatically}, 
     {"AcceptReceiptsAutomatically", _wrap_OTRecordList_AcceptReceiptsAutomatically}, 
     {"AcceptTransfersAutomatically", _wrap_OTRecordList_AcceptTransfersAutomatically}, 
@@ -47052,6 +48197,8 @@ static swig_method swig_OTRecordList_methods[] = {
     {"PerformAutoAccept", _wrap_OTRecordList_PerformAutoAccept}, 
     {"Populate", _wrap_OTRecordList_Populate}, 
     {"ClearContents", _wrap_OTRecordList_ClearContents}, 
+    {"SortRecords", _wrap_OTRecordList_SortRecords}, 
+    {"AddSpecialMsg", _wrap_OTRecordList_AddSpecialMsg}, 
     {"size", _wrap_OTRecordList_size}, 
     {"GetRecord", _wrap_OTRecordList_GetRecord}, 
     {"RemoveRecord", _wrap_OTRecordList_RemoveRecord}, 
@@ -47496,6 +48643,17 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "delete_OT_ME", (swig_wrapper_func) _wrap_delete_OT_ME, NULL},
     { SWIG_prefix "OT_ME_opentxs_copy_variables", (swig_wrapper_func) _wrap_OT_ME_opentxs_copy_variables, NULL},
     { SWIG_prefix "OT_ME_opentxs_main_loop", (swig_wrapper_func) _wrap_OT_ME_opentxs_main_loop, NULL},
+    { SWIG_prefix "OT_ME_VerifyMessageSuccess", (swig_wrapper_func) _wrap_OT_ME_VerifyMessageSuccess, NULL},
+    { SWIG_prefix "OT_ME_VerifyMsgBalanceAgrmntSuccess", (swig_wrapper_func) _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess, NULL},
+    { SWIG_prefix "OT_ME_VerifyMsgTrnxSuccess", (swig_wrapper_func) _wrap_OT_ME_VerifyMsgTrnxSuccess, NULL},
+    { SWIG_prefix "OT_ME_InterpretTransactionMsgReply", (swig_wrapper_func) _wrap_OT_ME_InterpretTransactionMsgReply, NULL},
+    { SWIG_prefix "OT_ME_ExecuteScript_ReturnString", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnString, NULL},
+    { SWIG_prefix "OT_ME_ExecuteScript_ReturnBool", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnBool, NULL},
+    { SWIG_prefix "OT_ME_ExecuteScript_ReturnInt", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnInt, NULL},
+    { SWIG_prefix "OT_ME_ExecuteScript_ReturnVoid", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnVoid, NULL},
+    { SWIG_prefix "OT_ME_AddVariable", (swig_wrapper_func) _wrap_OT_ME_AddVariable, NULL},
+    { SWIG_prefix "OT_ME_FindVariable", (swig_wrapper_func) _wrap_OT_ME_FindVariable, NULL},
+    { SWIG_prefix "OT_ME_FindVariable2", (swig_wrapper_func) _wrap_OT_ME_FindVariable2, NULL},
     { SWIG_prefix "OT_ME_make_sure_enough_trans_nums", (swig_wrapper_func) _wrap_OT_ME_make_sure_enough_trans_nums, NULL},
     { SWIG_prefix "OT_ME_register_nym", (swig_wrapper_func) _wrap_OT_ME_register_nym, NULL},
     { SWIG_prefix "OT_ME_check_user", (swig_wrapper_func) _wrap_OT_ME_check_user, NULL},
@@ -47550,17 +48708,6 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OT_ME_get_nym_market_offers", (swig_wrapper_func) _wrap_OT_ME_get_nym_market_offers, NULL},
     { SWIG_prefix "OT_ME_get_market_recent_trades", (swig_wrapper_func) _wrap_OT_ME_get_market_recent_trades, NULL},
     { SWIG_prefix "OT_ME_adjust_usage_credits", (swig_wrapper_func) _wrap_OT_ME_adjust_usage_credits, NULL},
-    { SWIG_prefix "OT_ME_VerifyMessageSuccess", (swig_wrapper_func) _wrap_OT_ME_VerifyMessageSuccess, NULL},
-    { SWIG_prefix "OT_ME_VerifyMsgBalanceAgrmntSuccess", (swig_wrapper_func) _wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess, NULL},
-    { SWIG_prefix "OT_ME_VerifyMsgTrnxSuccess", (swig_wrapper_func) _wrap_OT_ME_VerifyMsgTrnxSuccess, NULL},
-    { SWIG_prefix "OT_ME_InterpretTransactionMsgReply", (swig_wrapper_func) _wrap_OT_ME_InterpretTransactionMsgReply, NULL},
-    { SWIG_prefix "OT_ME_ExecuteScript_ReturnString", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnString, NULL},
-    { SWIG_prefix "OT_ME_ExecuteScript_ReturnBool", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnBool, NULL},
-    { SWIG_prefix "OT_ME_ExecuteScript_ReturnInt", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnInt, NULL},
-    { SWIG_prefix "OT_ME_ExecuteScript_ReturnVoid", (swig_wrapper_func) _wrap_OT_ME_ExecuteScript_ReturnVoid, NULL},
-    { SWIG_prefix "OT_ME_AddVariable", (swig_wrapper_func) _wrap_OT_ME_AddVariable, NULL},
-    { SWIG_prefix "OT_ME_FindVariable", (swig_wrapper_func) _wrap_OT_ME_FindVariable, NULL},
-    { SWIG_prefix "OT_ME_FindVariable2", (swig_wrapper_func) _wrap_OT_ME_FindVariable2, NULL},
     { SWIG_prefix "OT_ME", (swig_wrapper_func) SWIG_ObjectConstructor, (ClientData)&_wrap_class_OT_ME},
     { SWIG_prefix "delete_Storable", (swig_wrapper_func) _wrap_delete_Storable, NULL},
     { SWIG_prefix "Storable_Create", (swig_wrapper_func) _wrap_Storable_Create, NULL},
@@ -48004,6 +49151,8 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "AddressBook_ot_dynamic_cast", (swig_wrapper_func) _wrap_AddressBook_ot_dynamic_cast, NULL},
     { SWIG_prefix "AddressBook", (swig_wrapper_func) SWIG_ObjectConstructor, (ClientData)&_wrap_class_OTDB_AddressBook},
     { SWIG_prefix "OTRecord_GetTypeString", (swig_wrapper_func) _wrap_OTRecord_GetTypeString, NULL},
+    { SWIG_prefix "OTRecord_SetSpecialMail", (swig_wrapper_func) _wrap_OTRecord_SetSpecialMail, NULL},
+    { SWIG_prefix "OTRecord_IsSpecialMail", (swig_wrapper_func) _wrap_OTRecord_IsSpecialMail, NULL},
     { SWIG_prefix "OTRecord_IsPending", (swig_wrapper_func) _wrap_OTRecord_IsPending, NULL},
     { SWIG_prefix "OTRecord_IsOutgoing", (swig_wrapper_func) _wrap_OTRecord_IsOutgoing, NULL},
     { SWIG_prefix "OTRecord_IsRecord", (swig_wrapper_func) _wrap_OTRecord_IsRecord, NULL},
@@ -48039,6 +49188,14 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTRecord_DiscardOutgoingCash", (swig_wrapper_func) _wrap_OTRecord_DiscardOutgoingCash, NULL},
     { SWIG_prefix "OTRecord_GetBoxIndex", (swig_wrapper_func) _wrap_OTRecord_GetBoxIndex, NULL},
     { SWIG_prefix "OTRecord_SetBoxIndex", (swig_wrapper_func) _wrap_OTRecord_SetBoxIndex, NULL},
+    { SWIG_prefix "OTRecord_GetMethodID", (swig_wrapper_func) _wrap_OTRecord_GetMethodID, NULL},
+    { SWIG_prefix "OTRecord_SetMethodID", (swig_wrapper_func) _wrap_OTRecord_SetMethodID, NULL},
+    { SWIG_prefix "OTRecord_GetMsgID", (swig_wrapper_func) _wrap_OTRecord_GetMsgID, NULL},
+    { SWIG_prefix "OTRecord_SetMsgID", (swig_wrapper_func) _wrap_OTRecord_SetMsgID, NULL},
+    { SWIG_prefix "OTRecord_GetMsgType", (swig_wrapper_func) _wrap_OTRecord_GetMsgType, NULL},
+    { SWIG_prefix "OTRecord_SetMsgType", (swig_wrapper_func) _wrap_OTRecord_SetMsgType, NULL},
+    { SWIG_prefix "OTRecord_GetMsgTypeDisplay", (swig_wrapper_func) _wrap_OTRecord_GetMsgTypeDisplay, NULL},
+    { SWIG_prefix "OTRecord_SetMsgTypeDisplay", (swig_wrapper_func) _wrap_OTRecord_SetMsgTypeDisplay, NULL},
     { SWIG_prefix "OTRecord_GetTransactionNum", (swig_wrapper_func) _wrap_OTRecord_GetTransactionNum, NULL},
     { SWIG_prefix "OTRecord_SetTransactionNum", (swig_wrapper_func) _wrap_OTRecord_SetTransactionNum, NULL},
     { SWIG_prefix "OTRecord_GetTransNumForDisplay", (swig_wrapper_func) _wrap_OTRecord_GetTransNumForDisplay, NULL},
@@ -48049,8 +49206,10 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTRecord_GetCurrencyTLA", (swig_wrapper_func) _wrap_OTRecord_GetCurrencyTLA, NULL},
     { SWIG_prefix "OTRecord_GetNymID", (swig_wrapper_func) _wrap_OTRecord_GetNymID, NULL},
     { SWIG_prefix "OTRecord_GetAccountID", (swig_wrapper_func) _wrap_OTRecord_GetAccountID, NULL},
+    { SWIG_prefix "OTRecord_GetAddress", (swig_wrapper_func) _wrap_OTRecord_GetAddress, NULL},
     { SWIG_prefix "OTRecord_GetOtherNymID", (swig_wrapper_func) _wrap_OTRecord_GetOtherNymID, NULL},
     { SWIG_prefix "OTRecord_GetOtherAccountID", (swig_wrapper_func) _wrap_OTRecord_GetOtherAccountID, NULL},
+    { SWIG_prefix "OTRecord_GetOtherAddress", (swig_wrapper_func) _wrap_OTRecord_GetOtherAddress, NULL},
     { SWIG_prefix "OTRecord_GetName", (swig_wrapper_func) _wrap_OTRecord_GetName, NULL},
     { SWIG_prefix "OTRecord_GetDate", (swig_wrapper_func) _wrap_OTRecord_GetDate, NULL},
     { SWIG_prefix "OTRecord_GetAmount", (swig_wrapper_func) _wrap_OTRecord_GetAmount, NULL},
@@ -48059,6 +49218,8 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTRecord_GetContents", (swig_wrapper_func) _wrap_OTRecord_GetContents, NULL},
     { SWIG_prefix "OTRecord_SetOtherNymID", (swig_wrapper_func) _wrap_OTRecord_SetOtherNymID, NULL},
     { SWIG_prefix "OTRecord_SetOtherAccountID", (swig_wrapper_func) _wrap_OTRecord_SetOtherAccountID, NULL},
+    { SWIG_prefix "OTRecord_SetAddress", (swig_wrapper_func) _wrap_OTRecord_SetAddress, NULL},
+    { SWIG_prefix "OTRecord_SetOtherAddress", (swig_wrapper_func) _wrap_OTRecord_SetOtherAddress, NULL},
     { SWIG_prefix "OTRecord_SetMemo", (swig_wrapper_func) _wrap_OTRecord_SetMemo, NULL},
     { SWIG_prefix "OTRecord_SetContents", (swig_wrapper_func) _wrap_OTRecord_SetContents, NULL},
     { SWIG_prefix "OTRecord_HasInitialPayment", (swig_wrapper_func) _wrap_OTRecord_HasInitialPayment, NULL},
@@ -48080,6 +49241,7 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "delete_OTNameLookup", (swig_wrapper_func) _wrap_delete_OTNameLookup, NULL},
     { SWIG_prefix "OTNameLookup_GetNymName", (swig_wrapper_func) _wrap_OTNameLookup_GetNymName, NULL},
     { SWIG_prefix "OTNameLookup_GetAcctName", (swig_wrapper_func) _wrap_OTNameLookup_GetAcctName, NULL},
+    { SWIG_prefix "OTNameLookup_GetAddressName", (swig_wrapper_func) _wrap_OTNameLookup_GetAddressName, NULL},
     { SWIG_prefix "OTNameLookup", (swig_wrapper_func) SWIG_ObjectConstructor, (ClientData)&_wrap_class_OTNameLookup},
     { SWIG_prefix "new_OTLookupCaller", (swig_wrapper_func) _wrap_new_OTLookupCaller, NULL},
     { SWIG_prefix "delete_OTLookupCaller", (swig_wrapper_func) _wrap_delete_OTLookupCaller, NULL},
@@ -48089,6 +49251,7 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTLookupCaller_isCallbackSet", (swig_wrapper_func) _wrap_OTLookupCaller_isCallbackSet, NULL},
     { SWIG_prefix "OTLookupCaller_GetNymName", (swig_wrapper_func) _wrap_OTLookupCaller_GetNymName, NULL},
     { SWIG_prefix "OTLookupCaller_GetAcctName", (swig_wrapper_func) _wrap_OTLookupCaller_GetAcctName, NULL},
+    { SWIG_prefix "OTLookupCaller_GetAddressName", (swig_wrapper_func) _wrap_OTLookupCaller_GetAddressName, NULL},
     { SWIG_prefix "OTLookupCaller", (swig_wrapper_func) SWIG_ObjectConstructor, (ClientData)&_wrap_class_OTLookupCaller},
     { SWIG_prefix "OT_API_Set_AddrBookCallback", (swig_wrapper_func) _wrap_OT_API_Set_AddrBookCallback, NULL},
     { SWIG_prefix "OTRecordList_setAddrBookCaller", (swig_wrapper_func) _wrap_OTRecordList_setAddrBookCaller, NULL},
@@ -48112,6 +49275,7 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTRecordList_SetAccountID", (swig_wrapper_func) _wrap_OTRecordList_SetAccountID, NULL},
     { SWIG_prefix "OTRecordList_AddAccountID", (swig_wrapper_func) _wrap_OTRecordList_AddAccountID, NULL},
     { SWIG_prefix "OTRecordList_ClearAccounts", (swig_wrapper_func) _wrap_OTRecordList_ClearAccounts, NULL},
+    { SWIG_prefix "OTRecordList_GetNyms", (swig_wrapper_func) _wrap_OTRecordList_GetNyms, NULL},
     { SWIG_prefix "OTRecordList_AcceptChequesAutomatically", (swig_wrapper_func) _wrap_OTRecordList_AcceptChequesAutomatically, NULL},
     { SWIG_prefix "OTRecordList_AcceptReceiptsAutomatically", (swig_wrapper_func) _wrap_OTRecordList_AcceptReceiptsAutomatically, NULL},
     { SWIG_prefix "OTRecordList_AcceptTransfersAutomatically", (swig_wrapper_func) _wrap_OTRecordList_AcceptTransfersAutomatically, NULL},
@@ -48123,6 +49287,8 @@ static swig_command_info swig_commands[] = {
     { SWIG_prefix "OTRecordList_PerformAutoAccept", (swig_wrapper_func) _wrap_OTRecordList_PerformAutoAccept, NULL},
     { SWIG_prefix "OTRecordList_Populate", (swig_wrapper_func) _wrap_OTRecordList_Populate, NULL},
     { SWIG_prefix "OTRecordList_ClearContents", (swig_wrapper_func) _wrap_OTRecordList_ClearContents, NULL},
+    { SWIG_prefix "OTRecordList_SortRecords", (swig_wrapper_func) _wrap_OTRecordList_SortRecords, NULL},
+    { SWIG_prefix "OTRecordList_AddSpecialMsg", (swig_wrapper_func) _wrap_OTRecordList_AddSpecialMsg, NULL},
     { SWIG_prefix "OTRecordList_size", (swig_wrapper_func) _wrap_OTRecordList_size, NULL},
     { SWIG_prefix "OTRecordList_GetRecord", (swig_wrapper_func) _wrap_OTRecordList_GetRecord, NULL},
     { SWIG_prefix "OTRecordList_RemoveRecord", (swig_wrapper_func) _wrap_OTRecordList_RemoveRecord, NULL},
@@ -48359,6 +49525,7 @@ static swig_type_info _swigt__p_mapped_type = {"_p_mapped_type", "mapped_type *"
 static swig_type_info _swigt__p_short = {"_p_short", "short *|int_least16_t *|int16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|int_least8_t *|int_fast8_t *|int8_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__listT_std__string_t = {"_p_std__listT_std__string_t", "std::list< std::string > *|list_of_strings *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "std::map< std::string,std::string > *", 0, 0, (void*)&_wrap_class_std_map_Sl_std_string_Sc_std_string_Sg_, 0};
 static swig_type_info _swigt__p_std__out_of_range = {"_p_std__out_of_range", "std::out_of_range *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
@@ -48426,6 +49593,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_short,
   &_swigt__p_signed_char,
   &_swigt__p_size_type,
+  &_swigt__p_std__listT_std__string_t,
   &_swigt__p_std__mapT_std__string_std__string_t,
   &_swigt__p_std__out_of_range,
   &_swigt__p_std__string,
@@ -48493,6 +49661,7 @@ static swig_cast_info _swigc__p_mapped_type[] = {  {&_swigt__p_mapped_type, 0, 0
 static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__listT_std__string_t[] = {  {&_swigt__p_std__listT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__out_of_range[] = {  {&_swigt__p_std__out_of_range, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
@@ -48560,6 +49729,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_short,
   _swigc__p_signed_char,
   _swigc__p_size_type,
+  _swigc__p_std__listT_std__string_t,
   _swigc__p_std__mapT_std__string_std__string_t,
   _swigc__p_std__out_of_range,
   _swigc__p_std__string,

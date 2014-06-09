@@ -1068,18 +1068,19 @@ static void SWIG_Php_SetModule(swig_module_info *pointer) {
 #define SWIGTYPE_p_short swig_types[51]
 #define SWIGTYPE_p_signed_char swig_types[52]
 #define SWIGTYPE_p_size_type swig_types[53]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[54]
-#define SWIGTYPE_p_std__string swig_types[55]
-#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[56]
-#define SWIGTYPE_p_time64_t swig_types[57]
-#define SWIGTYPE_p_unsigned_char swig_types[58]
-#define SWIGTYPE_p_unsigned_int swig_types[59]
-#define SWIGTYPE_p_unsigned_long_long swig_types[60]
-#define SWIGTYPE_p_unsigned_short swig_types[61]
-#define SWIGTYPE_p_value_type swig_types[62]
-#define SWIGTYPE_p_void swig_types[63]
-static swig_type_info *swig_types[65];
-static swig_module_info swig_module = {swig_types, 64, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__listT_std__string_t swig_types[54]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_t swig_types[55]
+#define SWIGTYPE_p_std__string swig_types[56]
+#define SWIGTYPE_p_std__vectorT_unsigned_char_t swig_types[57]
+#define SWIGTYPE_p_time64_t swig_types[58]
+#define SWIGTYPE_p_unsigned_char swig_types[59]
+#define SWIGTYPE_p_unsigned_int swig_types[60]
+#define SWIGTYPE_p_unsigned_long_long swig_types[61]
+#define SWIGTYPE_p_unsigned_short swig_types[62]
+#define SWIGTYPE_p_value_type swig_types[63]
+#define SWIGTYPE_p_void swig_types[64]
+static swig_type_info *swig_types[66];
+static swig_module_info swig_module = {swig_types, 65, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1663,6 +1664,7 @@ static swig_type_info _swigt__p_p_void = {"_p_p_void", "void **", 0, 0, (void*)0
 static swig_type_info _swigt__p_short = {"_p_short", "short *|int_least16_t *|int16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|int_least8_t *|int_fast8_t *|int8_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__listT_std__string_t = {"_p_std__listT_std__string_t", "std::list< std::string > *|list_of_strings *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_t = {"_p_std__mapT_std__string_std__string_t", "std::map< std::string,std::string > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__string = {"_p_std__string", "std::string *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_unsigned_char_t = {"_p_std__vectorT_unsigned_char_t", "std::vector< unsigned char > *|std::vector< uint8_t > *", 0, 0, (void*)0, 0};
@@ -1729,6 +1731,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_short,
   &_swigt__p_signed_char,
   &_swigt__p_size_type,
+  &_swigt__p_std__listT_std__string_t,
   &_swigt__p_std__mapT_std__string_std__string_t,
   &_swigt__p_std__string,
   &_swigt__p_std__vectorT_unsigned_char_t,
@@ -1795,6 +1798,7 @@ static swig_cast_info _swigc__p_p_void[] = {  {&_swigt__p_p_void, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__listT_std__string_t[] = {  {&_swigt__p_std__listT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__string[] = {  {&_swigt__p_std__string, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_unsigned_char_t[] = {  {&_swigt__p_std__vectorT_unsigned_char_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -1861,6 +1865,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_short,
   _swigc__p_signed_char,
   _swigc__p_size_type,
+  _swigc__p_std__listT_std__string_t,
   _swigc__p_std__mapT_std__string_std__string_t,
   _swigc__p_std__string,
   _swigc__p_std__vectorT_unsigned_char_t,
@@ -1971,6 +1976,35 @@ fail:
 }
 
 
+std::string SwigDirector_OTNameLookup::GetAddressName(std::string const &str_address) const {
+  TSRMLS_FETCH_FROM_CTX(swig_zts_ctx);
+  std::string c_result;
+  zval *args[1];
+  zval *result, funcname;
+  MAKE_STD_ZVAL(result);
+  ZVAL_STRINGL(&funcname, (char *)"GetAddressName", 14, 0);
+  if (!swig_self) {
+    SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  }
+  
+  zval obj0;
+  args[0] = &obj0;
+  INIT_ZVAL(obj0);
+  
+  ZVAL_STRINGL(&obj0, const_cast<char*>((&str_address)->data()), (&str_address)->size(), 1);
+  
+  call_user_function(EG(function_table), (zval**)&swig_self, &funcname, result, 1, args TSRMLS_CC);
+  
+  convert_to_string_ex(&result);
+  c_result.assign(Z_STRVAL_P(result), Z_STRLEN_P(result));
+  
+  FREE_ZVAL(result);
+  return (std::string) c_result;
+fail:
+  SWIG_FAIL();
+}
+
+
 /* vdecl subsection */
 static int le_swig__p_std__vectorT_unsigned_char_t=0; /* handle for VectorUnsignedChar */
 static int le_swig__p_OTDB__Storage=0; /* handle for Storage */
@@ -2036,6 +2070,7 @@ static int le_swig__p_int=0; /* handle for _p_int */
 static int le_swig__p_OTDB__MarketData=0; /* handle for MarketData */
 static int le_swig__p_std__mapT_std__string_std__string_t=0; /* handle for MapStringString */
 static int le_swig__p_OTDB__MarketList=0; /* handle for MarketList */
+static int le_swig__p_std__listT_std__string_t=0; /* handle for _p_std__listT_std__string_t */
 /* end vdecl subsection */
 /* wrapper section */
 ZEND_NAMED_FUNCTION(_wrap_imaxdiv_t_quot_set) {
@@ -2055,7 +2090,7 @@ ZEND_NAMED_FUNCTION(_wrap_imaxdiv_t_quot_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     arg2 = (long long) (*(args[1]))->value.dval;
@@ -2131,7 +2166,7 @@ ZEND_NAMED_FUNCTION(_wrap_imaxdiv_t_rem_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     arg2 = (long long) (*(args[1]))->value.dval;
@@ -2238,7 +2273,7 @@ ZEND_NAMED_FUNCTION(_wrap_imaxabs) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     arg1 = (intmax_t) (*(args[0]))->value.dval;
@@ -2285,7 +2320,7 @@ ZEND_NAMED_FUNCTION(_wrap_imaxdiv) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     arg1 = (intmax_t) (*(args[0]))->value.dval;
@@ -2304,7 +2339,7 @@ ZEND_NAMED_FUNCTION(_wrap_imaxdiv) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     arg2 = (intmax_t) (*(args[1]))->value.dval;
@@ -2362,7 +2397,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_VectorUnsignedChar__SWIG_1) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (std::vector< unsigned char >::size_type) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -2469,7 +2504,7 @@ ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_reserve) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (std::vector< unsigned char >::size_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -2523,7 +2558,7 @@ ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_push) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (std::vector< unsigned char >::value_type) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -2616,7 +2651,7 @@ ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_get) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -2659,13 +2694,13 @@ ZEND_NAMED_FUNCTION(_wrap_VectorUnsignedChar_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (std::vector< unsigned char >::value_type) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3209,7 +3244,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[1])->type==IS_NULL) {
     arg2 = (char *) 0;
   } else {
@@ -3219,7 +3254,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3258,7 +3293,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setPassword_uint8) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (uint32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3291,7 +3326,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_addChar) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint8_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3324,7 +3359,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3382,7 +3417,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword_uint8) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3409,7 +3444,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_2) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -3419,7 +3454,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizePassword__SWIG_2) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3611,7 +3646,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_setMemory) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (uint32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3653,7 +3688,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_addMemory) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (uint32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -3686,7 +3721,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3744,7 +3779,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory_uint8) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3779,7 +3814,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_randomizeMemory__SWIG_2) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -3992,7 +4027,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory__SWIG_1) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4024,7 +4059,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_zeroMemory__SWIG_2) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4109,7 +4144,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_0) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4123,13 +4158,13 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_0) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   arg4 = (uint32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   arg5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -4166,7 +4201,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_1) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4180,7 +4215,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_safe_memcpy__SWIG_1) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   arg4 = (uint32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -4291,7 +4326,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTPassword_SetSize) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4317,7 +4352,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_0) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTPassword::BlockSize) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -4388,7 +4423,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_3) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -4398,13 +4433,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_3) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -4431,7 +4466,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_4) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[0])->type==IS_NULL) {
     arg1 = (char *) 0;
   } else {
@@ -4441,7 +4476,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_4) {
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4474,13 +4509,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_5) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -4512,7 +4547,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_6) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4548,13 +4583,13 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_7) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   arg3 = (OTPassword::BlockSize) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -4589,7 +4624,7 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTPassword__SWIG_8) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (uint32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -4862,7 +4897,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_LongToString) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     temp1 = (int64_t) (*(args[0]))->value.dval;
@@ -4937,7 +4972,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_UlongToString) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,30,CONVERT_UNSIGNED_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,30,CONVERT_UNSIGNED_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     temp1 = (uint64_t) (*(args[0]))->value.dval;
@@ -5144,7 +5179,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Output) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5369,7 +5404,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Encode) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   temp2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5405,7 +5440,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Decode) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   temp2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -5793,7 +5828,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetMemlogAtIndex) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5897,7 +5932,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_CreateNym) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -5978,7 +6013,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetActiveCronItem) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     arg2 = (int64_t) (*(args[1]))->value.dval;
@@ -6107,7 +6142,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_CredentialID) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6205,7 +6240,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_RevokedCredID) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -6318,7 +6353,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_SubCredentialID) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -6405,7 +6440,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddSubcredential) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -6728,7 +6763,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetServer_ID) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -6817,7 +6852,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_FormatAmount) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     temp2 = (int64_t) (*(args[1]))->value.dval;
@@ -6901,7 +6936,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAssetType_ID) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -7010,7 +7045,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetAccountWallet_ID) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -7339,7 +7374,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_ID) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   temp1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -7630,7 +7665,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_MailContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7666,7 +7701,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_MailSenderIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7702,7 +7737,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_MailServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7738,7 +7773,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_RemoveMailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7774,7 +7809,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_VerifyMailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7837,7 +7872,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutmailContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7873,7 +7908,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutmailRecipientIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7909,7 +7944,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutmailServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7945,7 +7980,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_RemoveOutmailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -7981,7 +8016,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_VerifyOutmailByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8044,7 +8079,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutpaymentsContentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8080,7 +8115,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutpaymentsRecipientIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8116,7 +8151,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetNym_OutpaymentsServerIDByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8152,7 +8187,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_RemoveOutpaymentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8188,7 +8223,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nym_VerifyOutpaymentsByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -8821,7 +8856,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_WriteCheque) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     temp2 = (int64_t) (*(args[1]))->value.dval;
@@ -9010,7 +9045,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
   arg8 = &temp8;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[8]))->type) {
   case IS_DOUBLE:
     temp9 = (int64_t) (*(args[8]))->value.dval;
@@ -9035,7 +9070,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[10]))->type) {
   case IS_DOUBLE:
     temp11 = (int64_t) (*(args[10]))->value.dval;
@@ -9070,7 +9105,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ProposePaymentPlan) {
     }
   }
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[14]);
   temp15 = (int32_t) Z_LVAL_PP(args[14]);
   /*@SWIG@*/;
@@ -9912,7 +9947,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_GetBylawByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10025,7 +10060,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Clause_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10147,7 +10182,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Variable_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10355,7 +10390,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Hook_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10449,7 +10484,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Hook_GetClauseAtIndex) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -10529,7 +10564,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Callback_GetNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10636,7 +10671,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Smart_GetPartyByIndex) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -10784,7 +10819,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAcctNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -10992,7 +11027,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Party_GetAgentNameByIndex) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
@@ -11126,7 +11161,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_triggerClause) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[2]))->type) {
   case IS_DOUBLE:
     temp3 = (int64_t) (*(args[2]))->value.dval;
@@ -11203,35 +11238,35 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Msg_HarvestTransactionNumbers) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[2]);
   temp3 = (bool) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   temp4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
   arg5 = &temp5;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[5]);
   temp6 = (bool) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
   arg6 = &temp6;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   temp7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -11624,7 +11659,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Basket_GetMemberType) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -11694,7 +11729,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Basket_GetMemberMinimumTransferAmount) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   temp2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -12124,14 +12159,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ClearRecord) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -12248,14 +12283,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_ClearExpired) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[2]);
   temp3 = (int32_t) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[3]);
   temp4 = (bool) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
@@ -12415,7 +12450,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetTransactionByIndex) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -12475,7 +12510,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetTransactionByID) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[4]))->type) {
   case IS_DOUBLE:
     temp5 = (int64_t) (*(args[4]))->value.dval;
@@ -12548,7 +12583,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetTransactionIDByIndex) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -12681,7 +12716,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Transaction_CreateResponse) {
   arg5 = &temp5;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[5]);
   temp6 = (bool) Z_LVAL_PP(args[5]);
   /*@SWIG@*/;
@@ -12793,7 +12828,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Ledger_GetInstrument) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -12843,21 +12878,21 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_RecordPayment) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[2]);
   temp3 = (bool) Z_LVAL_PP(args[2]);
   /*@SWIG@*/;
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -15118,7 +15153,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_usageCredits) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[3]))->type) {
   case IS_DOUBLE:
     temp4 = (int64_t) (*(args[3]))->value.dval;
@@ -15700,7 +15735,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GenerateBasketCreation) {
   arg1 = &temp1;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     temp2 = (int64_t) (*(args[1]))->value.dval;
@@ -15763,7 +15798,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_AddBasketCreationItem) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[3]))->type) {
   case IS_DOUBLE:
     temp4 = (int64_t) (*(args[3]))->value.dval;
@@ -15878,7 +15913,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GenerateBasketExchange) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[4]);
   temp5 = (int32_t) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -15997,7 +16032,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_exchangeBasket) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[4]);
   temp5 = (bool) Z_LVAL_PP(args[4]);
   /*@SWIG@*/;
@@ -16050,7 +16085,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_notarizeWithdrawal) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[3]))->type) {
   case IS_DOUBLE:
     temp4 = (int64_t) (*(args[3]))->value.dval;
@@ -16175,7 +16210,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_notarizeTransfer) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[4]))->type) {
   case IS_DOUBLE:
     temp5 = (int64_t) (*(args[4]))->value.dval;
@@ -16431,7 +16466,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Nymbox_GetReplyNotice) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[2]))->type) {
   case IS_DOUBLE:
     temp3 = (int64_t) (*(args[2]))->value.dval;
@@ -16488,7 +16523,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_HaveAlreadySeenReply) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[2]))->type) {
   case IS_DOUBLE:
     temp3 = (int64_t) (*(args[2]))->value.dval;
@@ -16554,14 +16589,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getBoxReceipt) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[4]))->type) {
   case IS_DOUBLE:
     temp5 = (int64_t) (*(args[4]))->value.dval;
@@ -16628,14 +16663,14 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_DoesBoxReceiptExist) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[3]);
   temp4 = (int32_t) Z_LVAL_PP(args[3]);
   /*@SWIG@*/;
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[4]))->type) {
   case IS_DOUBLE:
     temp5 = (int64_t) (*(args[4]))->value.dval;
@@ -16800,7 +16835,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_withdrawVoucher) {
   arg5 = &temp5;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[5]))->type) {
   case IS_DOUBLE:
     temp6 = (int64_t) (*(args[5]))->value.dval;
@@ -16881,7 +16916,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_payDividend) {
   arg5 = &temp5;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[5]))->type) {
   case IS_DOUBLE:
     temp6 = (int64_t) (*(args[5]))->value.dval;
@@ -17048,7 +17083,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   arg2 = &temp2;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[2]))->type) {
   case IS_DOUBLE:
     temp3 = (int64_t) (*(args[2]))->value.dval;
@@ -17068,7 +17103,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[3]))->type) {
   case IS_DOUBLE:
     temp4 = (int64_t) (*(args[3]))->value.dval;
@@ -17088,7 +17123,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[4]))->type) {
   case IS_DOUBLE:
     temp5 = (int64_t) (*(args[4]))->value.dval;
@@ -17108,7 +17143,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   arg5 = &temp5;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[5]))->type) {
   case IS_DOUBLE:
     temp6 = (int64_t) (*(args[5]))->value.dval;
@@ -17128,7 +17163,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   arg6 = &temp6;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[6]);
   temp7 = (bool) Z_LVAL_PP(args[6]);
   /*@SWIG@*/;
@@ -17145,7 +17180,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_issueMarketOffer) {
   arg9 = &temp9;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[9]))->type) {
   case IS_DOUBLE:
     temp10 = (int64_t) (*(args[9]))->value.dval;
@@ -17245,7 +17280,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_getMarketOffers) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[3]))->type) {
   case IS_DOUBLE:
     temp4 = (int64_t) (*(args[3]))->value.dval;
@@ -17388,7 +17423,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_killMarketOffer) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[3]))->type) {
   case IS_DOUBLE:
     temp4 = (int64_t) (*(args[3]))->value.dval;
@@ -17453,7 +17488,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_killPaymentPlan) {
   arg3 = &temp3;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[3]))->type) {
   case IS_DOUBLE:
     temp4 = (int64_t) (*(args[3]))->value.dval;
@@ -17501,7 +17536,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_PopMessageBuffer) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     temp1 = (int64_t) (*(args[0]))->value.dval;
@@ -17572,7 +17607,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_GetSentMessage) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     temp1 = (int64_t) (*(args[0]))->value.dval;
@@ -17629,7 +17664,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_RemoveSentMessage) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     temp1 = (int64_t) (*(args[0]))->value.dval;
@@ -17687,7 +17722,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_FlushSentMessages) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[0]);
   temp1 = (bool) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -17730,7 +17765,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTAPI_Wrap_Sleep) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[0]))->type) {
   case IS_DOUBLE:
     temp1 = (int64_t) (*(args[0]))->value.dval;
@@ -18308,7 +18343,7 @@ ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetValueByIndex) {
   (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -18339,7 +18374,7 @@ ZEND_NAMED_FUNCTION(_wrap_OT_CLI_GetKeyByIndex) {
   (&arg1)->assign(Z_STRVAL_PP(args[0]), Z_STRLEN_PP(args[0]));
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -18470,3547 +18505,6 @@ ZEND_NAMED_FUNCTION(_wrap_OT_ME_opentxs_main_loop) {
   {
     ZVAL_LONG(return_value,result);
   }
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_make_sure_enough_trans_nums) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  int32_t arg2 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_make_sure_enough_trans_nums. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[1]);
-  arg2 = (int32_t) Z_LVAL_PP(args[1]);
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (bool)(arg1)->make_sure_enough_trans_nums(arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_register_nym) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[3];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_register_nym. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  result = (arg1)->register_nym((std::string const &)*arg2,(std::string const &)*arg3);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_check_user) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_check_user. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->check_user((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_pseudonym) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  int32_t arg2 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_pseudonym. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[1]);
-  arg2 = (int32_t) Z_LVAL_PP(args[1]);
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->create_pseudonym(arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_issue_asset_type) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_issue_asset_type. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->issue_asset_type((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_issue_basket_currency) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_issue_basket_currency. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->issue_basket_currency((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_exchange_basket_currency) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  bool arg7 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[7];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_exchange_basket_currency. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
-  convert_to_boolean_ex(args[6]);
-  arg7 = (bool) Z_LVAL_PP(args[6]);
-  /*@SWIG@*/;
-  
-  result = (arg1)->exchange_basket_currency((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_contract) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_contract. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->retrieve_contract((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_contract) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_contract. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->load_or_retrieve_contract((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_asset_acct) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_asset_acct. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->create_asset_acct((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_stat_asset_account) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp2 ;
-  zval **args[2];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_stat_asset_account. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = (arg1)->stat_asset_account((std::string const &)*arg2);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account__SWIG_0) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_account. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account__SWIG_1) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  bool arg5 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[5];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_account. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
-  convert_to_boolean_ex(args[4]);
-  arg5 = (bool) Z_LVAL_PP(args[4]);
-  /*@SWIG@*/;
-  
-  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account) {
-  int argc;
-  zval **argv[5];
-  
-  argc = ZEND_NUM_ARGS();
-  zend_get_parameters_array_ex(argc,argv);
-  if (argc == 4) {
-    int _v;
-    {
-      void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
-    }
-    if (_v) {
-      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
-      
-      if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
-        if (_v) {
-          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
-          
-          if (_v) {
-            _wrap_OT_ME_retrieve_account__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
-    }
-    if (_v) {
-      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
-      
-      if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
-        if (_v) {
-          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
-          
-          if (_v) {
-            _v = (Z_TYPE_PP(argv[4]) == IS_BOOL); 
-            if (_v) {
-              _wrap_OT_ME_retrieve_account__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_retrieve_account'";
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym__SWIG_0) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[3];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_nym. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym__SWIG_1) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  bool arg4 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[4];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_nym. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
-  convert_to_boolean_ex(args[3]);
-  arg4 = (bool) Z_LVAL_PP(args[3]);
-  /*@SWIG@*/;
-  
-  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3,arg4);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym) {
-  int argc;
-  zval **argv[4];
-  
-  argc = ZEND_NUM_ARGS();
-  zend_get_parameters_array_ex(argc,argv);
-  if (argc == 3) {
-    int _v;
-    {
-      void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
-    }
-    if (_v) {
-      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
-      
-      if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
-        if (_v) {
-          _wrap_OT_ME_retrieve_nym__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-        }
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
-    }
-    if (_v) {
-      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
-      
-      if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
-        if (_v) {
-          _v = (Z_TYPE_PP(argv[3]) == IS_BOOL); 
-          if (_v) {
-            _wrap_OT_ME_retrieve_nym__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-          }
-        }
-      }
-    }
-  }
-  
-  SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_retrieve_nym'";
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_transfer) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  int64_t arg6 ;
-  std::string *arg7 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp7 ;
-  zval **args[7];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_transfer. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[5]))->type) {
-  case IS_DOUBLE:
-    arg6 = (int64_t) (*(args[5]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[5]);
-    arg6 = (int64_t) (*(args[5]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[6]);
-  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
-  arg7 = &temp7;
-  
-  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,arg6,(std::string const &)*arg7);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_process_inbox) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_process_inbox. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (arg1)->process_inbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_accept_inbox_items) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  int32_t arg3 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp4 ;
-  zval **args[4];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_accept_inbox_items. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[2]);
-  arg3 = (int32_t) Z_LVAL_PP(args[2]);
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (bool)(arg1)->accept_inbox_items((std::string const &)*arg2,arg3,(std::string const &)*arg4);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_discard_incoming_payments) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_discard_incoming_payments. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (bool)(arg1)->discard_incoming_payments((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_cancel_outgoing_payments) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_cancel_outgoing_payments. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (bool)(arg1)->cancel_outgoing_payments((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_accept_from_paymentbox) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  int32_t result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_accept_from_paymentbox. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (int32_t)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  {
-    ZVAL_LONG(return_value,result);
-  }
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_public_encryption_key) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp2 ;
-  zval **args[2];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_public_encryption_key. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = (arg1)->load_public_encryption_key((std::string const &)*arg2);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_public_signing_key) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string temp2 ;
-  zval **args[2];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_public_signing_key. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  result = (arg1)->load_public_signing_key((std::string const &)*arg2);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_encrypt_key) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_encrypt_key. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->load_or_retrieve_encrypt_key((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_signing_key) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_signing_key. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->load_or_retrieve_signing_key((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_msg_pubkey) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[6];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_msg_pubkey. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  result = (arg1)->send_user_msg_pubkey((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_pmnt_pubkey) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[6];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_pmnt_pubkey. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  result = (arg1)->send_user_pmnt_pubkey((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_cash_pubkey) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string *arg7 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  std::string temp7 ;
-  zval **args[7];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_cash_pubkey. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  
-  convert_to_string_ex(args[6]);
-  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
-  arg7 = &temp7;
-  
-  result = (arg1)->send_user_cash_pubkey((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_msg) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_msg. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (arg1)->send_user_msg((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_payment) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_payment. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (arg1)->send_user_payment((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_cash) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[6];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_cash. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  result = (arg1)->send_user_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_and_send_cash) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  int64_t arg5 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[5];
-  bool result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_and_send_cash. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[4]))->type) {
-  case IS_DOUBLE:
-    arg5 = (int64_t) (*(args[4]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[4]);
-    arg5 = (int64_t) (*(args[4]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
-  {
-    ZVAL_BOOL(return_value,(result)?1:0);
-  }
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument__SWIG_0) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int32_t arg4 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_payment_instrument. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[3]);
-  arg4 = (int32_t) Z_LVAL_PP(args[3]);
-  /*@SWIG@*/;
-  
-  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument__SWIG_1) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int32_t arg4 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_payment_instrument. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[3]);
-  arg4 = (int32_t) Z_LVAL_PP(args[3]);
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument) {
-  int argc;
-  zval **argv[5];
-  
-  argc = ZEND_NUM_ARGS();
-  zend_get_parameters_array_ex(argc,argv);
-  if (argc == 4) {
-    int _v;
-    {
-      void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
-    }
-    if (_v) {
-      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
-      
-      if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
-        if (_v) {
-          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
-          if (_v) {
-            _wrap_OT_ME_get_payment_instrument__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      void *tmp;
-      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
-    }
-    if (_v) {
-      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
-      
-      if (_v) {
-        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
-        
-        if (_v) {
-          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
-          if (_v) {
-            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
-            
-            if (_v) {
-              _wrap_OT_ME_get_payment_instrument__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  SWIG_ErrorCode() = E_ERROR;
-  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_get_payment_instrument'";
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_box_receipt) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  int32_t arg5 ;
-  int64_t arg6 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[6];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_box_receipt. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
-  convert_to_long_ex(args[4]);
-  arg5 = (int32_t) Z_LVAL_PP(args[4]);
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[5]))->type) {
-  case IS_DOUBLE:
-    arg6 = (int64_t) (*(args[5]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[5]);
-    arg6 = (int64_t) (*(args[5]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,arg6);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_mint) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_mint. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->retrieve_mint((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_mint) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_mint. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->load_or_retrieve_mint((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_query_asset_types) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_query_asset_types. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->query_asset_types((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_market_offer) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int64_t arg4 ;
-  int64_t arg5 ;
-  int64_t arg6 ;
-  int64_t arg7 ;
-  bool arg8 ;
-  int64_t arg9 ;
-  std::string arg10 ;
-  int64_t arg11 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[11];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 11 || zend_get_parameters_array_ex(11, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_market_offer. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[3]))->type) {
-  case IS_DOUBLE:
-    arg4 = (int64_t) (*(args[3]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[3]);
-    arg4 = (int64_t) (*(args[3]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[4]))->type) {
-  case IS_DOUBLE:
-    arg5 = (int64_t) (*(args[4]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[4]);
-    arg5 = (int64_t) (*(args[4]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[5]))->type) {
-  case IS_DOUBLE:
-    arg6 = (int64_t) (*(args[5]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[5]);
-    arg6 = (int64_t) (*(args[5]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[6]))->type) {
-  case IS_DOUBLE:
-    arg7 = (int64_t) (*(args[6]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[6]);
-    arg7 = (int64_t) (*(args[6]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
-  convert_to_boolean_ex(args[7]);
-  arg8 = (bool) Z_LVAL_PP(args[7]);
-  /*@SWIG@*/;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[8]))->type) {
-  case IS_DOUBLE:
-    arg9 = (int64_t) (*(args[8]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg9 = (int64_t) strtoll((*(args[8]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[8]);
-    arg9 = (int64_t) (*(args[8]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[9]);
-  (&arg10)->assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[10]))->type) {
-  case IS_DOUBLE:
-    arg11 = (int64_t) (*(args[10]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg11 = (int64_t) strtoll((*(args[10]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[10]);
-    arg11 = (int64_t) (*(args[10]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_kill_market_offer) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  int64_t arg5 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_kill_market_offer. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[4]))->type) {
-  case IS_DOUBLE:
-    arg5 = (int64_t) (*(args[4]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[4]);
-    arg5 = (int64_t) (*(args[4]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_kill_payment_plan) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  int64_t arg5 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_kill_payment_plan. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[4]))->type) {
-  case IS_DOUBLE:
-    arg5 = (int64_t) (*(args[4]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[4]);
-    arg5 = (int64_t) (*(args[4]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_cancel_payment_plan) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_cancel_payment_plan. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->cancel_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_activate_smart_contract) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[6];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_activate_smart_contract. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  result = (arg1)->activate_smart_contract((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_trigger_clause) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int64_t arg4 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[6];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_trigger_clause. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[3]))->type) {
-  case IS_DOUBLE:
-    arg4 = (int64_t) (*(args[3]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[3]);
-    arg4 = (int64_t) (*(args[3]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_cash) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  int64_t arg5 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_cash. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[4]))->type) {
-  case IS_DOUBLE:
-    arg5 = (int64_t) (*(args[4]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[4]);
-    arg5 = (int64_t) (*(args[4]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_easy_withdraw_cash) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  int64_t arg3 ;
-  std::string temp2 ;
-  zval **args[3];
-  int32_t result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_easy_withdraw_cash. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[2]))->type) {
-  case IS_DOUBLE:
-    arg3 = (int64_t) (*(args[2]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg3 = (int64_t) strtoll((*(args[2]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[2]);
-    arg3 = (int64_t) (*(args[2]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (int32_t)(arg1)->easy_withdraw_cash((std::string const &)*arg2,arg3);
-  {
-    ZVAL_LONG(return_value,result);
-  }
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_export_cash) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  bool arg7 ;
-  std::string *arg8 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  std::string temp8 ;
-  zval **args[8];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 8 || zend_get_parameters_array_ex(8, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_export_cash. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
-  convert_to_boolean_ex(args[6]);
-  arg7 = (bool) Z_LVAL_PP(args[6]);
-  /*@SWIG@*/;
-  
-  
-  convert_to_string_ex(args[7]);
-  temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
-  arg8 = &temp8;
-  
-  result = (arg1)->export_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7,*arg8);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  
-  ZVAL_STRINGL(*(args[7]), const_cast<char*>(arg8->data()), arg8->size(), 1);
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_voucher) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  int64_t arg7 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[7];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_voucher. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[6]))->type) {
-  case IS_DOUBLE:
-    arg7 = (int64_t) (*(args[6]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[6]);
-    arg7 = (int64_t) (*(args[6]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_pay_dividend) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  int64_t arg7 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  std::string temp6 ;
-  zval **args[7];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_pay_dividend. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  
-  convert_to_string_ex(args[5]);
-  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
-  arg6 = &temp6;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[6]))->type) {
-  case IS_DOUBLE:
-    arg7 = (int64_t) (*(args[6]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[6]);
-    arg7 = (int64_t) (*(args[6]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_cheque) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_cheque. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (arg1)->deposit_cheque((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_cash) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  int32_t result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_cash. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (int32_t)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  {
-    ZVAL_LONG(return_value,result);
-  }
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_local_purse) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  int32_t result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_local_purse. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (int32_t)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  {
-    ZVAL_LONG(return_value,result);
-  }
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_list) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[3];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_list. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  result = (arg1)->get_market_list((std::string const &)*arg2,(std::string const &)*arg3);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_offers) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  int64_t arg5 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_offers. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
-  switch ((*(args[4]))->type) {
-  case IS_DOUBLE:
-    arg5 = (int64_t) (*(args[4]))->value.dval;
-    break;
-    case IS_STRING: {
-      char * endptr;
-      errno = 0;
-      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
-      if (*endptr && !errno) break;
-      /* FALL THRU */
-    }
-  default:
-    convert_to_long_ex(args[4]);
-    arg5 = (int64_t) (*(args[4]))->value.lval;
-  }
-  /*@SWIG@*/;
-  
-  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_nym_market_offers) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  zval **args[3];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_nym_market_offers. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  result = (arg1)->get_nym_market_offers((std::string const &)*arg2,(std::string const &)*arg3);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_recent_trades) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  zval **args[4];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_recent_trades. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  result = (arg1)->get_market_recent_trades((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  return;
-fail:
-  SWIG_FAIL();
-}
-
-
-ZEND_NAMED_FUNCTION(_wrap_OT_ME_adjust_usage_credits) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string temp2 ;
-  std::string temp3 ;
-  std::string temp4 ;
-  std::string temp5 ;
-  zval **args[5];
-  std::string result;
-  
-  SWIG_ResetError();
-  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
-    WRONG_PARAM_COUNT;
-  }
-  
-  {
-    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
-      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_adjust_usage_credits. Expected SWIGTYPE_p_OT_ME");
-    }
-  }
-  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
-  
-  convert_to_string_ex(args[1]);
-  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
-  arg2 = &temp2;
-  
-  
-  convert_to_string_ex(args[2]);
-  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
-  arg3 = &temp3;
-  
-  
-  convert_to_string_ex(args[3]);
-  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
-  arg4 = &temp4;
-  
-  
-  convert_to_string_ex(args[4]);
-  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
-  arg5 = &temp5;
-  
-  result = (arg1)->adjust_usage_credits((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  
-  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
-  
-  
-  
-  
-  
   return;
 fail:
   SWIG_FAIL();
@@ -22797,6 +19291,3550 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_make_sure_enough_trans_nums) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_make_sure_enough_trans_nums. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (bool)(arg1)->make_sure_enough_trans_nums(arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_register_nym) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  zval **args[3];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_register_nym. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  result = (arg1)->register_nym((std::string const &)*arg2,(std::string const &)*arg3);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_check_user) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_check_user. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->check_user((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_pseudonym) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  int32_t arg2 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_pseudonym. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->create_pseudonym(arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_issue_asset_type) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_issue_asset_type. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->issue_asset_type((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_issue_basket_currency) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_issue_basket_currency. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->issue_basket_currency((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_exchange_basket_currency) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  bool arg7 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[7];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_exchange_basket_currency. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[6]);
+  arg7 = (bool) Z_LVAL_PP(args[6]);
+  /*@SWIG@*/;
+  
+  result = (arg1)->exchange_basket_currency((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_contract) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_contract. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->retrieve_contract((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_contract) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_contract. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->load_or_retrieve_contract((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_asset_acct) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_asset_acct. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->create_asset_acct((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_stat_asset_account) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_stat_asset_account. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (arg1)->stat_asset_account((std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  bool arg5 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[5];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_account. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[4]);
+  arg5 = (bool) Z_LVAL_PP(args[4]);
+  /*@SWIG@*/;
+  
+  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_account. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_account) {
+  int argc;
+  zval **argv[5];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _wrap_OT_ME_retrieve_account__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = ( Z_TYPE_PP(argv[3]) == IS_STRING ) ? 1 : 0;
+          
+          if (_v) {
+            _v = (Z_TYPE_PP(argv[4]) == IS_BOOL); 
+            if (_v) {
+              _wrap_OT_ME_retrieve_account__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_retrieve_account'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  bool arg4 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  zval **args[4];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_nym. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[3]);
+  arg4 = (bool) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
+  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3,arg4);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  zval **args[3];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_nym. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_nym) {
+  int argc;
+  zval **argv[4];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 3) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _wrap_OT_ME_retrieve_nym__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+        }
+      }
+    }
+  }
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = (Z_TYPE_PP(argv[3]) == IS_BOOL); 
+          if (_v) {
+            _wrap_OT_ME_retrieve_nym__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_retrieve_nym'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_transfer) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  int64_t arg6 ;
+  std::string *arg7 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp7 ;
+  zval **args[7];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_transfer. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    arg6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    arg6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[6]);
+  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
+  arg7 = &temp7;
+  
+  result = (arg1)->send_transfer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,arg6,(std::string const &)*arg7);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_process_inbox) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_process_inbox. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (arg1)->process_inbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_accept_inbox_items) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int32_t arg3 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp4 ;
+  zval **args[4];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_accept_inbox_items. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[2]);
+  arg3 = (int32_t) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (bool)(arg1)->accept_inbox_items((std::string const &)*arg2,arg3,(std::string const &)*arg4);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_discard_incoming_payments) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_discard_incoming_payments. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (bool)(arg1)->discard_incoming_payments((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_cancel_outgoing_payments) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_cancel_outgoing_payments. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (bool)(arg1)->cancel_outgoing_payments((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_accept_from_paymentbox) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_accept_from_paymentbox. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (int32_t)(arg1)->accept_from_paymentbox((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_public_encryption_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_public_encryption_key. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (arg1)->load_public_encryption_key((std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_public_signing_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_public_signing_key. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = (arg1)->load_public_signing_key((std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_encrypt_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_encrypt_key. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->load_or_retrieve_encrypt_key((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_signing_key) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_signing_key. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->load_or_retrieve_signing_key((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_msg_pubkey) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[6];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_msg_pubkey. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  result = (arg1)->send_user_msg_pubkey((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_pmnt_pubkey) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[6];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_pmnt_pubkey. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  result = (arg1)->send_user_pmnt_pubkey((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_cash_pubkey) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  std::string temp7 ;
+  zval **args[7];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_cash_pubkey. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  convert_to_string_ex(args[6]);
+  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
+  arg7 = &temp7;
+  
+  result = (arg1)->send_user_cash_pubkey((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_msg) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_msg. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (arg1)->send_user_msg((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_payment) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_payment. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (arg1)->send_user_payment((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_send_user_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[6];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_send_user_cash. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  result = (arg1)->send_user_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_and_send_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t arg5 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[5];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_and_send_cash. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (bool)(arg1)->withdraw_and_send_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument__SWIG_0) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp5 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_payment_instrument. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[3]);
+  arg4 = (int32_t) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument__SWIG_1) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t arg4 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_payment_instrument. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[3]);
+  arg4 = (int32_t) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
+  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_payment_instrument) {
+  int argc;
+  zval **argv[5];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 4) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
+          if (_v) {
+            _wrap_OT_ME_get_payment_instrument__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OT_ME, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = ( Z_TYPE_PP(argv[2]) == IS_STRING ) ? 1 : 0;
+        
+        if (_v) {
+          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
+          if (_v) {
+            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
+            
+            if (_v) {
+              _wrap_OT_ME_get_payment_instrument__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OT_ME_get_payment_instrument'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_box_receipt) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int32_t arg5 ;
+  int64_t arg6 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[6];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_box_receipt. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[4]);
+  arg5 = (int32_t) Z_LVAL_PP(args[4]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    arg6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    arg6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->get_box_receipt((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5,arg6);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_retrieve_mint) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_retrieve_mint. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->retrieve_mint((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_load_or_retrieve_mint) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_load_or_retrieve_mint. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->load_or_retrieve_mint((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_query_asset_types) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_query_asset_types. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->query_asset_types((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_create_market_offer) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t arg4 ;
+  int64_t arg5 ;
+  int64_t arg6 ;
+  int64_t arg7 ;
+  bool arg8 ;
+  int64_t arg9 ;
+  std::string *arg10 = 0 ;
+  int64_t arg11 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp10 ;
+  zval **args[11];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 11 || zend_get_parameters_array_ex(11, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_create_market_offer. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    arg4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    arg4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[5]))->type) {
+  case IS_DOUBLE:
+    arg6 = (int64_t) (*(args[5]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg6 = (int64_t) strtoll((*(args[5]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[5]);
+    arg6 = (int64_t) (*(args[5]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[6]))->type) {
+  case IS_DOUBLE:
+    arg7 = (int64_t) (*(args[6]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[6]);
+    arg7 = (int64_t) (*(args[6]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[7]);
+  arg8 = (bool) Z_LVAL_PP(args[7]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[8]))->type) {
+  case IS_DOUBLE:
+    arg9 = (int64_t) (*(args[8]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg9 = (int64_t) strtoll((*(args[8]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[8]);
+    arg9 = (int64_t) (*(args[8]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[9]);
+  temp10.assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
+  arg10 = &temp10;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[10]))->type) {
+  case IS_DOUBLE:
+    arg11 = (int64_t) (*(args[10]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg11 = (int64_t) strtoll((*(args[10]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[10]);
+    arg11 = (int64_t) (*(args[10]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,(std::string const &)*arg10,arg11);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_kill_market_offer) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t arg5 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_kill_market_offer. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->kill_market_offer((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_kill_payment_plan) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t arg5 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_kill_payment_plan. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->kill_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_cancel_payment_plan) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_cancel_payment_plan. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->cancel_payment_plan((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_activate_smart_contract) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[6];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_activate_smart_contract. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  result = (arg1)->activate_smart_contract((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_trigger_clause) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int64_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[6];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 6 || zend_get_parameters_array_ex(6, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_trigger_clause. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[3]))->type) {
+  case IS_DOUBLE:
+    arg4 = (int64_t) (*(args[3]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg4 = (int64_t) strtoll((*(args[3]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[3]);
+    arg4 = (int64_t) (*(args[3]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  result = (arg1)->trigger_clause((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t arg5 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_cash. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->withdraw_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_easy_withdraw_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int64_t arg3 ;
+  std::string temp2 ;
+  zval **args[3];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_easy_withdraw_cash. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[2]))->type) {
+  case IS_DOUBLE:
+    arg3 = (int64_t) (*(args[2]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg3 = (int64_t) strtoll((*(args[2]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[2]);
+    arg3 = (int64_t) (*(args[2]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (int32_t)(arg1)->easy_withdraw_cash((std::string const &)*arg2,arg3);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_export_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  bool arg7 ;
+  std::string *arg8 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  std::string temp8 ;
+  zval **args[8];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 8 || zend_get_parameters_array_ex(8, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_export_cash. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[6]);
+  arg7 = (bool) Z_LVAL_PP(args[6]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[7]);
+  temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
+  arg8 = &temp8;
+  
+  result = (arg1)->export_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7,*arg8);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  
+  ZVAL_STRINGL(*(args[7]), const_cast<char*>(arg8->data()), arg8->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_withdraw_voucher) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  int64_t arg7 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[7];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_withdraw_voucher. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[6]))->type) {
+  case IS_DOUBLE:
+    arg7 = (int64_t) (*(args[6]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[6]);
+    arg7 = (int64_t) (*(args[6]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->withdraw_voucher((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_pay_dividend) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  int64_t arg7 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  zval **args[7];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 7 || zend_get_parameters_array_ex(7, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_pay_dividend. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[6]))->type) {
+  case IS_DOUBLE:
+    arg7 = (int64_t) (*(args[6]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg7 = (int64_t) strtoll((*(args[6]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[6]);
+    arg7 = (int64_t) (*(args[6]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->pay_dividend((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6,arg7);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_cheque) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_cheque. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (arg1)->deposit_cheque((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_cash) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  zval **args[5];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_cash. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (int32_t)(arg1)->deposit_cash((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_deposit_local_purse) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  zval **args[5];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_deposit_local_purse. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (int32_t)(arg1)->deposit_local_purse((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_list) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  zval **args[3];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_list. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  result = (arg1)->get_market_list((std::string const &)*arg2,(std::string const &)*arg3);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_offers) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  int64_t arg5 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_offers. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
+  switch ((*(args[4]))->type) {
+  case IS_DOUBLE:
+    arg5 = (int64_t) (*(args[4]))->value.dval;
+    break;
+    case IS_STRING: {
+      char * endptr;
+      errno = 0;
+      arg5 = (int64_t) strtoll((*(args[4]))->value.str.val, &endptr, 10);
+      if (*endptr && !errno) break;
+      /* FALL THRU */
+    }
+  default:
+    convert_to_long_ex(args[4]);
+    arg5 = (int64_t) (*(args[4]))->value.lval;
+  }
+  /*@SWIG@*/;
+  
+  result = (arg1)->get_market_offers((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_nym_market_offers) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  zval **args[3];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 3 || zend_get_parameters_array_ex(3, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_nym_market_offers. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  result = (arg1)->get_nym_market_offers((std::string const &)*arg2,(std::string const &)*arg3);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_get_market_recent_trades) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  zval **args[4];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 4 || zend_get_parameters_array_ex(4, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_get_market_recent_trades. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  result = (arg1)->get_market_recent_trades((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OT_ME_adjust_usage_credits) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string temp2 ;
+  std::string temp3 ;
+  std::string temp4 ;
+  std::string temp5 ;
+  zval **args[5];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 5 || zend_get_parameters_array_ex(5, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OT_ME, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OT_ME_adjust_usage_credits. Expected SWIGTYPE_p_OT_ME");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  convert_to_string_ex(args[2]);
+  temp3.assign(Z_STRVAL_PP(args[2]), Z_STRLEN_PP(args[2]));
+  arg3 = &temp3;
+  
+  
+  convert_to_string_ex(args[3]);
+  temp4.assign(Z_STRVAL_PP(args[3]), Z_STRLEN_PP(args[3]));
+  arg4 = &temp4;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  result = (arg1)->adjust_usage_credits((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
 /* This function is designed to be called by the zend list destructors */
 /* to typecast and do the actual destruction */
 static void __wrap_delete_Storable(zend_rsrc_list_entry *rsrc, const char *type_name TSRMLS_DC) {
@@ -22828,13 +22866,13 @@ ZEND_NAMED_FUNCTION(_wrap_Storable_Create) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -22892,7 +22930,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_GetPacker__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -24951,7 +24989,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25003,7 +25041,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_1) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25050,7 +25088,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_2) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25092,7 +25130,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_QueryObject__SWIG_3) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25267,7 +25305,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_DecodeObject) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25551,7 +25589,7 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_CreateObject) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::StoredObjectType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25578,13 +25616,13 @@ ZEND_NAMED_FUNCTION(_wrap_Storage_Create) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25637,13 +25675,13 @@ ZEND_NAMED_FUNCTION(_wrap_InitDefaultStorage) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25688,13 +25726,13 @@ ZEND_NAMED_FUNCTION(_wrap_CreateStorageContext__SWIG_0) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (OTDB::PackType) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -25720,7 +25758,7 @@ ZEND_NAMED_FUNCTION(_wrap_CreateStorageContext__SWIG_1) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StorageType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -25776,7 +25814,7 @@ ZEND_NAMED_FUNCTION(_wrap_CreateObject) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -25830,7 +25868,7 @@ ZEND_NAMED_FUNCTION(_wrap_CheckStringsExistInOrder__SWIG_0) {
   arg4 = &temp4;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,62,CONVERT_STRING_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,62,CONVERT_STRING_IN@*/
   if ((*args[4])->type==IS_NULL) {
     arg5 = (char *) 0;
   } else {
@@ -27604,7 +27642,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_0) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -27649,7 +27687,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_1) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -27689,7 +27727,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_2) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -27724,7 +27762,7 @@ ZEND_NAMED_FUNCTION(_wrap_QueryObject__SWIG_3) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -27861,7 +27899,7 @@ ZEND_NAMED_FUNCTION(_wrap_DecodeObject) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
   arg1 = (OTDB::StoredObjectType) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
@@ -29685,7 +29723,7 @@ ZEND_NAMED_FUNCTION(_wrap_MarketList_GetMarketData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -29718,7 +29756,7 @@ ZEND_NAMED_FUNCTION(_wrap_MarketList_RemoveMarketData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -31011,7 +31049,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_GetBidData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -31044,7 +31082,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_RemoveBidData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -31135,7 +31173,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_GetAskData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -31168,7 +31206,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListMarket_RemoveAskData) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -31632,7 +31670,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListMarket_GetTradeDataMarket) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -31665,7 +31703,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListMarket_RemoveTradeDataMarket) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -32229,7 +32267,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferDataNym_selling_set) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -32869,7 +32907,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListNym_GetOfferDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -32902,7 +32940,7 @@ ZEND_NAMED_FUNCTION(_wrap_OfferListNym_RemoveOfferDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33765,7 +33803,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListNym_GetTradeDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -33798,7 +33836,7 @@ ZEND_NAMED_FUNCTION(_wrap_TradeListNym_RemoveTradeDataNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -36692,7 +36730,7 @@ ZEND_NAMED_FUNCTION(_wrap_ContactNym_GetServerInfo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -36725,7 +36763,7 @@ ZEND_NAMED_FUNCTION(_wrap_ContactNym_RemoveServerInfo) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -36860,7 +36898,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetBitcoinServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -36893,7 +36931,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveBitcoinServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -36984,7 +37022,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetBitcoinAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -37017,7 +37055,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveBitcoinAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -37108,7 +37146,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetRippleServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -37141,7 +37179,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveRippleServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -37232,7 +37270,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_GetLoomServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -37265,7 +37303,7 @@ ZEND_NAMED_FUNCTION(_wrap_WalletData_RemoveLoomServer) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -38185,7 +38223,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_GetContactNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -38218,7 +38256,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_RemoveContactNym) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -38309,7 +38347,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_GetContactAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -38342,7 +38380,7 @@ ZEND_NAMED_FUNCTION(_wrap_Contact_RemoveContactAcct) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -38477,7 +38515,7 @@ ZEND_NAMED_FUNCTION(_wrap_AddressBook_GetContact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -38510,7 +38548,7 @@ ZEND_NAMED_FUNCTION(_wrap_AddressBook_RemoveContact) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (size_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -38583,7 +38621,7 @@ fail:
 
 
 ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetTypeString) {
-  int arg1 ;
+  int32_t arg1 ;
   zval **args[1];
   std::string *result = 0 ;
   
@@ -38593,15 +38631,130 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetTypeString) {
   }
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[0]);
-  arg1 = (int) Z_LVAL_PP(args[0]);
+  arg1 = (int32_t) Z_LVAL_PP(args[0]);
   /*@SWIG@*/;
   
   result = (std::string *) &OTRecord_GetTypeString(arg1);
   
   ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
   
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetSpecialMail__SWIG_0) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  bool arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetSpecialMail. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[1]);
+  arg2 = (bool) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->SetSpecialMail(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetSpecialMail__SWIG_1) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetSpecialMail. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->SetSpecialMail();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetSpecialMail) {
+  int argc;
+  zval **argv[2];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 1) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecord, 0) >= 0);
+    }
+    if (_v) {
+      _wrap_OTRecord_SetSpecialMail__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecord, 0) >= 0);
+    }
+    if (_v) {
+      _v = (Z_TYPE_PP(argv[1]) == IS_BOOL); 
+      if (_v) {
+        _wrap_OTRecord_SetSpecialMail__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTRecord_SetSpecialMail'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_IsSpecialMail) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  bool result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_IsSpecialMail. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (bool)((OTRecord const *)arg1)->IsSpecialMail();
+  {
+    ZVAL_BOOL(return_value,(result)?1:0);
+  }
   return;
 fail:
   SWIG_FAIL();
@@ -39531,12 +39684,239 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetBoxIndex) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
   
   (arg1)->SetBoxIndex(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetMethodID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  int32_t result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetMethodID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (int32_t)((OTRecord const *)arg1)->GetMethodID();
+  {
+    ZVAL_LONG(return_value,result);
+  }
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetMethodID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t arg2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetMethodID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[1]);
+  arg2 = (int32_t) Z_LVAL_PP(args[1]);
+  /*@SWIG@*/;
+  
+  (arg1)->SetMethodID(arg2);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetMsgID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetMsgID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetMsgID) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetMsgID. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetMsgID((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetMsgType) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetMsgType. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgType();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetMsgType) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetMsgType. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetMsgType((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetMsgTypeDisplay) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetMsgTypeDisplay. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgTypeDisplay();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetMsgTypeDisplay) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetMsgTypeDisplay. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetMsgTypeDisplay((std::string const &)*arg2);
+  
   
   return;
 fail:
@@ -39594,7 +39974,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetTransactionNum) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     arg2 = (int64_t) (*(args[1]))->value.dval;
@@ -39670,7 +40050,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetTransNumForDisplay) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,12,CONVERT_LONG_LONG_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,12,CONVERT_LONG_LONG_IN@*/
   switch ((*(args[1]))->type) {
   case IS_DOUBLE:
     arg2 = (int64_t) (*(args[1]))->value.dval;
@@ -39852,6 +40232,32 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetAddress) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetAddress. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetAddress();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetOtherNymID) {
   OTRecord *arg1 = (OTRecord *) 0 ;
   zval **args[1];
@@ -39895,6 +40301,32 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetOtherAccountID) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   result = (std::string *) &((OTRecord const *)arg1)->GetOtherAccountID();
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_GetOtherAddress) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  zval **args[1];
+  std::string *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_GetOtherAddress. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (std::string *) &((OTRecord const *)arg1)->GetOtherAddress();
   
   ZVAL_STRINGL(return_value, const_cast<char*>(result->data()), result->size(), 1);
   
@@ -40114,6 +40546,68 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetOtherAccountID) {
   arg2 = &temp2;
   
   (arg1)->SetOtherAccountID((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetAddress) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetAddress. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetAddress((std::string const &)*arg2);
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecord_SetOtherAddress) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecord, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecord_SetOtherAddress. Expected SWIGTYPE_p_OTRecord");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  (arg1)->SetOtherAddress((std::string const &)*arg2);
   
   
   return;
@@ -40631,31 +41125,31 @@ ZEND_NAMED_FUNCTION(_wrap_new_OTRecord) {
   arg9 = &temp9;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[9]);
   arg10 = (bool) Z_LVAL_PP(args[9]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[10]);
   arg11 = (bool) Z_LVAL_PP(args[10]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[11]);
   arg12 = (bool) Z_LVAL_PP(args[11]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[12]);
   arg13 = (bool) Z_LVAL_PP(args[12]);
   /*@SWIG@*/;
   
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[13]);
   arg14 = (OTRecord::OTRecordType) Z_LVAL_PP(args[13]);
   /*@SWIG@*/;
@@ -41187,6 +41681,48 @@ ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetAcctName) {
   
   SWIG_ErrorCode() = E_ERROR;
   SWIG_ErrorMsg() = "No matching function for overloaded 'OTNameLookup_GetAcctName'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTNameLookup_GetAddressName) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  
+  director = dynamic_cast<Swig::Director*>(arg1);
+  upcall = !director->swig_is_overridden_method((char *)"OTNameLookup", (char *)"GetAddressName");
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTNameLookup, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTNameLookup_GetAddressName. Expected SWIGTYPE_p_OTNameLookup");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  if (upcall) {
+    result = ((OTNameLookup const *)arg1)->OTNameLookup::GetAddressName((std::string const &)*arg2);
+  } else {
+    result = ((OTNameLookup const *)arg1)->GetAddressName((std::string const &)*arg2);
+  }
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
   SWIG_FAIL();
 }
 
@@ -41726,6 +42262,40 @@ ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetAcctName) {
   
   SWIG_ErrorCode() = E_ERROR;
   SWIG_ErrorMsg() = "No matching function for overloaded 'OTLookupCaller_GetAcctName'";
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTLookupCaller_GetAddressName) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string temp2 ;
+  zval **args[2];
+  std::string result;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 2 || zend_get_parameters_array_ex(2, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTLookupCaller, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTLookupCaller_GetAddressName. Expected SWIGTYPE_p_OTLookupCaller");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  result = ((OTLookupCaller const *)arg1)->GetAddressName((std::string const &)*arg2);
+  
+  ZVAL_STRINGL(return_value, const_cast<char*>((&result)->data()), (&result)->size(), 1);
+  
+  
+  return;
+fail:
   SWIG_FAIL();
 }
 
@@ -42311,6 +42881,32 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_GetNyms) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  list_of_strings *result = 0 ;
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_GetNyms. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  result = (list_of_strings *) &((OTRecordList const *)arg1)->GetNyms();
+  
+  SWIG_SetPointerZval(return_value, (void *)result, SWIGTYPE_p_std__listT_std__string_t, 0);
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0) {
   OTRecordList *arg1 = (OTRecordList *) 0 ;
   bool arg2 ;
@@ -42328,7 +42924,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -42417,7 +43013,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptReceiptsAutomatically__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -42506,7 +43102,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptTransfersAutomatically__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -42595,7 +43191,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AcceptCashAutomatically__SWIG_0) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,2,CONVERT_BOOL_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
   convert_to_boolean_ex(args[1]);
   arg2 = (bool) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -42846,6 +43442,449 @@ fail:
 }
 
 
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_SortRecords) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  zval **args[1];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 1 || zend_get_parameters_array_ex(1, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_SortRecords. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  (arg1)->SortRecords();
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddSpecialMsg__SWIG_0) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  time64_t arg11 ;
+  std::string temp2 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  std::string temp7 ;
+  std::string temp8 ;
+  std::string temp9 ;
+  time64_t *tmp11 ;
+  zval **args[11];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 11 || zend_get_parameters_array_ex(11, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AddSpecialMsg. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[2]);
+  arg3 = (bool) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[3]);
+  arg4 = (int32_t) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  convert_to_string_ex(args[6]);
+  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
+  arg7 = &temp7;
+  
+  
+  convert_to_string_ex(args[7]);
+  temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
+  arg8 = &temp8;
+  
+  
+  convert_to_string_ex(args[8]);
+  temp9.assign(Z_STRVAL_PP(args[8]), Z_STRLEN_PP(args[8]));
+  arg9 = &temp9;
+  
+  
+  convert_to_string_ex(args[9]);
+  (&arg10)->assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
+  
+  {
+    if(SWIG_ConvertPtr(*args[10], (void **) &tmp11, SWIGTYPE_p_time64_t, 0) < 0 || tmp11 == NULL) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 11 of OTRecordList_AddSpecialMsg. Expected SWIGTYPE_p_time64_t");
+    }
+    arg11 = *tmp11;
+  }
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10,arg11);
+  
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddSpecialMsg__SWIG_1) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  std::string temp2 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  std::string temp7 ;
+  std::string temp8 ;
+  std::string temp9 ;
+  zval **args[10];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 10 || zend_get_parameters_array_ex(10, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AddSpecialMsg. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[2]);
+  arg3 = (bool) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[3]);
+  arg4 = (int32_t) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  convert_to_string_ex(args[6]);
+  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
+  arg7 = &temp7;
+  
+  
+  convert_to_string_ex(args[7]);
+  temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
+  arg8 = &temp8;
+  
+  
+  convert_to_string_ex(args[8]);
+  temp9.assign(Z_STRVAL_PP(args[8]), Z_STRLEN_PP(args[8]));
+  arg9 = &temp9;
+  
+  
+  convert_to_string_ex(args[9]);
+  (&arg10)->assign(Z_STRVAL_PP(args[9]), Z_STRLEN_PP(args[9]));
+  
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10);
+  
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddSpecialMsg__SWIG_2) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string temp2 ;
+  std::string temp5 ;
+  std::string temp6 ;
+  std::string temp7 ;
+  std::string temp8 ;
+  std::string temp9 ;
+  zval **args[9];
+  
+  SWIG_ResetError();
+  if(ZEND_NUM_ARGS() != 9 || zend_get_parameters_array_ex(9, args) != SUCCESS) {
+    WRONG_PARAM_COUNT;
+  }
+  
+  {
+    if(SWIG_ConvertPtr(*args[0], (void **) &arg1, SWIGTYPE_p_OTRecordList, 0) < 0) {
+      SWIG_PHP_Error(E_ERROR, "Type error in argument 1 of OTRecordList_AddSpecialMsg. Expected SWIGTYPE_p_OTRecordList");
+    }
+  }
+  if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
+  
+  convert_to_string_ex(args[1]);
+  temp2.assign(Z_STRVAL_PP(args[1]), Z_STRLEN_PP(args[1]));
+  arg2 = &temp2;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,2,CONVERT_BOOL_IN@*/
+  convert_to_boolean_ex(args[2]);
+  arg3 = (bool) Z_LVAL_PP(args[2]);
+  /*@SWIG@*/;
+  
+  
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
+  convert_to_long_ex(args[3]);
+  arg4 = (int32_t) Z_LVAL_PP(args[3]);
+  /*@SWIG@*/;
+  
+  
+  convert_to_string_ex(args[4]);
+  temp5.assign(Z_STRVAL_PP(args[4]), Z_STRLEN_PP(args[4]));
+  arg5 = &temp5;
+  
+  
+  convert_to_string_ex(args[5]);
+  temp6.assign(Z_STRVAL_PP(args[5]), Z_STRLEN_PP(args[5]));
+  arg6 = &temp6;
+  
+  
+  convert_to_string_ex(args[6]);
+  temp7.assign(Z_STRVAL_PP(args[6]), Z_STRLEN_PP(args[6]));
+  arg7 = &temp7;
+  
+  
+  convert_to_string_ex(args[7]);
+  temp8.assign(Z_STRVAL_PP(args[7]), Z_STRLEN_PP(args[7]));
+  arg8 = &temp8;
+  
+  
+  convert_to_string_ex(args[8]);
+  temp9.assign(Z_STRVAL_PP(args[8]), Z_STRLEN_PP(args[8]));
+  arg9 = &temp9;
+  
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9);
+  
+  
+  
+  
+  
+  
+  
+  return;
+fail:
+  SWIG_FAIL();
+}
+
+
+ZEND_NAMED_FUNCTION(_wrap_OTRecordList_AddSpecialMsg) {
+  int argc;
+  zval **argv[11];
+  
+  argc = ZEND_NUM_ARGS();
+  zend_get_parameters_array_ex(argc,argv);
+  if (argc == 9) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = (Z_TYPE_PP(argv[2]) == IS_BOOL); 
+        if (_v) {
+          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
+          if (_v) {
+            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
+            
+            if (_v) {
+              _v = ( Z_TYPE_PP(argv[5]) == IS_STRING ) ? 1 : 0;
+              
+              if (_v) {
+                _v = ( Z_TYPE_PP(argv[6]) == IS_STRING ) ? 1 : 0;
+                
+                if (_v) {
+                  _v = ( Z_TYPE_PP(argv[7]) == IS_STRING ) ? 1 : 0;
+                  
+                  if (_v) {
+                    _v = ( Z_TYPE_PP(argv[8]) == IS_STRING ) ? 1 : 0;
+                    
+                    if (_v) {
+                      _wrap_OTRecordList_AddSpecialMsg__SWIG_2(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 10) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = (Z_TYPE_PP(argv[2]) == IS_BOOL); 
+        if (_v) {
+          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
+          if (_v) {
+            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
+            
+            if (_v) {
+              _v = ( Z_TYPE_PP(argv[5]) == IS_STRING ) ? 1 : 0;
+              
+              if (_v) {
+                _v = ( Z_TYPE_PP(argv[6]) == IS_STRING ) ? 1 : 0;
+                
+                if (_v) {
+                  _v = ( Z_TYPE_PP(argv[7]) == IS_STRING ) ? 1 : 0;
+                  
+                  if (_v) {
+                    _v = ( Z_TYPE_PP(argv[8]) == IS_STRING ) ? 1 : 0;
+                    
+                    if (_v) {
+                      _v = ( Z_TYPE_PP(argv[9]) == IS_STRING ) ? 1 : 0;
+                      
+                      if (_v) {
+                        _wrap_OTRecordList_AddSpecialMsg__SWIG_1(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 11) {
+    int _v;
+    {
+      void *tmp;
+      _v = (SWIG_ConvertPtr(*argv[0], (void**)&tmp, SWIGTYPE_p_OTRecordList, 0) >= 0);
+    }
+    if (_v) {
+      _v = ( Z_TYPE_PP(argv[1]) == IS_STRING ) ? 1 : 0;
+      
+      if (_v) {
+        _v = (Z_TYPE_PP(argv[2]) == IS_BOOL); 
+        if (_v) {
+          _v = (Z_TYPE_PP(argv[3]) == IS_LONG); 
+          if (_v) {
+            _v = ( Z_TYPE_PP(argv[4]) == IS_STRING ) ? 1 : 0;
+            
+            if (_v) {
+              _v = ( Z_TYPE_PP(argv[5]) == IS_STRING ) ? 1 : 0;
+              
+              if (_v) {
+                _v = ( Z_TYPE_PP(argv[6]) == IS_STRING ) ? 1 : 0;
+                
+                if (_v) {
+                  _v = ( Z_TYPE_PP(argv[7]) == IS_STRING ) ? 1 : 0;
+                  
+                  if (_v) {
+                    _v = ( Z_TYPE_PP(argv[8]) == IS_STRING ) ? 1 : 0;
+                    
+                    if (_v) {
+                      _v = ( Z_TYPE_PP(argv[9]) == IS_STRING ) ? 1 : 0;
+                      
+                      if (_v) {
+                        {
+                          void *tmp;
+                          _v = (SWIG_ConvertPtr(*argv[10], (void **)&tmp, SWIGTYPE_p_time64_t, 0) >= 0);
+                        }
+                        if (_v) {
+                          _wrap_OTRecordList_AddSpecialMsg__SWIG_0(INTERNAL_FUNCTION_PARAM_PASSTHRU); return;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  SWIG_ErrorCode() = E_ERROR;
+  SWIG_ErrorMsg() = "No matching function for overloaded 'OTRecordList_AddSpecialMsg'";
+  SWIG_FAIL();
+}
+
+
 ZEND_NAMED_FUNCTION(_wrap_OTRecordList_size) {
   OTRecordList *arg1 = (OTRecordList *) 0 ;
   zval **args[1];
@@ -42890,7 +43929,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecordList_GetRecord) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -42924,7 +43963,7 @@ ZEND_NAMED_FUNCTION(_wrap_OTRecordList_RemoveRecord) {
   }
   if(!arg1) SWIG_PHP_Error(E_ERROR, "this pointer is NULL");
   
-  /*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\php\utils.i,7,CONVERT_INT_IN@*/
+  /*@SWIG:/usr/local/share/swig/3.0.0/php/utils.i,7,CONVERT_INT_IN@*/
   convert_to_long_ex(args[1]);
   arg2 = (int32_t) Z_LVAL_PP(args[1]);
   /*@SWIG@*/;
@@ -43180,6 +44219,10 @@ static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__mapT_std__string_std__string_t) 
 }
 static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_OTDB__MarketList) {
   __wrap_delete_MarketList(rsrc, SWIGTYPE_p_OTDB__MarketList->name TSRMLS_CC);
+}
+static ZEND_RSRC_DTOR_FUNC(_wrap_destroy_p_std__listT_std__string_t) {
+  /* No destructor for simple type _p_std__listT_std__string_t */
+  efree(rsrc->ptr);
 }
 /* end wrapper section */
 /* class entry subsection */
@@ -44895,6 +45938,60 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_opentxs_main_loop, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymessagesuccess, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymsgbalanceagrmntsuccess, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymsgtrnxsuccess, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_interprettransactionmsgreply, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnstring, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnbool, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnint, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnvoid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_addvariable, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_findvariable, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_findvariable2, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_make_sure_enough_trans_nums, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -44966,10 +46063,8 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_retrieve_account, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_retrieve_nym, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -45089,7 +46184,6 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_withdraw_and_send_cash, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_get_payment_instrument, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
@@ -45259,60 +46353,6 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_adjust_usage_credits, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymessagesuccess, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymsgbalanceagrmntsuccess, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_verifymsgtrnxsuccess, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_interprettransactionmsgreply, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnstring, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnbool, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnint, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_executescript_returnvoid, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_addvariable, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_findvariable, 0, 0, 0)
- ZEND_ARG_PASS_INFO(0)
- ZEND_ARG_PASS_INFO(0)
-ZEND_END_ARG_INFO()
-ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_ot_me_findvariable2, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_storable_create, 0, 0, 0)
@@ -46666,6 +47706,12 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_gettypestring, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setspecialmail, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_isspecialmail, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_ispending, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -46776,6 +47822,34 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setboxindex, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getmethodid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setmethodid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getmsgid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setmsgid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getmsgtype, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setmsgtype, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getmsgtypedisplay, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setmsgtypedisplay, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_gettransactionnum, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -46808,10 +47882,16 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getaccountid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getaddress, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getothernymid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getotheraccountid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getotheraddress, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_getname, 0, 0, 0)
@@ -46837,6 +47917,14 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setothernymid, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setotheraccountid, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setaddress, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecord_setotheraddress, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -46914,6 +48002,10 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otnamelookup_getacctname, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otnamelookup_getaddressname, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_new_otlookupcaller, 0, 0, 0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_getcallback, 0, 0, 0)
@@ -46934,6 +48026,10 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_getnymname, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_getacctname, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otlookupcaller_getaddressname, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -47005,6 +48101,9 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_clearaccounts, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_getnyms, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_acceptchequesautomatically, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
@@ -47036,6 +48135,20 @@ ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_populate, 0, 0, 0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_clearcontents, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_sortrecords, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ZEND_END_ARG_INFO()
+ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_addspecialmsg, 0, 0, 0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
+ ZEND_ARG_PASS_INFO(0)
  ZEND_ARG_PASS_INFO(0)
 ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(swig_arginfo_otrecordlist_size, 0, 0, 0)
@@ -47456,6 +48569,17 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(new_ot_me,_wrap_new_OT_ME,swig_arginfo_new_ot_me)
  SWIG_ZEND_NAMED_FE(ot_me_opentxs_copy_variables,_wrap_OT_ME_opentxs_copy_variables,swig_arginfo_ot_me_opentxs_copy_variables)
  SWIG_ZEND_NAMED_FE(ot_me_opentxs_main_loop,_wrap_OT_ME_opentxs_main_loop,swig_arginfo_ot_me_opentxs_main_loop)
+ SWIG_ZEND_NAMED_FE(ot_me_verifymessagesuccess,_wrap_OT_ME_VerifyMessageSuccess,swig_arginfo_ot_me_verifymessagesuccess)
+ SWIG_ZEND_NAMED_FE(ot_me_verifymsgbalanceagrmntsuccess,_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess,swig_arginfo_ot_me_verifymsgbalanceagrmntsuccess)
+ SWIG_ZEND_NAMED_FE(ot_me_verifymsgtrnxsuccess,_wrap_OT_ME_VerifyMsgTrnxSuccess,swig_arginfo_ot_me_verifymsgtrnxsuccess)
+ SWIG_ZEND_NAMED_FE(ot_me_interprettransactionmsgreply,_wrap_OT_ME_InterpretTransactionMsgReply,swig_arginfo_ot_me_interprettransactionmsgreply)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnstring,_wrap_OT_ME_ExecuteScript_ReturnString,swig_arginfo_ot_me_executescript_returnstring)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnbool,_wrap_OT_ME_ExecuteScript_ReturnBool,swig_arginfo_ot_me_executescript_returnbool)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnint,_wrap_OT_ME_ExecuteScript_ReturnInt,swig_arginfo_ot_me_executescript_returnint)
+ SWIG_ZEND_NAMED_FE(ot_me_executescript_returnvoid,_wrap_OT_ME_ExecuteScript_ReturnVoid,swig_arginfo_ot_me_executescript_returnvoid)
+ SWIG_ZEND_NAMED_FE(ot_me_addvariable,_wrap_OT_ME_AddVariable,swig_arginfo_ot_me_addvariable)
+ SWIG_ZEND_NAMED_FE(ot_me_findvariable,_wrap_OT_ME_FindVariable,swig_arginfo_ot_me_findvariable)
+ SWIG_ZEND_NAMED_FE(ot_me_findvariable2,_wrap_OT_ME_FindVariable2,swig_arginfo_ot_me_findvariable2)
  SWIG_ZEND_NAMED_FE(ot_me_make_sure_enough_trans_nums,_wrap_OT_ME_make_sure_enough_trans_nums,swig_arginfo_ot_me_make_sure_enough_trans_nums)
  SWIG_ZEND_NAMED_FE(ot_me_register_nym,_wrap_OT_ME_register_nym,swig_arginfo_ot_me_register_nym)
  SWIG_ZEND_NAMED_FE(ot_me_check_user,_wrap_OT_ME_check_user,swig_arginfo_ot_me_check_user)
@@ -47510,17 +48634,6 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(ot_me_get_nym_market_offers,_wrap_OT_ME_get_nym_market_offers,swig_arginfo_ot_me_get_nym_market_offers)
  SWIG_ZEND_NAMED_FE(ot_me_get_market_recent_trades,_wrap_OT_ME_get_market_recent_trades,swig_arginfo_ot_me_get_market_recent_trades)
  SWIG_ZEND_NAMED_FE(ot_me_adjust_usage_credits,_wrap_OT_ME_adjust_usage_credits,swig_arginfo_ot_me_adjust_usage_credits)
- SWIG_ZEND_NAMED_FE(ot_me_verifymessagesuccess,_wrap_OT_ME_VerifyMessageSuccess,swig_arginfo_ot_me_verifymessagesuccess)
- SWIG_ZEND_NAMED_FE(ot_me_verifymsgbalanceagrmntsuccess,_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess,swig_arginfo_ot_me_verifymsgbalanceagrmntsuccess)
- SWIG_ZEND_NAMED_FE(ot_me_verifymsgtrnxsuccess,_wrap_OT_ME_VerifyMsgTrnxSuccess,swig_arginfo_ot_me_verifymsgtrnxsuccess)
- SWIG_ZEND_NAMED_FE(ot_me_interprettransactionmsgreply,_wrap_OT_ME_InterpretTransactionMsgReply,swig_arginfo_ot_me_interprettransactionmsgreply)
- SWIG_ZEND_NAMED_FE(ot_me_executescript_returnstring,_wrap_OT_ME_ExecuteScript_ReturnString,swig_arginfo_ot_me_executescript_returnstring)
- SWIG_ZEND_NAMED_FE(ot_me_executescript_returnbool,_wrap_OT_ME_ExecuteScript_ReturnBool,swig_arginfo_ot_me_executescript_returnbool)
- SWIG_ZEND_NAMED_FE(ot_me_executescript_returnint,_wrap_OT_ME_ExecuteScript_ReturnInt,swig_arginfo_ot_me_executescript_returnint)
- SWIG_ZEND_NAMED_FE(ot_me_executescript_returnvoid,_wrap_OT_ME_ExecuteScript_ReturnVoid,swig_arginfo_ot_me_executescript_returnvoid)
- SWIG_ZEND_NAMED_FE(ot_me_addvariable,_wrap_OT_ME_AddVariable,swig_arginfo_ot_me_addvariable)
- SWIG_ZEND_NAMED_FE(ot_me_findvariable,_wrap_OT_ME_FindVariable,swig_arginfo_ot_me_findvariable)
- SWIG_ZEND_NAMED_FE(ot_me_findvariable2,_wrap_OT_ME_FindVariable2,swig_arginfo_ot_me_findvariable2)
  SWIG_ZEND_NAMED_FE(storable_create,_wrap_Storable_Create,swig_arginfo_storable_create)
  SWIG_ZEND_NAMED_FE(storable_ot_dynamic_cast,_wrap_Storable_ot_dynamic_cast,swig_arginfo_storable_ot_dynamic_cast)
  SWIG_ZEND_NAMED_FE(storage_getpacker,_wrap_Storage_GetPacker,swig_arginfo_storage_getpacker)
@@ -47903,6 +49016,8 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(addressbook_addcontact,_wrap_AddressBook_AddContact,swig_arginfo_addressbook_addcontact)
  SWIG_ZEND_NAMED_FE(addressbook_ot_dynamic_cast,_wrap_AddressBook_ot_dynamic_cast,swig_arginfo_addressbook_ot_dynamic_cast)
  SWIG_ZEND_NAMED_FE(otrecord_gettypestring,_wrap_OTRecord_GetTypeString,swig_arginfo_otrecord_gettypestring)
+ SWIG_ZEND_NAMED_FE(otrecord_setspecialmail,_wrap_OTRecord_SetSpecialMail,swig_arginfo_otrecord_setspecialmail)
+ SWIG_ZEND_NAMED_FE(otrecord_isspecialmail,_wrap_OTRecord_IsSpecialMail,swig_arginfo_otrecord_isspecialmail)
  SWIG_ZEND_NAMED_FE(otrecord_ispending,_wrap_OTRecord_IsPending,swig_arginfo_otrecord_ispending)
  SWIG_ZEND_NAMED_FE(otrecord_isoutgoing,_wrap_OTRecord_IsOutgoing,swig_arginfo_otrecord_isoutgoing)
  SWIG_ZEND_NAMED_FE(otrecord_isrecord,_wrap_OTRecord_IsRecord,swig_arginfo_otrecord_isrecord)
@@ -47938,6 +49053,14 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otrecord_discardoutgoingcash,_wrap_OTRecord_DiscardOutgoingCash,swig_arginfo_otrecord_discardoutgoingcash)
  SWIG_ZEND_NAMED_FE(otrecord_getboxindex,_wrap_OTRecord_GetBoxIndex,swig_arginfo_otrecord_getboxindex)
  SWIG_ZEND_NAMED_FE(otrecord_setboxindex,_wrap_OTRecord_SetBoxIndex,swig_arginfo_otrecord_setboxindex)
+ SWIG_ZEND_NAMED_FE(otrecord_getmethodid,_wrap_OTRecord_GetMethodID,swig_arginfo_otrecord_getmethodid)
+ SWIG_ZEND_NAMED_FE(otrecord_setmethodid,_wrap_OTRecord_SetMethodID,swig_arginfo_otrecord_setmethodid)
+ SWIG_ZEND_NAMED_FE(otrecord_getmsgid,_wrap_OTRecord_GetMsgID,swig_arginfo_otrecord_getmsgid)
+ SWIG_ZEND_NAMED_FE(otrecord_setmsgid,_wrap_OTRecord_SetMsgID,swig_arginfo_otrecord_setmsgid)
+ SWIG_ZEND_NAMED_FE(otrecord_getmsgtype,_wrap_OTRecord_GetMsgType,swig_arginfo_otrecord_getmsgtype)
+ SWIG_ZEND_NAMED_FE(otrecord_setmsgtype,_wrap_OTRecord_SetMsgType,swig_arginfo_otrecord_setmsgtype)
+ SWIG_ZEND_NAMED_FE(otrecord_getmsgtypedisplay,_wrap_OTRecord_GetMsgTypeDisplay,swig_arginfo_otrecord_getmsgtypedisplay)
+ SWIG_ZEND_NAMED_FE(otrecord_setmsgtypedisplay,_wrap_OTRecord_SetMsgTypeDisplay,swig_arginfo_otrecord_setmsgtypedisplay)
  SWIG_ZEND_NAMED_FE(otrecord_gettransactionnum,_wrap_OTRecord_GetTransactionNum,swig_arginfo_otrecord_gettransactionnum)
  SWIG_ZEND_NAMED_FE(otrecord_settransactionnum,_wrap_OTRecord_SetTransactionNum,swig_arginfo_otrecord_settransactionnum)
  SWIG_ZEND_NAMED_FE(otrecord_gettransnumfordisplay,_wrap_OTRecord_GetTransNumForDisplay,swig_arginfo_otrecord_gettransnumfordisplay)
@@ -47948,8 +49071,10 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otrecord_getcurrencytla,_wrap_OTRecord_GetCurrencyTLA,swig_arginfo_otrecord_getcurrencytla)
  SWIG_ZEND_NAMED_FE(otrecord_getnymid,_wrap_OTRecord_GetNymID,swig_arginfo_otrecord_getnymid)
  SWIG_ZEND_NAMED_FE(otrecord_getaccountid,_wrap_OTRecord_GetAccountID,swig_arginfo_otrecord_getaccountid)
+ SWIG_ZEND_NAMED_FE(otrecord_getaddress,_wrap_OTRecord_GetAddress,swig_arginfo_otrecord_getaddress)
  SWIG_ZEND_NAMED_FE(otrecord_getothernymid,_wrap_OTRecord_GetOtherNymID,swig_arginfo_otrecord_getothernymid)
  SWIG_ZEND_NAMED_FE(otrecord_getotheraccountid,_wrap_OTRecord_GetOtherAccountID,swig_arginfo_otrecord_getotheraccountid)
+ SWIG_ZEND_NAMED_FE(otrecord_getotheraddress,_wrap_OTRecord_GetOtherAddress,swig_arginfo_otrecord_getotheraddress)
  SWIG_ZEND_NAMED_FE(otrecord_getname,_wrap_OTRecord_GetName,swig_arginfo_otrecord_getname)
  SWIG_ZEND_NAMED_FE(otrecord_getdate,_wrap_OTRecord_GetDate,swig_arginfo_otrecord_getdate)
  SWIG_ZEND_NAMED_FE(otrecord_getamount,_wrap_OTRecord_GetAmount,swig_arginfo_otrecord_getamount)
@@ -47958,6 +49083,8 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otrecord_getcontents,_wrap_OTRecord_GetContents,swig_arginfo_otrecord_getcontents)
  SWIG_ZEND_NAMED_FE(otrecord_setothernymid,_wrap_OTRecord_SetOtherNymID,swig_arginfo_otrecord_setothernymid)
  SWIG_ZEND_NAMED_FE(otrecord_setotheraccountid,_wrap_OTRecord_SetOtherAccountID,swig_arginfo_otrecord_setotheraccountid)
+ SWIG_ZEND_NAMED_FE(otrecord_setaddress,_wrap_OTRecord_SetAddress,swig_arginfo_otrecord_setaddress)
+ SWIG_ZEND_NAMED_FE(otrecord_setotheraddress,_wrap_OTRecord_SetOtherAddress,swig_arginfo_otrecord_setotheraddress)
  SWIG_ZEND_NAMED_FE(otrecord_setmemo,_wrap_OTRecord_SetMemo,swig_arginfo_otrecord_setmemo)
  SWIG_ZEND_NAMED_FE(otrecord_setcontents,_wrap_OTRecord_SetContents,swig_arginfo_otrecord_setcontents)
  SWIG_ZEND_NAMED_FE(otrecord_hasinitialpayment,_wrap_OTRecord_HasInitialPayment,swig_arginfo_otrecord_hasinitialpayment)
@@ -47976,6 +49103,7 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(new_otnamelookup,_wrap_new_OTNameLookup,swig_arginfo_new_otnamelookup)
  SWIG_ZEND_NAMED_FE(otnamelookup_getnymname,_wrap_OTNameLookup_GetNymName,swig_arginfo_otnamelookup_getnymname)
  SWIG_ZEND_NAMED_FE(otnamelookup_getacctname,_wrap_OTNameLookup_GetAcctName,swig_arginfo_otnamelookup_getacctname)
+ SWIG_ZEND_NAMED_FE(otnamelookup_getaddressname,_wrap_OTNameLookup_GetAddressName,swig_arginfo_otnamelookup_getaddressname)
  SWIG_ZEND_NAMED_FE(new_otlookupcaller,_wrap_new_OTLookupCaller,swig_arginfo_new_otlookupcaller)
  SWIG_ZEND_NAMED_FE(otlookupcaller_getcallback,_wrap_OTLookupCaller_getCallback,swig_arginfo_otlookupcaller_getcallback)
  SWIG_ZEND_NAMED_FE(otlookupcaller_delcallback,_wrap_OTLookupCaller_delCallback,swig_arginfo_otlookupcaller_delcallback)
@@ -47983,6 +49111,7 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otlookupcaller_iscallbackset,_wrap_OTLookupCaller_isCallbackSet,swig_arginfo_otlookupcaller_iscallbackset)
  SWIG_ZEND_NAMED_FE(otlookupcaller_getnymname,_wrap_OTLookupCaller_GetNymName,swig_arginfo_otlookupcaller_getnymname)
  SWIG_ZEND_NAMED_FE(otlookupcaller_getacctname,_wrap_OTLookupCaller_GetAcctName,swig_arginfo_otlookupcaller_getacctname)
+ SWIG_ZEND_NAMED_FE(otlookupcaller_getaddressname,_wrap_OTLookupCaller_GetAddressName,swig_arginfo_otlookupcaller_getaddressname)
  SWIG_ZEND_NAMED_FE(ot_api_set_addrbookcallback,_wrap_OT_API_Set_AddrBookCallback,swig_arginfo_ot_api_set_addrbookcallback)
  SWIG_ZEND_NAMED_FE(otrecordlist_setaddrbookcaller,_wrap_OTRecordList_setAddrBookCaller,swig_arginfo_otrecordlist_setaddrbookcaller)
  SWIG_ZEND_NAMED_FE(otrecordlist_getaddrbookcaller,_wrap_OTRecordList_getAddrBookCaller,swig_arginfo_otrecordlist_getaddrbookcaller)
@@ -48004,6 +49133,7 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otrecordlist_setaccountid,_wrap_OTRecordList_SetAccountID,swig_arginfo_otrecordlist_setaccountid)
  SWIG_ZEND_NAMED_FE(otrecordlist_addaccountid,_wrap_OTRecordList_AddAccountID,swig_arginfo_otrecordlist_addaccountid)
  SWIG_ZEND_NAMED_FE(otrecordlist_clearaccounts,_wrap_OTRecordList_ClearAccounts,swig_arginfo_otrecordlist_clearaccounts)
+ SWIG_ZEND_NAMED_FE(otrecordlist_getnyms,_wrap_OTRecordList_GetNyms,swig_arginfo_otrecordlist_getnyms)
  SWIG_ZEND_NAMED_FE(otrecordlist_acceptchequesautomatically,_wrap_OTRecordList_AcceptChequesAutomatically,swig_arginfo_otrecordlist_acceptchequesautomatically)
  SWIG_ZEND_NAMED_FE(otrecordlist_acceptreceiptsautomatically,_wrap_OTRecordList_AcceptReceiptsAutomatically,swig_arginfo_otrecordlist_acceptreceiptsautomatically)
  SWIG_ZEND_NAMED_FE(otrecordlist_accepttransfersautomatically,_wrap_OTRecordList_AcceptTransfersAutomatically,swig_arginfo_otrecordlist_accepttransfersautomatically)
@@ -48015,6 +49145,8 @@ static zend_function_entry otapi_functions[] = {
  SWIG_ZEND_NAMED_FE(otrecordlist_performautoaccept,_wrap_OTRecordList_PerformAutoAccept,swig_arginfo_otrecordlist_performautoaccept)
  SWIG_ZEND_NAMED_FE(otrecordlist_populate,_wrap_OTRecordList_Populate,swig_arginfo_otrecordlist_populate)
  SWIG_ZEND_NAMED_FE(otrecordlist_clearcontents,_wrap_OTRecordList_ClearContents,swig_arginfo_otrecordlist_clearcontents)
+ SWIG_ZEND_NAMED_FE(otrecordlist_sortrecords,_wrap_OTRecordList_SortRecords,swig_arginfo_otrecordlist_sortrecords)
+ SWIG_ZEND_NAMED_FE(otrecordlist_addspecialmsg,_wrap_OTRecordList_AddSpecialMsg,swig_arginfo_otrecordlist_addspecialmsg)
  SWIG_ZEND_NAMED_FE(otrecordlist_size,_wrap_OTRecordList_size,swig_arginfo_otrecordlist_size)
  SWIG_ZEND_NAMED_FE(otrecordlist_getrecord,_wrap_OTRecordList_GetRecord,swig_arginfo_otrecordlist_getrecord)
  SWIG_ZEND_NAMED_FE(otrecordlist_removerecord,_wrap_OTRecordList_RemoveRecord,swig_arginfo_otrecordlist_removerecord)
@@ -48423,6 +49555,8 @@ le_swig__p_std__mapT_std__string_std__string_t=zend_register_list_destructors_ex
 SWIG_TypeClientData(SWIGTYPE_p_std__mapT_std__string_std__string_t,&le_swig__p_std__mapT_std__string_std__string_t);
 le_swig__p_OTDB__MarketList=zend_register_list_destructors_ex(_wrap_destroy_p_OTDB__MarketList,NULL,(char *)(SWIGTYPE_p_OTDB__MarketList->name),module_number);
 SWIG_TypeClientData(SWIGTYPE_p_OTDB__MarketList,&le_swig__p_OTDB__MarketList);
+le_swig__p_std__listT_std__string_t=zend_register_list_destructors_ex(_wrap_destroy_p_std__listT_std__string_t,NULL,(char *)(SWIGTYPE_p_std__listT_std__string_t->name),module_number);
+SWIG_TypeClientData(SWIGTYPE_p_std__listT_std__string_t,&le_swig__p_std__listT_std__string_t);
 CG(active_class_entry) = NULL;
 /* end oinit subsection */
 

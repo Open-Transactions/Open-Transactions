@@ -18,6 +18,7 @@ public:
     virtual ~SwigDirector_OTNameLookup();
     virtual std::string GetNymName(std::string const &str_id, std::string const *p_server_id = NULL) const;
     virtual std::string GetAcctName(std::string const &str_id, std::string const *p_nym_id = NULL, std::string const *p_server_id = NULL, std::string const *p_asset_id = NULL) const;
+    virtual std::string GetAddressName(std::string const &str_address) const;
 
     typedef char * (* SWIG_Callback0_t)(void *dobj, char *, void *);
     typedef char * (* SWIG_Callback1_t)(void *dobj, char *);
@@ -25,7 +26,8 @@ public:
     typedef char * (* SWIG_Callback3_t)(void *dobj, char *, void *, void *);
     typedef char * (* SWIG_Callback4_t)(void *dobj, char *, void *);
     typedef char * (* SWIG_Callback5_t)(void *dobj, char *);
-    void swig_connect_director(void* dobj, SWIG_Callback0_t callbackGetNymName__SWIG_0, SWIG_Callback1_t callbackGetNymName__SWIG_1, SWIG_Callback2_t callbackGetAcctName__SWIG_0, SWIG_Callback3_t callbackGetAcctName__SWIG_1, SWIG_Callback4_t callbackGetAcctName__SWIG_2, SWIG_Callback5_t callbackGetAcctName__SWIG_3);
+    typedef char * (* SWIG_Callback6_t)(void *dobj, char *);
+    void swig_connect_director(void* dobj, SWIG_Callback0_t callbackGetNymName__SWIG_0, SWIG_Callback1_t callbackGetNymName__SWIG_1, SWIG_Callback2_t callbackGetAcctName__SWIG_0, SWIG_Callback3_t callbackGetAcctName__SWIG_1, SWIG_Callback4_t callbackGetAcctName__SWIG_2, SWIG_Callback5_t callbackGetAcctName__SWIG_3, SWIG_Callback6_t callbackGetAddressName);
 
 private:
     void swig_init_callbacks();
@@ -36,6 +38,7 @@ private:
     SWIG_Callback3_t swig_callback_GetAcctName__SWIG_1;
     SWIG_Callback4_t swig_callback_GetAcctName__SWIG_2;
     SWIG_Callback5_t swig_callback_GetAcctName__SWIG_3;
+    SWIG_Callback6_t swig_callback_GetAddressName;
 };
 
 

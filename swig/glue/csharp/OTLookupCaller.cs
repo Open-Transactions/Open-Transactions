@@ -96,6 +96,12 @@ public class OTLookupCaller : global::System.IDisposable {
     return ret;
   }
 
+  public string GetAddressName(string str_address) {
+    string ret = otapiPINVOKE.OTLookupCaller_GetAddressName(swigCPtr, str_address);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
 }
 
 }

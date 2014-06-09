@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 #ifndef SWIG_otapi_WRAP_H_
 #define SWIG_otapi_WRAP_H_
@@ -42,6 +42,10 @@ class SwigDirector_OTNameLookup : public OTNameLookup
     return OTNameLookup::GetAcctName(str_id);
   }
   virtual std::string GetAcctName(std::string const &str_id) const;
+  std::string _swig_upcall_GetAddressName(std::string const &str_address) const {
+    return OTNameLookup::GetAddressName(str_address);
+  }
+  virtual std::string GetAddressName(std::string const &str_address) const;
  private:
   void *go_val;
 };

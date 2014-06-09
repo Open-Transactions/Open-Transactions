@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 package otapi
 
@@ -1157,6 +1157,142 @@ func (arg1 SwigcptrOT_ME) Opentxs_main_loop() int {
 	return _swig_wrap_OT_ME_opentxs_main_loop(arg1)
 }
 
+func _swig_wrap_OT_ME_VerifyMessageSuccess(SwigcptrOT_ME, string) int
+
+func (arg1 SwigcptrOT_ME) VerifyMessageSuccess(arg2 string) int {
+	return _swig_wrap_OT_ME_VerifyMessageSuccess(arg1, arg2)
+}
+
+func _swig_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(SwigcptrOT_ME, string, string, string, string) int
+
+func (arg1 SwigcptrOT_ME) VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int {
+	return _swig_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(arg1, arg2, arg3, arg4, arg5)
+}
+
+func _swig_wrap_OT_ME_VerifyMsgTrnxSuccess(SwigcptrOT_ME, string, string, string, string) int
+
+func (arg1 SwigcptrOT_ME) VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int {
+	return _swig_wrap_OT_ME_VerifyMsgTrnxSuccess(arg1, arg2, arg3, arg4, arg5)
+}
+
+func _swig_wrap_OT_ME_InterpretTransactionMsgReply(SwigcptrOT_ME, string, string, string, string, string) int
+
+func (arg1 SwigcptrOT_ME) InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int {
+	return _swig_wrap_OT_ME_InterpretTransactionMsgReply(arg1, arg2, arg3, arg4, arg5, arg6)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(SwigcptrOT_ME, string, string) string
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnString__SWIG_0(arg2 string, arg3 string) string {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(SwigcptrOT_ME, string) string
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnString__SWIG_1(arg2 string) string {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnString(a ...interface{}) string {
+	argc := len(a)
+	if argc == 1 {
+		return p.ExecuteScript_ReturnString__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.ExecuteScript_ReturnString__SWIG_0(a[0].(string), a[1].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(SwigcptrOT_ME, string, string) bool
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnBool__SWIG_0(arg2 string, arg3 string) bool {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(SwigcptrOT_ME, string) bool
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnBool__SWIG_1(arg2 string) bool {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnBool(a ...interface{}) bool {
+	argc := len(a)
+	if argc == 1 {
+		return p.ExecuteScript_ReturnBool__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.ExecuteScript_ReturnBool__SWIG_0(a[0].(string), a[1].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(SwigcptrOT_ME, string, string) int
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnInt__SWIG_0(arg2 string, arg3 string) int {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(SwigcptrOT_ME, string) int
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnInt__SWIG_1(arg2 string) int {
+	return _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnInt(a ...interface{}) int {
+	argc := len(a)
+	if argc == 1 {
+		return p.ExecuteScript_ReturnInt__SWIG_1(a[0].(string))
+	}
+	if argc == 2 {
+		return p.ExecuteScript_ReturnInt__SWIG_0(a[0].(string), a[1].(string))
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(SwigcptrOT_ME, string, string)
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnVoid__SWIG_0(arg2 string, arg3 string) {
+	_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(arg1, arg2, arg3)
+}
+
+func _swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(SwigcptrOT_ME, string)
+
+func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnVoid__SWIG_1(arg2 string) {
+	_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(arg1, arg2)
+}
+
+func (p SwigcptrOT_ME) ExecuteScript_ReturnVoid(a ...interface{}) {
+	argc := len(a)
+	if argc == 1 {
+		p.ExecuteScript_ReturnVoid__SWIG_1(a[0].(string))
+		return
+	}
+	if argc == 2 {
+		p.ExecuteScript_ReturnVoid__SWIG_0(a[0].(string), a[1].(string))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OT_ME_AddVariable(SwigcptrOT_ME, string, uintptr)
+
+func (arg1 SwigcptrOT_ME) AddVariable(arg2 string, arg3 OTVariable) {
+	_swig_wrap_OT_ME_AddVariable(arg1, arg2, arg3.Swigcptr())
+}
+
+func _swig_wrap_OT_ME_FindVariable(SwigcptrOT_ME, string) SwigcptrOTVariable
+
+func (arg1 SwigcptrOT_ME) FindVariable(arg2 string) OTVariable {
+	return _swig_wrap_OT_ME_FindVariable(arg1, arg2)
+}
+
+func _swig_wrap_OT_ME_FindVariable2(string) SwigcptrOTVariable
+
+func OT_MEFindVariable2(arg1 string) OTVariable {
+	return _swig_wrap_OT_ME_FindVariable2(arg1)
+}
+
 func _swig_wrap_OT_ME_make_sure_enough_trans_nums(SwigcptrOT_ME, int, string, string) bool
 
 func (arg1 SwigcptrOT_ME) Make_sure_enough_trans_nums(arg2 int, arg3 string, arg4 string) bool {
@@ -1223,48 +1359,48 @@ func (arg1 SwigcptrOT_ME) Stat_asset_account(arg2 string) string {
 	return _swig_wrap_OT_ME_stat_asset_account(arg1, arg2)
 }
 
-func _swig_wrap_OT_ME_retrieve_account__SWIG_0(SwigcptrOT_ME, string, string, string) bool
+func _swig_wrap_OT_ME_retrieve_account__SWIG_0(SwigcptrOT_ME, string, string, string, bool) bool
 
-func (arg1 SwigcptrOT_ME) Retrieve_account__SWIG_0(arg2 string, arg3 string, arg4 string) bool {
-	return _swig_wrap_OT_ME_retrieve_account__SWIG_0(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Retrieve_account__SWIG_0(arg2 string, arg3 string, arg4 string, arg5 bool) bool {
+	return _swig_wrap_OT_ME_retrieve_account__SWIG_0(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OT_ME_retrieve_account__SWIG_1(SwigcptrOT_ME, string, string, string, bool) bool
+func _swig_wrap_OT_ME_retrieve_account__SWIG_1(SwigcptrOT_ME, string, string, string) bool
 
-func (arg1 SwigcptrOT_ME) Retrieve_account__SWIG_1(arg2 string, arg3 string, arg4 string, arg5 bool) bool {
-	return _swig_wrap_OT_ME_retrieve_account__SWIG_1(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Retrieve_account__SWIG_1(arg2 string, arg3 string, arg4 string) bool {
+	return _swig_wrap_OT_ME_retrieve_account__SWIG_1(arg1, arg2, arg3, arg4)
 }
 
 func (p SwigcptrOT_ME) Retrieve_account(a ...interface{}) bool {
 	argc := len(a)
 	if argc == 3 {
-		return p.Retrieve_account__SWIG_0(a[0].(string), a[1].(string), a[2].(string))
+		return p.Retrieve_account__SWIG_1(a[0].(string), a[1].(string), a[2].(string))
 	}
 	if argc == 4 {
-		return p.Retrieve_account__SWIG_1(a[0].(string), a[1].(string), a[2].(string), a[3].(bool))
+		return p.Retrieve_account__SWIG_0(a[0].(string), a[1].(string), a[2].(string), a[3].(bool))
 	}
 	panic("No match for overloaded function call")
 }
 
-func _swig_wrap_OT_ME_retrieve_nym__SWIG_0(SwigcptrOT_ME, string, string) bool
+func _swig_wrap_OT_ME_retrieve_nym__SWIG_0(SwigcptrOT_ME, string, string, bool) bool
 
-func (arg1 SwigcptrOT_ME) Retrieve_nym__SWIG_0(arg2 string, arg3 string) bool {
-	return _swig_wrap_OT_ME_retrieve_nym__SWIG_0(arg1, arg2, arg3)
+func (arg1 SwigcptrOT_ME) Retrieve_nym__SWIG_0(arg2 string, arg3 string, arg4 bool) bool {
+	return _swig_wrap_OT_ME_retrieve_nym__SWIG_0(arg1, arg2, arg3, arg4)
 }
 
-func _swig_wrap_OT_ME_retrieve_nym__SWIG_1(SwigcptrOT_ME, string, string, bool) bool
+func _swig_wrap_OT_ME_retrieve_nym__SWIG_1(SwigcptrOT_ME, string, string) bool
 
-func (arg1 SwigcptrOT_ME) Retrieve_nym__SWIG_1(arg2 string, arg3 string, arg4 bool) bool {
-	return _swig_wrap_OT_ME_retrieve_nym__SWIG_1(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Retrieve_nym__SWIG_1(arg2 string, arg3 string) bool {
+	return _swig_wrap_OT_ME_retrieve_nym__SWIG_1(arg1, arg2, arg3)
 }
 
 func (p SwigcptrOT_ME) Retrieve_nym(a ...interface{}) bool {
 	argc := len(a)
 	if argc == 2 {
-		return p.Retrieve_nym__SWIG_0(a[0].(string), a[1].(string))
+		return p.Retrieve_nym__SWIG_1(a[0].(string), a[1].(string))
 	}
 	if argc == 3 {
-		return p.Retrieve_nym__SWIG_1(a[0].(string), a[1].(string), a[2].(bool))
+		return p.Retrieve_nym__SWIG_0(a[0].(string), a[1].(string), a[2].(bool))
 	}
 	panic("No match for overloaded function call")
 }
@@ -1371,25 +1507,25 @@ func (arg1 SwigcptrOT_ME) Withdraw_and_send_cash(arg2 string, arg3 string, arg4 
 	return _swig_wrap_OT_ME_withdraw_and_send_cash(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OT_ME_get_payment_instrument__SWIG_0(SwigcptrOT_ME, string, string, int) string
+func _swig_wrap_OT_ME_get_payment_instrument__SWIG_0(SwigcptrOT_ME, string, string, int, string) string
 
-func (arg1 SwigcptrOT_ME) Get_payment_instrument__SWIG_0(arg2 string, arg3 string, arg4 int) string {
-	return _swig_wrap_OT_ME_get_payment_instrument__SWIG_0(arg1, arg2, arg3, arg4)
+func (arg1 SwigcptrOT_ME) Get_payment_instrument__SWIG_0(arg2 string, arg3 string, arg4 int, arg5 string) string {
+	return _swig_wrap_OT_ME_get_payment_instrument__SWIG_0(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OT_ME_get_payment_instrument__SWIG_1(SwigcptrOT_ME, string, string, int, string) string
+func _swig_wrap_OT_ME_get_payment_instrument__SWIG_1(SwigcptrOT_ME, string, string, int) string
 
-func (arg1 SwigcptrOT_ME) Get_payment_instrument__SWIG_1(arg2 string, arg3 string, arg4 int, arg5 string) string {
-	return _swig_wrap_OT_ME_get_payment_instrument__SWIG_1(arg1, arg2, arg3, arg4, arg5)
+func (arg1 SwigcptrOT_ME) Get_payment_instrument__SWIG_1(arg2 string, arg3 string, arg4 int) string {
+	return _swig_wrap_OT_ME_get_payment_instrument__SWIG_1(arg1, arg2, arg3, arg4)
 }
 
 func (p SwigcptrOT_ME) Get_payment_instrument(a ...interface{}) string {
 	argc := len(a)
 	if argc == 3 {
-		return p.Get_payment_instrument__SWIG_0(a[0].(string), a[1].(string), a[2].(int))
+		return p.Get_payment_instrument__SWIG_1(a[0].(string), a[1].(string), a[2].(int))
 	}
 	if argc == 4 {
-		return p.Get_payment_instrument__SWIG_1(a[0].(string), a[1].(string), a[2].(int), a[3].(string))
+		return p.Get_payment_instrument__SWIG_0(a[0].(string), a[1].(string), a[2].(int), a[3].(string))
 	}
 	panic("No match for overloaded function call")
 }
@@ -1532,147 +1668,21 @@ func (arg1 SwigcptrOT_ME) Adjust_usage_credits(arg2 string, arg3 string, arg4 st
 	return _swig_wrap_OT_ME_adjust_usage_credits(arg1, arg2, arg3, arg4, arg5)
 }
 
-func _swig_wrap_OT_ME_VerifyMessageSuccess(SwigcptrOT_ME, string) int
-
-func (arg1 SwigcptrOT_ME) VerifyMessageSuccess(arg2 string) int {
-	return _swig_wrap_OT_ME_VerifyMessageSuccess(arg1, arg2)
-}
-
-func _swig_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(SwigcptrOT_ME, string, string, string, string) int
-
-func (arg1 SwigcptrOT_ME) VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int {
-	return _swig_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(arg1, arg2, arg3, arg4, arg5)
-}
-
-func _swig_wrap_OT_ME_VerifyMsgTrnxSuccess(SwigcptrOT_ME, string, string, string, string) int
-
-func (arg1 SwigcptrOT_ME) VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int {
-	return _swig_wrap_OT_ME_VerifyMsgTrnxSuccess(arg1, arg2, arg3, arg4, arg5)
-}
-
-func _swig_wrap_OT_ME_InterpretTransactionMsgReply(SwigcptrOT_ME, string, string, string, string, string) int
-
-func (arg1 SwigcptrOT_ME) InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int {
-	return _swig_wrap_OT_ME_InterpretTransactionMsgReply(arg1, arg2, arg3, arg4, arg5, arg6)
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(SwigcptrOT_ME, string, string) string
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnString__SWIG_0(arg2 string, arg3 string) string {
-	return _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(arg1, arg2, arg3)
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(SwigcptrOT_ME, string) string
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnString__SWIG_1(arg2 string) string {
-	return _swig_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(arg1, arg2)
-}
-
-func (p SwigcptrOT_ME) ExecuteScript_ReturnString(a ...interface{}) string {
-	argc := len(a)
-	if argc == 1 {
-		return p.ExecuteScript_ReturnString__SWIG_1(a[0].(string))
-	}
-	if argc == 2 {
-		return p.ExecuteScript_ReturnString__SWIG_0(a[0].(string), a[1].(string))
-	}
-	panic("No match for overloaded function call")
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(SwigcptrOT_ME, string, string) bool
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnBool__SWIG_0(arg2 string, arg3 string) bool {
-	return _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(arg1, arg2, arg3)
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(SwigcptrOT_ME, string) bool
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnBool__SWIG_1(arg2 string) bool {
-	return _swig_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(arg1, arg2)
-}
-
-func (p SwigcptrOT_ME) ExecuteScript_ReturnBool(a ...interface{}) bool {
-	argc := len(a)
-	if argc == 1 {
-		return p.ExecuteScript_ReturnBool__SWIG_1(a[0].(string))
-	}
-	if argc == 2 {
-		return p.ExecuteScript_ReturnBool__SWIG_0(a[0].(string), a[1].(string))
-	}
-	panic("No match for overloaded function call")
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(SwigcptrOT_ME, string, string) int
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnInt__SWIG_0(arg2 string, arg3 string) int {
-	return _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(arg1, arg2, arg3)
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(SwigcptrOT_ME, string) int
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnInt__SWIG_1(arg2 string) int {
-	return _swig_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(arg1, arg2)
-}
-
-func (p SwigcptrOT_ME) ExecuteScript_ReturnInt(a ...interface{}) int {
-	argc := len(a)
-	if argc == 1 {
-		return p.ExecuteScript_ReturnInt__SWIG_1(a[0].(string))
-	}
-	if argc == 2 {
-		return p.ExecuteScript_ReturnInt__SWIG_0(a[0].(string), a[1].(string))
-	}
-	panic("No match for overloaded function call")
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(SwigcptrOT_ME, string, string)
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnVoid__SWIG_0(arg2 string, arg3 string) {
-	_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(arg1, arg2, arg3)
-}
-
-func _swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(SwigcptrOT_ME, string)
-
-func (arg1 SwigcptrOT_ME) ExecuteScript_ReturnVoid__SWIG_1(arg2 string) {
-	_swig_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(arg1, arg2)
-}
-
-func (p SwigcptrOT_ME) ExecuteScript_ReturnVoid(a ...interface{}) {
-	argc := len(a)
-	if argc == 1 {
-		p.ExecuteScript_ReturnVoid__SWIG_1(a[0].(string))
-		return
-	}
-	if argc == 2 {
-		p.ExecuteScript_ReturnVoid__SWIG_0(a[0].(string), a[1].(string))
-		return
-	}
-	panic("No match for overloaded function call")
-}
-
-func _swig_wrap_OT_ME_AddVariable(SwigcptrOT_ME, string, uintptr)
-
-func (arg1 SwigcptrOT_ME) AddVariable(arg2 string, arg3 OTVariable) {
-	_swig_wrap_OT_ME_AddVariable(arg1, arg2, arg3.Swigcptr())
-}
-
-func _swig_wrap_OT_ME_FindVariable(SwigcptrOT_ME, string) SwigcptrOTVariable
-
-func (arg1 SwigcptrOT_ME) FindVariable(arg2 string) OTVariable {
-	return _swig_wrap_OT_ME_FindVariable(arg1, arg2)
-}
-
-func _swig_wrap_OT_ME_FindVariable2(string) SwigcptrOTVariable
-
-func OT_MEFindVariable2(arg1 string) OTVariable {
-	return _swig_wrap_OT_ME_FindVariable2(arg1)
-}
-
 type OT_ME interface {
 	Swigcptr() uintptr
 	SwigIsOT_ME()
 	Opentxs_copy_variables()
 	Opentxs_main_loop() int
+	VerifyMessageSuccess(arg2 string) int
+	VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int
+	VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int
+	InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int
+	ExecuteScript_ReturnString(a ...interface{}) string
+	ExecuteScript_ReturnBool(a ...interface{}) bool
+	ExecuteScript_ReturnInt(a ...interface{}) int
+	ExecuteScript_ReturnVoid(a ...interface{})
+	AddVariable(arg2 string, arg3 OTVariable)
+	FindVariable(arg2 string) OTVariable
 	Make_sure_enough_trans_nums(arg2 int, arg3 string, arg4 string) bool
 	Register_nym(arg2 string, arg3 string) string
 	Check_user(arg2 string, arg3 string, arg4 string) string
@@ -1727,16 +1737,6 @@ type OT_ME interface {
 	Get_nym_market_offers(arg2 string, arg3 string) string
 	Get_market_recent_trades(arg2 string, arg3 string, arg4 string) string
 	Adjust_usage_credits(arg2 string, arg3 string, arg4 string, arg5 string) string
-	VerifyMessageSuccess(arg2 string) int
-	VerifyMsgBalanceAgrmntSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int
-	VerifyMsgTrnxSuccess(arg2 string, arg3 string, arg4 string, arg5 string) int
-	InterpretTransactionMsgReply(arg2 string, arg3 string, arg4 string, arg5 string, arg6 string) int
-	ExecuteScript_ReturnString(a ...interface{}) string
-	ExecuteScript_ReturnBool(a ...interface{}) bool
-	ExecuteScript_ReturnInt(a ...interface{}) int
-	ExecuteScript_ReturnVoid(a ...interface{})
-	AddVariable(arg2 string, arg3 OTVariable)
-	FindVariable(arg2 string) OTVariable
 }
 
 type OTDBPackType int
@@ -6232,6 +6232,37 @@ func _swig_getOTRecord_Instrument_OTRecord() OTRecordOTRecordType
 var OTRecordInstrument OTRecordOTRecordType = _swig_getOTRecord_Instrument_OTRecord()
 func _swig_getOTRecord_ErrorState_OTRecord() OTRecordOTRecordType
 var OTRecordErrorState OTRecordOTRecordType = _swig_getOTRecord_ErrorState_OTRecord()
+func _swig_wrap_OTRecord_SetSpecialMail__SWIG_0(SwigcptrOTRecord, bool)
+
+func (arg1 SwigcptrOTRecord) SetSpecialMail__SWIG_0(arg2 bool) {
+	_swig_wrap_OTRecord_SetSpecialMail__SWIG_0(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_SetSpecialMail__SWIG_1(SwigcptrOTRecord)
+
+func (arg1 SwigcptrOTRecord) SetSpecialMail__SWIG_1() {
+	_swig_wrap_OTRecord_SetSpecialMail__SWIG_1(arg1)
+}
+
+func (p SwigcptrOTRecord) SetSpecialMail(a ...interface{}) {
+	argc := len(a)
+	if argc == 0 {
+		p.SetSpecialMail__SWIG_1()
+		return
+	}
+	if argc == 1 {
+		p.SetSpecialMail__SWIG_0(a[0].(bool))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
+func _swig_wrap_OTRecord_IsSpecialMail(SwigcptrOTRecord) bool
+
+func (arg1 SwigcptrOTRecord) IsSpecialMail() bool {
+	return _swig_wrap_OTRecord_IsSpecialMail(arg1)
+}
+
 func _swig_wrap_OTRecord_IsPending(SwigcptrOTRecord) bool
 
 func (arg1 SwigcptrOTRecord) IsPending() bool {
@@ -6442,6 +6473,54 @@ func (arg1 SwigcptrOTRecord) SetBoxIndex(arg2 int) {
 	_swig_wrap_OTRecord_SetBoxIndex(arg1, arg2)
 }
 
+func _swig_wrap_OTRecord_GetMethodID(SwigcptrOTRecord) int
+
+func (arg1 SwigcptrOTRecord) GetMethodID() int {
+	return _swig_wrap_OTRecord_GetMethodID(arg1)
+}
+
+func _swig_wrap_OTRecord_SetMethodID(SwigcptrOTRecord, int)
+
+func (arg1 SwigcptrOTRecord) SetMethodID(arg2 int) {
+	_swig_wrap_OTRecord_SetMethodID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_GetMsgID(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetMsgID() string {
+	return _swig_wrap_OTRecord_GetMsgID(arg1)
+}
+
+func _swig_wrap_OTRecord_SetMsgID(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetMsgID(arg2 string) {
+	_swig_wrap_OTRecord_SetMsgID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_GetMsgType(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetMsgType() string {
+	return _swig_wrap_OTRecord_GetMsgType(arg1)
+}
+
+func _swig_wrap_OTRecord_SetMsgType(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetMsgType(arg2 string) {
+	_swig_wrap_OTRecord_SetMsgType(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_GetMsgTypeDisplay(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetMsgTypeDisplay() string {
+	return _swig_wrap_OTRecord_GetMsgTypeDisplay(arg1)
+}
+
+func _swig_wrap_OTRecord_SetMsgTypeDisplay(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetMsgTypeDisplay(arg2 string) {
+	_swig_wrap_OTRecord_SetMsgTypeDisplay(arg1, arg2)
+}
+
 func _swig_wrap_OTRecord_GetTransactionNum(SwigcptrOTRecord) int64
 
 func (arg1 SwigcptrOTRecord) GetTransactionNum() int64 {
@@ -6502,6 +6581,12 @@ func (arg1 SwigcptrOTRecord) GetAccountID() string {
 	return _swig_wrap_OTRecord_GetAccountID(arg1)
 }
 
+func _swig_wrap_OTRecord_GetAddress(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetAddress() string {
+	return _swig_wrap_OTRecord_GetAddress(arg1)
+}
+
 func _swig_wrap_OTRecord_GetOtherNymID(SwigcptrOTRecord) string
 
 func (arg1 SwigcptrOTRecord) GetOtherNymID() string {
@@ -6512,6 +6597,12 @@ func _swig_wrap_OTRecord_GetOtherAccountID(SwigcptrOTRecord) string
 
 func (arg1 SwigcptrOTRecord) GetOtherAccountID() string {
 	return _swig_wrap_OTRecord_GetOtherAccountID(arg1)
+}
+
+func _swig_wrap_OTRecord_GetOtherAddress(SwigcptrOTRecord) string
+
+func (arg1 SwigcptrOTRecord) GetOtherAddress() string {
+	return _swig_wrap_OTRecord_GetOtherAddress(arg1)
 }
 
 func _swig_wrap_OTRecord_GetName(SwigcptrOTRecord) string
@@ -6560,6 +6651,18 @@ func _swig_wrap_OTRecord_SetOtherAccountID(SwigcptrOTRecord, string)
 
 func (arg1 SwigcptrOTRecord) SetOtherAccountID(arg2 string) {
 	_swig_wrap_OTRecord_SetOtherAccountID(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_SetAddress(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetAddress(arg2 string) {
+	_swig_wrap_OTRecord_SetAddress(arg1, arg2)
+}
+
+func _swig_wrap_OTRecord_SetOtherAddress(SwigcptrOTRecord, string)
+
+func (arg1 SwigcptrOTRecord) SetOtherAddress(arg2 string) {
+	_swig_wrap_OTRecord_SetOtherAddress(arg1, arg2)
 }
 
 func _swig_wrap_OTRecord_SetMemo(SwigcptrOTRecord, string)
@@ -6661,6 +6764,8 @@ func DeleteOTRecord(arg1 OTRecord) {
 type OTRecord interface {
 	Swigcptr() uintptr
 	SwigIsOTRecord()
+	SetSpecialMail(a ...interface{})
+	IsSpecialMail() bool
 	IsPending() bool
 	IsOutgoing() bool
 	IsRecord() bool
@@ -6696,6 +6801,14 @@ type OTRecord interface {
 	DiscardOutgoingCash() bool
 	GetBoxIndex() int
 	SetBoxIndex(arg2 int)
+	GetMethodID() int
+	SetMethodID(arg2 int)
+	GetMsgID() string
+	SetMsgID(arg2 string)
+	GetMsgType() string
+	SetMsgType(arg2 string)
+	GetMsgTypeDisplay() string
+	SetMsgTypeDisplay(arg2 string)
 	GetTransactionNum() int64
 	SetTransactionNum(arg2 int64)
 	GetTransNumForDisplay() int64
@@ -6706,8 +6819,10 @@ type OTRecord interface {
 	GetCurrencyTLA() string
 	GetNymID() string
 	GetAccountID() string
+	GetAddress() string
 	GetOtherNymID() string
 	GetOtherAccountID() string
+	GetOtherAddress() string
 	GetName() string
 	GetDate() string
 	GetAmount() string
@@ -6716,6 +6831,8 @@ type OTRecord interface {
 	GetContents() string
 	SetOtherNymID(arg2 string)
 	SetOtherAccountID(arg2 string)
+	SetAddress(arg2 string)
+	SetOtherAddress(arg2 string)
 	SetMemo(arg2 string)
 	SetContents(arg2 string)
 	HasInitialPayment() bool
@@ -6942,6 +7059,26 @@ func DirectorOTNameLookupGetAcctName(p *_swig_DirectorOTNameLookup, a ...interfa
 	panic("No match for overloaded function call")
 }
 
+type _swig_DirectorInterfaceOTNameLookupGetAddressName interface {
+	GetAddressName(string) string
+}
+
+func _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAddressName(SwigcptrOTNameLookup, string) string
+func (swig_p *_swig_DirectorOTNameLookup) GetAddressName(str_address string) string {
+	if swig_g, swig_ok := swig_p.v.(_swig_DirectorInterfaceOTNameLookupGetAddressName); swig_ok {
+		return swig_g.GetAddressName(str_address)
+	}
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAddressName(swig_p.SwigcptrOTNameLookup, str_address)
+}
+
+func DirectorOTNameLookupGetAddressName(p OTNameLookup, arg2 string) string {
+	return _swig_wrap__swig_DirectorOTNameLookup_upcall_GetAddressName(p.(*_swig_DirectorOTNameLookup).SwigcptrOTNameLookup, arg2)
+}
+
+func Swig_DirectorOTNameLookup_callback_GetAddressName(p *_swig_DirectorOTNameLookup, arg2 string) (swig_result string) {
+	return p.GetAddressName(arg2)
+}
+
 type SwigcptrOTNameLookup uintptr
 
 func (p SwigcptrOTNameLookup) Swigcptr() uintptr {
@@ -7031,12 +7168,19 @@ func (p SwigcptrOTNameLookup) GetAcctName(a ...interface{}) string {
 	panic("No match for overloaded function call")
 }
 
+func _swig_wrap_OTNameLookup_GetAddressName(SwigcptrOTNameLookup, string) string
+
+func (arg1 SwigcptrOTNameLookup) GetAddressName(arg2 string) string {
+	return _swig_wrap_OTNameLookup_GetAddressName(arg1, arg2)
+}
+
 type OTNameLookup interface {
 	Swigcptr() uintptr
 	SwigIsOTNameLookup()
 	DirectorInterface() interface{}
 	GetNymName(a ...interface{}) string
 	GetAcctName(a ...interface{}) string
+	GetAddressName(arg2 string) string
 }
 
 type SwigcptrOTLookupCaller uintptr
@@ -7148,6 +7292,12 @@ func (p SwigcptrOTLookupCaller) GetAcctName(a ...interface{}) string {
 	panic("No match for overloaded function call")
 }
 
+func _swig_wrap_OTLookupCaller_GetAddressName(SwigcptrOTLookupCaller, string) string
+
+func (arg1 SwigcptrOTLookupCaller) GetAddressName(arg2 string) string {
+	return _swig_wrap_OTLookupCaller_GetAddressName(arg1, arg2)
+}
+
 type OTLookupCaller interface {
 	Swigcptr() uintptr
 	SwigIsOTLookupCaller()
@@ -7157,6 +7307,7 @@ type OTLookupCaller interface {
 	IsCallbackSet() bool
 	GetNymName(a ...interface{}) string
 	GetAcctName(a ...interface{}) string
+	GetAddressName(arg2 string) string
 }
 
 func _swig_wrap_OT_API_Set_AddrBookCallback(uintptr) bool
@@ -7307,6 +7458,12 @@ func (arg1 SwigcptrOTRecordList) ClearAccounts() {
 	_swig_wrap_OTRecordList_ClearAccounts(arg1)
 }
 
+func _swig_wrap_OTRecordList_GetNyms(SwigcptrOTRecordList) SwigcptrStd_list_Sl_std_string_Sg_
+
+func (arg1 SwigcptrOTRecordList) GetNyms() Std_list_Sl_std_string_Sg_ {
+	return _swig_wrap_OTRecordList_GetNyms(arg1)
+}
+
 func _swig_wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0(SwigcptrOTRecordList, bool)
 
 func (arg1 SwigcptrOTRecordList) AcceptChequesAutomatically__SWIG_0(arg2 bool) {
@@ -7449,6 +7606,47 @@ func (arg1 SwigcptrOTRecordList) ClearContents() {
 	_swig_wrap_OTRecordList_ClearContents(arg1)
 }
 
+func _swig_wrap_OTRecordList_SortRecords(SwigcptrOTRecordList)
+
+func (arg1 SwigcptrOTRecordList) SortRecords() {
+	_swig_wrap_OTRecordList_SortRecords(arg1)
+}
+
+func _swig_wrap_OTRecordList_AddSpecialMsg__SWIG_0(SwigcptrOTRecordList, string, bool, int, string, string, string, string, string, string, uintptr)
+
+func (arg1 SwigcptrOTRecordList) AddSpecialMsg__SWIG_0(arg2 string, arg3 bool, arg4 int, arg5 string, arg6 string, arg7 string, arg8 string, arg9 string, arg10 string, arg11 Time64_t) {
+	_swig_wrap_OTRecordList_AddSpecialMsg__SWIG_0(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11.Swigcptr())
+}
+
+func _swig_wrap_OTRecordList_AddSpecialMsg__SWIG_1(SwigcptrOTRecordList, string, bool, int, string, string, string, string, string, string)
+
+func (arg1 SwigcptrOTRecordList) AddSpecialMsg__SWIG_1(arg2 string, arg3 bool, arg4 int, arg5 string, arg6 string, arg7 string, arg8 string, arg9 string, arg10 string) {
+	_swig_wrap_OTRecordList_AddSpecialMsg__SWIG_1(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10)
+}
+
+func _swig_wrap_OTRecordList_AddSpecialMsg__SWIG_2(SwigcptrOTRecordList, string, bool, int, string, string, string, string, string)
+
+func (arg1 SwigcptrOTRecordList) AddSpecialMsg__SWIG_2(arg2 string, arg3 bool, arg4 int, arg5 string, arg6 string, arg7 string, arg8 string, arg9 string) {
+	_swig_wrap_OTRecordList_AddSpecialMsg__SWIG_2(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
+}
+
+func (p SwigcptrOTRecordList) AddSpecialMsg(a ...interface{}) {
+	argc := len(a)
+	if argc == 8 {
+		p.AddSpecialMsg__SWIG_2(a[0].(string), a[1].(bool), a[2].(int), a[3].(string), a[4].(string), a[5].(string), a[6].(string), a[7].(string))
+		return
+	}
+	if argc == 9 {
+		p.AddSpecialMsg__SWIG_1(a[0].(string), a[1].(bool), a[2].(int), a[3].(string), a[4].(string), a[5].(string), a[6].(string), a[7].(string), a[8].(string))
+		return
+	}
+	if argc == 10 {
+		p.AddSpecialMsg__SWIG_0(a[0].(string), a[1].(bool), a[2].(int), a[3].(string), a[4].(string), a[5].(string), a[6].(string), a[7].(string), a[8].(string), a[9].(Time64_t))
+		return
+	}
+	panic("No match for overloaded function call")
+}
+
 func _swig_wrap_OTRecordList_size(SwigcptrOTRecordList) int
 
 func (arg1 SwigcptrOTRecordList) Size() int {
@@ -7483,6 +7681,7 @@ type OTRecordList interface {
 	SetAccountID(arg2 string)
 	AddAccountID(arg2 string)
 	ClearAccounts()
+	GetNyms() Std_list_Sl_std_string_Sg_
 	AcceptChequesAutomatically(a ...interface{})
 	AcceptReceiptsAutomatically(a ...interface{})
 	AcceptTransfersAutomatically(a ...interface{})
@@ -7494,6 +7693,8 @@ type OTRecordList interface {
 	PerformAutoAccept() bool
 	Populate() bool
 	ClearContents()
+	SortRecords()
+	AddSpecialMsg(a ...interface{})
 	Size() int
 	GetRecord(arg2 int) X_SharedPtr_Sl_OTRecord_Sg_
 	RemoveRecord(arg2 int) bool
@@ -7567,6 +7768,14 @@ type OTCaller interface {
 	Swigcptr() uintptr;
 }
 func (p SwigcptrOTCaller) Swigcptr() uintptr {
+	return uintptr(p)
+}
+
+type SwigcptrStd_list_Sl_std_string_Sg_ uintptr
+type Std_list_Sl_std_string_Sg_ interface {
+	Swigcptr() uintptr;
+}
+func (p SwigcptrStd_list_Sl_std_string_Sg_) Swigcptr() uintptr {
 	return uintptr(p)
 }
 

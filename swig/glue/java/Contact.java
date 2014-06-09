@@ -34,7 +34,7 @@ public class Contact extends Displayable {
     }
     super.delete();
   }
-/*@SWIG:swig\otapi\OTAPI.i,181,OT_CAN_BE_CONTAINED_BY@*/
+/*@SWIG:otapi/OTAPI.i,181,OT_CAN_BE_CONTAINED_BY@*/
 	// Ensure that the GC doesn't collect any OT_CONTAINER instance set from Java
 	private AddressBook containerRefAddressBook;
 	// ----------------	
@@ -44,10 +44,10 @@ public class Contact extends Displayable {
 	// ----------------
 /*@SWIG@*/
 	// ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,135,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:otapi/OTAPI.i,135,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefContactNym(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
@@ -107,7 +107,7 @@ private Long getCPtrAddRefContactNym(ContactNym element) {
 	return ContactNym.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefContactAcct(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
