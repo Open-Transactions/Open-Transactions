@@ -130,26 +130,22 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTString.hpp>
+#include "OTString.hpp"
 
-#include <OTAssert.hpp>
-#include <OTPassword.hpp>
-#include <OTIdentifier.hpp>
-#include <OTASCIIArmor.hpp>
-#include <OTSignature.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
-#include <OTLog.hpp>
+#include "OTContract.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPseudonym.hpp"
+#include "OTSignature.hpp"
+
+#include <cstdio>
 
 #if !(defined(_WIN32) || defined(TARGET_OS_IPHONE) || defined(ANDROID))
 #include <wordexp.h>
 #endif
 
-#include <sstream>
-#include <cstdio>
-#include <cstdarg>
 
 /*
  int32_t vsnprintf(char *str, size_t size, const char *format, va_list ap);

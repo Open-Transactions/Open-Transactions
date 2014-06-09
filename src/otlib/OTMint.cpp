@@ -130,30 +130,21 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTMint.hpp>
+#include "OTMint.hpp"
 
+#include "OTAccount.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTFolders.hpp"
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
 #include "OTMintLucre.hpp"
-
-#include <OTAccount.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTDigitalCash.hpp>
-#include <OTEnvelope.hpp>
-#include <OTFolders.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTPaths.hpp>
-#include <OTPseudonym.hpp>
-#include <OTToken.hpp>
 
 #include "irrxml/irrXML.hpp"
 
-
 #if defined (OT_CASH_USING_LUCRE)
-
-#include "OpenSSL_BIO.hpp"
-
+//#include "OpenSSL_BIO.hpp"
 #endif
 
 
@@ -849,7 +840,6 @@ int32_t OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 
 /*
- 
  // Just make sure theMessage has these members populated:
  //
  // theMessage.m_strNymID;
@@ -870,6 +860,7 @@ int32_t OTMint::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
  OTAccount * pAcct = NULL;
  pAcct = OTAccount::LoadExistingAccount(ACCOUNT_ID, SERVER_ID);
  */
+
 
 // Lucre step 1: generate new mint
 // Make sure the issuer here has a private key

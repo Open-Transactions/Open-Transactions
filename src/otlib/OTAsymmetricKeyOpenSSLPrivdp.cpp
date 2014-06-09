@@ -130,35 +130,24 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAsymmetricKey_OpenSSLPrivdp.hpp>
+#include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
+
+#include "OTASCIIArmor.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPasswordData.hpp"
+#include "OTPayload.hpp"
+
+#if defined (OT_CRYPTO_USING_OPENSSL)
+#include "OpenSSL_BIO.hpp"
+#endif
 
 #include <stacktrace.h>
 
-#if defined (OT_CRYPTO_USING_OPENSSL)
-
-#include "OTAsymmetricKeyOpenSSL.hpp"
-#include "OpenSSL_BIO.hpp"
-
-#endif
-
-#include <OTASCIIArmor.hpp>
-#include <OTAssert.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTCredential.hpp>
-#include <OTCrypto.hpp>
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTPasswordData.hpp>
-#include <OTPayload.hpp>
-#include <OTSignature.hpp>
-
-
-// OTAsymmetricKey_OpenSSL
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
-
 
 // low level
 void OTAsymmetricKey_OpenSSL::OTAsymmetricKey_OpenSSLPrivdp::SetX509(X509 * x509)

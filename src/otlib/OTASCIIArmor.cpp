@@ -130,12 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTASCIIArmor.hpp>
+#include "OTASCIIArmor.hpp"
 
-#include <iostream>
-#include <sstream>
+#include "OTCrypto.hpp"
+#include "OTEnvelope.hpp"
+#include "OTLog.hpp"
+
 #include <fstream>
 
 #ifdef _WIN32
@@ -143,11 +145,6 @@
 #else
 #include <zlib.h>
 #endif
-
-#include <OTCrypto.hpp>
-#include <OTEnvelope.hpp>
-#include <OTLog.hpp>
-#include <OTPayload.hpp>
 
 
 const char * OT_BEGIN_ARMORED   = "-----BEGIN OT ARMORED";

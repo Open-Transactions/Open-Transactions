@@ -130,38 +130,29 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAcctList.hpp>
+#include "OTAcctList.hpp"
 
-#include <ostream>
-#include <sstream>
-#include <iomanip>
-#include <fstream>
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
+
+#include "irrxml/irrXML.hpp"
 
 #ifdef _WIN32
-#include <Mmsystem.h>
+//#include <Mmsystem.h>
 #else
 #include <unistd.h>
 #include <sys/time.h>
 #endif
-
-#include "irrxml/irrXML.hpp"
-
-#include <OTAccount.hpp>
-#include <OTAssert.hpp>
-#include <OTLedger.hpp>
-#include <OTLog.hpp>
-#include <OTPseudonym.hpp>
-#include <OTPayload.hpp>
-#include <OTMessage.hpp>
-#include <OTPaths.hpp>
 
 using namespace irr;
 using namespace io;
 
 
 void TranslateAccountTypeToString(OTAccount::AccountType theType, OTString & strAcctType);
+
+
 OTAccount::AccountType TranslateAccountTypeStringToEnum(const OTString & strAcctType);
 
 

@@ -130,14 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTPassword.hpp>
+#include "OTPassword.hpp"
 
-#include <OTAssert.hpp>
-#include <OTString.hpp>
-#include <OTLog.hpp>
-#include <OTCrypto.hpp>
+#include "OTCrypto.hpp"
+#include "OTLog.hpp"
 
 
 // For SecureZeroMemory

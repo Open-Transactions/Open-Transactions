@@ -130,14 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTData.hpp>
+#include "OTData.hpp"
 
-#include <OTAssert.hpp>
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTASCIIArmor.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
 
 
 bool OTData::operator==(const OTData &s2) const

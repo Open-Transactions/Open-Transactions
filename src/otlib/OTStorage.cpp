@@ -130,22 +130,21 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTStorage.hpp>
+#include "OTStorage.hpp"
 
-#include <OTASCIIArmor.hpp>
-#include <OTDataFolder.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTPayload.hpp>
-#include <OTStoragePB.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTDataFolder.hpp"
+#include "OTLog.hpp"
+#include "OTPaths.hpp"
+#include "OTPayload.hpp"
+#include "OTStoragePB.hpp"
 
-#include <typeinfo>
 #include <fstream>
 
-/*
 
+/*
  // We want to store EXISTING OT OBJECTS (Usually signed contracts)
  // These have an EXISTING OT path, such as "inbox/acct_id".
  // These files are always in the form of a STRING.
@@ -158,7 +157,6 @@
  bool bSuccessQuery = QueryString(strRetrieved, strFolder, strFilename);
 
 
- // -------
  // Internal to the above functions, the default Packing/Buffer is
  // used, and the default Storage type is used. But what if I want to
  // CHOOSE the storage and packing? Perhaps the default (filesystem) is not
@@ -175,8 +173,6 @@
  bool bSuccessQuery = pStorage->QueryString(strRetrieved, strFolder, strFilename);
 
 
-
- // -------
  // So if I wanted to create my OWN instance of storage, instead of using the
  // default one, it would be similar:
 
@@ -192,7 +188,6 @@
  }
 
 
-
  // Creating like above is also how the default storage context gets instantiated
  // (internally) when you first start storing and querying.
 
@@ -202,7 +197,7 @@
  // each storage type. That way, all subclasses might use it differently, and
  // the parameters are easily thrown into a config file later.
 
- // ------
+
  // What if it was a CouchDB database, instead of the filesystem?
  // And using Google's Protocol Buffers for packing, isntead of MsgPack?
  // (Note: OT doesn't actually support CouchDB yet.) But it would look like:
@@ -217,8 +212,6 @@
  etc.
 
 
-
- // --------------------
  // So what if I want to use the default, but I want that DEFAULT to be CouchDB and Google?
  // Just do this (near the beginning of the execution of the application):
 
@@ -236,8 +229,6 @@
 	bool bSuccessQuery = pStorage->QueryString(strRetrieved, strFolder, strFilename);
  }
 
- // -----------------------------------------------------------
-
 
  // What if you want to store an OBJECT in that location instead of a string?
  // The object must be instantiated by the Storage Context...
@@ -250,8 +241,6 @@
  pAcct->gui_label			= "Editable Label (Moneychanger)";
 
 
-
- // -----------------------------------------------------------
  // Perhaps you want to load up a Wallet and add this BitcoinAcct to it...
 
  WalletData * pWalletData =
@@ -282,8 +271,6 @@
  // 5) You can swap out the packing code (msgpack, protobuf, json, etc) with no change to any other code.
  // 6) It's consistent and easy-to-use for all object types.
  // 7) For generic objects, there is a Blob type, a String type, and a StringMap type.
- //
- // --------------------------------------------------------------
  */
 
 

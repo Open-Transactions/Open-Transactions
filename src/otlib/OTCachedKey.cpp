@@ -130,40 +130,23 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTCachedKey.hpp>
+#include "OTCachedKey.hpp"
 
-#include <OTASCIIArmor.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTCrypto.hpp>
-#include <OTIdentifier.hpp>
-#include <OTKeyring.hpp>
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTPasswordData.hpp>
-#include <OTString.hpp>
-#include <OTSymmetricKey.hpp>
-
-#include "tinythread.hpp"   // These are in the header already.
-using namespace tthread;
+#include "OTASCIIArmor.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTCrypto.hpp"
+#include "OTIdentifier.hpp"
+#include "OTKeyring.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPasswordData.hpp"
+#include "OTSymmetricKey.hpp"
 
 #define OT_DEFAULT_PASSWORD "test"
 
-#if defined (OT_CRYPTO_USING_OPENSSL)
-
-extern "C"
-{
-#include <openssl/opensslconf.h>
-}
-
-#endif
-
-
-//static
-
 tthread::mutex  OTCachedKey::s_mutexThreadTimeout;
-
 tthread::mutex  OTCachedKey::s_mutexCachedKeys;
 mapOfCachedKeys OTCachedKey::s_mapCachedKeys;
 

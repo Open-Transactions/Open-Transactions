@@ -130,16 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAssert.hpp>
+#include "OTAssert.hpp"
 
-#include <iostream>
-#include <fstream>
 #include <cstring>
+#include <iostream>
 
 
-//static
 OTAssert * OTAssert::s_pOTAssert = new OTAssert(OTAssert::Assert);
 
 

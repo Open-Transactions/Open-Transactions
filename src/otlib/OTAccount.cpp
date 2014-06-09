@@ -130,36 +130,31 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAccount.hpp>
+#include "OTAccount.hpp"
 
-#include <ostream>
-#include <sstream>
-#include <iomanip>
+#include "OTDataFolder.hpp"
+#include "OTFolders.hpp"
+#include "OTLedger.hpp"
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
+#include "OTPaths.hpp"
+#include "OTPayload.hpp"
+#include "OTPseudonym.hpp"
+
+#include "irrxml/irrXML.hpp"
+
 #include <fstream>
 
-#ifdef _WIN32
-#include <Mmsystem.h>
-#else
+#ifndef _WIN32
 #include <unistd.h>
 #include <sys/time.h>
 #endif
 
-#include "irrxml/irrXML.hpp"
-
-#include <OTAssert.hpp>
-#include <OTDataFolder.hpp>
-#include <OTFolders.hpp>
-#include <OTLedger.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTPaths.hpp>
-#include <OTPayload.hpp>
-#include <OTPseudonym.hpp>
-
 using namespace irr;
 using namespace io;
+
 
 char const * const __TypeStrings[] =
 {

@@ -131,37 +131,31 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTContract.hpp>
+#include "OTContract.hpp"
 
-#include <OTAssert.hpp>
-#include <OTAssetContract.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTCheque.hpp>
-#include <OTCrypto.hpp>
-#include <OTFolders.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTMint.hpp>
-#include "OTNumList.hpp"
-#include <OTOffer.hpp>
-#include <OTPassword.hpp>
-#include <OTPasswordData.hpp>
-#include <OTPaths.hpp>
-#include <OTPaymentPlan.hpp>
-#include <OTPseudonym.hpp>
-#include <OTServerContract.hpp>
-#include <OTSignature.hpp>
-#include <OTSignedFile.hpp>
-#include <OTSmartContract.hpp>
-#include <OTStorage.hpp>
-#include <OTToken.hpp>
-#include <OTTrade.hpp>
+#include "OTAssetContract.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTCheque.hpp"
+#include "OTCrypto.hpp"
+#include "OTFolders.hpp"
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
+#include "OTMint.hpp"
+#include "OTOffer.hpp"
+#include "OTPasswordData.hpp"
+#include "OTPaymentPlan.hpp"
+#include "OTPseudonym.hpp"
+#include "OTServerContract.hpp"
+#include "OTSignature.hpp"
+#include "OTSignedFile.hpp"
+#include "OTSmartContract.hpp"
+#include "OTToken.hpp"
+#include "OTTrade.hpp"
 
 #include "irrxml/irrXML.hpp"
 
-#include <locale>
 #include <fstream>
 
 using namespace irr;
@@ -1147,7 +1141,6 @@ bool OTContract::SaveContents(OTString & strContents) const
 
 
 // Save the contract member variables into the m_strRawFile variable
-
 bool OTContract::SaveContract()
 {
 	OTString strTemp;
