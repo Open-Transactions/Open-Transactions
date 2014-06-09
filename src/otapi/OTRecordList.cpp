@@ -147,6 +147,7 @@
 #include <OT_ME.hpp>
 #include <OTMessage.hpp>
 #include <OTLog.hpp>
+#include <OTStorage.hpp>
 
 #include <algorithm>
 

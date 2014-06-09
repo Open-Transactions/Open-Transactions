@@ -145,6 +145,7 @@
 #include "OTPseudonym.hpp"
 #include "OTPurse.hpp"
 #include "OTServerContract.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

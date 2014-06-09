@@ -141,6 +141,7 @@
 #include "OTMessageOutBuffer.hpp"
 #include "OTPaths.hpp"
 #include "OTPseudonym.hpp"
+#include "OTStorage.hpp"
 #include "OTTransaction.hpp"
 
 

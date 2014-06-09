@@ -339,9 +339,6 @@
     <ClInclude Include="..\..\include\otlib\OTStoragePB.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\otlib\OTSocket.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\deps\include\misc\anyoption.hpp">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
@@ -612,9 +609,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\otlib\OTTokenLucre.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\otlib\OTSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\otlib\OTAsymmetricKeyOpenSSL.cpp">

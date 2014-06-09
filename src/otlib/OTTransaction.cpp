@@ -143,6 +143,7 @@
 #include "OTPseudonym.hpp"
 #include "OTPaymentPlan.hpp"
 #include "OTSmartContract.hpp"
+#include "OTStorage.hpp"
 #include "OTTrade.hpp"
 
 #include "irrxml/irrXML.hpp"

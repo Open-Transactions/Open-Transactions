@@ -121,7 +121,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/bigobj /Zm400</AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 </AdditionalOptions>
       <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -135,7 +135,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/bigobj /Zm400</AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 </AdditionalOptions>
       <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -151,7 +151,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/bigobj /Zm400</AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 </AdditionalOptions>
       <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -169,7 +169,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/bigobj /Zm400</AdditionalOptions>
+      <AdditionalOptions>/bigobj /Zm480 </AdditionalOptions>
       <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>

@@ -137,6 +137,7 @@
 #include "OTLedger.hpp"
 #include "OTLog.hpp"
 #include "OTPseudonym.hpp"
+#include "OTStorage.hpp"
 
 #include <fstream>
 

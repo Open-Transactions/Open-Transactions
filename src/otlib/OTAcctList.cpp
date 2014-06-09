@@ -136,6 +136,7 @@
 
 #include "OTLog.hpp"
 #include "OTMessage.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

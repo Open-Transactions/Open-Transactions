@@ -147,6 +147,7 @@
 #include <OTWallet.hpp>
 
 #include <cstdio>
+#include <iostream>
 
 extern "C"
 {

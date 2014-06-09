@@ -142,6 +142,7 @@
 #include "OTMessage.hpp"
 #include "OTPayment.hpp"
 #include "OTPseudonym.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

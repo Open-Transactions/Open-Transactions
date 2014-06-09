@@ -140,6 +140,7 @@
 #include "OTLog.hpp"
 #include "OTMessage.hpp"
 #include "OTMintLucre.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

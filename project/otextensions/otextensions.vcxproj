@@ -18,29 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\deps\include\gmock\gmock-actions.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-cardinalities.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-generated-actions.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-generated-function-mockers.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-generated-matchers.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-generated-nice-strict.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-matchers.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-more-actions.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-more-matchers.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock-spec-builders.h" />
-    <ClInclude Include="..\..\deps\include\gmock\gmock.h" />
-    <ClInclude Include="..\..\deps\include\gmock\internal\gmock-generated-internal-utils.h" />
-    <ClInclude Include="..\..\deps\include\gmock\internal\gmock-internal-utils.h" />
-    <ClInclude Include="..\..\deps\include\gmock\internal\gmock-port.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\deps\src\gmock\gmock-all.cc" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{181346BE-FC21-433B-81EA-182EB62078F2}</ProjectGuid>
-    <Keyword>Win32Proj</Keyword>
-    <RootNamespace>gmock</RootNamespace>
+    <ProjectGuid>{5404670D-B2E7-439F-B26F-E31D8D4FE055}</ProjectGuid>
+    <RootNamespace>otextensions</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -59,14 +39,14 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -86,69 +66,61 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(SolutionDir)..\deps\include\;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
-    <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(SolutionDir)..\deps\include\;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include\otlib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(SolutionDir)..\deps\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include\otlib;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include\otlib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\deps\include\$(ProjectName);$(SolutionDir)..\deps\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include\otlib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/bigobj /Zm480</AdditionalOptions>
-      <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100  /wd4503 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/bigobj /Zm480</AdditionalOptions>
-      <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100  /wd4503 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/bigobj /Zm480</AdditionalOptions>
-      <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100  /wd4503 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -156,22 +128,25 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalOptions>/bigobj /Zm480</AdditionalOptions>
-      <DisableSpecificWarnings>4061;4100;4131;4365;4503;4512;4514;4625;4626;4710;4820;4996</DisableSpecificWarnings>
+      <AdditionalOptions>/bigobj /Zm480 /wd4512 /wd4100  /wd4503 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\otextensions\OTSocket.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\otextensions\OTSocket.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

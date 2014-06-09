@@ -462,6 +462,7 @@
 #include "OTPseudonym.hpp"
 #include "OTStash.hpp"
 #include "OTStashItem.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

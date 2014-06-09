@@ -140,6 +140,7 @@
 #include "OTMint.hpp"
 #include "OTNymOrSymmetricKey.hpp"
 #include "OTPurse.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

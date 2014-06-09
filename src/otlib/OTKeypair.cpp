@@ -154,6 +154,7 @@
 #include "OTLog.hpp"
 #include "OTLowLevelKeyData.hpp"
 #include "OTSignature.hpp"
+#include "OTStorage.hpp"
 
 
 // DONE: Add OTKeypair member for m_pMetadata.

@@ -136,6 +136,7 @@
 #include <OTLog.hpp>
 #include <OTMint.hpp>
 #include <OTPaths.hpp>
+#include <OTStorage.hpp>
 
 #include <cstdio>
 

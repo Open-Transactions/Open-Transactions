@@ -142,6 +142,7 @@
 #include "OTLog.hpp"
 #include "OTPasswordData.hpp"
 #include "OTSignatureMetadata.hpp"
+#include "OTStorage.hpp"
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 #include "OTAsymmetricKeyOpenSSL.hpp"

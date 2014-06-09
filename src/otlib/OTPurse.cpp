@@ -140,6 +140,7 @@
 #include "OTLog.hpp"
 #include "OTNymOrSymmetricKey.hpp"
 #include "OTPassword.hpp"
+#include "OTStorage.hpp"
 #include "OTSymmetricKey.hpp"
 #include "OTToken.hpp"
 

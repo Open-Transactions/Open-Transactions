@@ -137,6 +137,7 @@
 #include "OTCrypto.hpp"
 #include "OTEnvelope.hpp"
 #include "OTLog.hpp"
+#include "OTStorage.hpp"
 
 #include <fstream>
 

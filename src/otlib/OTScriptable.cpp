@@ -142,6 +142,7 @@
 #include "OTPartyAccount.hpp"
 #include "OTPseudonym.hpp"
 #include "OTSmartContract.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

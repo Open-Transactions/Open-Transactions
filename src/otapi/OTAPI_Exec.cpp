@@ -162,6 +162,7 @@
 #include "OTPseudonym.hpp"
 #include "OTPurse.hpp"
 #include "OTServerContract.hpp"
+#include "OTStorage.hpp"
 #include "OTSymmetricKey.hpp"
 #include "OTToken.hpp"
 #include "OTWallet.hpp"
