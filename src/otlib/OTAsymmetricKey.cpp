@@ -440,7 +440,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
     OTPasswordData * pPWData  = static_cast<OTPasswordData *>(userdata);
     const std::string str_userdata = pPWData->GetDisplayString();    
     // -----------------------------------------------------
-    OTPassword  thePassword;
+    StringPassword  thePassword;
     bool        bGotPassword = false;
     // -------------------------------------
     _SharedPtr<OTCachedKey> pCachedKey(pPWData->GetCachedKey()); // Sometimes it's passed in, otherwise we use the global one.
@@ -582,7 +582,7 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
 	 http://openssl.org/docs/crypto/pem.html#
 	 "The callback must return the number of characters in the passphrase or 0 if an error occurred."
 	 */
-	int32_t len	= thePassword.isPassword() ? thePassword.getPasswordSize() : thePassword.getMemorySize();
+    int32_t len = thePassword.length();
 	
 	if (len < 0) 
 	{
@@ -594,19 +594,9 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
     // --------------------------------------	
 	else if (len == 0) 
 	{
-        const char * szDefault = "test";
-        
-		OTLog::vOutput(0, "%s: 0 length password was "
-                       "returned from the API password callback. "
-                       "Substituting default password 'test'.\n", __FUNCTION__); // todo: security: is this safe? Here's what's driving this: We can't return 0 length string, but users wanted to be able to "just hit enter" and use an empty passphrase. So for cases where the user has explicitly "hit enter" we will substitute "test" as their passphrase instead. They still have to do this explicitly--it only happens when they use an empty one. 
-		
-        if (thePassword.isPassword())
-            thePassword.setPassword(szDefault, static_cast<int32_t>(OTString::safe_strlen(szDefault, _PASSWORD_LEN)));
-        else
-            thePassword.setMemory(static_cast<const void *>(szDefault),
-                                  static_cast<uint32_t>(OTString::safe_strlen(szDefault, _PASSWORD_LEN)) + 1); // setMemory doesn't assume the null terminator like setPassword does.
-        
-        len	= thePassword.isPassword() ? thePassword.getPasswordSize() : thePassword.getMemorySize();
+        thePassword = StringPassword(std::string("Test"));
+
+        len = thePassword.length();
 	}
     // -------------------------------------------------------
     OTPassword * pMasterPW = pPWData->GetMasterPW();
@@ -621,35 +611,10 @@ OPENSSL_CALLBACK_FUNC(souped_up_pass_cb)
         // if too int64_t, truncate
         if (len > size) 
             len = size;
-        
-        const uint32_t theSize   = static_cast<uint32_t>(size);
-        const uint32_t theLength = static_cast<uint32_t>(len);
 
-        if (thePassword.isPassword())
-        {
-//          OTLog::vError("%s: BEFORE TEXT PASSWORD: %s  LENGTH: %d\n", __FUNCTION__, thePassword.getPassword(), theLength);
+        BinaryPassword binaryPassword(thePassword);
 
-            OTPassword::safe_memcpy(buf,                   // destination
-                                    theSize,               // size of destination buffer.
-                                    thePassword.getPassword_uint8(), // source
-                                    theLength); // length of source.
-                                   //bool bZeroSource=false); // No need to set this true, since OTPassword (source) already zeros its memory automatically.
-            buf[theLength] = '\0'; // null terminator.
-            
-//          int32_t nSize = static_cast<int32_t>(thePassword.getPasswordSize());
-//          OTLog::vError("%s: AFTER TEXT PASSWORD: %s  LENGTH: %d\n", __FUNCTION__, buf, nSize);
-        }
-        else
-        {
-            OTPassword::safe_memcpy(buf,                   // destination
-                                    theSize,               // size of destination buffer.
-                                    thePassword.getMemory_uint8(), // source
-                                    theLength); // length of source.
-                                   //bool bZeroSource=false); // No need to set this true, since OTPassword (source) already zeros its memory automatically.
-            
-//          int32_t nSize = static_cast<int32_t>(thePassword.getMemorySize());
-//          OTLog::vError("%s: (BINARY PASSWORD)  LENGTH: %d\n", __FUNCTION__, nSize);
-        }
+        binaryPassword.getMemoryCopyOnto(buf, len);
         
     }
     // --------------------------------------	

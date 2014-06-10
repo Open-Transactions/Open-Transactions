@@ -765,10 +765,10 @@ bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
 		//
 
 		std::string default_password(OT_DEFAULT_PASSWORD); // default password
-		OTPassword passwordDefault; passwordDefault.zeroMemory();
-        passwordDefault.setPassword(default_password.c_str(), static_cast<int32_t>(default_password.length()));
+		StringPassword passwordDefault; passwordDefault.zero();
+        passwordDefault = StringPassword(default_password);
 
-		OTPassword passUserInput;  passUserInput.zeroMemory(); // text mode.
+        StringPassword passUserInput;  passUserInput.zero(); // text mode.
 		OTPasswordData  thePWData(str_display.c_str(), &passUserInput, mySharedPtr); // these pointers are only passed in the case where it's for a master key.
 //      OTLog::vOutput(2, "*********Begin OTCachedKey::GetMasterPassword: Calling souped-up password cb...\n * *  * *  * *  * *  * ");
 		// -----------------------------------------------------------------------
@@ -792,7 +792,7 @@ bool OTCachedKey::GetMasterPassword(_SharedPtr<OTCachedKey> & mySharedPtr,
 			// If the length of the user supplied password is less than 4 characters int64_t, we are going to use the default password!
 			bool bUsingDefaultPassword = false;
 			{
-				if (4 > std::string(passUserInput.getPassword()).length())
+                if (4 > passUserInput.length())
 				{
 					OTLog::vOutput(0, "\n Password entered was less than 4 characters int64_t! This is NOT secure!!\n"
 						"... Assuming password is for testing only... setting to default password: %s \n",

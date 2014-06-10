@@ -294,7 +294,7 @@ bool OTAsymmetricKey_OpenSSL::LoadPrivateKeyFromCertString(const OTString & strC
 		{ 
 			OTLog::vError("%s: (pImportPassword size: %d) Error reading private key from string.\n\n",
 						  __FUNCTION__,
-                          NULL == pImportPassword ? 0 : pImportPassword->getPasswordSize());
+                          NULL == pImportPassword ? 0 : pImportPassword->length());
 //			OTLog::vError("%s: (pImportPassword is %s, size: %d) Error reading private key from string:\n%s\n\n",
 //						  __FUNCTION__, NULL == pImportPassword ? "NULL" : pImportPassword->getPassword(),
 //                          NULL == pImportPassword ? 0 : pImportPassword->getPasswordSize(),

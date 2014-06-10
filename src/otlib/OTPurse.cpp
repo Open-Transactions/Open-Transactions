@@ -273,7 +273,7 @@ bool OTPurse::GenerateInternalKey()
     // We'll do the Master key first, since we need the passphrase from that, in order to
     // create the symmetric key.
     //
-    OTPassword  thePassphrase;
+    StringPassword  thePassphrase;
     const OTString strDisplay("Enter the new passphrase for this new password-protected purse."); // todo internationalization / hardcoding.
     // ------------------------------------------------------------------------
     // thePassphrase and m_pCachedKey are BOTH output from the below function.
