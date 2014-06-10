@@ -983,43 +983,22 @@ void OTString::LowLevelSet(const char * new_string, uint32_t nEnforcedMaxLength)
 //
 bool OTString::MemSet(const char * pMem, uint32_t theSize) // if theSize is 10...
 {
-	Release();
-	// -------------------	
-	if ((NULL == pMem) || (theSize < 1))
-		return true;
-	// -------------------
-	char * str_new = new char [theSize + 1]; // then we allocate 11 
-	OT_ASSERT(NULL != str_new);
-	// -------------------	
-    OTPassword::zeroMemory(str_new, theSize + 1);
-	// -------------------
-//  void * OTPassword::safe_memcpy(void   * dest,
-//                                 uint32_t dest_size,
-//                                 const
-//                                 void   * src,
-//                                 uint32_t src_length,
-//                                 bool     bZeroSource/*=false*/)
+    Release();
+    // -------------------	
+    if ((NULL == pMem) || (theSize < 1))
+        return true;
+    // -------------------
 
-    OTPassword::safe_memcpy(static_cast<void*>(str_new),
-                            theSize + 1,
-                            pMem,
-                            theSize);
-//	memcpy(static_cast<void*>(str_new), pMem, theSize); // then we copy 10 bytes
-	
-    // todo optimize: This is probably superfluous due to the zeroMemory above.
-    // Then again, we might want to remove that, and then keep this. 
-	str_new[theSize] = '\0'; // add null-terminator. (I deliberately made this buffer 1 byte larger so I could put the 0 at the end.) Here the index[10] is the 11th byte, since we're counting from 0.
-    // ------------------------------------------    
-    // Calculate the length (in case there was a null terminator in the middle...)
-    // This way we're guaranteed to have the correct length.
-    //
-    uint32_t nLength = static_cast<uint32_t> (OTString::safe_strlen(str_new, static_cast<size_t>(theSize)));
-	str_new[nLength] = '\0'; // This SHOULD be superfluous as well...
-    // ------------------------------------------    
-	m_lLength	= nLength; // the length doesn't count the 0.
-	m_strBuffer	= str_new;
-    // ------------------------------------------
-	return true;
+    BinaryPassword mem;
+
+    mem.resize(theSize + 1);
+    mem(pMem, theSize);
+    mem.getData().push_back('\0'); // append null terminator
+
+    m_strBuffer = static_cast<char *>(mem.getMemoryCopy().first);
+    m_lLength = mem.getMemoryCopy().second;
+
+    return true;
 }
 
 

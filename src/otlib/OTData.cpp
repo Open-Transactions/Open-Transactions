@@ -139,6 +139,14 @@
 #include "OTPassword.hpp"
 
 
+#if defined (OPENTXS_HAVE_NETINET_IN_H)
+extern "C"
+{
+#include <netinet/in.h>
+}
+#endif
+
+
 bool OTData::operator==(const OTData &s2) const
 {
 	if (m_lSize != s2.m_lSize) 
@@ -189,30 +197,79 @@ bool OTData::operator!=(const OTData &s2) const
 // you are now on position 100, and the next OTfread will 
 // proceed from that position. (Unless you reset().)
 //
-uint32_t OTData::OTfread(uint8_t * buf, uint32_t buflen)
+uint32_t OTData::OTfread(uint8_t * buf, const uint32_t buflen)
 {
     OT_ASSERT((NULL != buf) && (buflen > 0));
-    
-	uint32_t nSizeToRead = 0;
-	
-	if ((NULL != m_pData) && (m_lPosition < GetSize()))
-	{
-		// If the size is 20, and position is 5 (I've already read the first 5 bytes)
-		// then the size remaining to read is 15. That is, GetSize() minus m_lPosition.
-		nSizeToRead = GetSize() - m_lPosition;
-		
-		if (buflen < nSizeToRead)
-			nSizeToRead = buflen;
-		
-        OTPassword::safe_memcpy(buf, buflen, 
-                                (static_cast<uint8_t*>(m_pData) + m_lPosition),
-                                 static_cast<uint32_t>(nSizeToRead));
-//		memcpy(buf, (static_cast<char*>(m_pData))+m_lPosition, nSizeToRead); 
-		m_lPosition += nSizeToRead;
-	}
-	
-	return nSizeToRead; 
+
+    std::vector<uint8_t> v;
+
+    if ((NULL != m_pData) && (m_lSize > 0))
+        v = std::vector<uint8_t>(static_cast<const uint8_t *>(m_pData), static_cast<const uint8_t *>(m_pData)+m_lSize);
+
+    if (m_lPosition >= v.size()) {
+        buf = NULL;
+        return 0;
+    }
+
+    std::vector<uint8_t> v_out;
+
+    size_t i = 0, len = buflen;
+    for (std::vector<uint8_t>::iterator ii = v.begin(); ii != v.end(); ++ii){
+        if (i++ == m_lPosition && len != 0) {
+            m_lPosition++; len--;
+
+            v_out.push_back(*ii);
+        }
+    }
+
+#ifdef _WIN32
+    std::copy(v_out.begin(), v_out.end(), stdext::make_checked_array_iterator(buf, v_out.size()));
+#else
+    std::copy(v_out.begin(), v_out.end(), buf);
+#endif
+
+    return v_out.size();
 }
+
+
+template<typename _Ty>
+EXPORT	uint32_t OTData::OTfreadNetwork(_Ty & _Ref) {
+    uint8_t * buf = new uint8_t[sizeof(_Ty)];
+
+    uint32_t len = this->OTfread(buf, sizeof(_Ty));
+
+    _Ty * ptr = reinterpret_cast<_Ty *>(buf);
+
+    if (sizeof(_Ty) == sizeof(short))
+        _Ref = ntohs(*ptr);
+
+    if (sizeof(_Ty) == sizeof(long))
+        _Ref = ntohl(*ptr);
+
+    delete buf;
+
+    OT_ASSERT(sizeof(_Ref) == len);
+
+    return len;
+}
+
+template EXPORT uint32_t OTData::OTfreadNetwork(uint16_t & _Ref);
+template EXPORT uint32_t OTData::OTfreadNetwork(uint32_t & _Ref);
+
+size_t OTData::OTfreadData(void * data, const size_t size) {
+
+    size_t len = this->OTfread(static_cast<uint8_t *>(data), static_cast<uint32_t>(size));
+
+    if (0 == len) {
+        OTLog::vError("%s: Error reading data.\n", __FUNCTION__);
+        return false;
+    }
+
+    OT_ASSERT(len == size);
+
+    return len;
+}
+
 
 
 OTData::OTData() : m_pData(NULL), m_lPosition(0), m_lSize(0)
@@ -320,96 +377,77 @@ bool OTData::IsEmpty() const
 
 void OTData::Assign(const void * pNewData, uint32_t lNewSize)
 {
-	Release(); // This releases all memory and zeros out all members.
-	
-	if ((pNewData != NULL) && (lNewSize > 0))
-	{
-		m_pData = static_cast<void*>(new uint8_t[lNewSize]);
-		OT_ASSERT(NULL != m_pData);
-		
-        OTPassword::safe_memcpy(m_pData, lNewSize, pNewData, lNewSize);
-        //		memcpy(m_pData, pNewData, lNewSize);
-		m_lSize = lNewSize;
-	}
-	// else error condition.  Could just ASSERT() this.
+    Release(); // This releases all memory and zeros out all members.
+
+
+    if (NULL == pNewData) return;
+    if (0 >= lNewSize) return;
+
+
+    std::vector<uint8_t> v(static_cast<const uint8_t *>(pNewData), static_cast<const uint8_t *>(pNewData)+lNewSize);
+
+
+    uint8_t * v_copy = new uint8_t[v.size()];
+
+
+#ifdef _WIN32
+    std::copy(v.begin(), v.end(), stdext::make_checked_array_iterator(v_copy, v.size()));
+#else
+    std::copy(v.begin(), v.end(), v_copy);
+#endif
+
+
+    this->m_pData = static_cast<void *>(v_copy);
+    this->m_lSize = sizeof(v.at(0)) * v.size();
 }
+
 
 
 bool OTData::Randomize(uint32_t lNewSize)
 {
-	Release(); // This releases all memory and zeros out all members.
-	if (lNewSize > 0)
-	{
-		m_pData = static_cast<void*>(new uint8_t[lNewSize]);
-		OT_ASSERT(NULL != m_pData);
-        // ---------------------------------        
-        if (!OTPassword::randomizeMemory_uint8(static_cast<uint8_t*>(m_pData), lNewSize))
-        {
-            // randomizeMemory already logs, so I'm not logging again twice here.
-            //
-            delete [] static_cast<uint8_t *>(m_pData);
-            m_pData = NULL;
-            return false;
-        }
-        // --------------------------------------------------
-        m_lSize  = lNewSize;
-        return true;        
-	}
-	// else error condition.  Could just ASSERT() this.
-    return false;
+    BinaryPassword mem;
+    mem.randomize(lNewSize);
+    mem.getMemoryCopyOnto(m_pData, m_lSize);
+
+    return true;
 }
+
 
 
 void OTData::Concatenate(const void * pAppendData, uint32_t lAppendSize)
 {
-    OT_ASSERT(NULL != pAppendData);
-    OT_ASSERT(lAppendSize > 0);
-    // -------------------------
-    if (lAppendSize == 0) // It's unsigned, so it CAN'T be less than 0.
-    {
-        OTLog::Error("OTData::Concatenate: Error: lAppendSize is unexpectedly 0.\n");
-        return;
-    }
-    // -------------------------
-    if (0 == m_lSize)
-    {
-        this->Assign(pAppendData, lAppendSize);
-        return;
-    }
-    // -------------------------
-	void *   pNewData   = NULL;
-	uint32_t lTotalSize	= GetSize() + lAppendSize;
-	
-	if (lTotalSize > 0)
-	{
-		pNewData = static_cast<void*>(new uint8_t[lTotalSize]);
-		OT_ASSERT(NULL != pNewData);
-        OTPassword::zeroMemory(pNewData, lTotalSize);
-	}
-    // -----------------------------------
-    
-	if (NULL != pNewData) // If there's a new memory buffer (for the combined..)
-	{
-        // if THIS object has data inside of it...
-        //
-		if (!IsEmpty()) 
-		{
-            OTPassword::safe_memcpy(pNewData, lTotalSize, m_pData, GetSize()); // Copy THIS object into the new buffer, starting at the beginning.
-		}
-		
-        // Next we copy the data being appended...
-        //
-        OTPassword::safe_memcpy((static_cast<uint8_t*>(pNewData)) + GetSize(),
-                                lTotalSize - GetSize(),
-                                pAppendData, lAppendSize);	
-	}
-    // ---------------------------------------
-	if (NULL != m_pData) // If I wasn't already empty, then erase whatever I had in there before...
-		delete [] static_cast<uint8_t *>(m_pData);
-        
-	m_pData = pNewData;		// Set my internal memory to the new buffer (or NULL, but unlikely.)
-	m_lSize = lTotalSize;	// Set my internal size to the new size.
+    std::vector<uint8_t> v;
+    std::vector<uint8_t> vAppend;
+
+
+    if ((NULL != m_pData) && (m_lSize > 0))
+        v = std::vector<uint8_t>(static_cast<const uint8_t *>(m_pData), static_cast<const uint8_t *>(m_pData)+m_lSize);
+
+
+    if ((NULL != pAppendData) && (lAppendSize > 0))
+        vAppend = std::vector<uint8_t>(static_cast<const uint8_t *>(pAppendData), static_cast<const uint8_t *>(pAppendData)+lAppendSize);
+
+
+    std::copy(vAppend.begin(), vAppend.end(), std::back_inserter(v));
+
+
+    this->Release();
+
+
+    uint8_t * v_copy = new uint8_t[v.size()];
+
+
+#ifdef _WIN32
+    std::copy(v.begin(), v.end(), stdext::make_checked_array_iterator(v_copy, v.size()));
+#else
+    std::copy(v.begin(), v.end(), v_copy);
+#endif
+
+
+    this->m_pData = static_cast<void *>(v_copy);
+    this->m_lSize = sizeof(v.at(0)) * v.size();
 }
+
 
 
 OTData & OTData::operator+=(const OTData & rhs)

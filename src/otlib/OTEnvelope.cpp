@@ -234,7 +234,7 @@ bool OTEnvelope::SetFromBookendedString(const OTString & strArmorWithBookends, /
 
 bool OTEnvelope::Encrypt(const OTString & theInput, OTSymmetricKey & theKey, const OTPassword & thePassword)
 {
-    OT_ASSERT((thePassword.isPassword() && (thePassword.getPasswordSize() > 0)) || (thePassword.isMemory() && (thePassword.getMemorySize() > 0)));
+    OT_ASSERT(thePassword.length() > 0);
     OT_ASSERT(theInput.Exists());
     // -----------------------------------------------
     // Generate a random initialization vector.
@@ -269,7 +269,7 @@ bool OTEnvelope::Encrypt(const OTString & theInput, OTSymmetricKey & theKey, con
 
 	OT_ASSERT(theKey.HasHashCheck());
 
-    OTPassword  theRawSymmetricKey;
+    BinaryPassword  theRawSymmetricKey;
     
     if (false == theKey.GetRawKeyFromPassphrase(thePassword, theRawSymmetricKey))
     {
@@ -354,10 +354,10 @@ bool OTEnvelope::Decrypt(OTString & theOutput, const OTSymmetricKey & theKey, co
 {
     const char * szFunc = "OTEnvelope::Decrypt";
     // ------------------------------------------------
-    OT_ASSERT((thePassword.isPassword() && (thePassword.getPasswordSize() > 0)) || (thePassword.isMemory() && (thePassword.getMemorySize() > 0)));
+    OT_ASSERT(thePassword.length() > 0);
     OT_ASSERT(theKey.IsGenerated());
     // -----------------------------------------------
-    OTPassword  theRawSymmetricKey;
+    BinaryPassword  theRawSymmetricKey;
     
     if (false == theKey.GetRawKeyFromPassphrase(thePassword, theRawSymmetricKey))
     {
@@ -473,7 +473,7 @@ bool OTEnvelope::Decrypt(OTString & theOutput, const OTSymmetricKey & theKey, co
                                                     // -------------------------------
                                                     theIV,
                                                     // -------------------------------
-                                                    thePlaintext); // OUTPUT. (Recovered plaintext.) You can pass OTPassword& OR OTPayload& here (either will work.)
+                                                    &thePlaintext); // OUTPUT. (Recovered plaintext.) You can pass OTPassword& OR OTPayload& here (either will work.)
     // -----------------------------------------------
     // theOutput is where we'll put the decrypted data.
     //
