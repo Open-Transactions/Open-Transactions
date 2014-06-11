@@ -1625,7 +1625,7 @@ bool OT_API::Wallet_ChangePassphrase()
     // ---------------------------------------------------------------------------
     // ENCRYPT ALL CREDENTIALS FROM MASTER KEY INTO A TEMP KEY
     //
-    OTPassword     theTempPassword; // Used to store a temp password only. Only for credentialed nyms.
+    StringPassword     theTempPassword; // Used to store a temp password only. Only for credentialed nyms.
     OTPasswordData thePWData("Enter existing wallet master passphrase.");
 
     // At this point, for Nyms with credentials, we need to ReEncrypt the Nym's credentials,
@@ -1637,7 +1637,7 @@ bool OT_API::Wallet_ChangePassphrase()
     //
     if (bAtLeastOneNymHasCredentials) // All the Nyms on our list are private, by this point. And within this block, they have credentials, too.
     {
-        theTempPassword.randomizePassword(12); // the new random PW will be 12 bytes int64_t. (We discard it after this function is done.)
+        theTempPassword.randomize(12); // the new random PW will be 12 bytes int64_t. (We discard it after this function is done.)
         bool bSuccessReEncrypting = true;
         // ------------------------
         FOR_EACH(std::list<OTPseudonym *>, list_nyms)
@@ -1697,7 +1697,7 @@ bool OT_API::Wallet_ChangePassphrase()
     // to generate if it's not already there.) So we just force that step here,
     // to make sure it happens, even if there are no Nyms to save below this point.
     //
-    OTPassword temp_password;
+    StringPassword temp_password;
     _SharedPtr<OTCachedKey> sharedPtr(OTCachedKey::It());
     const bool bRegenerate = sharedPtr->GetMasterPassword(sharedPtr, temp_password, strReason.Get(),
                                                           true); //bVerifyTwice=false by default.
@@ -5492,7 +5492,7 @@ OTToken * OT_API::Purse_Peek(const OTIdentifier & SERVER_ID,
 //  OTPasswordData thePWData(strReason);
     // -----------------------------------
     OTPurse    thePurse(SERVER_ID, ASSET_TYPE_ID);
-    OTPassword thePassword; // Only used in the case of password-protected purses.
+    StringPassword thePassword; // Only used in the case of password-protected purses.
 	// -----------------------------------------------------
     // What's going on here?
     // A purse can be encrypted by a private key (controlled by a Nym) or by a symmetric
@@ -5570,7 +5570,7 @@ OTPurse * OT_API::Purse_Pop(const OTIdentifier & SERVER_ID,
     OT_ASSERT(NULL != pPurse);
     OTCleanup<OTPurse> thePurseAngel(pPurse); // We'll unset this in success case, so it doesn't delete the purse we're returning.
 	// -----------------------------------------------------
-    OTPassword thePassword; // Only used in the case of password-protected purses.
+    StringPassword thePassword; // Only used in the case of password-protected purses.
 	// -----------------------------------------------------
     // What's going on here?
     // A purse can be encrypted by a private key (controlled by a Nym) or by a symmetric
@@ -5700,7 +5700,7 @@ OTPurse * OT_API::Purse_Push(const OTIdentifier & SERVER_ID,
     OT_ASSERT(NULL != pPurse);
     OTCleanup<OTPurse> thePurseAngel(pPurse); // We'll unset this in success case, so it doesn't delete the purse we're returning.
 	// -----------------------------------------------------
-    OTPassword thePassword; // Only used in the case of password-protected purses.
+    StringPassword thePassword; // Only used in the case of password-protected purses.
 	// -----------------------------------------------------
     // What's going on here?
     // A purse can be encrypted by a private key (controlled by a Nym) or by a symmetric
@@ -5756,7 +5756,7 @@ bool OT_API::Wallet_ImportPurse(const OTIdentifier & SERVER_ID,
     OTString strPurseReason ((NULL == pstrDisplay) ? "Enter passphrase for purse being imported." : pstrDisplay->Get());
     OTPasswordData thePWDataWallet((NULL == pstrDisplay) ? OT_PW_DISPLAY : pstrDisplay->Get());
     // -----------------------------------
-    OTPassword thePassword; // Only used in the case of password-protected purses.
+    StringPassword thePassword; // Only used in the case of password-protected purses.
 	// -----------------------------------------------------
 	OTPseudonym * pNym = this->GetOrLoadPrivateNym(SIGNER_ID, false, __FUNCTION__, &thePWDataWallet); // These copiously log, and ASSERT.
 	if (NULL == pNym) return false;
@@ -5898,14 +5898,14 @@ OTToken * OT_API::Token_ChangeOwner(const OTIdentifier & SERVER_ID,
     // ------------------------------
     OTPurse * pOldPurse = NULL;                // if the old owner is a Purse (symmetric+master key), the entire purse is loaded.
     OTCleanup<OTPurse> theOldPurseAngel;
-    OTPassword theOldPassword;      // Only used in the case of password-protected purses.
+    StringPassword theOldPassword;      // Only used in the case of password-protected purses.
     OTPseudonym *			pOldNym   = NULL;
     OTNym_or_SymmetricKey * pOldOwner = NULL;
     OTCleanup<OTNym_or_SymmetricKey> theOldOwnerAngel;
     // ------------------------------
     OTPurse * pNewPurse = NULL;                // if the new owner is a Purse (symmetric+master key), the entire purse is loaded.
     OTCleanup<OTPurse> theNewPurseAngel;
-    OTPassword theNewPassword;      // Only used in the case of password-protected purses.
+    StringPassword theNewPassword;      // Only used in the case of password-protected purses.
     OTPseudonym *			pNewNym   = NULL;
     OTNym_or_SymmetricKey * pNewOwner = NULL;
     OTCleanup<OTNym_or_SymmetricKey> theNewOwnerAngel;
@@ -9121,7 +9121,7 @@ int32_t OT_API::notarizeDeposit(OTIdentifier	& SERVER_ID,
     // is actually a Nym inside, or a symmetric key. (None of the purse operations will care,
     // since they can use pOwner either way.)
     //
-    OTPassword  thePassword;
+    StringPassword  thePassword;
     OTPurse     theSourcePurse(thePurse);
 
     OTNym_or_SymmetricKey * pPurseOwner = this->LoadPurseAndOwnerForMerge(THE_PURSE, theSourcePurse, thePassword,

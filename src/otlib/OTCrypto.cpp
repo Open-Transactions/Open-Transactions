@@ -475,7 +475,7 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 			strPassword = strPass;
 
 #endif
-			theOutput.setPassword(strPassword.c_str(), static_cast<int32_t>(strPassword.length() -1));
+            theOutput = StringPassword(strPassword);
 		}
 
 		std::cout << std::endl; //new line.
@@ -487,17 +487,19 @@ bool OTCrypto::GetPasswordFromConsoleLowLevel(OTPassword & theOutput, const char
 	// technically end up getting swapped to disk.
 	//
 	{
-		char buf[_PASSWORD_LEN + 10] = "", buff[_PASSWORD_LEN + 10] = "";
+        BinaryPassword buf, buff;
+        buf.resize(_PASSWORD_LEN + 10); buff.resize(_PASSWORD_LEN + 10);
 
 		int32_t nReadPW = 0;
 
 		//  char * szPass = getpass(szPrompt); // "This function is obsolete. Do not use it."
-		if ((nReadPW = UI_UTIL_read_pw(buf,buff,_PASSWORD_LEN,szPrompt,0)) == 0) // verify=0
+        if ((nReadPW = UI_UTIL_read_pw(
+            static_cast<char*>(buf.getMemory().first),
+            static_cast<char*>(buff.getMemory().first),
+            _PASSWORD_LEN, szPrompt, 0)) == 0) // verify=0
 		{
-			size_t nPassLength = OTString::safe_strlen(buf, _PASSWORD_LEN);
-			theOutput.setPassword_uint8(reinterpret_cast<uint8_t*>(buf), nPassLength);
-			OTPassword::zeroMemory(buf, nPassLength);
-			OTPassword::zeroMemory(buff, nPassLength);
+            theOutput = buf;
+
 			return true;
 		}
 		else
@@ -539,7 +541,7 @@ bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=fal
 
     for(;;)
     {
-        theOutput.zeroMemory();
+        theOutput.zero();
 
         if (GetPasswordFromConsoleLowLevel(theOutput, "(OT) passphrase: "))
         {
@@ -555,7 +557,7 @@ bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=fal
             return false;
         }
         // -----------------------------------------------
-        OTPassword tempPassword;
+        StringPassword tempPassword;
 
         if (!GetPasswordFromConsoleLowLevel(tempPassword, "(Verifying) passphrase again: "))
         {
@@ -563,7 +565,7 @@ bool OTCrypto::GetPasswordFromConsole(OTPassword & theOutput, bool bRepeat/*=fal
             return false;
         }
 
-        if (!tempPassword.Compare(theOutput))
+        if (tempPassword != theOutput)
         {
             if (++nAttempts >= 3)
                 break;
@@ -800,7 +802,7 @@ void OTCrypto_Decrypt_Output::Release()
 void OTCrypto_Decrypt_Output::Release_Envelope_Decrypt_Output()
 {
     if (NULL != m_pPassword)
-        m_pPassword->zeroMemory();
+        m_pPassword->zero();
 
     if (NULL != m_pPayload)
         m_pPayload->Release();
@@ -813,11 +815,14 @@ bool OTCrypto_Decrypt_Output::Concatenate(const void * pAppendData, uint32_t lAp
 
     if (NULL != m_pPassword)
     {
-        if (static_cast<int32_t>(lAppendSize) ==
-            static_cast<int32_t>(m_pPassword->addMemory(pAppendData, static_cast<uint32_t>(lAppendSize))))
-            return true;
-        else
-            return false;
+        m_pPassword->resize(m_pPassword->length() + lAppendSize);
+
+        SecureDataVector vOrig = m_pPassword->getData();
+        SecureDataVector vAdd(static_cast<const uint8_t *>(pAppendData), static_cast<const uint8_t *>(pAppendData)+lAppendSize);
+
+        std::copy(vAdd.begin(), vAdd.end(), std::back_inserter(vOrig));
+
+        return true;
     }
     // -------------------------
     if (NULL != m_pPayload)
@@ -1466,19 +1471,15 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
     //
     // int32_t PKCS5_PBKDF2_HMAC_SHA1(const char*, int32_t, const uint8_t*, int32_t, int32_t, int32_t, uint8_t*)
     //
-	PKCS5_PBKDF2_HMAC_SHA1(
-		reinterpret_cast<const char *>   // If is password... supply password, otherwise supply memory.
-		(
-		userPassword.isPassword() ? userPassword.getPassword_uint8() : userPassword.getMemory_uint8()
-		),
-        static_cast <const int32_t>             (userPassword.isPassword() ? userPassword.getPasswordSize() :
-                                             userPassword.getMemorySize()),         // Password Length
-		static_cast <const uint8_t *> (dataSalt.GetPayloadPointer()),         // Salt Data
-		static_cast <const int32_t>             (dataSalt.GetSize()),                   // Salt Length
-		static_cast <const int32_t>             (uIterations),                          // Number Of Iterations
-		static_cast <const int32_t>             (pDerivedKey->getMemorySize()),         // Output Length
-		static_cast <uint8_t *>       (pDerivedKey->getMemoryWritable())      // Output Key (not const!)
-		);
+    PKCS5_PBKDF2_HMAC_SHA1(
+        static_cast<const char *>          (userPassword.getMemoryConst().first),  // The Password
+        static_cast<const int32_t>         (userPassword.getMemoryConst().second),  // Password Length
+        static_cast<const unsigned char *> (dataSalt.GetPayloadPointer()),          // Salt Data
+        static_cast<const int32_t>         (dataSalt.GetSize()),                    // Salt Length
+        static_cast<const int32_t>         (uIterations),                           // Number Of Iterations
+        static_cast<const int32_t>         (pDerivedKey->getMemory().second),       // Output Length
+        static_cast<unsigned char *>       (pDerivedKey->getMemory().first)         // Output Key (not const!)
+        );
 
     // For The HashCheck
     // -------------------------------------------------------------------------------------------------
@@ -1492,15 +1493,15 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 	// Compare that with the supplied one, (if there is one).
 	// If there isn't one, we return the
 
-	PKCS5_PBKDF2_HMAC_SHA1(
-		reinterpret_cast<const char *>          (pDerivedKey->getMemory()),        // Derived Key
-		static_cast     <const int32_t>             (pDerivedKey->getMemorySize()),    // Password Length
-		static_cast     <const uint8_t *> (dataSalt.GetPayloadPointer()),    // Salt Data
-		static_cast     <const int32_t>             (dataSalt.GetSize()),              // Salt Length
-		static_cast     <const int32_t>             (uIterations),                     // Number Of Iterations
-		static_cast     <const int32_t>             (tmpHashCheck.GetSize()),          // Output Length
-		const_cast<uint8_t *>(static_cast<const uint8_t *>(tmpHashCheck.GetPayloadPointer())))  // Output Key (not const!)
-		;
+    PKCS5_PBKDF2_HMAC_SHA1(
+        static_cast<const char *>          (pDerivedKey->getMemory().first),        // Derived Key
+        static_cast<const int32_t>         (pDerivedKey->getMemory().second),    // Password Length
+        static_cast<const unsigned char *> (dataSalt.GetPayloadPointer()),    // Salt Data
+        static_cast<const int32_t>         (dataSalt.GetSize()),              // Salt Length
+        static_cast<const int32_t>         (uIterations),                     // Number Of Iterations
+        static_cast<const int32_t>         (tmpHashCheck.GetSize()),          // Output Length
+        const_cast<unsigned char *>(static_cast<const unsigned char *>(tmpHashCheck.GetPayloadPointer())))  // Output K
+        ;
 
 	if (bHaveCheckHash)
 	{
@@ -1674,17 +1675,9 @@ bool OTCrypto_OpenSSL::CalculateDigest(const OTData & dataInput, const OTString 
 // todo return a smartpointer here.
 OTPassword * OTCrypto_OpenSSL::InstantiateBinarySecret() const
 {
-  uint8_t* tmp_data = new uint8_t[OTCryptoConfig::SymmetricKeySize()];
-  OTPassword* pNewKey = new OTPassword(static_cast<void *>(&tmp_data[0]), OTCryptoConfig::SymmetricKeySize());
-  OT_ASSERT_MSG(NULL != pNewKey, "pNewKey = new OTPassword");
-
-	if (NULL != tmp_data)
-  {
-    delete [] tmp_data;
-    tmp_data = NULL;
-  }
-  
-  return pNewKey;
+    BinaryPassword * pNewKey = new BinaryPassword();
+    pNewKey->resize(OTCryptoConfig::SymmetricKeySize());
+    return pNewKey;
 }
 
 
@@ -2104,7 +2097,7 @@ bool OTCrypto_OpenSSL::Encrypt(const OTPassword & theRawSymmetricKey, // The sym
     const char * szFunc = "OTCrypto_OpenSSL::Encrypt";
     // -----------------------------------------------
     OT_ASSERT(OTCryptoConfig::SymmetricIvSize()  == theIV.GetSize());
-    OT_ASSERT(OTCryptoConfig::SymmetricKeySize() == theRawSymmetricKey.getMemorySize());
+    OT_ASSERT(OTCryptoConfig::SymmetricKeySize() == theRawSymmetricKey.length());
     OT_ASSERT(NULL != szInput);
     OT_ASSERT(lInputLength > 0);
     // -----------------------------------------------
@@ -2156,9 +2149,10 @@ bool OTCrypto_OpenSSL::Encrypt(const OTPassword & theRawSymmetricKey, // The sym
     const EVP_CIPHER * cipher_type = EVP_aes_128_cbc();   // todo hardcoding.
 
     // -----------------------------------------------
+    uint8_t * rawKey = const_cast<uint8_t *>(static_cast<const uint8_t *>(theRawSymmetricKey.getMemoryConst().first));
     if (!EVP_EncryptInit(&ctx,
                          cipher_type,
-                         const_cast<uint8_t *>(theRawSymmetricKey.getMemory_uint8()),
+                         rawKey,
                          static_cast<uint8_t *>(const_cast<void *>(theIV.GetPayloadPointer()))))
     {
         OTLog::vError("%s: EVP_EncryptInit: failed.\n", szFunc);
@@ -2226,7 +2220,7 @@ bool OTCrypto_OpenSSL::Decrypt(const OTPassword & theRawSymmetricKey, // The sym
     const char * szFunc = "OTCrypto_OpenSSL::Decrypt";
     // -----------------------------------------------
     OT_ASSERT(OTCryptoConfig::SymmetricIvSize()   == theIV.GetSize());
-    OT_ASSERT(OTCryptoConfig::SymmetricKeySize()  == theRawSymmetricKey.getMemorySize());
+    OT_ASSERT(OTCryptoConfig::SymmetricKeySize() == theRawSymmetricKey.length());
     OT_ASSERT(NULL != szInput);
     OT_ASSERT(lInputLength > 0);
     // -----------------------------------------------
@@ -2278,9 +2272,10 @@ bool OTCrypto_OpenSSL::Decrypt(const OTPassword & theRawSymmetricKey, // The sym
 
     // -----------------------------------------------
     //
+    uint8_t * rawKey = const_cast<uint8_t *>(static_cast<const uint8_t *>(theRawSymmetricKey.getMemoryConst().first));
     if (!EVP_DecryptInit(&ctx,
                          cipher_type,
-                         const_cast<uint8_t *>(theRawSymmetricKey.getMemory_uint8()),
+                         rawKey,
                          static_cast<uint8_t *>(const_cast<void *>(theIV.GetPayloadPointer()))))
     {
         OTLog::vError("%s: EVP_DecryptInit: failed.\n", szFunc);

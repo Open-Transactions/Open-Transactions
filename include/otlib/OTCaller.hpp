@@ -332,8 +332,8 @@ void main()
 class OTCaller
 {
 protected:
-	OTPassword	m_Password;	// The password will be stored here by the Java dialog, so that the C callback can retrieve it and pass it to OpenSSL
-	OTPassword	m_Display;	// A display string is set here before the Java dialog is shown. (OTPassword used here only for convenience.)
+	StringPassword	m_Password;	// The password will be stored here by the Java dialog, so that the C callback can retrieve it and pass it to OpenSSL
+    StringPassword	m_Display;	// A display string is set here before the Java dialog is shown. (OTPassword used here only for convenience.)
 
 	OTCallback * _callback;
 

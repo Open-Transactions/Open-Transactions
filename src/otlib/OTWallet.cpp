@@ -1516,7 +1516,7 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
 
 							if (!OTCachedKey::It()->HasHashCheck())
 							{
-								OTPassword tempPassword; tempPassword.zeroMemory();
+								StringPassword tempPassword; tempPassword.zero();
                                 
                                 _SharedPtr<OTCachedKey> sharedPtr(OTCachedKey::It());
                                 

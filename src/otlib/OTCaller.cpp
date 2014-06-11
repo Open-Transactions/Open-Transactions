@@ -177,7 +177,7 @@ const char * OTCaller::GetDisplay() const
 	// I'm using the OTPassword class to store the display string, in addition to
 	// storing the password itself. (For convenience.)
 	//
-	return reinterpret_cast<const char *>(m_Display.getPassword_uint8());
+    return m_Display.getChars();
 }
 
 
@@ -188,7 +188,7 @@ void OTCaller::SetDisplay(const char * szDisplay, int32_t nLength)
 	// I'm using the OTPassword class to store the display string, in addition to
 	// storing the password itself. (For convenience.)
 	//
-	m_Display.setPassword_uint8(reinterpret_cast<const uint8_t *>(szDisplay), nLength);
+    m_Display = StringPassword(std::string(szDisplay));
 }
 
 
@@ -198,7 +198,7 @@ bool OTCaller::GetPassword(OTPassword & theOutput) const // Get the password....
 {
 	OTLog::Output(0, "OTCaller::GetPassword: FYI, returning password after invoking a (probably Java) password dialog.\n");
 
-	theOutput.setPassword_uint8(m_Password.getPassword_uint8(), m_Password.getPasswordSize());
+    theOutput = m_Password;
 
 	return true;
 }
@@ -206,8 +206,7 @@ bool OTCaller::GetPassword(OTPassword & theOutput) const // Get the password....
 
 void OTCaller::ZeroOutPassword()	// Then ZERO IT OUT so copies aren't floating around.
 {
-	if (m_Password.getPasswordSize() > 0)
-		m_Password.zeroMemory();
+    m_Password.zero();
 }
 
 

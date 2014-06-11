@@ -203,8 +203,8 @@ uint32_t OTData::OTfread(uint8_t * buf, uint32_t buflen)
 		
 		if (buflen < nSizeToRead)
 			nSizeToRead = buflen;
-		
-        OTPassword::safe_memcpy(buf, buflen, 
+
+        OTPassword::safe_memcpy(buf, buflen,
                                 (static_cast<uint8_t*>(m_pData) + m_lPosition),
                                  static_cast<uint32_t>(nSizeToRead));
 //		memcpy(buf, (static_cast<char*>(m_pData))+m_lPosition, nSizeToRead); 
@@ -327,7 +327,7 @@ void OTData::Assign(const void * pNewData, uint32_t lNewSize)
 		m_pData = static_cast<void*>(new uint8_t[lNewSize]);
 		OT_ASSERT(NULL != m_pData);
 		
-        OTPassword::safe_memcpy(m_pData, lNewSize, pNewData, lNewSize);
+        OTPassword::safe_memcpy(static_cast<uint8_t*>(m_pData), lNewSize, static_cast<const uint8_t*>(pNewData), lNewSize);
         //		memcpy(m_pData, pNewData, lNewSize);
 		m_lSize = lNewSize;
 	}
@@ -343,7 +343,7 @@ bool OTData::Randomize(uint32_t lNewSize)
 		m_pData = static_cast<void*>(new uint8_t[lNewSize]);
 		OT_ASSERT(NULL != m_pData);
         // ---------------------------------        
-        if (!OTPassword::randomizeMemory_uint8(static_cast<uint8_t*>(m_pData), lNewSize))
+        if (!OTPassword::randomizeMemory(m_pData, lNewSize))
         {
             // randomizeMemory already logs, so I'm not logging again twice here.
             //
@@ -394,14 +394,14 @@ void OTData::Concatenate(const void * pAppendData, uint32_t lAppendSize)
         //
 		if (!IsEmpty()) 
 		{
-            OTPassword::safe_memcpy(pNewData, lTotalSize, m_pData, GetSize()); // Copy THIS object into the new buffer, starting at the beginning.
+            OTPassword::safe_memcpy(static_cast<uint8_t*>(pNewData), lTotalSize, static_cast<const uint8_t*>(m_pData), GetSize()); // Copy THIS object into the new buffer, starting at the beginning.
 		}
 		
         // Next we copy the data being appended...
         //
         OTPassword::safe_memcpy((static_cast<uint8_t*>(pNewData)) + GetSize(),
                                 lTotalSize - GetSize(),
-                                pAppendData, lAppendSize);	
+                                static_cast<const uint8_t*>(pAppendData), lAppendSize);
 	}
     // ---------------------------------------
 	if (NULL != m_pData) // If I wasn't already empty, then erase whatever I had in there before...
