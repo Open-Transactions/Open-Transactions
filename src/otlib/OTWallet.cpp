@@ -146,6 +146,7 @@
 #include "OTPurse.hpp"
 #include "OTServerContract.hpp"
 #include "OTStorage.hpp"
+#include "OTSymmetricKey.hpp"
 
 #include "irrxml/irrXML.hpp"
 
@@ -222,7 +223,11 @@ void OTWallet::Release_Wallet()
 		pAccount = NULL;
 		
 		m_mapAccounts.erase(m_mapAccounts.begin());
-	}	
+	}
+	// ----------------------------------
+    // Watch how much prettier this one is, since we used smart pointers!
+    //
+    m_mapExtraKeys.clear();
 }
 
 
@@ -1261,7 +1266,7 @@ bool OTWallet::SaveContract(OTString & strContract)
 	
 	strContract.Concatenate("<?xml version=\"1.0\"?>\n<wallet name=\"%s\" version=\"%s\">\n\n", 
 							ascName.Get(), OTCachedKey::It()->IsGenerated() ? "2.0" : m_strVersion.Get());
-	
+    // ---------------------------------------------------------------
     if (OTCachedKey::It()->IsGenerated()) // If it exists, then serialize it.
     {
         OTASCIIArmor ascMasterContents;
@@ -1272,6 +1277,32 @@ bool OTWallet::SaveContract(OTString & strContract)
         }        
         else
             OTLog::Error("OTWallet::SaveContract: Failed trying to write master key to wallet.\n");
+    }
+    // ---------------------------------------------------------------
+    // Save the extra symmetric keys. (The ones the client app might use to
+    // encrypt his local sql-lite DB's record of his Bitmessage connect string,
+    // or any other local data.)
+    //
+    FOR_EACH(mapOfSymmetricKeys, m_mapExtraKeys)
+    {
+        const std::string          str_id = it->first;
+        _SharedPtr<OTSymmetricKey> pKey   = it->second;
+        // ------------------------------------------
+        OTString     strKeyID(str_id.c_str());
+        OTASCIIArmor ascKeyID;
+        
+        ascKeyID.SetString(strKeyID, false); // linebreaks=false (true by default.)
+        // ------------------------------------------
+        OTASCIIArmor ascKeyContents;
+        
+        if (pKey && pKey->SerializeTo(ascKeyContents))
+        {
+            strContract.Concatenate("<symmetricKey id=\"%s\">\n%s</symmetricKey>\n\n",
+                                    ascKeyID.Get(),
+                                    ascKeyContents.Get());
+        }
+        else
+            OTLog::Error("OTWallet::SaveContract: Failed trying to serialize symmetric keys to wallet.\n");
     }
     // ---------------------------------------------------------------
     //
@@ -1332,6 +1363,228 @@ bool OTWallet::SaveContract(OTString & strContract)
 	strContract.Concatenate("%s", "</wallet>\n");
 	
 	return true;		
+}
+
+
+// Let's say you have client-app data that you want to keep in encrypted form.
+// Well, use this function to create/retrieve a symmetric key based on an ID.
+// For example, "mc_sql_lite" might be the name of the symmetric key that I use
+// to encrypt sensitive contents in the sql*lite DB.
+// This function will find or create the key and return it to you. The key is
+// encrypted to the master key in the wallet, so you never actually have to type
+// a password to use it, except when the master key itself has expired.
+//
+_SharedPtr<OTSymmetricKey> OTWallet::getOrCreateExtraKey(const std::string & str_KeyID,
+                                                         const std::string * pReason/*=NULL*/)
+{
+//  const std::string str_KeyID("mc_sql_lite");
+
+    // Get the appropriate symmetric key from the wallet.
+    // (Which we will decrypt using pMaster.)
+    // Once it's decrypted, we'll use this key for encrypting/decrypting
+    // the sql*lite DB data on the client side.
+    //
+    _SharedPtr<OTSymmetricKey> pExtraKey = this->getExtraKey(str_KeyID);
+    
+    // (If it doesn't exist, let's just create it here.)
+    //
+    if (!pExtraKey)
+    {
+        // The extra keys, like the Nyms, are all encrypted to the master key for the wallet.
+        // Thus, to create a new extra symmetrical key, we need to get the master key from OTCachedKey...
+        //
+        _SharedPtr<OTCachedKey> pMasterKey(OTCachedKey::It());
+        
+        if (pMasterKey)
+        {
+            OTPassword master_password;
+            const bool bGotMasterPW = pMasterKey->GetMasterPassword(pMasterKey, master_password,
+                                                                    (NULL == pReason) ? "" : pReason->c_str());
+            OTString strNewKeyOutput;
+            
+            if (bGotMasterPW && OTSymmetricKey::CreateNewKey(strNewKeyOutput, NULL, &master_password))
+            {
+                _SharedPtr<OTSymmetricKey> pNewExtraKey(new OTSymmetricKey);
+                
+                if (pNewExtraKey &&
+                    pNewExtraKey->SerializeFrom(strNewKeyOutput) &&
+                    // ----------------------
+                    this->addExtraKey(str_KeyID, pNewExtraKey))
+                {
+                    // ----------------------
+                    pExtraKey = pNewExtraKey;
+
+                    SaveWallet();
+                }
+            } // if (bGotMasterPW)
+        } // if (pMasterKey)
+    }
+    // ---------------------------------
+    // Then:
+    //
+    if (pExtraKey)
+        return pExtraKey;  // <======== SUCCESS.
+    
+    // -------------------------------------
+    return _SharedPtr<OTSymmetricKey>();
+}
+
+
+// ------------------------------------------------------------------------
+// The "extra" symmetric keys in the wallet are all, like the Nyms, encrypted
+// to the wallet's master key. So whenever the wallet's master key is changed,
+// this method needs to be called as well, to update those extra symmetric keys
+// to the new master key. (Otherwise they'll stop working.)
+//
+bool OTWallet::ChangePassphrasesOnExtraKeys(const OTPassword & oldPassphrase,
+                                            const OTPassword & newPassphrase)
+{
+    // First we copy all the keys over to a new map, since we aren't going
+    // to copy the changed ones back to the actual map unless EVERYTHING
+    // succeeds.
+    //
+    mapOfSymmetricKeys mapChanged;
+    // ------------------------------------
+    FOR_EACH(mapOfSymmetricKeys, m_mapExtraKeys)
+    {
+        const std::string          str_id  = it->first;
+        _SharedPtr<OTSymmetricKey> pOldKey = it->second;
+        // ------------------------------------------
+        OTPayload thePayload;
+        
+        if (pOldKey && pOldKey->SerializeTo(thePayload))
+        {
+            _SharedPtr<OTSymmetricKey> pNewKey(new OTSymmetricKey);
+
+            if (pNewKey && pNewKey->SerializeFrom(thePayload))
+                mapChanged.insert(std::pair<std::string, _SharedPtr<OTSymmetricKey> >(str_id, pNewKey));
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+    // ------------------------------------
+    // We're still here? Must have been a success so far.
+    // Next we'll loop through mapChanged, and change the passphrase
+    // on each key in there. If they all succeed, we'll clear the old
+    // map and copy mapChanged into it.
+    //
+    FOR_EACH(mapOfSymmetricKeys, mapChanged)
+    {
+        const std::string          str_id  = it->first;
+        _SharedPtr<OTSymmetricKey> pNewKey = it->second;
+        // ------------------------------------------
+        if (pNewKey)
+        {
+            if (!pNewKey->ChangePassphrase(oldPassphrase, newPassphrase))
+                return false;
+        }
+        else
+            return false;
+    }
+    // ------------------------------------
+    // Still here? Must have been successful changing the passphrases
+    // on all the various extra symmetric keys. So let's clear the main
+    // map and copy the changed map into it.
+    //
+    m_mapExtraKeys.clear();
+    m_mapExtraKeys = mapChanged;
+
+    return true;
+}
+
+// ------------------------------------------------------------------------
+
+bool OTWallet::Encrypt_ByKeyID(
+                       const std::string & key_id,
+                       const OTString    & strPlaintext,
+                             OTString    & strOutput,
+                       const OTString    * pstrDisplay/*=NULL*/,
+                       const bool          bBookends  /*=true*/
+                       )
+{
+    if (key_id.empty() || !strPlaintext.Exists())
+        return false;
+    
+    std::string str_Reason((NULL != pstrDisplay) ? pstrDisplay->Get() : "");
+    
+    _SharedPtr<OTSymmetricKey> pKey = OTWallet::getOrCreateExtraKey(key_id, &str_Reason);
+    
+    if (pKey)
+    {
+        _SharedPtr<OTCachedKey> pMasterKey(OTCachedKey::It());
+        
+        if (pMasterKey)
+        {
+            OTPassword master_password;
+
+            if (pMasterKey->GetMasterPassword(pMasterKey, master_password))
+                return OTSymmetricKey::Encrypt(*pKey, strPlaintext, strOutput, pstrDisplay, bBookends, &master_password);
+        }
+    }
+    return false;
+}
+// ------------------------------------------------------------------------
+bool OTWallet::Decrypt_ByKeyID(
+                       const std::string & key_id,
+                             OTString    & strCiphertext,
+                             OTString    & strOutput,
+                       const OTString    * pstrDisplay/*=NULL*/
+                       )
+{
+    if (key_id.empty() || !strCiphertext.Exists())
+        return false;
+    
+    _SharedPtr<OTSymmetricKey> pKey = OTWallet::getExtraKey(key_id);
+
+    if (pKey)
+    {
+        _SharedPtr<OTCachedKey> pMasterKey(OTCachedKey::It());
+        
+        if (pMasterKey)
+        {
+            OTPassword master_password;
+            
+            if (pMasterKey->GetMasterPassword(pMasterKey, master_password))
+                return OTSymmetricKey::Decrypt(*pKey, strCiphertext, strOutput, pstrDisplay, &master_password);
+        }
+    }
+    return false;
+}
+// ------------------------------------------------------------------------
+
+_SharedPtr<OTSymmetricKey> OTWallet::getExtraKey(const std::string & str_id)
+{
+    if (str_id.empty())
+        return _SharedPtr<OTSymmetricKey>();
+    // ---------------------------------------
+    mapOfSymmetricKeys::iterator it = m_mapExtraKeys.find(str_id);
+    
+    if (it != m_mapExtraKeys.end()) // It's already there (can't add it.)
+    {
+        _SharedPtr<OTSymmetricKey> pKey = it->second;
+        
+        return pKey;
+    }
+    // ---------------------------------------
+    return _SharedPtr<OTSymmetricKey>();
+}
+
+
+bool OTWallet::addExtraKey(const std::string & str_id, _SharedPtr<OTSymmetricKey> pKey)
+{
+    if (str_id.empty() || !pKey)
+        return false;
+    
+    mapOfSymmetricKeys::iterator it = m_mapExtraKeys.find(str_id);
+    
+    if (it != m_mapExtraKeys.end()) // It's already there (can't add it.)
+        return false;
+    // ------------------------------------------
+    m_mapExtraKeys.insert(std::pair< std::string, _SharedPtr<OTSymmetricKey> > (str_id, pKey) );
+    
+    return true;
 }
 
 
@@ -1545,6 +1798,37 @@ bool OTWallet::LoadWallet(const char * szFilename/*=NULL*/)
                     }
 
                     
+                    // ---------------------------------------------------------------
+
+                    else if (strNodeName.Compare("symmetricKey"))
+                    {
+                        OTString     strKeyID;
+                        OTASCIIArmor ascKeyID = xml->getAttributeValue("id");
+                        OTASCIIArmor ascSymmetricKey;
+                        
+                        if (!ascKeyID.Exists() || !ascKeyID.GetString(strKeyID, false)) // linebreaks == false (true by default.)
+                            OTLog::vError("%s: Failed loading symmetricKey ID (it was blank.)\n", __FUNCTION__);
+                        // ----------------------------------------------------------------
+                        else if (OTContract::LoadEncodedTextField(xml, ascSymmetricKey))
+                        {
+                            _SharedPtr<OTSymmetricKey> pKey(new OTSymmetricKey);
+                            
+                            if (!pKey || !pKey->SerializeFrom(ascSymmetricKey))
+                                OTLog::vError("%s: Failed serializing symmetricKey from string (id: %s)\n",
+                                              __FUNCTION__, strKeyID.Get());
+                            else
+                            {
+                                const std::string str_id(strKeyID.Get());
+                                
+                                if (!this->addExtraKey(str_id, pKey))
+                                    OTLog::vError("%s: Failed adding serialized symmetricKey to wallet (id: %s)\n",
+                                                  __FUNCTION__, strKeyID.Get());
+                            }
+                        }
+                    }
+                    
+                    // ---------------------------------------------------------------
+
                     else if (strNodeName.Compare("pseudonym"))	// -------------------------------------------------------------
                     {
                         OTASCIIArmor ascNymName = xml->getAttributeValue("name");

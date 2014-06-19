@@ -1450,13 +1450,9 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 //  OT_ASSERT(userPassword.isPassword());
     OT_ASSERT(!dataSalt.IsEmpty());
     // ------------------------------------
-    const char * szFunc = "OTCrypto_OpenSSL::DeriveKey";
-    // ------------------------------------
     OTLog::vOutput(2, "%s: Using a text passphrase, salt, and iteration count, "
-                   "to make a derived key...\n", szFunc);
+                   "to make a derived key...\n", __FUNCTION__);
     // ------------------------------------
-
-
     OTPassword * pDerivedKey(this->InstantiateBinarySecret()); // already asserts.
 
     //  pDerivedKey MUST be returned or cleaned-up, below this point.
@@ -1482,7 +1478,6 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 
     // For The HashCheck
     // -------------------------------------------------------------------------------------------------
-
 	bool bHaveCheckHash = !dataCheckHash.IsEmpty();
 
 	OTPayload tmpHashCheck;

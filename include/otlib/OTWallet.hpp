@@ -148,27 +148,56 @@ class OTPseudonym;
 class OTPurse;
 class OTServerContract;
 class OTString;
+class OTSymmetricKey;
 
-typedef std::map<std::string, OTAccount *>			mapOfAccounts;
-typedef std::map<std::string, OTAssetContract *>	mapOfContracts;
-typedef std::map<std::string, OTPseudonym *>		mapOfNyms; // in OTContract.h now.
-typedef std::map<std::string, OTServerContract *>	mapOfServers;
-typedef std::set<OTIdentifier>                      setOfIdentifiers;
+typedef std::map<std::string, OTAccount *>                 mapOfAccounts;
+typedef std::map<std::string, OTAssetContract *>           mapOfContracts;
+typedef std::map<std::string, OTPseudonym *>               mapOfNyms;
+typedef std::map<std::string, OTServerContract *>          mapOfServers;
+typedef std::map<std::string, _SharedPtr<OTSymmetricKey> > mapOfSymmetricKeys;
+typedef std::set<OTIdentifier>                             setOfIdentifiers;
 
 
 class OTWallet
 {
 private:
-	mapOfNyms		 m_mapNyms;
-	mapOfContracts	 m_mapContracts;
-	mapOfServers	 m_mapServers;
-	mapOfAccounts	 m_mapAccounts;
+	mapOfNyms           m_mapNyms;
+	mapOfContracts      m_mapContracts;
+	mapOfServers        m_mapServers;
+	mapOfAccounts       m_mapAccounts;
 
-    setOfIdentifiers m_setNymsOnCachedKey;  // All the Nyms that use the Master key are listed here (makes it easy to see which ones are converted already.)
+    setOfIdentifiers    m_setNymsOnCachedKey;  // All the Nyms that use the Master key are listed here (makes it easy to see which ones are converted already.)
     
-	OTString         m_strName;
-	OTString         m_strVersion;
+	OTString            m_strName;
+	OTString            m_strVersion;
 	
+    // Let's say you have some private data that you want to store safely.
+    // For example, your Bitmessage user/pass. Perhaps you want to throw
+    // your Bitmessage connect string into your client-side sql*lite DB.
+    // But you can't leave the password there in plaintext form! So instead,
+    // you create a symmetric key to encrypt it with (stored here on this
+    // map.)
+    // Therefore your data, such as your Bitmessage password, is stored in
+    // encrypted form to a symmetric key stored in the wallet. Then that
+    // symmetric key is encrypted to the master password in the wallet.
+    // If the master password ever changes, the symmetric keys on this map
+    // can be re-encrypted to the new master password. Meanwhile the Bitmessage
+    // connection string ITSELF, in your sql*lite DB, doesn't need to be re-
+    // encrypted at all, since it's encrypted to the symmetric key, which,
+    // though itself may be re-encrypted to another master password, the actual
+    // contents of the symmetric key haven't changed.
+    //
+    // (This way you can change the wallet master passphrase, WITHOUT having
+    // to go through your sql*lite database re-encrypting all the crap in there
+    // that you might have encrypted previously before you changed your wallet
+    // password.)
+    //
+    // That's why these are "extra" keys -- because you can create as many of
+    // them as you want, and just use them for encrypting various data on the
+    // client side.
+    //
+    mapOfSymmetricKeys  m_mapExtraKeys;
+    
     // While waiting on server response to withdrawal,
     // store private coin data here for unblinding
 	OTPurse     *	m_pWithdrawalPurse; 
@@ -243,7 +272,6 @@ EXPORT	OTAccount * GetAccountPartialMatch(const std::string PARTIAL_ID);  // wal
 	// --------------------------------------------------------
 EXPORT	OTAccount * GetIssuerAccount(const OTIdentifier & theAssetTypeID);
 	// --------------------------------------------------------
-
 	// While waiting on server response to a withdrawal, we keep the private coin
 	// data here so we can unblind the response.
 	// This information is so important (as important as the digital cash token
@@ -257,8 +285,40 @@ EXPORT	bool SaveWallet(const char * szFilename=NULL);
         bool SaveContract(OTString & strContract); // For saving the wallet to a string.
 
 EXPORT	bool SignContractWithFirstNymOnList(OTContract & theContract); // todo : follow-up on this and see what it's about.
-	// ----------------------------------------------------
-	
+    // --------------------------------------------------------
+    // When the wallet's master passphrase changes, the extra symmetric keys
+    // need to be updated to reflect that.
+EXPORT  bool ChangePassphrasesOnExtraKeys(const OTPassword & oldPassphrase,
+                                          const OTPassword & newPassphrase);
+    // --------------------------------------------------------
+    // These allow the client application to encrypt its own sensitive data.
+    // For example, let's say the client application is storing your Bitmessage
+    // username and password in its database. It can't store those in the clear,
+    // so it encrypts the DB's sensitive data using Encrypt_ByKeyID("sql_db")
+    // and accesses the data using Decrypt_ByKeyID("sql_db").
+    // The string acts as a key to look up a symmetric key which is normally
+    // stored in encrypted form, using the wallet's master key. Whenever the
+    // wallet's master key is available (until it times out) the client app will
+    // thus be able to use these symmetric keys without having to ask the user
+    // to type a passphrase.
+    // (We do this for Nyms already. These methods basically give us the same
+    // functionality for symmetric keys as we already had for the wallet's Nyms.)
+    //
+EXPORT  bool Encrypt_ByKeyID(const std::string & key_id,
+                             const OTString    & strPlaintext,
+                                   OTString    & strOutput,
+                             const OTString    * pstrDisplay=NULL,
+                             const bool          bBookends  =true);
+
+EXPORT  bool Decrypt_ByKeyID(const std::string & key_id,
+                                   OTString    & strCiphertext,
+                                   OTString    & strOutput,
+                             const OTString    * pstrDisplay=NULL);
+    // ------------------------------------------------------------------------
+EXPORT  _SharedPtr<OTSymmetricKey> getOrCreateExtraKey(const std::string & str_KeyID,
+                                                       const std::string * pReason=NULL); // Use this one.
+EXPORT	_SharedPtr<OTSymmetricKey> getExtraKey(const std::string & str_id);            // Low level.
+EXPORT	bool addExtraKey(const std::string & str_id, _SharedPtr<OTSymmetricKey> pKey); // Low level.
     // --------------------------------------------------------
 	// These functions are low-level. They don't check for dependent data before deleting,
 	// and they don't save the wallet after they do.
