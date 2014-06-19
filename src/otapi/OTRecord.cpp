@@ -701,7 +701,7 @@ bool OTRecord::DeleteRecord()
     if (!this->CanDeleteRecord())
         return false;
     // -----------------------------
-    if (m_str_server_id.empty() || m_str_nym_id.empty())
+    if (!m_bIsSpecialMail && (m_str_server_id.empty() || m_str_nym_id.empty()))
     {
         OTLog::vError("%s: Error: missing server id (%s) or nym id (%s)\n",
                       __FUNCTION__, m_str_server_id.c_str(), m_str_nym_id.c_str());
@@ -765,6 +765,9 @@ bool OTRecord::DeleteRecord()
                     }
                 }
             }
+            else
+                return true;
+            
             return false;
         }
             break;
