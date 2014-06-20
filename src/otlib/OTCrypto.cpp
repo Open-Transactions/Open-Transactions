@@ -135,27 +135,22 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTCrypto.hpp>
+#include "OTCrypto.hpp"
 
-#include <OTAssert.hpp>
-#include <OTAsymmetricKey.hpp>
-#include "OTAsymmetricKeyOpenSSL.hpp"
-#include <OTIdentifier.hpp>
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTPasswordData.hpp>
-#include <OTPaths.hpp>
-#include <OTPseudonym.hpp>
-#include <OTSignature.hpp>
-#include <OTStorage.hpp>
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPasswordData.hpp"
+#include "OTPaths.hpp"
+#include "OTPseudonym.hpp"
+#include "OTSignature.hpp"
+#include "OTStorage.hpp"
 
 #include <bigint/BigIntegerLibrary.hh>
 
-#include <vector>
-
 #include "stacktrace.h"
+
 
 extern "C"
 {
@@ -167,7 +162,6 @@ extern "C"
 #include <sys/resource.h>
 #endif
 }
-
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 
@@ -198,9 +192,7 @@ extern "C"
 #include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
 #include "OpenSSL_BIO.hpp"
 
-
 #elif defined (OT_CRYPTO_USING_GPG)
-
 
 #else
 
@@ -208,8 +200,6 @@ extern "C"
 
 
 // OpenSSL / Crypto-lib d-pointer
-
-
 #if defined (OT_CRYPTO_USING_GPG)
 
 // Someday    }:-)        OTCrypto_GPG
@@ -438,8 +428,6 @@ int32_t main()
 }
 */
 
-
-#include <iostream>
 
 #ifndef _PASSWORD_LEN
 #define _PASSWORD_LEN   128
@@ -1462,13 +1450,9 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 //  OT_ASSERT(userPassword.isPassword());
     OT_ASSERT(!dataSalt.IsEmpty());
     // ------------------------------------
-    const char * szFunc = "OTCrypto_OpenSSL::DeriveKey";
-    // ------------------------------------
     OTLog::vOutput(2, "%s: Using a text passphrase, salt, and iteration count, "
-                   "to make a derived key...\n", szFunc);
+                   "to make a derived key...\n", __FUNCTION__);
     // ------------------------------------
-
-
     OTPassword * pDerivedKey(this->InstantiateBinarySecret()); // already asserts.
 
     //  pDerivedKey MUST be returned or cleaned-up, below this point.
@@ -1494,7 +1478,6 @@ OTPassword * OTCrypto_OpenSSL::DeriveNewKey(const OTPassword &   userPassword,
 
     // For The HashCheck
     // -------------------------------------------------------------------------------------------------
-
 	bool bHaveCheckHash = !dataCheckHash.IsEmpty();
 
 	OTPayload tmpHashCheck;

@@ -171,6 +171,7 @@
 #include <OTPurse.hpp>
 #include <OTSmartContract.hpp>
 #include <OTSymmetricKey.hpp>
+#include <OTStorage.hpp>
 #include <OTToken.hpp>
 #include <OTTrade.hpp>
 #include <OTWallet.hpp>
@@ -1544,6 +1545,14 @@ bool OT_API::Wallet_ChangePassphrase()
 	if (NULL == pWallet) return false;
 	// By this point, pWallet is a good pointer.  (No need to cleanup.)
 	// -----------------------------------------------------
+    OTString  strReason("Enter existing wallet master passphrase");
+
+    OTPassword old_passphrase;
+    _SharedPtr<OTCachedKey> ptrMasterKey(OTCachedKey::It());
+    const bool bGotOldPassphrase = (ptrMasterKey &&
+                                    ptrMasterKey->IsGenerated() &&
+                                    ptrMasterKey->GetMasterPassword(ptrMasterKey, old_passphrase, strReason.Get()));
+	// -----------------------------------------------------
     class ot_change_pw
     {
         std::list<OTPseudonym *> * m_plist_nyms; // We'll be responsible in this class for cleaning these up.
@@ -1625,7 +1634,7 @@ bool OT_API::Wallet_ChangePassphrase()
     // ENCRYPT ALL CREDENTIALS FROM MASTER KEY INTO A TEMP KEY
     //
     OTPassword     theTempPassword; // Used to store a temp password only. Only for credentialed nyms.
-    OTPasswordData thePWData("Enter existing wallet master passphrase.");
+    OTPasswordData thePWData("Enter existing wallet master passphrase");
 
     // At this point, for Nyms with credentials, we need to ReEncrypt the Nym's credentials,
     // similar to importing or exporting the Nym from the wallet. Except this time, we have
@@ -1685,7 +1694,7 @@ bool OT_API::Wallet_ChangePassphrase()
 	// -----------------------------------------------------
     // GENERATE the wallet's NEW MASTER KEY.
     //
-    OTString  strReason("Choose a new passphrase: ");
+    strReason.Set("Choose a new passphrase: ");
 
     // This step would be unnecessary if we knew for a fact that at least
     // one Nym exists. But in the off-chance that there ARE NO NYMS in the
@@ -1696,9 +1705,9 @@ bool OT_API::Wallet_ChangePassphrase()
     // to generate if it's not already there.) So we just force that step here,
     // to make sure it happens, even if there are no Nyms to save below this point.
     //
-    OTPassword temp_password;
+    OTPassword new_passphrase;
     _SharedPtr<OTCachedKey> sharedPtr(OTCachedKey::It());
-    const bool bRegenerate = sharedPtr->GetMasterPassword(sharedPtr, temp_password, strReason.Get(),
+    const bool bRegenerate = sharedPtr->GetMasterPassword(sharedPtr, new_passphrase, strReason.Get(),
                                                           true); //bVerifyTwice=false by default.
     // ----------------------------------------------------
     if (!bRegenerate) // Failure generating new master key.
@@ -1828,6 +1837,18 @@ bool OT_API::Wallet_ChangePassphrase()
         // -----------------------------------------------------
         else// SAVE THE WALLET.
         {
+            // We've converted all the Nyms, so let's go ahead and convert the extra
+            // symmetric keys inside the wallet. (These are what a client app might
+            // use to encrypt its local database.)
+            //
+            if (bGotOldPassphrase)
+            {
+                if (!pWallet->ChangePassphrasesOnExtraKeys(old_passphrase, new_passphrase))
+                    OTLog::vError("%s: ERROR: pWallet->ChangePassphrasesOnExtraKeys failed. "
+                                  "(Continuing, but your extra symmetric keys in the wallet "
+                                  "may be messed up!)\n", __FUNCTION__);
+            }
+            // -----------------------------------------------------------
             // By this point, we have successfully converted all the Nyms (our local copies of the wallet's private nyms)
             // to the new master key, AND we have successfully saved those Nyms to local storage. Now, if we just save and
             // re-load the wallet itself, it should load up using the new master key, and it should load up its own copies
@@ -1871,6 +1892,7 @@ bool OT_API::Wallet_ChangePassphrase()
         }
         // -----------------------------------------------------
     }
+    return false;
 }
 
 

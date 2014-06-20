@@ -22,8 +22,14 @@
     <ProjectReference Include="..\irrxml\irrxml.vcxproj">
       <Project>{ff4e2f12-89af-42af-9630-66931cae610a}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\otextensions\otextensions.vcxproj">
+      <Project>{5404670d-b2e7-439f-b26f-e31d8d4fe055}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\otlib\otlib.vcxproj">
       <Project>{0455e434-a635-448a-996e-448583fd3a37}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\zmq\zmq.vcxproj">
+      <Project>{bfe44f12-f1b5-4298-a3df-5a6b3ce7cdfb}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -129,25 +135,25 @@
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\otextensions;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\otextensions;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\otextensions;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\obj\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)..\lib\$(PlatformName)\$(Configuration);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\deps\include;$(SolutionDir)..\deps\include\misc;$(SolutionDir)..\include\$(ProjectName);$(SolutionDir)..\include;$(SystemDrive)\OpenSSL-Win$(PlatformArchitecture)\include;$(SolutionDir)..\include\otlib;$(SolutionDir)..\include\otextensions;$(SolutionDir)..\include\ots;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

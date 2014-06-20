@@ -130,18 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTStashItem.hpp>
+#include "OTStashItem.hpp"
 
-#include <OTLog.hpp>
-#include <OTContract.hpp>
-#include <OTPseudonym.hpp>
-#include <OTAccount.hpp>
-#include <OTScriptable.hpp>
-#include <OTSmartContract.hpp>
-#include <OTAgreement.hpp>
-#include <OTScript.hpp>
+#include "OTLog.hpp"
+
 
 /*
  int64_t GetAmount() const { return m_lAmount; }
@@ -149,6 +143,7 @@
 
  const OTString & GetAssetTypeID() { return m_strAssetTypeID; }
  */
+
 
 OTStashItem::OTStashItem() : m_lAmount(0)
 {

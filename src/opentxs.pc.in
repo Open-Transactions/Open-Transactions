@@ -13,6 +13,6 @@ cash, Ricardian contracts, smart contracts (with scriptable clauses), and more.
 URL: https://github.com/FellowTraveler/Open-Transactions
 Version: @VERSION@
 Requires: protobuf >= 2.4.1 openssl libzmq >= 2.1.4
-Libs: -L${libdir} -lotapi -lot
+Libs: -L${libdir} -lotextensions -lotapi -lot
 Libs.private: -lbigint -lirrxml -llucre -lotprotob -lotext
 Cflags: -I${includedir}

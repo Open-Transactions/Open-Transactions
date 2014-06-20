@@ -133,13 +133,16 @@
 #ifndef __OT_ASCII_ARMOR_HPP__
 #define __OT_ASCII_ARMOR_HPP__
 
-#include "OTStorage.hpp"
 #include "OTString.hpp"
 
 class OTASCIIArmor;
 class OTData;
 class OTEnvelope;
 class OTPayload;
+
+namespace OTDB {
+    class OTPacker;
+}
 
 typedef std::map <int64_t, OTASCIIArmor *> mapOfArmor;
 

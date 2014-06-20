@@ -144,17 +144,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTSubcredential.hpp>
+#include "OTSubcredential.hpp"
 
-#include <OTCredential.hpp>
-#include <OTAssert.hpp>
-#include <OTSignature.hpp>
-#include <OTLog.hpp>
-#include <OTPaths.hpp>
-#include <OTPassword.hpp>
-
+#include "OTASCIIArmor.hpp"
+#include "OTCredential.hpp"
+#include "OTLog.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

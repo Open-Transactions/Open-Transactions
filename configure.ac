@@ -563,6 +563,7 @@ AC_CONFIG_FILES([Makefile
 			src/Makefile
 			src/otlib/Makefile
 			src/otlib/otprotob/Makefile
+			src/otextensions/Makefile
 			src/otapi/Makefile
 			tests/Makefile
 			tests/otlib/Makefile

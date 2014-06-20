@@ -79,4 +79,8 @@ public class OTNameLookup {
     return (getClass() == OTNameLookup.class) ? otapiJNI.OTNameLookup_GetAcctName__SWIG_3(swigCPtr, this, str_id) : otapiJNI.OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_3(swigCPtr, this, str_id);
   }
 
+  public String GetAddressName(String str_address) {
+    return (getClass() == OTNameLookup.class) ? otapiJNI.OTNameLookup_GetAddressName(swigCPtr, this, str_address) : otapiJNI.OTNameLookup_GetAddressNameSwigExplicitOTNameLookup(swigCPtr, this, str_address);
+  }
+
 }

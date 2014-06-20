@@ -130,15 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTServerContract.hpp>
+#include "OTServerContract.hpp"
+
+#include "OTASCIIArmor.hpp"
+#include "OTLog.hpp"
 
 #include <fstream>
-
-#include <OTLog.hpp>
-#include <OTASCIIArmor.hpp>
-
 
 #include "irrxml/irrXML.hpp"
 

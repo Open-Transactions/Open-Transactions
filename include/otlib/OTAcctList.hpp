@@ -136,7 +136,6 @@
 // only necessary because of OTAccount::AccountType
 #include "OTAccount.hpp"
 
-class OTAccount;
 class OTPseudonym;
 
 

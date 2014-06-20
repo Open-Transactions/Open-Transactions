@@ -130,21 +130,22 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTLedger.hpp>
+#include "OTLedger.hpp"
 
-#include <OTAccount.hpp>
-#include <OTCheque.hpp>
-#include <OTEnvelope.hpp>
-#include <OTFolders.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTPaths.hpp>
-#include <OTPayment.hpp>
-#include <OTPseudonym.hpp>
+#include "OTAccount.hpp"
+#include "OTCheque.hpp"
+#include "OTEnvelope.hpp"
+#include "OTFolders.hpp"
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
+#include "OTPayment.hpp"
+#include "OTPseudonym.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
+
 
 char const * const __TypeStrings[] = 
 {

@@ -250,7 +250,7 @@ class OTCachedKey
 {
 private:
 	tthread::thread       *  m_pThread;         // The thread used for destroying the password after the timeout period.
-	int32_t                      m_nTimeoutSeconds; // The master password will be stored internally for X seconds, and then destroyed.
+	int32_t                  m_nTimeoutSeconds; // The master password will be stored internally for X seconds, and then destroyed.
 	OTPassword            *  m_pMasterPassword; // Created when password is passed in; destroyed by Timer after X seconds.
 
 	bool                     m_bUse_System_Keyring; // if set to true, then additionally use the local OS's standard API for storing/retrieving secrets. (Store the master key here whenever it's decrypted, and try to retrieve from here whenever it's needed, before resorting to asking the user to type his passphrase.) This is configurable in the config file.

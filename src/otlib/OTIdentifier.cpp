@@ -130,17 +130,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTIdentifier.hpp>
+#include "OTIdentifier.hpp"
 
-#include <OTAssert.hpp>
-#include <OTPseudonym.hpp>
-#include <OTSymmetricKey.hpp>
-#include <OTOffer.hpp>
-#include <OTMarket.hpp>
-#include <OTCachedKey.hpp>
-#include <OTCrypto.hpp>
+#include "OTCachedKey.hpp"
+#include "OTCrypto.hpp"
+#include "OTMarket.hpp"
+#include "OTOffer.hpp"
+#include "OTPseudonym.hpp"
+#include "OTSymmetricKey.hpp"
 
 
 OTIdentifier::OTIdentifier() : OTData()  { }

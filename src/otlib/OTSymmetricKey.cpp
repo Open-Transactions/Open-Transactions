@@ -130,18 +130,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTSymmetricKey.hpp>
+#include "OTSymmetricKey.hpp"
 
-#include <OTASCIIArmor.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTCrypto.hpp>
-#include <OTEnvelope.hpp>
-#include <OTIdentifier.hpp>
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTPasswordData.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTAsymmetricKey.hpp"
+#include "OTCrypto.hpp"
+#include "OTEnvelope.hpp"
+#include "OTIdentifier.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPasswordData.hpp"
 
 extern "C"
 {
@@ -174,6 +174,86 @@ void OTSymmetricKey::GetIdentifier(OTString & strIdentifier) const
         theIdentifier.GetString(strIdentifier);
 }
 
+// ------------------------------------------------------------------------
+// Changes the passphrase on an existing symmetric key.
+//
+bool OTSymmetricKey::ChangePassphrase(const OTPassword & oldPassphrase,
+                                      const OTPassword & newPassphrase)
+{
+    OT_ASSERT(m_uIterationCount > 1000);
+    OT_ASSERT(m_bIsGenerated);
+    
+    // Todo: validate the passphrases exist or whatever?
+    
+    OTLog::vOutput(2, "  Begin: %s: Changing password on symmetric key...\n", __FUNCTION__);
+    // -------------------------------------------------------------------------------------------------
+    OTPassword theActualKey;
+
+    if (!this->GetRawKeyFromPassphrase(oldPassphrase, theActualKey))
+        return false;
+    // -------------------------------------------------------------------------------------------------
+    OTPayload dataIV, dataSalt;
+    
+    // NOTE: I can't randomize the IV because then anything that was
+    // encrypted with this key before, will fail to decrypt. (Ruining
+    // the whole point of changing the passphrase...)
+    //
+    // UPDATE: I think this is false. I think the IV is for the encryption of
+    // the symmetric key itself, whereas the content has its own IV in OTEnvelope.
+    //
+	if (false == dataIV.Randomize( OTCryptoConfig::SymmetricIvSize() ))
+	{
+		OTLog::vError("%s: Failed generating iv for changing passphrase on a symmetric key. (Returning false.)\n", __FUNCTION__);
+		return false;
+	}
+    // -------------------------------------------------------------------------------------------------
+	if (false == dataSalt.Randomize( OTCryptoConfig::SymmetricSaltSize() ))
+	{
+		OTLog::vError("%s: Failed generating random salt for changing passphrase on a symmetric key. (Returning false.)\n", __FUNCTION__);
+		return false;
+	}
+    // -------------------------------------------------------------------------------------------------
+    m_dataIV        = dataIV;
+    m_dataSalt      = dataSalt;
+    m_bHasHashCheck = false;
+    
+    m_dataHashCheck   .Release();
+    m_dataEncryptedKey.Release();
+    // -------------------------------------------------------------------------------------------------
+    // Generate the new derived key from the new passphrase.
+    //
+    OTCleanup<OTPassword> theDerivedAngel;
+    OTPassword * pNewDerivedKey = this->CalculateNewDerivedKeyFromPassphrase(newPassphrase); // asserts already.
+    theDerivedAngel.SetCleanupTarget(*pNewDerivedKey);
+
+    // Below this point, pNewDerivedKey is NOT null. (And will be cleaned up automatically.)
+    // -------------------------------------------------------------------------------------------------
+    //
+    // Below this point, pNewDerivedKey contains a symmetric key derived from the new salt, the iteration
+    // count, and the new password that was passed in. We will store the salt and iteration count inside this
+    // OTSymmetricKey object, and we'll store an encrypted copy of the ActualKey, encrypted to pNewDerivedKey.
+    // We'll also store the new IV, which is used while encrypting the actual key, and which must be used again
+    // while decrypting it later.
+    //
+    // Encrypt theActualKey using pNewDerivedKey, which is clear/raw already. (Both are OTPasswords.)
+    // Put the result into the OTPayload m_dataEncryptedKey.
+    //
+    const bool bEncryptedKey = OTCrypto::It()->Encrypt(*pNewDerivedKey,  // pNewDerivedKey is a symmetric key, in clear form. Used for encrypting theActualKey.
+                                                       // -------------------------------
+                                                       reinterpret_cast<const char *>(theActualKey.getMemory_uint8()), // This is the Plaintext that's being encrypted.
+                                                       static_cast<uint32_t>(theActualKey.getMemorySize()),
+                                                       // -------------------------------
+                                                       m_dataIV, // generated above.
+                                                       // -------------------------------
+                                                       m_dataEncryptedKey); // OUTPUT. (Ciphertext.)
+    m_bIsGenerated = bEncryptedKey;
+
+    OTLog::vOutput(2, "  End: %s: (Changing passphrase on symmetric key...) %s\n",
+                   __FUNCTION__, m_bIsGenerated ? "SUCCESS" : "FAILED");
+
+    return m_bIsGenerated;
+}
+// ------------------------------------------------------------------------
 
 // Generates this OTSymmetricKey based on an OTPassword. The generated key is
 // stored in encrypted form, based on a derived key from that password.
@@ -191,21 +271,18 @@ bool OTSymmetricKey::GenerateKey(const
     OT_ASSERT(m_uIterationCount > 1000);
     OT_ASSERT(!m_bIsGenerated);
 //  OT_ASSERT(thePassphrase.isPassword());
-    // -------------------------------------------------------------------------------------------------
-    const char * szFunc = "OTSymmetricKey::GenerateKey";
 
-    OTLog::vOutput(2, "  Begin: %s: GENERATING keys and passwords...\n", szFunc);
+    OTLog::vOutput(2, "  Begin: %s: GENERATING keys and passwords...\n", __FUNCTION__);
     // -------------------------------------------------------------------------------------------------
 	if (false == m_dataIV.Randomize( OTCryptoConfig::SymmetricIvSize() ))
 	{
-		OTLog::vError("%s: Failed generating iv for encrypting a symmetric key. (Returning false.)\n", szFunc);
+		OTLog::vError("%s: Failed generating iv for encrypting a symmetric key. (Returning false.)\n", __FUNCTION__);
 		return false;
 	}
     // -------------------------------------------------------------------------------------------------
 	if (false == m_dataSalt.Randomize( OTCryptoConfig::SymmetricSaltSize() ))
 	{
-		OTLog::vError("%s: Failed generating random salt. (Returning false.)\n",
-                      szFunc);
+		OTLog::vError("%s: Failed generating random salt. (Returning false.)\n", __FUNCTION__);
 		return false;
 	}
     // -------------------------------------------------------------------------------------------------
@@ -221,7 +298,7 @@ bool OTSymmetricKey::GenerateKey(const
 
 		if (OTCryptoConfig::SymmetricKeySize() != uRes)
 		{
-			OTLog::vError("%s: Failed generating symmetric key. (Returning false.)\n", szFunc);
+			OTLog::vError("%s: Failed generating symmetric key. (Returning false.)\n", __FUNCTION__);
 			return false;
 		}
 	}
@@ -266,7 +343,7 @@ bool OTSymmetricKey::GenerateKey(const
     m_bIsGenerated = bEncryptedKey;
 
     OTLog::vOutput(2, "  End: %s: (GENERATING keys and passwords...) %s\n",
-                   szFunc, m_bIsGenerated ? "SUCCESS" : "FAILED");
+                   __FUNCTION__, m_bIsGenerated ? "SUCCESS" : "FAILED");
 
     return m_bIsGenerated;
 }
@@ -392,7 +469,7 @@ OTPassword * OTSymmetricKey::CalculateDerivedKeyFromPassphrase(const OTPassword 
     return pDerivedKey; // can be null
 }
 
-
+// CALLER IS RESPONSIBLE TO DELETE.
 OTPassword * OTSymmetricKey::CalculateNewDerivedKeyFromPassphrase(const OTPassword & thePassphrase)
 {
 //  OT_ASSERT(m_bIsGenerated);

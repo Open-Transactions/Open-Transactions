@@ -131,44 +131,17 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTNumList.hpp>
+#include "OTNumList.hpp"
+
+#include "OTLog.hpp"
+#include "OTStorage.hpp"
 
 #include <locale>
-#include <fstream>
-
-#include "irrxml/irrXML.hpp"
-
-#include <OTContract.hpp>
-#include <OTAssert.hpp>
-#include <OTAssetContract.hpp>
-#include <OTAsymmetricKey.hpp>
-#include <OTCheque.hpp>
-#include <OTCrypto.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTMint.hpp>
-#include <OTOffer.hpp>
-#include <OTPassword.hpp>
-#include <OTPaths.hpp>
-#include <OTPaymentPlan.hpp>
-#include <OTPseudonym.hpp>
-#include <OTServerContract.hpp>
-#include <OTSignature.hpp>
-#include <OTSignedFile.hpp>
-#include <OTSmartContract.hpp>
-#include <OTStorage.hpp>
-#include <OTToken.hpp>
-#include <OTTrade.hpp>
-
-using namespace irr;
-using namespace io;
 
 
 // OTNumList (helper class.)
-//
-
 OTNumList::OTNumList(const std::set<int64_t> & theNumbers)
 {
     Add(theNumbers);

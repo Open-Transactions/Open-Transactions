@@ -130,17 +130,12 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTDataFolder.hpp>
+#include "OTDataFolder.hpp"
 
-#include <vector>
-
-#include <sys/stat.h>
-
-#include <OTPaths.hpp>
-#include <OTAssert.hpp>
-#include <OTLog.hpp>
+#include "OTLog.hpp"
+#include "OTPaths.hpp"
 
 
 #ifdef _WIN32

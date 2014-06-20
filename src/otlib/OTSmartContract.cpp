@@ -177,9 +177,7 @@
 // for experimental purposes I am using chaiscript.)
 //
 
-
 /*
-
  RUNNING LIST of standard hooks, functions, constants, variables, etc..
 
  - I'm thinking that Constants and Variables should be available in OTBylaw AND OTScriptable.
@@ -449,35 +447,32 @@
       notes directly with the auditor and each other on the hashes for the various sequence numbers. Hm.
  */
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTSmartContract.hpp>
-
-#ifdef OT_USE_SCRIPT_CHAI
-#  include "OTScriptChai.hpp"
-#  include <chaiscript/chaiscript.hpp>
-#  ifdef OT_USE_CHAI_STDLIB
-#    include <chaiscript/chaiscript_stdlib.hpp>
-#  endif
-#endif
-
-#include <OTAgent.hpp>
-#include <OTBylaw.hpp>
-#include <OTClause.hpp>
-#include <OTCron.hpp>
-#include <OTFolders.hpp>
-#include <OTLedger.hpp>
-#include <OTLog.hpp>
-#include <OTParty.hpp>
-#include <OTPartyAccount.hpp>
-#include <OTPaths.hpp>
-#include <OTPseudonym.hpp>
-#include <OTScript.hpp>
-#include <OTStash.hpp>
-#include <OTStashItem.hpp>
-#include <OTVariable.hpp>
+#include "OTSmartContract.hpp"
+#include "OTAgent.hpp"
+#include "OTBylaw.hpp"
+#include "OTClause.hpp"
+#include "OTCron.hpp"
+#include "OTFolders.hpp"
+#include "OTLedger.hpp"
+#include "OTLog.hpp"
+#include "OTParty.hpp"
+#include "OTPartyAccount.hpp"
+#include "OTPseudonym.hpp"
+#include "OTStash.hpp"
+#include "OTStashItem.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
+
+#ifdef OT_USE_SCRIPT_CHAI
+#	include "OTScriptChai.hpp"
+#	include <chaiscript/chaiscript.hpp>
+#	ifdef OT_USE_CHAI_STDLIB
+#	    include <chaiscript/chaiscript_stdlib.hpp>
+#	endif
+#endif
 
 
 #ifndef SMART_CONTRACT_PROCESS_INTERVAL

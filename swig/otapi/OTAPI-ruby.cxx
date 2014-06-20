@@ -2210,23 +2210,24 @@ namespace Swig {
 #define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_std__string_t_t swig_types[55]
 #define SWIGTYPE_p_std__allocatorT_unsigned_char_t swig_types[56]
 #define SWIGTYPE_p_std__lessT_std__string_t swig_types[57]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[58]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator swig_types[59]
-#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator swig_types[60]
-#define SWIGTYPE_p_std__string swig_types[61]
-#define SWIGTYPE_p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t swig_types[62]
-#define SWIGTYPE_p_swig__ConstIterator swig_types[63]
-#define SWIGTYPE_p_swig__GC_VALUE swig_types[64]
-#define SWIGTYPE_p_swig__Iterator swig_types[65]
-#define SWIGTYPE_p_time64_t swig_types[66]
-#define SWIGTYPE_p_unsigned_char swig_types[67]
-#define SWIGTYPE_p_unsigned_int swig_types[68]
-#define SWIGTYPE_p_unsigned_long_long swig_types[69]
-#define SWIGTYPE_p_unsigned_short swig_types[70]
-#define SWIGTYPE_p_value_type swig_types[71]
-#define SWIGTYPE_p_void swig_types[72]
-static swig_type_info *swig_types[74];
-static swig_module_info swig_module = {swig_types, 73, 0, 0, 0, 0};
+#define SWIGTYPE_p_std__listT_std__string_t swig_types[58]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t swig_types[59]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator swig_types[60]
+#define SWIGTYPE_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator swig_types[61]
+#define SWIGTYPE_p_std__string swig_types[62]
+#define SWIGTYPE_p_std__vectorT_unsigned_char_std__allocatorT_unsigned_char_t_t swig_types[63]
+#define SWIGTYPE_p_swig__ConstIterator swig_types[64]
+#define SWIGTYPE_p_swig__GC_VALUE swig_types[65]
+#define SWIGTYPE_p_swig__Iterator swig_types[66]
+#define SWIGTYPE_p_time64_t swig_types[67]
+#define SWIGTYPE_p_unsigned_char swig_types[68]
+#define SWIGTYPE_p_unsigned_int swig_types[69]
+#define SWIGTYPE_p_unsigned_long_long swig_types[70]
+#define SWIGTYPE_p_unsigned_short swig_types[71]
+#define SWIGTYPE_p_value_type swig_types[72]
+#define SWIGTYPE_p_void swig_types[73]
+static swig_type_info *swig_types[75];
+static swig_module_info swig_module = {swig_types, 74, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2265,7 +2266,7 @@ SWIG_ruby_failed(void)
 } 
 
 
-/*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2LL(VALUE *args)
 {
   VALUE obj = args[0];
@@ -2864,7 +2865,7 @@ namespace swig {
 }
 
 
-/*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2ULONG(VALUE *args)
 {
   VALUE obj = args[0];
@@ -2910,7 +2911,7 @@ SWIG_From_bool  (bool value)
 }
 
 
-/*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2LONG(VALUE *args)
 {
   VALUE obj = args[0];
@@ -5497,7 +5498,7 @@ SWIG_From_unsigned_SS_long_SS_long  (unsigned long long value)
 }
 
 
-/*@SWIG:C:\Users\Cameron\Documents\dev\swigwin-3.0.0\Lib\ruby\rubyprimtypes.swg,19,%ruby_aux_method@*/
+/*@SWIG:/usr/local/share/swig/3.0.0/ruby/rubyprimtypes.swg,19,%ruby_aux_method@*/
 SWIGINTERN VALUE SWIG_AUX_NUM2ULL(VALUE *args)
 {
   VALUE obj = args[0];
@@ -5582,6 +5583,24 @@ std::string SwigDirector_OTNameLookup::GetAcctName(std::string const &str_id, st
   obj2 = SWIG_NewPointerObj(SWIG_as_voidptr(p_server_id), SWIGTYPE_p_std__string,  0 );
   obj3 = SWIG_NewPointerObj(SWIG_as_voidptr(p_asset_id), SWIGTYPE_p_std__string,  0 );
   result = rb_funcall(swig_get_self(), rb_intern("GetAcctName"), 4,obj0,obj1,obj2,obj3);
+  std::string *swig_optr = 0;
+  int swig_ores = SWIG_AsPtr_std_string(result, &swig_optr);
+  if (!SWIG_IsOK(swig_ores) || !swig_optr) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError((swig_optr ? swig_ores : SWIG_TypeError))), "in output value of type '""std::string""'");
+  }
+  c_result = *swig_optr;
+  if (SWIG_IsNewObj(swig_ores)) delete swig_optr;
+  return (std::string) c_result;
+}
+
+
+std::string SwigDirector_OTNameLookup::GetAddressName(std::string const &str_address) const {
+  std::string c_result ;
+  VALUE obj0 = Qnil ;
+  VALUE result;
+  
+  obj0 = SWIG_From_std_string(static_cast< std::string >(str_address));
+  result = rb_funcall(swig_get_self(), rb_intern("GetAddressName"), 1,obj0);
   std::string *swig_optr = 0;
   int swig_ores = SWIG_AsPtr_std_string(result, &swig_optr);
   if (!SWIG_IsOK(swig_ores) || !swig_optr) {
@@ -29753,6 +29772,979 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_OT_ME_VerifyMessageSuccess(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int32_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","VerifyMessageSuccess", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","VerifyMessageSuccess", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMessageSuccess", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  int res5 = SWIG_OLDOBJ ;
+  int32_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 4) || (argc > 4)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","VerifyMsgBalanceAgrmntSuccess", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 3, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 3, argv[1])); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 4, argv[2] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 4, argv[2])); 
+    }
+    arg4 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 5, argv[3] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 5, argv[3])); 
+    }
+    arg5 = ptr;
+  }
+  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_VerifyMsgTrnxSuccess(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  int res5 = SWIG_OLDOBJ ;
+  int32_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 4) || (argc > 4)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","VerifyMsgTrnxSuccess", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 3, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 3, argv[1])); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 4, argv[2] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 4, argv[2])); 
+    }
+    arg4 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 5, argv[3] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 5, argv[3])); 
+    }
+    arg5 = ptr;
+  }
+  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_InterpretTransactionMsgReply(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int32_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 5) || (argc > 5)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 5)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","InterpretTransactionMsgReply", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 3, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 3, argv[1])); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 4, argv[2] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 4, argv[2])); 
+    }
+    arg4 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 5, argv[3] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 5, argv[3])); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string(argv[4], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 6, argv[4] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 6, argv[4])); 
+    }
+    arg6 = ptr;
+  }
+  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnString", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnString", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnString", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnString", 3, argv[1] )); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnString", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnString", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnString", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnString(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnString", 
+    "    std::string OT_ME.ExecuteScript_ReturnString(std::string const &str_Code, std::string str_DisplayName)\n"
+    "    std::string OT_ME.ExecuteScript_ReturnString(std::string const &str_Code)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnBool", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnBool", 3, argv[1] )); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnBool", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnBool(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnBool", 
+    "    bool OT_ME.ExecuteScript_ReturnBool(std::string const &str_Code, std::string str_DisplayName)\n"
+    "    bool OT_ME.ExecuteScript_ReturnBool(std::string const &str_Code)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int32_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnInt", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnInt", 3, argv[1] )); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int32_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnInt", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
+  vresult = SWIG_From_int(static_cast< int >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnInt(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnInt", 
+    "    int32_t OT_ME.ExecuteScript_ReturnInt(std::string const &str_Code, std::string str_DisplayName)\n"
+    "    int32_t OT_ME.ExecuteScript_ReturnInt(std::string const &str_Code)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnVoid", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnVoid", 3, argv[1] )); 
+    }
+    arg3 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnVoid", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnVoid(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[4];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 4) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(nargs, args, self);
+      }
+    }
+  }
+  if (argc == 3) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
+        _v = SWIG_CheckState(res);
+        if (_v) {
+          return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(nargs, args, self);
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnVoid", 
+    "    void OT_ME.ExecuteScript_ReturnVoid(std::string const &str_Code, std::string str_DisplayName)\n"
+    "    void OT_ME.ExecuteScript_ReturnVoid(std::string const &str_Code)\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_AddVariable(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","AddVariable", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","AddVariable", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddVariable", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_OTVariable,  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "OTVariable &","AddVariable", 3, argv[1] )); 
+  }
+  if (!argp3) {
+    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "OTVariable &","AddVariable", 3, argv[1])); 
+  }
+  arg3 = reinterpret_cast< OTVariable * >(argp3);
+  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_FindVariable(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  OTVariable *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","FindVariable", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","FindVariable", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","FindVariable", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable, 0 |  0 );
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OT_ME_FindVariable2(int argc, VALUE *argv, VALUE self) {
+  std::string *arg1 = 0 ;
+  int res1 = SWIG_OLDOBJ ;
+  OTVariable *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","OT_ME::FindVariable2", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OT_ME::FindVariable2", 1, argv[0])); 
+    }
+    arg1 = ptr;
+  }
+  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable, 0 |  0 );
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_OT_ME_make_sure_enough_trans_nums(int argc, VALUE *argv, VALUE self) {
   OT_ME *arg1 = (OT_ME *) 0 ;
   int32_t arg2 ;
@@ -30496,75 +31488,6 @@ _wrap_OT_ME_retrieve_account__SWIG_0(int argc, VALUE *argv, VALUE self) {
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","retrieve_account", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","retrieve_account", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_account", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","retrieve_account", 3, argv[1] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_account", 3, argv[1])); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","retrieve_account", 4, argv[2] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_account", 4, argv[2])); 
-    }
-    arg4 = ptr;
-  }
-  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_retrieve_account__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
   bool arg5 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -30636,6 +31559,75 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_OT_ME_retrieve_account__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int res4 = SWIG_OLDOBJ ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","retrieve_account", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","retrieve_account", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_account", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","retrieve_account", 3, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_account", 3, argv[1])); 
+    }
+    arg3 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","retrieve_account", 4, argv[2] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_account", 4, argv[2])); 
+    }
+    arg4 = ptr;
+  }
+  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res4)) delete arg4;
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE _wrap_OT_ME_retrieve_account(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
@@ -30662,7 +31654,7 @@ SWIGINTERN VALUE _wrap_OT_ME_retrieve_account(int nargs, VALUE *args, VALUE self
           int res = SWIG_AsPtr_std_string(argv[3], (std::string**)(0));
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_OT_ME_retrieve_account__SWIG_0(nargs, args, self);
+            return _wrap_OT_ME_retrieve_account__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -30688,7 +31680,7 @@ SWIGINTERN VALUE _wrap_OT_ME_retrieve_account(int nargs, VALUE *args, VALUE self
               _v = SWIG_CheckState(res);
             }
             if (_v) {
-              return _wrap_OT_ME_retrieve_account__SWIG_1(nargs, args, self);
+              return _wrap_OT_ME_retrieve_account__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -30698,8 +31690,8 @@ SWIGINTERN VALUE _wrap_OT_ME_retrieve_account(int nargs, VALUE *args, VALUE self
   
 fail:
   Ruby_Format_OverloadedError( argc, 6, "OT_ME.retrieve_account", 
-    "    bool OT_ME.retrieve_account(std::string const &SERVER_ID, std::string const &NYM_ID, std::string const &ACCOUNT_ID)\n"
-    "    bool OT_ME.retrieve_account(std::string const &SERVER_ID, std::string const &NYM_ID, std::string const &ACCOUNT_ID, bool const bForceDownload)\n");
+    "    bool OT_ME.retrieve_account(std::string const &SERVER_ID, std::string const &NYM_ID, std::string const &ACCOUNT_ID, bool const bForceDownload)\n"
+    "    bool OT_ME.retrieve_account(std::string const &SERVER_ID, std::string const &NYM_ID, std::string const &ACCOUNT_ID)\n");
   
   return Qnil;
 }
@@ -30707,60 +31699,6 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_OT_ME_retrieve_nym__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","retrieve_nym", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","retrieve_nym", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_nym", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","retrieve_nym", 3, argv[1] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_nym", 3, argv[1])); 
-    }
-    arg3 = ptr;
-  }
-  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_retrieve_nym__SWIG_1(int argc, VALUE *argv, VALUE self) {
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
@@ -30821,6 +31759,60 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_OT_ME_retrieve_nym__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 2) || (argc > 2)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","retrieve_nym", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","retrieve_nym", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_nym", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","retrieve_nym", 3, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","retrieve_nym", 3, argv[1])); 
+    }
+    arg3 = ptr;
+  }
+  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE _wrap_OT_ME_retrieve_nym(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[5];
@@ -30844,7 +31836,7 @@ SWIGINTERN VALUE _wrap_OT_ME_retrieve_nym(int nargs, VALUE *args, VALUE self) {
         int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_OT_ME_retrieve_nym__SWIG_0(nargs, args, self);
+          return _wrap_OT_ME_retrieve_nym__SWIG_1(nargs, args, self);
         }
       }
     }
@@ -30866,7 +31858,7 @@ SWIGINTERN VALUE _wrap_OT_ME_retrieve_nym(int nargs, VALUE *args, VALUE self) {
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_OT_ME_retrieve_nym__SWIG_1(nargs, args, self);
+            return _wrap_OT_ME_retrieve_nym__SWIG_0(nargs, args, self);
           }
         }
       }
@@ -30875,8 +31867,8 @@ SWIGINTERN VALUE _wrap_OT_ME_retrieve_nym(int nargs, VALUE *args, VALUE self) {
   
 fail:
   Ruby_Format_OverloadedError( argc, 5, "OT_ME.retrieve_nym", 
-    "    bool OT_ME.retrieve_nym(std::string const &SERVER_ID, std::string const &NYM_ID)\n"
-    "    bool OT_ME.retrieve_nym(std::string const &SERVER_ID, std::string const &NYM_ID, bool const bForceDownload)\n");
+    "    bool OT_ME.retrieve_nym(std::string const &SERVER_ID, std::string const &NYM_ID, bool const bForceDownload)\n"
+    "    bool OT_ME.retrieve_nym(std::string const &SERVER_ID, std::string const &NYM_ID)\n");
   
   return Qnil;
 }
@@ -32220,68 +33212,6 @@ _wrap_OT_ME_get_payment_instrument__SWIG_0(int argc, VALUE *argv, VALUE self) {
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   int32_t arg4 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int val4 ;
-  int ecode4 = 0 ;
-  std::string result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 3) || (argc > 3)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","get_payment_instrument", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","get_payment_instrument", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","get_payment_instrument", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","get_payment_instrument", 3, argv[1] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","get_payment_instrument", 3, argv[1])); 
-    }
-    arg3 = ptr;
-  }
-  ecode4 = SWIG_AsVal_int(argv[2], &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int32_t","get_payment_instrument", 4, argv[2] ));
-  } 
-  arg4 = static_cast< int32_t >(val4);
-  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
-  vresult = SWIG_From_std_string(static_cast< std::string >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_get_payment_instrument__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int32_t arg4 ;
   std::string *arg5 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -32353,6 +33283,68 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_OT_ME_get_payment_instrument__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  int res3 = SWIG_OLDOBJ ;
+  int val4 ;
+  int ecode4 = 0 ;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","get_payment_instrument", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OT_ME * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","get_payment_instrument", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","get_payment_instrument", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
+    if (!SWIG_IsOK(res3)) {
+      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","get_payment_instrument", 3, argv[1] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","get_payment_instrument", 3, argv[1])); 
+    }
+    arg3 = ptr;
+  }
+  ecode4 = SWIG_AsVal_int(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int32_t","get_payment_instrument", 4, argv[2] ));
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res3)) delete arg3;
+  return Qnil;
+}
+
+
 SWIGINTERN VALUE _wrap_OT_ME_get_payment_instrument(int nargs, VALUE *args, VALUE self) {
   int argc;
   VALUE argv[6];
@@ -32381,7 +33373,7 @@ SWIGINTERN VALUE _wrap_OT_ME_get_payment_instrument(int nargs, VALUE *args, VALU
             _v = SWIG_CheckState(res);
           }
           if (_v) {
-            return _wrap_OT_ME_get_payment_instrument__SWIG_0(nargs, args, self);
+            return _wrap_OT_ME_get_payment_instrument__SWIG_1(nargs, args, self);
           }
         }
       }
@@ -32407,7 +33399,7 @@ SWIGINTERN VALUE _wrap_OT_ME_get_payment_instrument(int nargs, VALUE *args, VALU
             int res = SWIG_AsPtr_std_string(argv[4], (std::string**)(0));
             _v = SWIG_CheckState(res);
             if (_v) {
-              return _wrap_OT_ME_get_payment_instrument__SWIG_1(nargs, args, self);
+              return _wrap_OT_ME_get_payment_instrument__SWIG_0(nargs, args, self);
             }
           }
         }
@@ -32417,8 +33409,8 @@ SWIGINTERN VALUE _wrap_OT_ME_get_payment_instrument(int nargs, VALUE *args, VALU
   
 fail:
   Ruby_Format_OverloadedError( argc, 6, "OT_ME.get_payment_instrument", 
-    "    std::string OT_ME.get_payment_instrument(std::string const &SERVER_ID, std::string const &NYM_ID, int32_t const nIndex)\n"
-    "    std::string OT_ME.get_payment_instrument(std::string const &SERVER_ID, std::string const &NYM_ID, int32_t const nIndex, std::string const &PRELOADED_INBOX)\n");
+    "    std::string OT_ME.get_payment_instrument(std::string const &SERVER_ID, std::string const &NYM_ID, int32_t const nIndex, std::string const &PRELOADED_INBOX)\n"
+    "    std::string OT_ME.get_payment_instrument(std::string const &SERVER_ID, std::string const &NYM_ID, int32_t const nIndex)\n");
   
   return Qnil;
 }
@@ -32727,7 +33719,7 @@ _wrap_OT_ME_create_market_offer(int argc, VALUE *argv, VALUE self) {
   int64_t arg7 ;
   bool arg8 ;
   int64_t arg9 ;
-  std::string arg10 ;
+  std::string *arg10 = 0 ;
   int64_t arg11 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -32745,6 +33737,7 @@ _wrap_OT_ME_create_market_offer(int argc, VALUE *argv, VALUE self) {
   int ecode8 = 0 ;
   long long val9 ;
   int ecode9 = 0 ;
+  int res10 = SWIG_OLDOBJ ;
   long long val11 ;
   int ecode11 = 0 ;
   std::string result;
@@ -32812,26 +33805,30 @@ _wrap_OT_ME_create_market_offer(int argc, VALUE *argv, VALUE self) {
   arg9 = static_cast< int64_t >(val9);
   {
     std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(argv[8], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string const","create_market_offer", 10, argv[8] )); 
+    res10 = SWIG_AsPtr_std_string(argv[8], &ptr);
+    if (!SWIG_IsOK(res10)) {
+      SWIG_exception_fail(SWIG_ArgError(res10), Ruby_Format_TypeError( "", "std::string const &","create_market_offer", 10, argv[8] )); 
     }
-    arg10 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","create_market_offer", 10, argv[8])); 
+    }
+    arg10 = ptr;
   }
   ecode11 = SWIG_AsVal_long_SS_long(argv[9], &val11);
   if (!SWIG_IsOK(ecode11)) {
     SWIG_exception_fail(SWIG_ArgError(ecode11), Ruby_Format_TypeError( "", "int64_t","create_market_offer", 11, argv[9] ));
   } 
   arg11 = static_cast< int64_t >(val11);
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,(std::string const &)*arg10,arg11);
   vresult = SWIG_From_std_string(static_cast< std::string >(result));
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res10)) delete arg10;
   return vresult;
 fail:
   if (SWIG_IsNewObj(res2)) delete arg2;
   if (SWIG_IsNewObj(res3)) delete arg3;
+  if (SWIG_IsNewObj(res10)) delete arg10;
   return Qnil;
 }
 
@@ -34292,979 +35289,6 @@ fail:
   if (SWIG_IsNewObj(res3)) delete arg3;
   if (SWIG_IsNewObj(res4)) delete arg4;
   if (SWIG_IsNewObj(res5)) delete arg5;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_VerifyMessageSuccess(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int32_t result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","VerifyMessageSuccess", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","VerifyMessageSuccess", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMessageSuccess", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int32_t result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 4) || (argc > 4)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","VerifyMsgBalanceAgrmntSuccess", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 3, argv[1] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 3, argv[1])); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 4, argv[2] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 4, argv[2])); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 5, argv[3] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgBalanceAgrmntSuccess", 5, argv[3])); 
-    }
-    arg5 = ptr;
-  }
-  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_VerifyMsgTrnxSuccess(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int32_t result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 4) || (argc > 4)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 4)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","VerifyMsgTrnxSuccess", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 3, argv[1] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 3, argv[1])); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 4, argv[2] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 4, argv[2])); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","VerifyMsgTrnxSuccess", 5, argv[3] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","VerifyMsgTrnxSuccess", 5, argv[3])); 
-    }
-    arg5 = ptr;
-  }
-  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_InterpretTransactionMsgReply(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int res3 = SWIG_OLDOBJ ;
-  int res4 = SWIG_OLDOBJ ;
-  int res5 = SWIG_OLDOBJ ;
-  int res6 = SWIG_OLDOBJ ;
-  int32_t result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 5) || (argc > 5)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 5)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","InterpretTransactionMsgReply", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res3 = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 3, argv[1] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 3, argv[1])); 
-    }
-    arg3 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res4 = SWIG_AsPtr_std_string(argv[2], &ptr);
-    if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 4, argv[2] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 4, argv[2])); 
-    }
-    arg4 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
-    if (!SWIG_IsOK(res5)) {
-      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 5, argv[3] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 5, argv[3])); 
-    }
-    arg5 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res6 = SWIG_AsPtr_std_string(argv[4], &ptr);
-    if (!SWIG_IsOK(res6)) {
-      SWIG_exception_fail(SWIG_ArgError(res6), Ruby_Format_TypeError( "", "std::string const &","InterpretTransactionMsgReply", 6, argv[4] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","InterpretTransactionMsgReply", 6, argv[4])); 
-    }
-    arg6 = ptr;
-  }
-  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  if (SWIG_IsNewObj(res6)) delete arg6;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  if (SWIG_IsNewObj(res3)) delete arg3;
-  if (SWIG_IsNewObj(res4)) delete arg4;
-  if (SWIG_IsNewObj(res5)) delete arg5;
-  if (SWIG_IsNewObj(res6)) delete arg6;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  std::string result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnString", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnString", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnString", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnString", 3, argv[1] )); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
-  vresult = SWIG_From_std_string(static_cast< std::string >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  std::string result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnString", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnString", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnString", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
-  vresult = SWIG_From_std_string(static_cast< std::string >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnString(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnString", 
-    "    std::string OT_ME.ExecuteScript_ReturnString(std::string const &str_Code, std::string str_DisplayName)\n"
-    "    std::string OT_ME.ExecuteScript_ReturnString(std::string const &str_Code)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnBool", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnBool", 3, argv[1] )); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  bool result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnBool", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnBool", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
-  vresult = SWIG_From_bool(static_cast< bool >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnBool(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnBool", 
-    "    bool OT_ME.ExecuteScript_ReturnBool(std::string const &str_Code, std::string str_DisplayName)\n"
-    "    bool OT_ME.ExecuteScript_ReturnBool(std::string const &str_Code)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int32_t result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnInt", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnInt", 3, argv[1] )); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  int32_t result;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnInt", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnInt", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
-  vresult = SWIG_From_int(static_cast< int >(result));
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnInt(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnInt", 
-    "    int32_t OT_ME.ExecuteScript_ReturnInt(std::string const &str_Code, std::string str_DisplayName)\n"
-    "    int32_t OT_ME.ExecuteScript_ReturnInt(std::string const &str_Code)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnVoid", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    int res = SWIG_AsPtr_std_string(argv[1], &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string","ExecuteScript_ReturnVoid", 3, argv[1] )); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","ExecuteScript_ReturnVoid", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","ExecuteScript_ReturnVoid", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE _wrap_OT_ME_ExecuteScript_ReturnVoid(int nargs, VALUE *args, VALUE self) {
-  int argc;
-  VALUE argv[4];
-  int ii;
-  
-  argc = nargs + 1;
-  argv[0] = self;
-  if (argc > 4) SWIG_fail;
-  for (ii = 1; (ii < argc); ++ii) {
-    argv[ii] = args[ii-1];
-  }
-  if (argc == 2) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(nargs, args, self);
-      }
-    }
-  }
-  if (argc == 3) {
-    int _v;
-    void *vptr = 0;
-    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OT_ME, 0);
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
-      _v = SWIG_CheckState(res);
-      if (_v) {
-        int res = SWIG_AsPtr_std_string(argv[2], (std::string**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          return _wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(nargs, args, self);
-        }
-      }
-    }
-  }
-  
-fail:
-  Ruby_Format_OverloadedError( argc, 4, "OT_ME.ExecuteScript_ReturnVoid", 
-    "    void OT_ME.ExecuteScript_ReturnVoid(std::string const &str_Code, std::string str_DisplayName)\n"
-    "    void OT_ME.ExecuteScript_ReturnVoid(std::string const &str_Code)\n");
-  
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_AddVariable(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  OTVariable *arg3 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  
-  if ((argc < 2) || (argc > 2)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 2)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","AddVariable", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","AddVariable", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddVariable", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  res3 = SWIG_ConvertPtr(argv[1], &argp3, SWIGTYPE_p_OTVariable,  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), Ruby_Format_TypeError( "", "OTVariable &","AddVariable", 3, argv[1] )); 
-  }
-  if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "OTVariable &","AddVariable", 3, argv[1])); 
-  }
-  arg3 = reinterpret_cast< OTVariable * >(argp3);
-  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_FindVariable(int argc, VALUE *argv, VALUE self) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 = SWIG_OLDOBJ ;
-  OTVariable *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OT_ME, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OT_ME *","FindVariable", 1, self )); 
-  }
-  arg1 = reinterpret_cast< OT_ME * >(argp1);
-  {
-    std::string *ptr = (std::string *)0;
-    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","FindVariable", 2, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","FindVariable", 2, argv[0])); 
-    }
-    arg2 = ptr;
-  }
-  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable, 0 |  0 );
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res2)) delete arg2;
-  return Qnil;
-}
-
-
-SWIGINTERN VALUE
-_wrap_OT_ME_FindVariable2(int argc, VALUE *argv, VALUE self) {
-  std::string *arg1 = 0 ;
-  int res1 = SWIG_OLDOBJ ;
-  OTVariable *result = 0 ;
-  VALUE vresult = Qnil;
-  
-  if ((argc < 1) || (argc > 1)) {
-    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
-  }
-  {
-    std::string *ptr = (std::string *)0;
-    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
-    if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","OT_ME::FindVariable2", 1, argv[0] )); 
-    }
-    if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","OT_ME::FindVariable2", 1, argv[0])); 
-    }
-    arg1 = ptr;
-  }
-  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
-  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_OTVariable, 0 |  0 );
-  if (SWIG_IsNewObj(res1)) delete arg1;
-  return vresult;
-fail:
-  if (SWIG_IsNewObj(res1)) delete arg1;
   return Qnil;
 }
 
@@ -51989,7 +52013,7 @@ fail:
 
 SWIGINTERN VALUE
 _wrap_OTRecord_GetTypeString(int argc, VALUE *argv, VALUE self) {
-  int arg1 ;
+  int32_t arg1 ;
   int val1 ;
   int ecode1 = 0 ;
   std::string *result = 0 ;
@@ -52000,9 +52024,9 @@ _wrap_OTRecord_GetTypeString(int argc, VALUE *argv, VALUE self) {
   }
   ecode1 = SWIG_AsVal_int(argv[0], &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int","OTRecord_GetTypeString", 1, argv[0] ));
+    SWIG_exception_fail(SWIG_ArgError(ecode1), Ruby_Format_TypeError( "", "int32_t","OTRecord_GetTypeString", 1, argv[0] ));
   } 
-  arg1 = static_cast< int >(val1);
+  arg1 = static_cast< int32_t >(val1);
   result = (std::string *) &OTRecord_GetTypeString(arg1);
   vresult = SWIG_From_std_string(static_cast< std::string >(*result));
   return vresult;
@@ -52012,6 +52036,125 @@ fail:
 
 
 static swig_class SwigClassOTRecord;
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetSpecialMail__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetSpecialMail", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  ecode2 = SWIG_AsVal_bool(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "bool","SetSpecialMail", 2, argv[0] ));
+  } 
+  arg2 = static_cast< bool >(val2);
+  (arg1)->SetSpecialMail(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetSpecialMail__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetSpecialMail", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  (arg1)->SetSpecialMail();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_OTRecord_SetSpecialMail(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[3];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 3) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 1) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecord, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_OTRecord_SetSpecialMail__SWIG_1(nargs, args, self);
+    }
+  }
+  if (argc == 2) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecord, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_bool(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        return _wrap_OTRecord_SetSpecialMail__SWIG_0(nargs, args, self);
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 3, "OTRecord.SetSpecialMail", 
+    "    void OTRecord.SetSpecialMail(bool bIsSpecial)\n"
+    "    void OTRecord.SetSpecialMail()\n");
+  
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_IsSpecialMail(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord const *","IsSpecialMail", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (bool)((OTRecord const *)arg1)->IsSpecialMail();
+  vresult = SWIG_From_bool(static_cast< bool >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
 
 SWIGINTERN VALUE
 _wrap_OTRecord_IsPending(int argc, VALUE *argv, VALUE self) {
@@ -52903,6 +53046,239 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_OTRecord_GetMethodID(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int32_t result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord const *","GetMethodID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (int32_t)((OTRecord const *)arg1)->GetMethodID();
+  vresult = SWIG_From_int(static_cast< int >(result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetMethodID(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetMethodID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  ecode2 = SWIG_AsVal_int(argv[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int32_t","SetMethodID", 2, argv[0] ));
+  } 
+  arg2 = static_cast< int32_t >(val2);
+  (arg1)->SetMethodID(arg2);
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_GetMsgID(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord const *","GetMsgID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgID();
+  vresult = SWIG_From_std_string(static_cast< std::string >(*result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetMsgID(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetMsgID", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","SetMsgID", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","SetMsgID", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetMsgID((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_GetMsgType(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord const *","GetMsgType", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgType();
+  vresult = SWIG_From_std_string(static_cast< std::string >(*result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetMsgType(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetMsgType", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","SetMsgType", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","SetMsgType", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetMsgType((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_GetMsgTypeDisplay(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord const *","GetMsgTypeDisplay", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgTypeDisplay();
+  vresult = SWIG_From_std_string(static_cast< std::string >(*result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetMsgTypeDisplay(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetMsgTypeDisplay", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","SetMsgTypeDisplay", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","SetMsgTypeDisplay", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetMsgTypeDisplay((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_OTRecord_GetTransactionNum(int argc, VALUE *argv, VALUE self) {
   OTRecord *arg1 = (OTRecord *) 0 ;
   void *argp1 = 0 ;
@@ -53153,6 +53529,30 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_OTRecord_GetAddress(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord const *","GetAddress", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetAddress();
+  vresult = SWIG_From_std_string(static_cast< std::string >(*result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_OTRecord_GetOtherNymID(int argc, VALUE *argv, VALUE self) {
   OTRecord *arg1 = (OTRecord *) 0 ;
   void *argp1 = 0 ;
@@ -53193,6 +53593,30 @@ _wrap_OTRecord_GetOtherAccountID(int argc, VALUE *argv, VALUE self) {
   }
   arg1 = reinterpret_cast< OTRecord * >(argp1);
   result = (std::string *) &((OTRecord const *)arg1)->GetOtherAccountID();
+  vresult = SWIG_From_std_string(static_cast< std::string >(*result));
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_GetOtherAddress(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  std::string *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord const *","GetOtherAddress", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  result = (std::string *) &((OTRecord const *)arg1)->GetOtherAddress();
   vresult = SWIG_From_std_string(static_cast< std::string >(*result));
   return vresult;
 fail:
@@ -53408,6 +53832,78 @@ _wrap_OTRecord_SetOtherAccountID(int argc, VALUE *argv, VALUE self) {
     arg2 = ptr;
   }
   (arg1)->SetOtherAccountID((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetAddress(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetAddress", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","SetAddress", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","SetAddress", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetAddress((std::string const &)*arg2);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecord_SetOtherAddress(int argc, VALUE *argv, VALUE self) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecord, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecord *","SetOtherAddress", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecord * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","SetOtherAddress", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","SetOtherAddress", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  (arg1)->SetOtherAddress((std::string const &)*arg2);
   if (SWIG_IsNewObj(res2)) delete arg2;
   return Qnil;
 fail:
@@ -54600,6 +55096,58 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_OTNameLookup_GetAddressName(int argc, VALUE *argv, VALUE self) {
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTNameLookup, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTNameLookup const *","GetAddressName", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTNameLookup * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","GetAddressName", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","GetAddressName", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  director = dynamic_cast<Swig::Director *>(arg1);
+  upcall = (director && (director->swig_get_self() == self));
+  try {
+    if (upcall) {
+      result = ((OTNameLookup const *)arg1)->OTNameLookup::GetAddressName((std::string const &)*arg2);
+    } else {
+      result = ((OTNameLookup const *)arg1)->GetAddressName((std::string const &)*arg2);
+    }
+  } catch (Swig::DirectorException& e) {
+    rb_exc_raise(e.getError());
+    SWIG_fail;
+  }
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_disown_OTNameLookup(int argc, VALUE *argv, VALUE self) {
   OTNameLookup *arg1 = (OTNameLookup *) 0 ;
   void *argp1 = 0 ;
@@ -55209,6 +55757,45 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_OTLookupCaller_GetAddressName(int argc, VALUE *argv, VALUE self) {
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  std::string result;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 1) || (argc > 1)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 1)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTLookupCaller, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTLookupCaller const *","GetAddressName", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTLookupCaller * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","GetAddressName", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","GetAddressName", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  result = ((OTLookupCaller const *)arg1)->GetAddressName((std::string const &)*arg2);
+  vresult = SWIG_From_std_string(static_cast< std::string >(result));
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_OT_API_Set_AddrBookCallback(int argc, VALUE *argv, VALUE self) {
   OTLookupCaller *arg1 = 0 ;
   void *argp1 = 0 ;
@@ -55809,6 +56396,30 @@ fail:
 
 
 SWIGINTERN VALUE
+_wrap_OTRecordList_GetNyms(int argc, VALUE *argv, VALUE self) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  list_of_strings *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecordList const *","GetNyms", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  result = (list_of_strings *) &((OTRecordList const *)arg1)->GetNyms();
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__listT_std__string_t, 0 |  0 );
+  return vresult;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
 _wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0(int argc, VALUE *argv, VALUE self) {
   OTRecordList *arg1 = (OTRecordList *) 0 ;
   bool arg2 ;
@@ -56353,6 +56964,612 @@ fail:
 }
 
 
+SWIGINTERN VALUE
+_wrap_OTRecordList_SortRecords(int argc, VALUE *argv, VALUE self) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  
+  if ((argc < 0) || (argc > 0)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 0)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecordList *","SortRecords", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  (arg1)->SortRecords();
+  return Qnil;
+fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecordList_AddSpecialMsg__SWIG_0(int argc, VALUE *argv, VALUE self) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  time64_t arg11 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int res7 = SWIG_OLDOBJ ;
+  int res8 = SWIG_OLDOBJ ;
+  int res9 = SWIG_OLDOBJ ;
+  void *argp11 ;
+  int res11 = 0 ;
+  
+  if ((argc < 10) || (argc > 10)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 10)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecordList *","AddSpecialMsg", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","AddSpecialMsg", 3, argv[1] ));
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int32_t","AddSpecialMsg", 4, argv[2] ));
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 5, argv[3] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 5, argv[3])); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string(argv[4], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 6, argv[4] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 6, argv[4])); 
+    }
+    arg6 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res7 = SWIG_AsPtr_std_string(argv[5], &ptr);
+    if (!SWIG_IsOK(res7)) {
+      SWIG_exception_fail(SWIG_ArgError(res7), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 7, argv[5] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 7, argv[5])); 
+    }
+    arg7 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res8 = SWIG_AsPtr_std_string(argv[6], &ptr);
+    if (!SWIG_IsOK(res8)) {
+      SWIG_exception_fail(SWIG_ArgError(res8), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 8, argv[6] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 8, argv[6])); 
+    }
+    arg8 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res9 = SWIG_AsPtr_std_string(argv[7], &ptr);
+    if (!SWIG_IsOK(res9)) {
+      SWIG_exception_fail(SWIG_ArgError(res9), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 9, argv[7] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 9, argv[7])); 
+    }
+    arg9 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[8], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string const","AddSpecialMsg", 10, argv[8] )); 
+    }
+    arg10 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  {
+    res11 = SWIG_ConvertPtr(argv[9], &argp11, SWIGTYPE_p_time64_t,  0 );
+    if (!SWIG_IsOK(res11)) {
+      SWIG_exception_fail(SWIG_ArgError(res11), Ruby_Format_TypeError( "", "time64_t","AddSpecialMsg", 11, argv[9] )); 
+    }  
+    if (!argp11) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "time64_t","AddSpecialMsg", 11, argv[9]));
+    } else {
+      arg11 = *(reinterpret_cast< time64_t * >(argp11));
+    }
+  }
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10,arg11);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecordList_AddSpecialMsg__SWIG_1(int argc, VALUE *argv, VALUE self) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int res7 = SWIG_OLDOBJ ;
+  int res8 = SWIG_OLDOBJ ;
+  int res9 = SWIG_OLDOBJ ;
+  
+  if ((argc < 9) || (argc > 9)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 9)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecordList *","AddSpecialMsg", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","AddSpecialMsg", 3, argv[1] ));
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int32_t","AddSpecialMsg", 4, argv[2] ));
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 5, argv[3] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 5, argv[3])); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string(argv[4], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 6, argv[4] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 6, argv[4])); 
+    }
+    arg6 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res7 = SWIG_AsPtr_std_string(argv[5], &ptr);
+    if (!SWIG_IsOK(res7)) {
+      SWIG_exception_fail(SWIG_ArgError(res7), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 7, argv[5] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 7, argv[5])); 
+    }
+    arg7 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res8 = SWIG_AsPtr_std_string(argv[6], &ptr);
+    if (!SWIG_IsOK(res8)) {
+      SWIG_exception_fail(SWIG_ArgError(res8), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 8, argv[6] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 8, argv[6])); 
+    }
+    arg8 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res9 = SWIG_AsPtr_std_string(argv[7], &ptr);
+    if (!SWIG_IsOK(res9)) {
+      SWIG_exception_fail(SWIG_ArgError(res9), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 9, argv[7] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 9, argv[7])); 
+    }
+    arg9 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    int res = SWIG_AsPtr_std_string(argv[8], &ptr);
+    if (!SWIG_IsOK(res) || !ptr) {
+      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), Ruby_Format_TypeError( "", "std::string const","AddSpecialMsg", 10, argv[8] )); 
+    }
+    arg10 = *ptr;
+    if (SWIG_IsNewObj(res)) delete ptr;
+  }
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_OTRecordList_AddSpecialMsg__SWIG_2(int argc, VALUE *argv, VALUE self) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 = SWIG_OLDOBJ ;
+  bool val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 = SWIG_OLDOBJ ;
+  int res6 = SWIG_OLDOBJ ;
+  int res7 = SWIG_OLDOBJ ;
+  int res8 = SWIG_OLDOBJ ;
+  int res9 = SWIG_OLDOBJ ;
+  
+  if ((argc < 8) || (argc > 8)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 8)",argc); SWIG_fail;
+  }
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_OTRecordList, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "OTRecordList *","AddSpecialMsg", 1, self )); 
+  }
+  arg1 = reinterpret_cast< OTRecordList * >(argp1);
+  {
+    std::string *ptr = (std::string *)0;
+    res2 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res2)) {
+      SWIG_exception_fail(SWIG_ArgError(res2), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 2, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 2, argv[0])); 
+    }
+    arg2 = ptr;
+  }
+  ecode3 = SWIG_AsVal_bool(argv[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "bool","AddSpecialMsg", 3, argv[1] ));
+  } 
+  arg3 = static_cast< bool >(val3);
+  ecode4 = SWIG_AsVal_int(argv[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), Ruby_Format_TypeError( "", "int32_t","AddSpecialMsg", 4, argv[2] ));
+  } 
+  arg4 = static_cast< int32_t >(val4);
+  {
+    std::string *ptr = (std::string *)0;
+    res5 = SWIG_AsPtr_std_string(argv[3], &ptr);
+    if (!SWIG_IsOK(res5)) {
+      SWIG_exception_fail(SWIG_ArgError(res5), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 5, argv[3] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 5, argv[3])); 
+    }
+    arg5 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res6 = SWIG_AsPtr_std_string(argv[4], &ptr);
+    if (!SWIG_IsOK(res6)) {
+      SWIG_exception_fail(SWIG_ArgError(res6), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 6, argv[4] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 6, argv[4])); 
+    }
+    arg6 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res7 = SWIG_AsPtr_std_string(argv[5], &ptr);
+    if (!SWIG_IsOK(res7)) {
+      SWIG_exception_fail(SWIG_ArgError(res7), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 7, argv[5] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 7, argv[5])); 
+    }
+    arg7 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res8 = SWIG_AsPtr_std_string(argv[6], &ptr);
+    if (!SWIG_IsOK(res8)) {
+      SWIG_exception_fail(SWIG_ArgError(res8), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 8, argv[6] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 8, argv[6])); 
+    }
+    arg8 = ptr;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res9 = SWIG_AsPtr_std_string(argv[7], &ptr);
+    if (!SWIG_IsOK(res9)) {
+      SWIG_exception_fail(SWIG_ArgError(res9), Ruby_Format_TypeError( "", "std::string const &","AddSpecialMsg", 9, argv[7] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","AddSpecialMsg", 9, argv[7])); 
+    }
+    arg9 = ptr;
+  }
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9);
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return Qnil;
+fail:
+  if (SWIG_IsNewObj(res2)) delete arg2;
+  if (SWIG_IsNewObj(res5)) delete arg5;
+  if (SWIG_IsNewObj(res6)) delete arg6;
+  if (SWIG_IsNewObj(res7)) delete arg7;
+  if (SWIG_IsNewObj(res8)) delete arg8;
+  if (SWIG_IsNewObj(res9)) delete arg9;
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE _wrap_OTRecordList_AddSpecialMsg(int nargs, VALUE *args, VALUE self) {
+  int argc;
+  VALUE argv[12];
+  int ii;
+  
+  argc = nargs + 1;
+  argv[0] = self;
+  if (argc > 12) SWIG_fail;
+  for (ii = 1; (ii < argc); ++ii) {
+    argv[ii] = args[ii-1];
+  }
+  if (argc == 9) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecordList, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            int res = SWIG_AsPtr_std_string(argv[4], (std::string**)(0));
+            _v = SWIG_CheckState(res);
+            if (_v) {
+              int res = SWIG_AsPtr_std_string(argv[5], (std::string**)(0));
+              _v = SWIG_CheckState(res);
+              if (_v) {
+                int res = SWIG_AsPtr_std_string(argv[6], (std::string**)(0));
+                _v = SWIG_CheckState(res);
+                if (_v) {
+                  int res = SWIG_AsPtr_std_string(argv[7], (std::string**)(0));
+                  _v = SWIG_CheckState(res);
+                  if (_v) {
+                    int res = SWIG_AsPtr_std_string(argv[8], (std::string**)(0));
+                    _v = SWIG_CheckState(res);
+                    if (_v) {
+                      return _wrap_OTRecordList_AddSpecialMsg__SWIG_2(nargs, args, self);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 10) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecordList, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            int res = SWIG_AsPtr_std_string(argv[4], (std::string**)(0));
+            _v = SWIG_CheckState(res);
+            if (_v) {
+              int res = SWIG_AsPtr_std_string(argv[5], (std::string**)(0));
+              _v = SWIG_CheckState(res);
+              if (_v) {
+                int res = SWIG_AsPtr_std_string(argv[6], (std::string**)(0));
+                _v = SWIG_CheckState(res);
+                if (_v) {
+                  int res = SWIG_AsPtr_std_string(argv[7], (std::string**)(0));
+                  _v = SWIG_CheckState(res);
+                  if (_v) {
+                    int res = SWIG_AsPtr_std_string(argv[8], (std::string**)(0));
+                    _v = SWIG_CheckState(res);
+                    if (_v) {
+                      int res = SWIG_AsPtr_std_string(argv[9], (std::string**)(0));
+                      _v = SWIG_CheckState(res);
+                      if (_v) {
+                        return _wrap_OTRecordList_AddSpecialMsg__SWIG_1(nargs, args, self);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 11) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_OTRecordList, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      int res = SWIG_AsPtr_std_string(argv[1], (std::string**)(0));
+      _v = SWIG_CheckState(res);
+      if (_v) {
+        {
+          int res = SWIG_AsVal_bool(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          {
+            int res = SWIG_AsVal_int(argv[3], NULL);
+            _v = SWIG_CheckState(res);
+          }
+          if (_v) {
+            int res = SWIG_AsPtr_std_string(argv[4], (std::string**)(0));
+            _v = SWIG_CheckState(res);
+            if (_v) {
+              int res = SWIG_AsPtr_std_string(argv[5], (std::string**)(0));
+              _v = SWIG_CheckState(res);
+              if (_v) {
+                int res = SWIG_AsPtr_std_string(argv[6], (std::string**)(0));
+                _v = SWIG_CheckState(res);
+                if (_v) {
+                  int res = SWIG_AsPtr_std_string(argv[7], (std::string**)(0));
+                  _v = SWIG_CheckState(res);
+                  if (_v) {
+                    int res = SWIG_AsPtr_std_string(argv[8], (std::string**)(0));
+                    _v = SWIG_CheckState(res);
+                    if (_v) {
+                      int res = SWIG_AsPtr_std_string(argv[9], (std::string**)(0));
+                      _v = SWIG_CheckState(res);
+                      if (_v) {
+                        void *vptr = 0;
+                        int res = SWIG_ConvertPtr(argv[10], &vptr, SWIGTYPE_p_time64_t, 0);
+                        _v = SWIG_CheckState(res);
+                        if (_v) {
+                          return _wrap_OTRecordList_AddSpecialMsg__SWIG_0(nargs, args, self);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  Ruby_Format_OverloadedError( argc, 12, "OTRecordList.AddSpecialMsg", 
+    "    void OTRecordList.AddSpecialMsg(std::string const &str_msg_id, bool bIsOutgoing, int32_t nMethodID, std::string const &str_contents, std::string const &str_address, std::string const &str_other_address, std::string const &str_type, std::string const &str_type_display, std::string const str_my_nym_id, time64_t tDate)\n"
+    "    void OTRecordList.AddSpecialMsg(std::string const &str_msg_id, bool bIsOutgoing, int32_t nMethodID, std::string const &str_contents, std::string const &str_address, std::string const &str_other_address, std::string const &str_type, std::string const &str_type_display, std::string const str_my_nym_id)\n"
+    "    void OTRecordList.AddSpecialMsg(std::string const &str_msg_id, bool bIsOutgoing, int32_t nMethodID, std::string const &str_contents, std::string const &str_address, std::string const &str_other_address, std::string const &str_type, std::string const &str_type_display)\n");
+  
+  return Qnil;
+}
+
+
 
 /*
   Document-method: Otapi::OTRecordList.size
@@ -56706,6 +57923,7 @@ static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0
 static swig_type_info _swigt__p_std__allocatorT_std__pairT_std__string_const_std__string_t_t = {"_p_std__allocatorT_std__pairT_std__string_const_std__string_t_t", "std::map< std::string,std::string >::allocator_type *|std::allocator< std::pair< std::string const,std::string > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__allocatorT_unsigned_char_t = {"_p_std__allocatorT_unsigned_char_t", "std::vector< unsigned char >::allocator_type *|std::allocator< unsigned char > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__lessT_std__string_t = {"_p_std__lessT_std__string_t", "std::less< std::string > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__listT_std__string_t = {"_p_std__listT_std__string_t", "std::list< std::string > *|list_of_strings *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t = {"_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t", "std::map< std::string,std::string > *|std::map< std::string,std::string,std::less< std::string >,std::allocator< std::pair< std::string const,std::string > > > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator = {"_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator", "std::map< std::string,std::string >::iterator *|std::map< std::string,std::string,std::less< std::string >,std::allocator< std::pair< std::string const,std::string > > >::iterator *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator = {"_p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator", "std::map< std::string,std::string >::reverse_iterator *|std::map< std::string,std::string,std::less< std::string >,std::allocator< std::pair< std::string const,std::string > > >::reverse_iterator *", 0, 0, (void*)0, 0};
@@ -56781,6 +57999,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_std__allocatorT_std__pairT_std__string_const_std__string_t_t,
   &_swigt__p_std__allocatorT_unsigned_char_t,
   &_swigt__p_std__lessT_std__string_t,
+  &_swigt__p_std__listT_std__string_t,
   &_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,
   &_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator,
   &_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator,
@@ -56856,6 +58075,7 @@ static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0}
 static swig_cast_info _swigc__p_std__allocatorT_std__pairT_std__string_const_std__string_t_t[] = {  {&_swigt__p_std__allocatorT_std__pairT_std__string_const_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__allocatorT_unsigned_char_t[] = {  {&_swigt__p_std__allocatorT_unsigned_char_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__lessT_std__string_t[] = {  {&_swigt__p_std__lessT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__listT_std__string_t[] = {  {&_swigt__p_std__listT_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator[] = {  {&_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator[] = {  {&_swigt__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -56931,6 +58151,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_std__allocatorT_std__pairT_std__string_const_std__string_t_t,
   _swigc__p_std__allocatorT_unsigned_char_t,
   _swigc__p_std__lessT_std__string_t,
+  _swigc__p_std__listT_std__string_t,
   _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t,
   _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__iterator,
   _swigc__p_std__mapT_std__string_std__string_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_std__string_t_t_t__reverse_iterator,
@@ -57749,6 +58970,17 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOT_ME.klass, "initialize", VALUEFUNC(_wrap_new_OT_ME), -1);
   rb_define_method(SwigClassOT_ME.klass, "opentxs_copy_variables", VALUEFUNC(_wrap_OT_ME_opentxs_copy_variables), -1);
   rb_define_method(SwigClassOT_ME.klass, "opentxs_main_loop", VALUEFUNC(_wrap_OT_ME_opentxs_main_loop), -1);
+  rb_define_method(SwigClassOT_ME.klass, "VerifyMessageSuccess", VALUEFUNC(_wrap_OT_ME_VerifyMessageSuccess), -1);
+  rb_define_method(SwigClassOT_ME.klass, "VerifyMsgBalanceAgrmntSuccess", VALUEFUNC(_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess), -1);
+  rb_define_method(SwigClassOT_ME.klass, "VerifyMsgTrnxSuccess", VALUEFUNC(_wrap_OT_ME_VerifyMsgTrnxSuccess), -1);
+  rb_define_method(SwigClassOT_ME.klass, "InterpretTransactionMsgReply", VALUEFUNC(_wrap_OT_ME_InterpretTransactionMsgReply), -1);
+  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnString", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnString), -1);
+  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnBool", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnBool), -1);
+  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnInt", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnInt), -1);
+  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnVoid", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnVoid), -1);
+  rb_define_method(SwigClassOT_ME.klass, "AddVariable", VALUEFUNC(_wrap_OT_ME_AddVariable), -1);
+  rb_define_method(SwigClassOT_ME.klass, "FindVariable", VALUEFUNC(_wrap_OT_ME_FindVariable), -1);
+  rb_define_singleton_method(SwigClassOT_ME.klass, "FindVariable2", VALUEFUNC(_wrap_OT_ME_FindVariable2), -1);
   rb_define_method(SwigClassOT_ME.klass, "make_sure_enough_trans_nums", VALUEFUNC(_wrap_OT_ME_make_sure_enough_trans_nums), -1);
   rb_define_method(SwigClassOT_ME.klass, "register_nym", VALUEFUNC(_wrap_OT_ME_register_nym), -1);
   rb_define_method(SwigClassOT_ME.klass, "check_user", VALUEFUNC(_wrap_OT_ME_check_user), -1);
@@ -57803,17 +59035,6 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOT_ME.klass, "get_nym_market_offers", VALUEFUNC(_wrap_OT_ME_get_nym_market_offers), -1);
   rb_define_method(SwigClassOT_ME.klass, "get_market_recent_trades", VALUEFUNC(_wrap_OT_ME_get_market_recent_trades), -1);
   rb_define_method(SwigClassOT_ME.klass, "adjust_usage_credits", VALUEFUNC(_wrap_OT_ME_adjust_usage_credits), -1);
-  rb_define_method(SwigClassOT_ME.klass, "VerifyMessageSuccess", VALUEFUNC(_wrap_OT_ME_VerifyMessageSuccess), -1);
-  rb_define_method(SwigClassOT_ME.klass, "VerifyMsgBalanceAgrmntSuccess", VALUEFUNC(_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess), -1);
-  rb_define_method(SwigClassOT_ME.klass, "VerifyMsgTrnxSuccess", VALUEFUNC(_wrap_OT_ME_VerifyMsgTrnxSuccess), -1);
-  rb_define_method(SwigClassOT_ME.klass, "InterpretTransactionMsgReply", VALUEFUNC(_wrap_OT_ME_InterpretTransactionMsgReply), -1);
-  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnString", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnString), -1);
-  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnBool", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnBool), -1);
-  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnInt", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnInt), -1);
-  rb_define_method(SwigClassOT_ME.klass, "ExecuteScript_ReturnVoid", VALUEFUNC(_wrap_OT_ME_ExecuteScript_ReturnVoid), -1);
-  rb_define_method(SwigClassOT_ME.klass, "AddVariable", VALUEFUNC(_wrap_OT_ME_AddVariable), -1);
-  rb_define_method(SwigClassOT_ME.klass, "FindVariable", VALUEFUNC(_wrap_OT_ME_FindVariable), -1);
-  rb_define_singleton_method(SwigClassOT_ME.klass, "FindVariable2", VALUEFUNC(_wrap_OT_ME_FindVariable2), -1);
   SwigClassOT_ME.mark = 0;
   SwigClassOT_ME.destroy = (void (*)(void *)) free_OT_ME;
   SwigClassOT_ME.trackObjects = 0;
@@ -58449,6 +59670,8 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_const(SwigClassOTRecord.klass, "Receipt", SWIG_From_int(static_cast< int >(OTRecord::Receipt)));
   rb_define_const(SwigClassOTRecord.klass, "Instrument", SWIG_From_int(static_cast< int >(OTRecord::Instrument)));
   rb_define_const(SwigClassOTRecord.klass, "ErrorState", SWIG_From_int(static_cast< int >(OTRecord::ErrorState)));
+  rb_define_method(SwigClassOTRecord.klass, "SetSpecialMail", VALUEFUNC(_wrap_OTRecord_SetSpecialMail), -1);
+  rb_define_method(SwigClassOTRecord.klass, "IsSpecialMail", VALUEFUNC(_wrap_OTRecord_IsSpecialMail), -1);
   rb_define_method(SwigClassOTRecord.klass, "IsPending", VALUEFUNC(_wrap_OTRecord_IsPending), -1);
   rb_define_method(SwigClassOTRecord.klass, "IsOutgoing", VALUEFUNC(_wrap_OTRecord_IsOutgoing), -1);
   rb_define_method(SwigClassOTRecord.klass, "IsRecord", VALUEFUNC(_wrap_OTRecord_IsRecord), -1);
@@ -58484,6 +59707,14 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOTRecord.klass, "DiscardOutgoingCash", VALUEFUNC(_wrap_OTRecord_DiscardOutgoingCash), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetBoxIndex", VALUEFUNC(_wrap_OTRecord_GetBoxIndex), -1);
   rb_define_method(SwigClassOTRecord.klass, "SetBoxIndex", VALUEFUNC(_wrap_OTRecord_SetBoxIndex), -1);
+  rb_define_method(SwigClassOTRecord.klass, "GetMethodID", VALUEFUNC(_wrap_OTRecord_GetMethodID), -1);
+  rb_define_method(SwigClassOTRecord.klass, "SetMethodID", VALUEFUNC(_wrap_OTRecord_SetMethodID), -1);
+  rb_define_method(SwigClassOTRecord.klass, "GetMsgID", VALUEFUNC(_wrap_OTRecord_GetMsgID), -1);
+  rb_define_method(SwigClassOTRecord.klass, "SetMsgID", VALUEFUNC(_wrap_OTRecord_SetMsgID), -1);
+  rb_define_method(SwigClassOTRecord.klass, "GetMsgType", VALUEFUNC(_wrap_OTRecord_GetMsgType), -1);
+  rb_define_method(SwigClassOTRecord.klass, "SetMsgType", VALUEFUNC(_wrap_OTRecord_SetMsgType), -1);
+  rb_define_method(SwigClassOTRecord.klass, "GetMsgTypeDisplay", VALUEFUNC(_wrap_OTRecord_GetMsgTypeDisplay), -1);
+  rb_define_method(SwigClassOTRecord.klass, "SetMsgTypeDisplay", VALUEFUNC(_wrap_OTRecord_SetMsgTypeDisplay), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetTransactionNum", VALUEFUNC(_wrap_OTRecord_GetTransactionNum), -1);
   rb_define_method(SwigClassOTRecord.klass, "SetTransactionNum", VALUEFUNC(_wrap_OTRecord_SetTransactionNum), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetTransNumForDisplay", VALUEFUNC(_wrap_OTRecord_GetTransNumForDisplay), -1);
@@ -58494,8 +59725,10 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOTRecord.klass, "GetCurrencyTLA", VALUEFUNC(_wrap_OTRecord_GetCurrencyTLA), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetNymID", VALUEFUNC(_wrap_OTRecord_GetNymID), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetAccountID", VALUEFUNC(_wrap_OTRecord_GetAccountID), -1);
+  rb_define_method(SwigClassOTRecord.klass, "GetAddress", VALUEFUNC(_wrap_OTRecord_GetAddress), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetOtherNymID", VALUEFUNC(_wrap_OTRecord_GetOtherNymID), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetOtherAccountID", VALUEFUNC(_wrap_OTRecord_GetOtherAccountID), -1);
+  rb_define_method(SwigClassOTRecord.klass, "GetOtherAddress", VALUEFUNC(_wrap_OTRecord_GetOtherAddress), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetName", VALUEFUNC(_wrap_OTRecord_GetName), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetDate", VALUEFUNC(_wrap_OTRecord_GetDate), -1);
   rb_define_method(SwigClassOTRecord.klass, "GetAmount", VALUEFUNC(_wrap_OTRecord_GetAmount), -1);
@@ -58504,6 +59737,8 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOTRecord.klass, "GetContents", VALUEFUNC(_wrap_OTRecord_GetContents), -1);
   rb_define_method(SwigClassOTRecord.klass, "SetOtherNymID", VALUEFUNC(_wrap_OTRecord_SetOtherNymID), -1);
   rb_define_method(SwigClassOTRecord.klass, "SetOtherAccountID", VALUEFUNC(_wrap_OTRecord_SetOtherAccountID), -1);
+  rb_define_method(SwigClassOTRecord.klass, "SetAddress", VALUEFUNC(_wrap_OTRecord_SetAddress), -1);
+  rb_define_method(SwigClassOTRecord.klass, "SetOtherAddress", VALUEFUNC(_wrap_OTRecord_SetOtherAddress), -1);
   rb_define_method(SwigClassOTRecord.klass, "SetMemo", VALUEFUNC(_wrap_OTRecord_SetMemo), -1);
   rb_define_method(SwigClassOTRecord.klass, "SetContents", VALUEFUNC(_wrap_OTRecord_SetContents), -1);
   rb_define_method(SwigClassOTRecord.klass, "HasInitialPayment", VALUEFUNC(_wrap_OTRecord_HasInitialPayment), -1);
@@ -58529,6 +59764,7 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOTNameLookup.klass, "initialize", VALUEFUNC(_wrap_new_OTNameLookup), -1);
   rb_define_method(SwigClassOTNameLookup.klass, "GetNymName", VALUEFUNC(_wrap_OTNameLookup_GetNymName), -1);
   rb_define_method(SwigClassOTNameLookup.klass, "GetAcctName", VALUEFUNC(_wrap_OTNameLookup_GetAcctName), -1);
+  rb_define_method(SwigClassOTNameLookup.klass, "GetAddressName", VALUEFUNC(_wrap_OTNameLookup_GetAddressName), -1);
   SwigClassOTNameLookup.mark = 0;
   SwigClassOTNameLookup.destroy = (void (*)(void *)) free_OTNameLookup;
   SwigClassOTNameLookup.trackObjects = 0;
@@ -58543,6 +59779,7 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOTLookupCaller.klass, "isCallbackSet", VALUEFUNC(_wrap_OTLookupCaller_isCallbackSet), -1);
   rb_define_method(SwigClassOTLookupCaller.klass, "GetNymName", VALUEFUNC(_wrap_OTLookupCaller_GetNymName), -1);
   rb_define_method(SwigClassOTLookupCaller.klass, "GetAcctName", VALUEFUNC(_wrap_OTLookupCaller_GetAcctName), -1);
+  rb_define_method(SwigClassOTLookupCaller.klass, "GetAddressName", VALUEFUNC(_wrap_OTLookupCaller_GetAddressName), -1);
   SwigClassOTLookupCaller.mark = 0;
   SwigClassOTLookupCaller.destroy = (void (*)(void *)) free_OTLookupCaller;
   SwigClassOTLookupCaller.trackObjects = 0;
@@ -58571,6 +59808,7 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOTRecordList.klass, "SetAccountID", VALUEFUNC(_wrap_OTRecordList_SetAccountID), -1);
   rb_define_method(SwigClassOTRecordList.klass, "AddAccountID", VALUEFUNC(_wrap_OTRecordList_AddAccountID), -1);
   rb_define_method(SwigClassOTRecordList.klass, "ClearAccounts", VALUEFUNC(_wrap_OTRecordList_ClearAccounts), -1);
+  rb_define_method(SwigClassOTRecordList.klass, "GetNyms", VALUEFUNC(_wrap_OTRecordList_GetNyms), -1);
   rb_define_method(SwigClassOTRecordList.klass, "AcceptChequesAutomatically", VALUEFUNC(_wrap_OTRecordList_AcceptChequesAutomatically), -1);
   rb_define_method(SwigClassOTRecordList.klass, "AcceptReceiptsAutomatically", VALUEFUNC(_wrap_OTRecordList_AcceptReceiptsAutomatically), -1);
   rb_define_method(SwigClassOTRecordList.klass, "AcceptTransfersAutomatically", VALUEFUNC(_wrap_OTRecordList_AcceptTransfersAutomatically), -1);
@@ -58582,6 +59820,8 @@ SWIGEXPORT void Init_otapi(void) {
   rb_define_method(SwigClassOTRecordList.klass, "PerformAutoAccept", VALUEFUNC(_wrap_OTRecordList_PerformAutoAccept), -1);
   rb_define_method(SwigClassOTRecordList.klass, "Populate", VALUEFUNC(_wrap_OTRecordList_Populate), -1);
   rb_define_method(SwigClassOTRecordList.klass, "ClearContents", VALUEFUNC(_wrap_OTRecordList_ClearContents), -1);
+  rb_define_method(SwigClassOTRecordList.klass, "SortRecords", VALUEFUNC(_wrap_OTRecordList_SortRecords), -1);
+  rb_define_method(SwigClassOTRecordList.klass, "AddSpecialMsg", VALUEFUNC(_wrap_OTRecordList_AddSpecialMsg), -1);
   rb_define_method(SwigClassOTRecordList.klass, "size", VALUEFUNC(_wrap_OTRecordList_size), -1);
   rb_define_method(SwigClassOTRecordList.klass, "GetRecord", VALUEFUNC(_wrap_OTRecordList_GetRecord), -1);
   rb_define_method(SwigClassOTRecordList.klass, "RemoveRecord", VALUEFUNC(_wrap_OTRecordList_RemoveRecord), -1);

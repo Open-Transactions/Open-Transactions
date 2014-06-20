@@ -144,22 +144,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTCredential.hpp>
+#include "OTCredential.hpp"
 
-#include <OTAssert.hpp>
-#include <OTFolders.hpp>
-#include <OTLog.hpp>
-#include <OTPassword.hpp>
-#include <OTPasswordData.hpp>
-#include <OTPaths.hpp>
-#include <OTSignature.hpp>
-#include <OTSubkey.hpp>
-
-#include "irrxml/irrXML.hpp"
+#include "OTFolders.hpp"
+#include "OTLog.hpp"
+#include "OTPasswordData.hpp"
+#include "OTStorage.hpp"
+#include "OTSubkey.hpp"
 
 #include <algorithm>
+
 
 // '0' for cKeyType means, theSignature MUST have metadata in order for ANY keys to be returned, and it MUST match.
 // Whereas if you pass 'A', 'E', or 'S' for cKeyType, that means it can ONLY return authentication, encryption, or signing

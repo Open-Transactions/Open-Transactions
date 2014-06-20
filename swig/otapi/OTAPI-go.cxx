@@ -8,7 +8,7 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-// source: swig\otapi\OTAPI.i
+// source: otapi/OTAPI.i
 
 #define SWIGMODULE otapi
 #define SWIG_DIRECTORS
@@ -425,6 +425,23 @@ std::string SwigDirector_OTNameLookup::GetAcctName(std::string const &str_id) co
   swig_a.go_val = go_val;
   swig_a.arg2 = _swig_makegostring((&str_id)->data(), (&str_id)->length()); 
   crosscall2(_wrap_Swig_DirectorOTNameLookup_callback_GetAcctName__SWIG_3, &swig_a, (int) sizeof swig_a);
+  c_result.assign(swig_a.result.p, swig_a.result.n); 
+  return c_result;
+}
+
+extern "C" void _wrap_Swig_DirectorOTNameLookup_callback_GetAddressName(void*, int);
+std::string SwigDirector_OTNameLookup::GetAddressName(std::string const &str_address) const {
+  std::string c_result;
+  
+  struct {
+    void *go_val;
+    _gostring_ arg2;
+    long : 0;
+    _gostring_ result;
+  } swig_a;
+  swig_a.go_val = go_val;
+  swig_a.arg2 = _swig_makegostring((&str_address)->data(), (&str_address)->length()); 
+  crosscall2(_wrap_Swig_DirectorOTNameLookup_callback_GetAddressName, &swig_a, (int) sizeof swig_a);
   c_result.assign(swig_a.result.p, swig_a.result.n); 
   return c_result;
 }
@@ -12123,6 +12140,444 @@ _wrap_OT_ME_opentxs_main_loop(void *swig_v)
 
 
 void
+_wrap_OT_ME_VerifyMessageSuccess(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    long : 0;
+    intgo result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  int32_t result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    _gostring_ arg5;
+    long : 0;
+    intgo result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
+  arg3 = &arg3_str;
+  
+  
+  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
+  arg4 = &arg4_str;
+  
+  
+  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
+  arg5 = &arg5_str;
+  
+  
+  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_VerifyMsgTrnxSuccess(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  int32_t result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    _gostring_ arg5;
+    long : 0;
+    intgo result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
+  arg3 = &arg3_str;
+  
+  
+  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
+  arg4 = &arg4_str;
+  
+  
+  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
+  arg5 = &arg5_str;
+  
+  
+  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_InterpretTransactionMsgReply(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  int32_t result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    _gostring_ arg4;
+    _gostring_ arg5;
+    _gostring_ arg6;
+    long : 0;
+    intgo result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
+  arg3 = &arg3_str;
+  
+  
+  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
+  arg4 = &arg4_str;
+  
+  
+  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
+  arg5 = &arg5_str;
+  
+  
+  std::string arg6_str(swig_a->arg6.p, swig_a->arg6.n);
+  arg6 = &arg6_str;
+  
+  
+  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  bool result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    long : 0;
+    bool result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    long : 0;
+    bool result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  int32_t result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    long : 0;
+    intgo result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    long : 0;
+    intgo result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
+  
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
+  
+}
+
+
+void
+_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
+  
+}
+
+
+void
+_wrap_OT_ME_AddVariable(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *arg3 = 0 ;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    OTVariable *arg3;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  arg3 = *(OTVariable **)&swig_a->arg3; 
+  
+  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
+  
+}
+
+
+void
+_wrap_OT_ME_FindVariable(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *result = 0 ;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    long : 0;
+    OTVariable *result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
+  *(OTVariable **)&swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_FindVariable2(void *swig_v)
+{
+  std::string *arg1 = 0 ;
+  OTVariable *result = 0 ;
+  
+  struct swigargs {
+    _gostring_ arg1;
+    long : 0;
+    OTVariable *result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  
+  std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
+  arg1 = &arg1_str;
+  
+  
+  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
+  *(OTVariable **)&swig_a->result = result; 
+}
+
+
+void
 _wrap_OT_ME_make_sure_enough_trans_nums(void *swig_v)
 {
   OT_ME *arg1 = (OT_ME *) 0 ;
@@ -12527,43 +12982,6 @@ _wrap_OT_ME_retrieve_account__SWIG_0(void *swig_v)
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   std::string *arg4 = 0 ;
-  bool result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    _gostring_ arg4;
-    long : 0;
-    bool result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
-  arg3 = &arg3_str;
-  
-  
-  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
-  arg4 = &arg4_str;
-  
-  
-  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_retrieve_account__SWIG_1(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
   bool arg5 ;
   bool result;
   
@@ -12598,17 +13016,19 @@ _wrap_OT_ME_retrieve_account__SWIG_1(void *swig_v)
 
 
 void
-_wrap_OT_ME_retrieve_nym__SWIG_0(void *swig_v)
+_wrap_OT_ME_retrieve_account__SWIG_1(void *swig_v)
 {
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
   bool result;
   
   struct swigargs {
     OT_ME *arg1;
     _gostring_ arg2;
     _gostring_ arg3;
+    _gostring_ arg4;
     long : 0;
     bool result;
   } *swig_a = (struct swigargs *) swig_v;
@@ -12623,13 +13043,17 @@ _wrap_OT_ME_retrieve_nym__SWIG_0(void *swig_v)
   arg3 = &arg3_str;
   
   
-  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
+  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
+  arg4 = &arg4_str;
+  
+  
+  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   swig_a->result = result; 
 }
 
 
 void
-_wrap_OT_ME_retrieve_nym__SWIG_1(void *swig_v)
+_wrap_OT_ME_retrieve_nym__SWIG_0(void *swig_v)
 {
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
@@ -12658,6 +13082,37 @@ _wrap_OT_ME_retrieve_nym__SWIG_1(void *swig_v)
   arg4 = (bool)swig_a->arg4; 
   
   result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3,arg4);
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OT_ME_retrieve_nym__SWIG_1(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  bool result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    long : 0;
+    bool result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
+  arg3 = &arg3_str;
+  
+  
+  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
   swig_a->result = result; 
 }
 
@@ -13361,40 +13816,6 @@ _wrap_OT_ME_get_payment_instrument__SWIG_0(void *swig_v)
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
   int32_t arg4 ;
-  std::string result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    intgo arg4;
-    long : 0;
-    _gostring_ result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
-  arg3 = &arg3_str;
-  
-  arg4 = (int32_t)swig_a->arg4; 
-  
-  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
-  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
-}
-
-
-void
-_wrap_OT_ME_get_payment_instrument__SWIG_1(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int32_t arg4 ;
   std::string *arg5 = 0 ;
   std::string result;
   
@@ -13424,6 +13845,40 @@ _wrap_OT_ME_get_payment_instrument__SWIG_1(void *swig_v)
   
   
   result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OT_ME_get_payment_instrument__SWIG_1(void *swig_v)
+{
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t arg4 ;
+  std::string result;
+  
+  struct swigargs {
+    OT_ME *arg1;
+    _gostring_ arg2;
+    _gostring_ arg3;
+    intgo arg4;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OT_ME **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
+  arg3 = &arg3_str;
+  
+  arg4 = (int32_t)swig_a->arg4; 
+  
+  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 
@@ -13594,7 +14049,7 @@ _wrap_OT_ME_create_market_offer(void *swig_v)
   int64_t arg7 ;
   bool arg8 ;
   int64_t arg9 ;
-  std::string arg10 ;
+  std::string *arg10 = 0 ;
   int64_t arg11 ;
   std::string result;
   
@@ -13629,10 +14084,13 @@ _wrap_OT_ME_create_market_offer(void *swig_v)
   arg7 = (int64_t)swig_a->arg7; 
   arg8 = (bool)swig_a->arg8; 
   arg9 = (int64_t)swig_a->arg9; 
-  (&arg10)->assign(swig_a->arg10.p, swig_a->arg10.n); 
+  
+  std::string arg10_str(swig_a->arg10.p, swig_a->arg10.n);
+  arg10 = &arg10_str;
+  
   arg11 = (int64_t)swig_a->arg11; 
   
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,(std::string const &)*arg10,arg11);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 
@@ -14384,444 +14842,6 @@ _wrap_OT_ME_adjust_usage_credits(void *swig_v)
   
   result = (arg1)->adjust_usage_credits((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
-}
-
-
-void
-_wrap_OT_ME_VerifyMessageSuccess(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  int32_t result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    long : 0;
-    intgo result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_VerifyMsgBalanceAgrmntSuccess(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  int32_t result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    _gostring_ arg4;
-    _gostring_ arg5;
-    long : 0;
-    intgo result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
-  arg3 = &arg3_str;
-  
-  
-  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
-  arg4 = &arg4_str;
-  
-  
-  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
-  arg5 = &arg5_str;
-  
-  
-  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_VerifyMsgTrnxSuccess(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  int32_t result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    _gostring_ arg4;
-    _gostring_ arg5;
-    long : 0;
-    intgo result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
-  arg3 = &arg3_str;
-  
-  
-  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
-  arg4 = &arg4_str;
-  
-  
-  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
-  arg5 = &arg5_str;
-  
-  
-  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_InterpretTransactionMsgReply(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  int32_t result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    _gostring_ arg4;
-    _gostring_ arg5;
-    _gostring_ arg6;
-    long : 0;
-    intgo result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  std::string arg3_str(swig_a->arg3.p, swig_a->arg3.n);
-  arg3 = &arg3_str;
-  
-  
-  std::string arg4_str(swig_a->arg4.p, swig_a->arg4.n);
-  arg4 = &arg4_str;
-  
-  
-  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
-  arg5 = &arg5_str;
-  
-  
-  std::string arg6_str(swig_a->arg6.p, swig_a->arg6.n);
-  arg6 = &arg6_str;
-  
-  
-  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_0(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  std::string result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    long : 0;
-    _gostring_ result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
-  
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
-  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnString__SWIG_1(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    long : 0;
-    _gostring_ result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
-  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_0(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  bool result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    long : 0;
-    bool result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
-  
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnBool__SWIG_1(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    long : 0;
-    bool result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_0(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  int32_t result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-    long : 0;
-    intgo result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
-  
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnInt__SWIG_1(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  int32_t result;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    long : 0;
-    intgo result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
-  swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    _gostring_ arg3;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  (&arg3)->assign(swig_a->arg3.p, swig_a->arg3.n); 
-  
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
-  
-}
-
-
-void
-_wrap_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
-  
-}
-
-
-void
-_wrap_OT_ME_AddVariable(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  OTVariable *arg3 = 0 ;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    OTVariable *arg3;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  arg3 = *(OTVariable **)&swig_a->arg3; 
-  
-  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
-  
-}
-
-
-void
-_wrap_OT_ME_FindVariable(void *swig_v)
-{
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  OTVariable *result = 0 ;
-  
-  struct swigargs {
-    OT_ME *arg1;
-    _gostring_ arg2;
-    long : 0;
-    OTVariable *result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  arg1 = *(OT_ME **)&swig_a->arg1; 
-  
-  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
-  arg2 = &arg2_str;
-  
-  
-  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
-  *(OTVariable **)&swig_a->result = result; 
-}
-
-
-void
-_wrap_OT_ME_FindVariable2(void *swig_v)
-{
-  std::string *arg1 = 0 ;
-  OTVariable *result = 0 ;
-  
-  struct swigargs {
-    _gostring_ arg1;
-    long : 0;
-    OTVariable *result;
-  } *swig_a = (struct swigargs *) swig_v;
-  
-  
-  std::string arg1_str(swig_a->arg1.p, swig_a->arg1.n);
-  arg1 = &arg1_str;
-  
-  
-  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
-  *(OTVariable **)&swig_a->result = result; 
 }
 
 
@@ -25881,7 +25901,7 @@ _wrap_AddressBook_Create(void *swig_v)
 void
 _wrap_OTRecord_GetTypeString(void *swig_v)
 {
-  int arg1 ;
+  int32_t arg1 ;
   std::string *result = 0 ;
   
   struct swigargs {
@@ -25890,7 +25910,7 @@ _wrap_OTRecord_GetTypeString(void *swig_v)
     _gostring_ result;
   } *swig_a = (struct swigargs *) swig_v;
   
-  arg1 = (int)swig_a->arg1; 
+  arg1 = (int32_t)swig_a->arg1; 
   
   result = (std::string *) &OTRecord_GetTypeString(arg1);
   swig_a->result = _swig_makegostring((*result).data(), (*result).length()); 
@@ -25979,6 +25999,60 @@ _wrap_ErrorState_OTRecord(void *swig_v)
   result = OTRecord::ErrorState;
   
   swig_a->result = (intgo)result; 
+}
+
+
+void
+_wrap_OTRecord_SetSpecialMail__SWIG_0(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  bool arg2 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    bool arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  arg2 = (bool)swig_a->arg2; 
+  
+  (arg1)->SetSpecialMail(arg2);
+  
+}
+
+
+void
+_wrap_OTRecord_SetSpecialMail__SWIG_1(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  (arg1)->SetSpecialMail();
+  
+}
+
+
+void
+_wrap_OTRecord_IsSpecialMail(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  bool result;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    long : 0;
+    bool result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  result = (bool)((OTRecord const *)arg1)->IsSpecialMail();
+  swig_a->result = result; 
 }
 
 
@@ -26668,6 +26742,167 @@ _wrap_OTRecord_SetBoxIndex(void *swig_v)
 
 
 void
+_wrap_OTRecord_GetMethodID(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t result;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    long : 0;
+    intgo result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  result = (int32_t)((OTRecord const *)arg1)->GetMethodID();
+  swig_a->result = result; 
+}
+
+
+void
+_wrap_OTRecord_SetMethodID(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t arg2 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    intgo arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  arg2 = (int32_t)swig_a->arg2; 
+  
+  (arg1)->SetMethodID(arg2);
+  
+}
+
+
+void
+_wrap_OTRecord_GetMsgID(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgID();
+  swig_a->result = _swig_makegostring((*result).data(), (*result).length()); 
+}
+
+
+void
+_wrap_OTRecord_SetMsgID(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    _gostring_ arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  (arg1)->SetMsgID((std::string const &)*arg2);
+  
+}
+
+
+void
+_wrap_OTRecord_GetMsgType(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgType();
+  swig_a->result = _swig_makegostring((*result).data(), (*result).length()); 
+}
+
+
+void
+_wrap_OTRecord_SetMsgType(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    _gostring_ arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  (arg1)->SetMsgType((std::string const &)*arg2);
+  
+}
+
+
+void
+_wrap_OTRecord_GetMsgTypeDisplay(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgTypeDisplay();
+  swig_a->result = _swig_makegostring((*result).data(), (*result).length()); 
+}
+
+
+void
+_wrap_OTRecord_SetMsgTypeDisplay(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    _gostring_ arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  (arg1)->SetMsgTypeDisplay((std::string const &)*arg2);
+  
+}
+
+
+void
 _wrap_OTRecord_GetTransactionNum(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
@@ -26858,6 +27093,25 @@ _wrap_OTRecord_GetAccountID(void *swig_v)
 
 
 void
+_wrap_OTRecord_GetAddress(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  result = (std::string *) &((OTRecord const *)arg1)->GetAddress();
+  swig_a->result = _swig_makegostring((*result).data(), (*result).length()); 
+}
+
+
+void
 _wrap_OTRecord_GetOtherNymID(void *swig_v)
 {
   OTRecord *arg1 = (OTRecord *) 0 ;
@@ -26891,6 +27145,25 @@ _wrap_OTRecord_GetOtherAccountID(void *swig_v)
   arg1 = *(OTRecord **)&swig_a->arg1; 
   
   result = (std::string *) &((OTRecord const *)arg1)->GetOtherAccountID();
+  swig_a->result = _swig_makegostring((*result).data(), (*result).length()); 
+}
+
+
+void
+_wrap_OTRecord_GetOtherAddress(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  result = (std::string *) &((OTRecord const *)arg1)->GetOtherAddress();
   swig_a->result = _swig_makegostring((*result).data(), (*result).length()); 
 }
 
@@ -27049,6 +27322,50 @@ _wrap_OTRecord_SetOtherAccountID(void *swig_v)
   
   
   (arg1)->SetOtherAccountID((std::string const &)*arg2);
+  
+}
+
+
+void
+_wrap_OTRecord_SetAddress(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    _gostring_ arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  (arg1)->SetAddress((std::string const &)*arg2);
+  
+}
+
+
+void
+_wrap_OTRecord_SetOtherAddress(void *swig_v)
+{
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  struct swigargs {
+    OTRecord *arg1;
+    _gostring_ arg2;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecord **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  (arg1)->SetOtherAddress((std::string const &)*arg2);
   
 }
 
@@ -27645,6 +27962,31 @@ _wrap__swig_DirectorOTNameLookup_upcall_GetAcctName__SWIG_3(void *swig_v)
 
 
 void
+_wrap__swig_DirectorOTNameLookup_upcall_GetAddressName(void *swig_v)
+{
+  SwigDirector_OTNameLookup *arg1 = (SwigDirector_OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  struct swigargs {
+    SwigDirector_OTNameLookup *arg1;
+    _gostring_ arg2;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(SwigDirector_OTNameLookup **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = (std::string)arg1->_swig_upcall_GetAddressName(*arg2);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
 _wrap_new_OTNameLookup(void *swig_v)
 {
   OTNameLookup *result = 0 ;
@@ -27843,6 +28185,31 @@ _wrap_OTNameLookup_GetAcctName__SWIG_3(void *swig_v)
   
   
   result = ((OTNameLookup const *)arg1)->GetAcctName((std::string const &)*arg2);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OTNameLookup_GetAddressName(void *swig_v)
+{
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  struct swigargs {
+    OTNameLookup *arg1;
+    _gostring_ arg2;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTNameLookup **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = ((OTNameLookup const *)arg1)->GetAddressName((std::string const &)*arg2);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 
@@ -28119,6 +28486,31 @@ _wrap_OTLookupCaller_GetAcctName__SWIG_3(void *swig_v)
   
   
   result = ((OTLookupCaller const *)arg1)->GetAcctName((std::string const &)*arg2);
+  swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
+}
+
+
+void
+_wrap_OTLookupCaller_GetAddressName(void *swig_v)
+{
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  struct swigargs {
+    OTLookupCaller *arg1;
+    _gostring_ arg2;
+    long : 0;
+    _gostring_ result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTLookupCaller **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  
+  result = ((OTLookupCaller const *)arg1)->GetAddressName((std::string const &)*arg2);
   swig_a->result = _swig_makegostring((&result)->data(), (&result)->length()); 
 }
 
@@ -28525,6 +28917,25 @@ _wrap_OTRecordList_ClearAccounts(void *swig_v)
 
 
 void
+_wrap_OTRecordList_GetNyms(void *swig_v)
+{
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  list_of_strings *result = 0 ;
+  
+  struct swigargs {
+    OTRecordList *arg1;
+    long : 0;
+    std::list< std::string > *result;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecordList **)&swig_a->arg1; 
+  
+  result = (list_of_strings *) &((OTRecordList const *)arg1)->GetNyms();
+  *(list_of_strings **)&swig_a->result = result; 
+}
+
+
+void
 _wrap_OTRecordList_AcceptChequesAutomatically__SWIG_0(void *swig_v)
 {
   OTRecordList *arg1 = (OTRecordList *) 0 ;
@@ -28790,6 +29201,212 @@ _wrap_OTRecordList_ClearContents(void *swig_v)
   arg1 = *(OTRecordList **)&swig_a->arg1; 
   
   (arg1)->ClearContents();
+  
+}
+
+
+void
+_wrap_OTRecordList_SortRecords(void *swig_v)
+{
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  
+  struct swigargs {
+    OTRecordList *arg1;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecordList **)&swig_a->arg1; 
+  
+  (arg1)->SortRecords();
+  
+}
+
+
+void
+_wrap_OTRecordList_AddSpecialMsg__SWIG_0(void *swig_v)
+{
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  time64_t arg11 ;
+  time64_t *argp11 ;
+  
+  struct swigargs {
+    OTRecordList *arg1;
+    _gostring_ arg2;
+    bool arg3;
+    intgo arg4;
+    _gostring_ arg5;
+    _gostring_ arg6;
+    _gostring_ arg7;
+    _gostring_ arg8;
+    _gostring_ arg9;
+    _gostring_ arg10;
+    time64_t *arg11;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecordList **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  arg3 = (bool)swig_a->arg3; 
+  arg4 = (int32_t)swig_a->arg4; 
+  
+  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
+  arg5 = &arg5_str;
+  
+  
+  std::string arg6_str(swig_a->arg6.p, swig_a->arg6.n);
+  arg6 = &arg6_str;
+  
+  
+  std::string arg7_str(swig_a->arg7.p, swig_a->arg7.n);
+  arg7 = &arg7_str;
+  
+  
+  std::string arg8_str(swig_a->arg8.p, swig_a->arg8.n);
+  arg8 = &arg8_str;
+  
+  
+  std::string arg9_str(swig_a->arg9.p, swig_a->arg9.n);
+  arg9 = &arg9_str;
+  
+  (&arg10)->assign(swig_a->arg10.p, swig_a->arg10.n); 
+  
+  argp11 = (time64_t *)swig_a->arg11;
+  if (argp11 == NULL) {
+    _swig_gopanic("Attempt to dereference null time64_t");
+  }
+  arg11 = (time64_t)*argp11;
+  
+  
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10,arg11);
+  
+}
+
+
+void
+_wrap_OTRecordList_AddSpecialMsg__SWIG_1(void *swig_v)
+{
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  
+  struct swigargs {
+    OTRecordList *arg1;
+    _gostring_ arg2;
+    bool arg3;
+    intgo arg4;
+    _gostring_ arg5;
+    _gostring_ arg6;
+    _gostring_ arg7;
+    _gostring_ arg8;
+    _gostring_ arg9;
+    _gostring_ arg10;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecordList **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  arg3 = (bool)swig_a->arg3; 
+  arg4 = (int32_t)swig_a->arg4; 
+  
+  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
+  arg5 = &arg5_str;
+  
+  
+  std::string arg6_str(swig_a->arg6.p, swig_a->arg6.n);
+  arg6 = &arg6_str;
+  
+  
+  std::string arg7_str(swig_a->arg7.p, swig_a->arg7.n);
+  arg7 = &arg7_str;
+  
+  
+  std::string arg8_str(swig_a->arg8.p, swig_a->arg8.n);
+  arg8 = &arg8_str;
+  
+  
+  std::string arg9_str(swig_a->arg9.p, swig_a->arg9.n);
+  arg9 = &arg9_str;
+  
+  (&arg10)->assign(swig_a->arg10.p, swig_a->arg10.n); 
+  
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10);
+  
+}
+
+
+void
+_wrap_OTRecordList_AddSpecialMsg__SWIG_2(void *swig_v)
+{
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  
+  struct swigargs {
+    OTRecordList *arg1;
+    _gostring_ arg2;
+    bool arg3;
+    intgo arg4;
+    _gostring_ arg5;
+    _gostring_ arg6;
+    _gostring_ arg7;
+    _gostring_ arg8;
+    _gostring_ arg9;
+  } *swig_a = (struct swigargs *) swig_v;
+  
+  arg1 = *(OTRecordList **)&swig_a->arg1; 
+  
+  std::string arg2_str(swig_a->arg2.p, swig_a->arg2.n);
+  arg2 = &arg2_str;
+  
+  arg3 = (bool)swig_a->arg3; 
+  arg4 = (int32_t)swig_a->arg4; 
+  
+  std::string arg5_str(swig_a->arg5.p, swig_a->arg5.n);
+  arg5 = &arg5_str;
+  
+  
+  std::string arg6_str(swig_a->arg6.p, swig_a->arg6.n);
+  arg6 = &arg6_str;
+  
+  
+  std::string arg7_str(swig_a->arg7.p, swig_a->arg7.n);
+  arg7 = &arg7_str;
+  
+  
+  std::string arg8_str(swig_a->arg8.p, swig_a->arg8.n);
+  arg8 = &arg8_str;
+  
+  
+  std::string arg9_str(swig_a->arg9.p, swig_a->arg9.n);
+  arg9 = &arg9_str;
+  
+  
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9);
   
 }
 

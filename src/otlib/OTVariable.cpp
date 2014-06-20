@@ -130,13 +130,13 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTVariable.hpp>
+#include "OTVariable.hpp"
 
-#include <OTASCIIArmor.hpp>
-#include <OTLog.hpp>
-#include <OTScript.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTLog.hpp"
+#include "OTScript.hpp"
 
 
 void OTVariable::Serialize(OTString & strAppend,

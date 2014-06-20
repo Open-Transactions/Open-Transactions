@@ -130,21 +130,21 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTTransaction.hpp>
+#include "OTTransaction.hpp"
 
-#include <OTBasket.hpp>
-#include <OTCheque.hpp>
-#include <OTFolders.hpp>
-#include <OTLedger.hpp>
-#include <OTLog.hpp>
-#include <OTMessage.hpp>
-#include <OTPaths.hpp>
-#include <OTPseudonym.hpp>
-#include <OTPaymentPlan.hpp>
-#include <OTSmartContract.hpp>
-#include <OTTrade.hpp>
+#include "OTBasket.hpp"
+#include "OTCheque.hpp"
+#include "OTFolders.hpp"
+#include "OTLedger.hpp"
+#include "OTLog.hpp"
+#include "OTMessage.hpp"
+#include "OTPseudonym.hpp"
+#include "OTPaymentPlan.hpp"
+#include "OTSmartContract.hpp"
+#include "OTStorage.hpp"
+#include "OTTrade.hpp"
 
 #include "irrxml/irrXML.hpp"
 

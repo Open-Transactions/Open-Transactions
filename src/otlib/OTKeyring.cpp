@@ -134,19 +134,18 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
 // Note: I added these includes because the compile was failing when keyring was configured ON.
+#include "OTKeyring.hpp"
 
-#include <OTKeyring.hpp>
+#include "OTASCIIArmor.hpp"
+#include "OTCachedKey.hpp"
+#include "OTLog.hpp"
+#include "OTPassword.hpp"
+#include "OTPayload.hpp"
 
 #include <fstream>
-
-#include <OTLog.hpp>
-#include <OTCachedKey.hpp>
-#include <OTPassword.hpp>
-#include <OTPayload.hpp>
-#include <OTASCIIArmor.hpp>
 
 
 #if defined(OT_KEYRING_WINDOWS) && defined(_WIN32)

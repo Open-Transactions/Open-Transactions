@@ -35,10 +35,10 @@ public class OfferListMarket extends Storable {
     super.delete();
   }
 // ------------------------
-	/*@SWIG:swig\otapi\OTAPI.i,135,OT_CONTAINER_TYPE_MEMBERS@*/
+	/*@SWIG:otapi/OTAPI.i,135,OT_CONTAINER_TYPE_MEMBERS@*/
 	private List elementList = new ArrayList();
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefBidData(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one
@@ -98,7 +98,7 @@ private Long getCPtrAddRefBidData(BidData element) {
 	return BidData.getCPtr(element);
 }	// Hope I get away with overloading this for every type. Otherwise,
 /*@SWIG@*/
-	/*@SWIG:swig\otapi\OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
+	/*@SWIG:otapi/OTAPI.i,212,OT_ADD_ELEMENT@*/  // THIS BLOCK CONTAINS JAVA CODE.
 private Long removeRefAskData(Long lIndex) {
 	// 
 	// loop through the elements in the actual container, in order to find the one

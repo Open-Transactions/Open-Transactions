@@ -130,20 +130,16 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTAgent.hpp>
+#include "OTAgent.hpp"
 
-#include <OTAccount.hpp>
-#include <OTAgreement.hpp>
-#include <OTContract.hpp>
-#include <OTLog.hpp>
-#include <OTParty.hpp>
-#include <OTPartyAccount.hpp>
-#include <OTPseudonym.hpp>
-#include <OTScript.hpp>
-#include <OTScriptable.hpp>
-#include <OTSmartContract.hpp>
+#include "OTAgreement.hpp"
+#include "OTLog.hpp"
+#include "OTParty.hpp"
+#include "OTPartyAccount.hpp"
+#include "OTPseudonym.hpp"
+#include "OTSmartContract.hpp"
 
 
 // Have the agent try to verify his own signature against any contract.

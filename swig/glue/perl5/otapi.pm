@@ -655,6 +655,17 @@ sub DESTROY {
 
 *opentxs_copy_variables = *otapic::OT_ME_opentxs_copy_variables;
 *opentxs_main_loop = *otapic::OT_ME_opentxs_main_loop;
+*VerifyMessageSuccess = *otapic::OT_ME_VerifyMessageSuccess;
+*VerifyMsgBalanceAgrmntSuccess = *otapic::OT_ME_VerifyMsgBalanceAgrmntSuccess;
+*VerifyMsgTrnxSuccess = *otapic::OT_ME_VerifyMsgTrnxSuccess;
+*InterpretTransactionMsgReply = *otapic::OT_ME_InterpretTransactionMsgReply;
+*ExecuteScript_ReturnString = *otapic::OT_ME_ExecuteScript_ReturnString;
+*ExecuteScript_ReturnBool = *otapic::OT_ME_ExecuteScript_ReturnBool;
+*ExecuteScript_ReturnInt = *otapic::OT_ME_ExecuteScript_ReturnInt;
+*ExecuteScript_ReturnVoid = *otapic::OT_ME_ExecuteScript_ReturnVoid;
+*AddVariable = *otapic::OT_ME_AddVariable;
+*FindVariable = *otapic::OT_ME_FindVariable;
+*FindVariable2 = *otapic::OT_ME_FindVariable2;
 *make_sure_enough_trans_nums = *otapic::OT_ME_make_sure_enough_trans_nums;
 *register_nym = *otapic::OT_ME_register_nym;
 *check_user = *otapic::OT_ME_check_user;
@@ -709,17 +720,6 @@ sub DESTROY {
 *get_nym_market_offers = *otapic::OT_ME_get_nym_market_offers;
 *get_market_recent_trades = *otapic::OT_ME_get_market_recent_trades;
 *adjust_usage_credits = *otapic::OT_ME_adjust_usage_credits;
-*VerifyMessageSuccess = *otapic::OT_ME_VerifyMessageSuccess;
-*VerifyMsgBalanceAgrmntSuccess = *otapic::OT_ME_VerifyMsgBalanceAgrmntSuccess;
-*VerifyMsgTrnxSuccess = *otapic::OT_ME_VerifyMsgTrnxSuccess;
-*InterpretTransactionMsgReply = *otapic::OT_ME_InterpretTransactionMsgReply;
-*ExecuteScript_ReturnString = *otapic::OT_ME_ExecuteScript_ReturnString;
-*ExecuteScript_ReturnBool = *otapic::OT_ME_ExecuteScript_ReturnBool;
-*ExecuteScript_ReturnInt = *otapic::OT_ME_ExecuteScript_ReturnInt;
-*ExecuteScript_ReturnVoid = *otapic::OT_ME_ExecuteScript_ReturnVoid;
-*AddVariable = *otapic::OT_ME_AddVariable;
-*FindVariable = *otapic::OT_ME_FindVariable;
-*FindVariable2 = *otapic::OT_ME_FindVariable2;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);
@@ -2040,6 +2040,8 @@ use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
 *Receipt = *otapic::OTRecord_Receipt;
 *Instrument = *otapic::OTRecord_Instrument;
 *ErrorState = *otapic::OTRecord_ErrorState;
+*SetSpecialMail = *otapic::OTRecord_SetSpecialMail;
+*IsSpecialMail = *otapic::OTRecord_IsSpecialMail;
 *IsPending = *otapic::OTRecord_IsPending;
 *IsOutgoing = *otapic::OTRecord_IsOutgoing;
 *IsRecord = *otapic::OTRecord_IsRecord;
@@ -2075,6 +2077,14 @@ use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
 *DiscardOutgoingCash = *otapic::OTRecord_DiscardOutgoingCash;
 *GetBoxIndex = *otapic::OTRecord_GetBoxIndex;
 *SetBoxIndex = *otapic::OTRecord_SetBoxIndex;
+*GetMethodID = *otapic::OTRecord_GetMethodID;
+*SetMethodID = *otapic::OTRecord_SetMethodID;
+*GetMsgID = *otapic::OTRecord_GetMsgID;
+*SetMsgID = *otapic::OTRecord_SetMsgID;
+*GetMsgType = *otapic::OTRecord_GetMsgType;
+*SetMsgType = *otapic::OTRecord_SetMsgType;
+*GetMsgTypeDisplay = *otapic::OTRecord_GetMsgTypeDisplay;
+*SetMsgTypeDisplay = *otapic::OTRecord_SetMsgTypeDisplay;
 *GetTransactionNum = *otapic::OTRecord_GetTransactionNum;
 *SetTransactionNum = *otapic::OTRecord_SetTransactionNum;
 *GetTransNumForDisplay = *otapic::OTRecord_GetTransNumForDisplay;
@@ -2085,8 +2095,10 @@ use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
 *GetCurrencyTLA = *otapic::OTRecord_GetCurrencyTLA;
 *GetNymID = *otapic::OTRecord_GetNymID;
 *GetAccountID = *otapic::OTRecord_GetAccountID;
+*GetAddress = *otapic::OTRecord_GetAddress;
 *GetOtherNymID = *otapic::OTRecord_GetOtherNymID;
 *GetOtherAccountID = *otapic::OTRecord_GetOtherAccountID;
+*GetOtherAddress = *otapic::OTRecord_GetOtherAddress;
 *GetName = *otapic::OTRecord_GetName;
 *GetDate = *otapic::OTRecord_GetDate;
 *GetAmount = *otapic::OTRecord_GetAmount;
@@ -2095,6 +2107,8 @@ use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
 *GetContents = *otapic::OTRecord_GetContents;
 *SetOtherNymID = *otapic::OTRecord_SetOtherNymID;
 *SetOtherAccountID = *otapic::OTRecord_SetOtherAccountID;
+*SetAddress = *otapic::OTRecord_SetAddress;
+*SetOtherAddress = *otapic::OTRecord_SetOtherAddress;
 *SetMemo = *otapic::OTRecord_SetMemo;
 *SetContents = *otapic::OTRecord_SetContents;
 *HasInitialPayment = *otapic::OTRecord_HasInitialPayment;
@@ -2165,6 +2179,7 @@ sub DESTROY {
 
 *GetNymName = *otapic::OTNameLookup_GetNymName;
 *GetAcctName = *otapic::OTNameLookup_GetAcctName;
+*GetAddressName = *otapic::OTNameLookup_GetAddressName;
 sub DISOWN {
     my $self = shift;
     otapic::disown_OTNameLookup($self);
@@ -2228,6 +2243,7 @@ sub DESTROY {
 *isCallbackSet = *otapic::OTLookupCaller_isCallbackSet;
 *GetNymName = *otapic::OTLookupCaller_GetNymName;
 *GetAcctName = *otapic::OTLookupCaller_GetAcctName;
+*GetAddressName = *otapic::OTLookupCaller_GetAddressName;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);
@@ -2284,6 +2300,7 @@ sub DESTROY {
 *SetAccountID = *otapic::OTRecordList_SetAccountID;
 *AddAccountID = *otapic::OTRecordList_AddAccountID;
 *ClearAccounts = *otapic::OTRecordList_ClearAccounts;
+*GetNyms = *otapic::OTRecordList_GetNyms;
 *AcceptChequesAutomatically = *otapic::OTRecordList_AcceptChequesAutomatically;
 *AcceptReceiptsAutomatically = *otapic::OTRecordList_AcceptReceiptsAutomatically;
 *AcceptTransfersAutomatically = *otapic::OTRecordList_AcceptTransfersAutomatically;
@@ -2295,6 +2312,8 @@ sub DESTROY {
 *PerformAutoAccept = *otapic::OTRecordList_PerformAutoAccept;
 *Populate = *otapic::OTRecordList_Populate;
 *ClearContents = *otapic::OTRecordList_ClearContents;
+*SortRecords = *otapic::OTRecordList_SortRecords;
+*AddSpecialMsg = *otapic::OTRecordList_AddSpecialMsg;
 *size = *otapic::OTRecordList_size;
 *GetRecord = *otapic::OTRecordList_GetRecord;
 *RemoveRecord = *otapic::OTRecordList_RemoveRecord;

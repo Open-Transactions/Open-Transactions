@@ -130,30 +130,28 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTScriptable.hpp>
+#include "OTScriptable.hpp"
 
-#include <OTAgent.hpp>
-#include <OTAssert.hpp>
-#include <OTBylaw.hpp>
-#include <OTClause.hpp>
-#include <OTLog.hpp>
-#include <OTParty.hpp>
-#include <OTPartyAccount.hpp>
-#include <OTPseudonym.hpp>
-#include <OTScript.hpp>
-#include <OTSmartContract.hpp>
-#include <OTVariable.hpp>
+#include "OTAgent.hpp"
+#include "OTBylaw.hpp"
+#include "OTClause.hpp"
+#include "OTLog.hpp"
+#include "OTParty.hpp"
+#include "OTPartyAccount.hpp"
+#include "OTPseudonym.hpp"
+#include "OTSmartContract.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 
 #ifdef OT_USE_SCRIPT_CHAI
-#  include "OTScriptChai.hpp"
-#  include <chaiscript/chaiscript.hpp>
-#  ifdef OT_USE_CHAI_STDLIB
-#    include <chaiscript/chaiscript_stdlib.hpp>
-#  endif
+#	include "OTScriptChai.hpp"
+#	include <chaiscript/chaiscript.hpp>
+#	ifdef OT_USE_CHAI_STDLIB
+#	    include <chaiscript/chaiscript_stdlib.hpp>
+#	endif
 #endif
 
 

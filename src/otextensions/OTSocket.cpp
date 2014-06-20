@@ -1,9 +1,8 @@
-﻿/************************************************************************************
+﻿/************************************************************
  *    
  *  OTSocket.cpp
  *  
  */
-
 
 /************************************************************
  -----BEGIN PGP SIGNED MESSAGE-----
@@ -131,13 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTSocket.hpp>
+#include "OTSocket.hpp"
 
-#include <OTLog.hpp>
-#include <OTSettings.hpp>
+#include "OTLog.hpp"
+#include "OTSettings.hpp"
 
+#include <tinythread.hpp>
 
 #define	KEY_LATENCY_SEND_MS					"latency_send_ms"
 #define	KEY_LATENCY_SEND_NO_TRIES			"latency_send_no_tries"
@@ -155,9 +155,7 @@
 #endif // OT_ZMQ_2_MODE
 
 
-
 // OTSocket base class.
-
 OTSocket::OTSocket()
 : m_Mutex(Mutex()),
 m_lLatencySendMs(0),
@@ -175,6 +173,7 @@ m_strConnectPath(""),
 m_strBindingPath("")
 {
 }
+
 
 OTSocket::Defaults::Defaults(
     int64_t lLatencySendMs,
@@ -198,15 +197,18 @@ OTSocket::Mutex::Mutex()
 {
 }
 
+
 OTSocket::Mutex::~Mutex()
 {
     if (NULL != m_pMutex)	delete m_pMutex;	m_pMutex = NULL;
 }
 
+
 tthread::mutex * OTSocket::Mutex::Get()
 {
     return this->m_pMutex;
 }
+
 
 tthread::mutex * OTSocket::GetMutex()
 {
@@ -231,6 +233,7 @@ bool OTSocket::Init(const Defaults & defaults)
     m_bInitialized = true;
     return true;
 }
+
 
 bool OTSocket::Init(const Defaults & defaults, OTSettings * pSettings)
 {
@@ -270,14 +273,23 @@ bool OTSocket::Init(const Defaults & defaults, OTSettings * pSettings)
     return true;
 }
 
+
 bool OTSocket::IsInitialized() const { return m_bInitialized; }
+
+
 bool OTSocket::HasContext() const { return m_HasContext; }
+
+
 bool OTSocket::IsConnected() const { return m_bConnected; }
+
+
 bool OTSocket::IsListening() const { return m_bListening; }
 
-const OTString & OTSocket::GetConnectPath() const { return m_strConnectPath; }
-const OTString & OTSocket::GetBindingPath() const { return m_strBindingPath; }
 
+const OTString & OTSocket::GetConnectPath() const { return m_strConnectPath; }
+
+
+const OTString & OTSocket::GetBindingPath() const { return m_strBindingPath; }
 
 
 #ifdef OT_ZMQ_2_MODE
@@ -300,6 +312,7 @@ socket_zmq(NULL)
 {
 }
 
+
 OTSocket_ZMQ_2::ZMQ2::~ZMQ2()
 {
     delete this->socket_zmq;
@@ -311,6 +324,7 @@ OTSocket_ZMQ_2::OTSocket_ZMQ_2()
 :m_pzmq(new ZMQ2())
 {
 }
+
 
 OTSocket_ZMQ_2::~OTSocket_ZMQ_2()
 {
@@ -333,6 +347,7 @@ bool OTSocket_ZMQ_2::CloseSocket(const bool bNewContext /*= false*/)
     return true;
 }
 
+
 bool OTSocket_ZMQ_2::NewSocket(const bool bIsRequest)
 {
     if (!m_bInitialized) return false;
@@ -353,6 +368,7 @@ bool OTSocket_ZMQ_2::NewSocket(const bool bIsRequest)
     return true;
 }
 
+
 bool OTSocket_ZMQ_2::NewContext()
 {
     if (!m_bInitialized) return false;
@@ -369,6 +385,7 @@ bool OTSocket_ZMQ_2::NewContext()
     m_HasContext = true;
     return true;
 }
+
 
 bool OTSocket_ZMQ_2::RemakeSocket(const bool bNewContext /*= false*/) {
 
@@ -388,6 +405,7 @@ bool OTSocket_ZMQ_2::RemakeSocket(const bool bNewContext /*= false*/) {
 
     return false;
 }
+
 
 bool OTSocket_ZMQ_2::Connect()
 {
@@ -413,6 +431,7 @@ bool OTSocket_ZMQ_2::Connect()
     return true;
 }
 
+
 bool OTSocket_ZMQ_2::Listen()
 {
     if (!m_bInitialized) { OT_FAIL; }
@@ -437,6 +456,7 @@ bool OTSocket_ZMQ_2::Listen()
     return true;
 }
 
+
 bool OTSocket_ZMQ_2::Connect(const OTString & strConnectPath)
 {
     if (!strConnectPath.Exists())		{ OTLog::vError("%s: Error: %s dosn't exist!\n", __FUNCTION__, "strConnectPath");	OT_FAIL; }
@@ -446,6 +466,7 @@ bool OTSocket_ZMQ_2::Connect(const OTString & strConnectPath)
 
     return (this->Connect());
 }
+
 
 bool OTSocket_ZMQ_2::Listen(const OTString & strBindingPath)
 {
@@ -538,6 +559,7 @@ bool OTSocket_ZMQ_2::Send(const OTASCIIArmor & ascEnvelope)
     return bSuccessSending;
 }
 
+
 bool OTSocket_ZMQ_2::Send(const OTASCIIArmor & ascEnvelope, const OTString & strConnectPath)
 {
     const bool bNewPath = m_strConnectPath.Compare(strConnectPath);
@@ -548,6 +570,7 @@ bool OTSocket_ZMQ_2::Send(const OTASCIIArmor & ascEnvelope, const OTString & str
 
     return this->Send(ascEnvelope);
 }
+
 
 bool OTSocket_ZMQ_2::Receive(OTString & strServerReply)
 {
@@ -654,6 +677,7 @@ bool OTSocket_ZMQ_2::HandlePollingError()
     return bRetVal;
 }
 
+
 bool OTSocket_ZMQ_2::HandleSendingError()
 {
     bool bRetVal = false;
@@ -702,6 +726,7 @@ bool OTSocket_ZMQ_2::HandleSendingError()
     }
     return bRetVal;
 }
+
 
 bool OTSocket_ZMQ_2::HandleReceivingError()
 {
@@ -753,7 +778,6 @@ bool OTSocket_ZMQ_2::HandleReceivingError()
 }
 
 
-
 #endif // OT_ZMQ_2_MODE
 
 
@@ -777,6 +801,7 @@ socket_zmq(NULL)
 {
 }
 
+
 OTSocket_ZMQ_4::ZMQ4::~ZMQ4()
 {
     delete this->socket_zmq;
@@ -788,6 +813,7 @@ OTSocket_ZMQ_4::OTSocket_ZMQ_4()
 :m_pzmq(new ZMQ4())
 {
 }
+
 
 OTSocket_ZMQ_4::~OTSocket_ZMQ_4()
 {
@@ -809,6 +835,7 @@ bool OTSocket_ZMQ_4::CloseSocket(const bool bNewContext /*= false*/)
 
     return true;
 }
+
 
 bool OTSocket_ZMQ_4::NewSocket(const bool bIsRequest)
 {
@@ -843,6 +870,7 @@ bool OTSocket_ZMQ_4::NewSocket(const bool bIsRequest)
     return true;
 }
 
+
 bool OTSocket_ZMQ_4::NewContext()
 {
     if (!m_bInitialized) return false;
@@ -866,6 +894,7 @@ bool OTSocket_ZMQ_4::NewContext()
     return true;
 }
 
+
 bool OTSocket_ZMQ_4::RemakeSocket(const bool bNewContext /*= false*/) {
 
     if (!m_bInitialized) return false;
@@ -884,6 +913,7 @@ bool OTSocket_ZMQ_4::RemakeSocket(const bool bNewContext /*= false*/) {
 
     return false;
 }
+
 
 bool OTSocket_ZMQ_4::Connect()
 {
@@ -909,6 +939,7 @@ bool OTSocket_ZMQ_4::Connect()
     return true;
 }
 
+
 bool OTSocket_ZMQ_4::Listen()
 {
     if (!m_bInitialized) { OT_FAIL; }
@@ -933,6 +964,7 @@ bool OTSocket_ZMQ_4::Listen()
     return true;
 }
 
+
 bool OTSocket_ZMQ_4::Connect(const OTString & strConnectPath)
 {
     if (!strConnectPath.Exists())		{ OTLog::vError("%s: Error: %s dosn't exist!\n", __FUNCTION__, "strConnectPath");	OT_FAIL; }
@@ -942,6 +974,7 @@ bool OTSocket_ZMQ_4::Connect(const OTString & strConnectPath)
 
     return (this->Connect());
 }
+
 
 bool OTSocket_ZMQ_4::Listen(const OTString & strBindingPath)
 {
@@ -1054,6 +1087,7 @@ bool OTSocket_ZMQ_4::Send(const OTASCIIArmor & ascEnvelope)
     return bSuccessSending;
 }
 
+
 bool OTSocket_ZMQ_4::Send(const OTASCIIArmor & ascEnvelope, const OTString & strConnectPath)
 {
     const bool bNewPath = m_strConnectPath.Compare(strConnectPath);
@@ -1064,6 +1098,7 @@ bool OTSocket_ZMQ_4::Send(const OTASCIIArmor & ascEnvelope, const OTString & str
 
     return this->Send(ascEnvelope);
 }
+
 
 bool OTSocket_ZMQ_4::Receive(OTString & strServerReply)
 {
@@ -1189,6 +1224,7 @@ bool OTSocket_ZMQ_4::HandlePollingError()
     return bRetVal;
 }
 
+
 bool OTSocket_ZMQ_4::HandleSendingError()
 {
     bool bRetVal = false;
@@ -1237,6 +1273,7 @@ bool OTSocket_ZMQ_4::HandleSendingError()
     }
     return bRetVal;
 }
+
 
 bool OTSocket_ZMQ_4::HandleReceivingError()
 {
@@ -1288,9 +1325,4 @@ bool OTSocket_ZMQ_4::HandleReceivingError()
 }
 
 
-
 #endif // OT_ZMQ_4_MODE
-
-
-
-

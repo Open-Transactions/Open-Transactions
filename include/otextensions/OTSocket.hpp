@@ -136,7 +136,10 @@
 #include "OTASCIIArmor.hpp"
 #include "OTString.hpp"
 
-#include "tinythread.hpp"
+namespace tthread {
+    class mutex;
+}
+
 
 #if defined(OPENTXS_TRANSPORT_ZMQ2)
 #ifndef OT_ZMQ_2_MODE

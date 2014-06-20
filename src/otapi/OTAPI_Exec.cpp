@@ -162,6 +162,7 @@
 #include "OTPseudonym.hpp"
 #include "OTPurse.hpp"
 #include "OTServerContract.hpp"
+#include "OTStorage.hpp"
 #include "OTSymmetricKey.hpp"
 #include "OTToken.hpp"
 #include "OTWallet.hpp"
@@ -4321,8 +4322,8 @@ std::string OTAPI_Exec::CreateSymmetricKey()
 //
 std::string OTAPI_Exec::SymmetricEncrypt(const std::string & SYMMETRIC_KEY, const std::string & PLAINTEXT)
 {
-	if (SYMMETRIC_KEY.empty())		{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SYMMETRIC_KEY"		); OT_FAIL; }
-	if (PLAINTEXT.empty())			{ OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "PLAINTEXT"			); OT_FAIL; }
+	if (SYMMETRIC_KEY.empty()) { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "SYMMETRIC_KEY" ); OT_FAIL; }
+	if (PLAINTEXT.empty())     { OTLog::vError("%s: Null: %s passed in!\n", __FUNCTION__, "PLAINTEXT"     ); OT_FAIL; }
 	// ---------------------------
 	const OTString  strKey(SYMMETRIC_KEY);
 	const OTString  strPlaintext(PLAINTEXT);
@@ -4332,7 +4333,7 @@ std::string OTAPI_Exec::SymmetricEncrypt(const std::string & SYMMETRIC_KEY, cons
 	std::string    strDisplay = "OTAPI: Password-protecting a plaintext.";
 	const OTString  otstrDisplay(strDisplay);
 	// ---------------------------
-	const bool &      bSuccess = OTSymmetricKey::Encrypt(strKey, strPlaintext, strOutput, &otstrDisplay); //bBookends=true, pAlreadyHavePW=""
+	const bool & bSuccess = OTSymmetricKey::Encrypt(strKey, strPlaintext, strOutput, &otstrDisplay); //bBookends=true, pAlreadyHavePW=""
 
 	if (!bSuccess)
 		return "";
@@ -4356,10 +4357,10 @@ std::string OTAPI_Exec::SymmetricDecrypt(const std::string & SYMMETRIC_KEY, cons
 	// ---------------------------
 	OTString  strOutput;
 	// ---------------------------
-	std::string    strDisplay = "OTAPI: Decrypting a password-protected ciphertext.";
+	std::string     strDisplay = "OTAPI: Decrypting a password-protected ciphertext.";
 	const OTString  otstrDisplay(strDisplay);
 	// ---------------------------
-	const bool &      bSuccess  = OTSymmetricKey::Decrypt(strKey, strCiphertext, strOutput, &otstrDisplay);//pAlreadyHavePW=""
+	const bool & bSuccess = OTSymmetricKey::Decrypt(strKey, strCiphertext, strOutput, &otstrDisplay);//pAlreadyHavePW=""
 
 	if (!bSuccess)
 		return "";

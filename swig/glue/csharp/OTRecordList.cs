@@ -137,6 +137,11 @@ public class OTRecordList : global::System.IDisposable {
     otapiPINVOKE.OTRecordList_ClearAccounts(swigCPtr);
   }
 
+  public SWIGTYPE_p_std__listT_std__string_t GetNyms() {
+    SWIGTYPE_p_std__listT_std__string_t ret = new SWIGTYPE_p_std__listT_std__string_t(otapiPINVOKE.OTRecordList_GetNyms(swigCPtr), false);
+    return ret;
+  }
+
   public void AcceptChequesAutomatically(bool bVal) {
     otapiPINVOKE.OTRecordList_AcceptChequesAutomatically__SWIG_0(swigCPtr, bVal);
   }
@@ -201,6 +206,25 @@ public class OTRecordList : global::System.IDisposable {
 
   public void ClearContents() {
     otapiPINVOKE.OTRecordList_ClearContents(swigCPtr);
+  }
+
+  public void SortRecords() {
+    otapiPINVOKE.OTRecordList_SortRecords(swigCPtr);
+  }
+
+  public void AddSpecialMsg(string str_msg_id, bool bIsOutgoing, int nMethodID, string str_contents, string str_address, string str_other_address, string str_type, string str_type_display, string str_my_nym_id, SWIGTYPE_p_time64_t tDate) {
+    otapiPINVOKE.OTRecordList_AddSpecialMsg__SWIG_0(swigCPtr, str_msg_id, bIsOutgoing, nMethodID, str_contents, str_address, str_other_address, str_type, str_type_display, str_my_nym_id, SWIGTYPE_p_time64_t.getCPtr(tDate));
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void AddSpecialMsg(string str_msg_id, bool bIsOutgoing, int nMethodID, string str_contents, string str_address, string str_other_address, string str_type, string str_type_display, string str_my_nym_id) {
+    otapiPINVOKE.OTRecordList_AddSpecialMsg__SWIG_1(swigCPtr, str_msg_id, bIsOutgoing, nMethodID, str_contents, str_address, str_other_address, str_type, str_type_display, str_my_nym_id);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public void AddSpecialMsg(string str_msg_id, bool bIsOutgoing, int nMethodID, string str_contents, string str_address, string str_other_address, string str_type, string str_type_display) {
+    otapiPINVOKE.OTRecordList_AddSpecialMsg__SWIG_2(swigCPtr, str_msg_id, bIsOutgoing, nMethodID, str_contents, str_address, str_other_address, str_type, str_type_display);
+    if (otapiPINVOKE.SWIGPendingException.Pending) throw otapiPINVOKE.SWIGPendingException.Retrieve();
   }
 
   public int size() {

@@ -130,27 +130,17 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTLowLevelKeyData.hpp>
+#include "OTLowLevelKeyData.hpp"
 
-#include <OTAsymmetricKey.hpp>
-#include <OTPassword.hpp>
-#include <OTAssert.hpp>
-#include <OTASCIIArmor.hpp>
-#include <OTLog.hpp>
-#include <OTCredential.hpp>
-#include <OTPayload.hpp>
-#include <OTCrypto.hpp>
-#include <OTSignature.hpp>
-
-#include <stacktrace.h>
+#include "OTKeypair.hpp"
+#include "OTLog.hpp"
 
 
 #if defined (OT_CRYPTO_USING_OPENSSL)
 
 #include "OTAsymmetricKey_OpenSSLPrivdp.hpp"
-#include "OpenSSL_BIO.hpp"
 
 
 class OTLowLevelKeyData::OTLowLevelKeyDataOpenSSLdp {

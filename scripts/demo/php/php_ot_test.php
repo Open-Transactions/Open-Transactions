@@ -10,7 +10,7 @@ function getInput($msg){
     $path = 'C:\\Users\\JSpit-PC\\AppData\\Roaming\\OpenTransactions';
     
     // NOTE: This unlink is unnecessary as long as we are properly calling
-    // OTAPI_Basic_AppShutdown() at the bottom of this file (and we are...)
+    // OTAPI_Wrap_AppCleanup() at the bottom of this file (and we are...)
     //
 //  $a = unlink($path . '\\client_data\ot.pid');
 
@@ -18,23 +18,20 @@ function getInput($msg){
 
     include("otapi.php");
 
-    OTAPI_Basic_AppStartup();
-
     # These functions are perfect examples of the 'Low-level API',
     # which is useful for simple functions that don't require messaging
-    # any OT servers. See OTAPI_Basic.h and OTAPI.h for the complete
-    # low-level API.
+    # any OT servers. See OTAPI.hpp for the complete low-level API.
 
-    OTAPI_Basic_Init();
+    OTAPI_Wrap_AppInit();
     
     date_default_timezone_set('UTC');
-    $tm = OTAPI_Basic_GetTime();
+    $tm = OTAPI_Wrap_GetTime();
     $date = date("d/m/Y H:i:s", $tm);
     echo(  $tm . " = " . $date . "<br>");
 
-    OTAPI_Basic_SetWallet('wallet.xml');
+    OTAPI_Wrap_SetWallet('wallet.xml');
 
-    if (!OTAPI_Basic_WalletExists()):
+    if (!OTAPI_Wrap_WalletExists()):
        die(' wallet not found<br>');
     else:
        echo(' wallet exists.<br>');
@@ -68,29 +65,29 @@ function getInput($msg){
      }
      echo("SUCCESS setting the password callback.<br>");
    
-    OTAPI_Basic_LoadWallet();
+    OTAPI_Wrap_LoadWallet();
     // -----------------------------------------
     # Use the low-level API to see how many server contracts
     # are in the user's wallet.
     
-    $count = OTAPI_Basic_GetServerCount();
+    $count = OTAPI_Wrap_GetServerCount();
     echo "Server count: ".$count."<br>";
 
     for ($i=0;$i<$count;$i++) {
-    //$srvID = OTAPI_Basic_GetServer_ID($i);
-    $srvID = OTAPI_Basic_GetServer_ID($i);
+    //$srvID = OTAPI_Wrap_GetServer_ID($i);
+    $srvID = OTAPI_Wrap_GetServer_ID($i);
     echo("Server Id : " . $srvID . '&nbsp;&nbsp;&nbsp;');
-    $server_name = OTAPI_Basic_GetServer_Name($srvID);
+    $server_name = OTAPI_Wrap_GetServer_Name($srvID);
     echo($server_name . '<br>');
     }
 
-    $nym_cnt = OTAPI_Basic_GetNymCount();
+    $nym_cnt = OTAPI_Wrap_GetNymCount();
     echo('nym count = ' . $nym_cnt . '<br>');
 
     for ($i=0;$i<$nym_cnt;$i++) {
-    $nymID = OTAPI_Basic_GetNym_ID($i);
+    $nymID = OTAPI_Wrap_GetNym_ID($i);
     echo("Nym Id : " . $nymID . '&nbsp;&nbsp;&nbsp;&nbsp;');
-    $nym_name = OTAPI_Basic_GetNym_Name($nymID);
+    $nym_name = OTAPI_Wrap_GetNym_Name($nymID);
     echo($nym_name . '<br>');
     }
 
@@ -99,10 +96,10 @@ function getInput($msg){
     #
     # This object handles all the request/response going on with
     # any servers, plus all the retries and synchronization. It's
-    # the 'High-level API'. See OTMadeEasy.h and OT_ME.h for the
-    # complete set of high-level API functions.
+    # the 'High-level API'. See OT_ME.hpp for the complete set of
+    # high-level API functions.
 
-    $objEasy = new OTMadeEasy();
+    $objEasy = new OT_ME();
     // -----------------------------------------
     #
     # Use the High-level API to download a user's public key from
@@ -200,16 +197,15 @@ function getInput($msg){
 # So... we're done. Let's shutdown OT and finish execution.
 # (Using the low-level API...)
     
-    OTAPI_Basic_Output(0, "\nOne more thing: Successfully used OT_API_Output.\n<br>");
+    OTAPI_Wrap_Output(0, "\nOne more thing: Successfully used OT_API_Output.\n<br>");
   
-    OTAPI_Basic_AppShutdown();
+    OTAPI_Wrap_AppCleanup();
     
-# P.S. to see the complete OT high-level API:  OTMadeEasy.h
-#  and to see the complete OT low-level  API:  OTAPI_Basic.h
+# P.S. to see the complete OT high-level API:  OT_ME.hpp
+#  and to see the complete OT low-level  API:  OTAPI.hpp
 #
 # See the Open-Transactions/include/otapi folder for all
-# relevant headers. OTMadeEasy is a wrapper for OT_ME, and
-# OTAPI_Basic is a wrapper for OTAPI.
+# relevant headers.
 #
 # One more thing: If you want to see a lot of free sample code
 # similar to the above code, which shows you how to use all the

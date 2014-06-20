@@ -428,13 +428,33 @@ std::string SwigDirector_OTNameLookup::GetAcctName(std::string const &str_id, st
   return c_result;
 }
 
-void SwigDirector_OTNameLookup::swig_connect_director(void* dobj, SWIG_Callback0_t callback_GetNymName__SWIG_0, SWIG_Callback1_t callback_GetNymName__SWIG_1, SWIG_Callback2_t callback_GetAcctName__SWIG_0, SWIG_Callback3_t callback_GetAcctName__SWIG_1, SWIG_Callback4_t callback_GetAcctName__SWIG_2, SWIG_Callback5_t callback_GetAcctName__SWIG_3) {
+std::string SwigDirector_OTNameLookup::GetAddressName(std::string const &str_address) const {
+  std::string c_result ;
+  char * jresult = 0 ;
+  char * jstr_address = 0 ;
+  
+  if (!swig_callback_GetAddressName) {
+    return OTNameLookup::GetAddressName(str_address);
+  } else {
+    jstr_address = SWIG_d_string_callback((&str_address)->c_str()); 
+    jresult = (char *) swig_callback_GetAddressName(d_object, jstr_address);
+    if (!jresult) {
+      SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+      return c_result;
+    }
+    c_result.assign(jresult); 
+  }
+  return c_result;
+}
+
+void SwigDirector_OTNameLookup::swig_connect_director(void* dobj, SWIG_Callback0_t callback_GetNymName__SWIG_0, SWIG_Callback1_t callback_GetNymName__SWIG_1, SWIG_Callback2_t callback_GetAcctName__SWIG_0, SWIG_Callback3_t callback_GetAcctName__SWIG_1, SWIG_Callback4_t callback_GetAcctName__SWIG_2, SWIG_Callback5_t callback_GetAcctName__SWIG_3, SWIG_Callback6_t callback_GetAddressName) {
   d_object = dobj;swig_callback_GetNymName__SWIG_0 = callback_GetNymName__SWIG_0;
   swig_callback_GetNymName__SWIG_1 = callback_GetNymName__SWIG_1;
   swig_callback_GetAcctName__SWIG_0 = callback_GetAcctName__SWIG_0;
   swig_callback_GetAcctName__SWIG_1 = callback_GetAcctName__SWIG_1;
   swig_callback_GetAcctName__SWIG_2 = callback_GetAcctName__SWIG_2;
   swig_callback_GetAcctName__SWIG_3 = callback_GetAcctName__SWIG_3;
+  swig_callback_GetAddressName = callback_GetAddressName;
 }
 
 void SwigDirector_OTNameLookup::swig_init_callbacks() {
@@ -444,6 +464,7 @@ void SwigDirector_OTNameLookup::swig_init_callbacks() {
   swig_callback_GetAcctName__SWIG_1 = 0;
   swig_callback_GetAcctName__SWIG_2 = 0;
   swig_callback_GetAcctName__SWIG_3 = 0;
+  swig_callback_GetAddressName = 0;
 }
 
 
@@ -10461,6 +10482,377 @@ SWIGEXPORT int D_OT_ME_opentxs_main_loop(void * jarg1) {
 }
 
 
+SWIGEXPORT int D_OT_ME_VerifyMessageSuccess(void * jarg1, char * jarg2) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT int D_OT_ME_VerifyMsgBalanceAgrmntSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  if (!jarg5) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg5_str(jarg5);
+  arg5 = &arg5_str; 
+  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT int D_OT_ME_VerifyMsgTrnxSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  if (!jarg5) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg5_str(jarg5);
+  arg5 = &arg5_str; 
+  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT int D_OT_ME_InterpretTransactionMsgReply(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  if (!jarg4) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  if (!jarg5) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg5_str(jarg5);
+  arg5 = &arg5_str; 
+  if (!jarg6) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg6_str(jarg6);
+  arg6 = &arg6_str; 
+  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT char * D_OT_ME_ExecuteScript_ReturnString__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  char * jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  std::string result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
+  jresult = SWIG_d_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * D_OT_ME_ExecuteScript_ReturnString__SWIG_1(void * jarg1, char * jarg2) {
+  char * jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
+  jresult = SWIG_d_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int D_OT_ME_ExecuteScript_ReturnBool__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  unsigned int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  bool result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int D_OT_ME_ExecuteScript_ReturnBool__SWIG_1(void * jarg1, char * jarg2) {
+  unsigned int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  bool result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT int D_OT_ME_ExecuteScript_ReturnInt__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  (&arg3)->assign(jarg3); 
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT int D_OT_ME_ExecuteScript_ReturnInt__SWIG_1(void * jarg1, char * jarg2) {
+  int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  int32_t result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT void D_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string arg3 ;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  (&arg3)->assign(jarg3); 
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void D_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(void * jarg1, char * jarg2) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void D_OT_ME_AddVariable(void * jarg1, char * jarg2, void * jarg3) {
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *arg3 = 0 ;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = (OTVariable *)jarg3;
+  if (!arg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "OTVariable & type is null");
+    return ;
+  } 
+  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
+}
+
+
+SWIGEXPORT void * D_OT_ME_FindVariable(void * jarg1, char * jarg2) {
+  void * jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  OTVariable *result = 0 ;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
+  jresult = (void *)result;
+  return jresult;
+}
+
+
+SWIGEXPORT void * D_OT_ME_FindVariable2(char * jarg1) {
+  void * jresult ;
+  std::string *arg1 = 0 ;
+  OTVariable *result = 0 ;
+  
+  if (!jarg1) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg1_str(jarg1);
+  arg1 = &arg1_str; 
+  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
+  jresult = (void *)result;
+  return jresult;
+}
+
+
 SWIGEXPORT unsigned int D_OT_ME_make_sure_enough_trans_nums(void * jarg1, int jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
   OT_ME *arg1 = (OT_ME *) 0 ;
@@ -10809,40 +11201,7 @@ SWIGEXPORT char * D_OT_ME_stat_asset_account(void * jarg1, char * jarg2) {
 }
 
 
-SWIGEXPORT unsigned int D_OT_ME_retrieve_account__SWIG_0(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
-  unsigned int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  bool result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int D_OT_ME_retrieve_account__SWIG_1(void * jarg1, char * jarg2, char * jarg3, char * jarg4, unsigned int jarg5) {
+SWIGEXPORT unsigned int D_OT_ME_retrieve_account__SWIG_0(void * jarg1, char * jarg2, char * jarg3, char * jarg4, unsigned int jarg5) {
   unsigned int jresult ;
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
@@ -10877,11 +11236,12 @@ SWIGEXPORT unsigned int D_OT_ME_retrieve_account__SWIG_1(void * jarg1, char * ja
 }
 
 
-SWIGEXPORT unsigned int D_OT_ME_retrieve_nym__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
+SWIGEXPORT unsigned int D_OT_ME_retrieve_account__SWIG_1(void * jarg1, char * jarg2, char * jarg3, char * jarg4) {
   unsigned int jresult ;
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
   std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
   bool result;
   
   arg1 = (OT_ME *)jarg1;
@@ -10897,13 +11257,19 @@ SWIGEXPORT unsigned int D_OT_ME_retrieve_nym__SWIG_0(void * jarg1, char * jarg2,
   }
   std::string arg3_str(jarg3);
   arg3 = &arg3_str; 
-  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
+  if (!jarg4) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg4_str(jarg4);
+  arg4 = &arg4_str; 
+  result = (bool)(arg1)->retrieve_account((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4);
   jresult = result;
   return jresult;
 }
 
 
-SWIGEXPORT unsigned int D_OT_ME_retrieve_nym__SWIG_1(void * jarg1, char * jarg2, char * jarg3, unsigned int jarg4) {
+SWIGEXPORT unsigned int D_OT_ME_retrieve_nym__SWIG_0(void * jarg1, char * jarg2, char * jarg3, unsigned int jarg4) {
   unsigned int jresult ;
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
@@ -10926,6 +11292,32 @@ SWIGEXPORT unsigned int D_OT_ME_retrieve_nym__SWIG_1(void * jarg1, char * jarg2,
   arg3 = &arg3_str; 
   arg4 = jarg4 ? true : false;
   result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3,arg4);
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT unsigned int D_OT_ME_retrieve_nym__SWIG_1(void * jarg1, char * jarg2, char * jarg3) {
+  unsigned int jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  bool result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  result = (bool)(arg1)->retrieve_nym((std::string const &)*arg2,(std::string const &)*arg3);
   jresult = result;
   return jresult;
 }
@@ -11561,35 +11953,7 @@ SWIGEXPORT unsigned int D_OT_ME_withdraw_and_send_cash(void * jarg1, char * jarg
 }
 
 
-SWIGEXPORT char * D_OT_ME_get_payment_instrument__SWIG_0(void * jarg1, char * jarg2, char * jarg3, int jarg4) {
-  char * jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  int32_t arg4 ;
-  std::string result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  arg4 = (int32_t)jarg4;
-  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
-  jresult = SWIG_d_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * D_OT_ME_get_payment_instrument__SWIG_1(void * jarg1, char * jarg2, char * jarg3, int jarg4, char * jarg5) {
+SWIGEXPORT char * D_OT_ME_get_payment_instrument__SWIG_0(void * jarg1, char * jarg2, char * jarg3, int jarg4, char * jarg5) {
   char * jresult ;
   OT_ME *arg1 = (OT_ME *) 0 ;
   std::string *arg2 = 0 ;
@@ -11619,6 +11983,34 @@ SWIGEXPORT char * D_OT_ME_get_payment_instrument__SWIG_1(void * jarg1, char * ja
   std::string arg5_str(jarg5);
   arg5 = &arg5_str; 
   result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4,(std::string const &)*arg5);
+  jresult = SWIG_d_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * D_OT_ME_get_payment_instrument__SWIG_1(void * jarg1, char * jarg2, char * jarg3, int jarg4) {
+  char * jresult ;
+  OT_ME *arg1 = (OT_ME *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
+  int32_t arg4 ;
+  std::string result;
+  
+  arg1 = (OT_ME *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  if (!jarg3) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg3_str(jarg3);
+  arg3 = &arg3_str; 
+  arg4 = (int32_t)jarg4;
+  result = (arg1)->get_payment_instrument((std::string const &)*arg2,(std::string const &)*arg3,arg4);
   jresult = SWIG_d_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -11771,7 +12163,7 @@ SWIGEXPORT char * D_OT_ME_create_market_offer(void * jarg1, char * jarg2, char *
   int64_t arg7 ;
   bool arg8 ;
   int64_t arg9 ;
-  std::string arg10 ;
+  std::string *arg10 = 0 ;
   int64_t arg11 ;
   std::string result;
   
@@ -11798,9 +12190,10 @@ SWIGEXPORT char * D_OT_ME_create_market_offer(void * jarg1, char * jarg2, char *
     SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
     return 0;
   }
-  (&arg10)->assign(jarg10); 
+  std::string arg10_str(jarg10);
+  arg10 = &arg10_str; 
   arg11 = (int64_t)jarg11;
-  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
+  result = (arg1)->create_market_offer((std::string const &)*arg2,(std::string const &)*arg3,arg4,arg5,arg6,arg7,arg8,arg9,(std::string const &)*arg10,arg11);
   jresult = SWIG_d_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -12483,377 +12876,6 @@ SWIGEXPORT char * D_OT_ME_adjust_usage_credits(void * jarg1, char * jarg2, char 
   arg5 = &arg5_str; 
   result = (arg1)->adjust_usage_credits((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
   jresult = SWIG_d_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT int D_OT_ME_VerifyMessageSuccess(void * jarg1, char * jarg2) {
-  int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  int32_t result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (int32_t)(arg1)->VerifyMessageSuccess((std::string const &)*arg2);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT int D_OT_ME_VerifyMsgBalanceAgrmntSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  int32_t result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (int32_t)(arg1)->VerifyMsgBalanceAgrmntSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT int D_OT_ME_VerifyMsgTrnxSuccess(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5) {
-  int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  int32_t result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  result = (int32_t)(arg1)->VerifyMsgTrnxSuccess((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT int D_OT_ME_InterpretTransactionMsgReply(void * jarg1, char * jarg2, char * jarg3, char * jarg4, char * jarg5, char * jarg6) {
-  int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
-  std::string *arg5 = 0 ;
-  std::string *arg6 = 0 ;
-  int32_t result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg3_str(jarg3);
-  arg3 = &arg3_str; 
-  if (!jarg4) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg4_str(jarg4);
-  arg4 = &arg4_str; 
-  if (!jarg5) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg5_str(jarg5);
-  arg5 = &arg5_str; 
-  if (!jarg6) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg6_str(jarg6);
-  arg6 = &arg6_str; 
-  result = (int32_t)(arg1)->InterpretTransactionMsgReply((std::string const &)*arg2,(std::string const &)*arg3,(std::string const &)*arg4,(std::string const &)*arg5,(std::string const &)*arg6);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT char * D_OT_ME_ExecuteScript_ReturnString__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
-  char * jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  std::string result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  (&arg3)->assign(jarg3); 
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2,arg3);
-  jresult = SWIG_d_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT char * D_OT_ME_ExecuteScript_ReturnString__SWIG_1(void * jarg1, char * jarg2) {
-  char * jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (arg1)->ExecuteScript_ReturnString((std::string const &)*arg2);
-  jresult = SWIG_d_string_callback((&result)->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int D_OT_ME_ExecuteScript_ReturnBool__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
-  unsigned int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  bool result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  (&arg3)->assign(jarg3); 
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2,arg3);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT unsigned int D_OT_ME_ExecuteScript_ReturnBool__SWIG_1(void * jarg1, char * jarg2) {
-  unsigned int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  bool result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (bool)(arg1)->ExecuteScript_ReturnBool((std::string const &)*arg2);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT int D_OT_ME_ExecuteScript_ReturnInt__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
-  int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  int32_t result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  (&arg3)->assign(jarg3); 
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2,arg3);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT int D_OT_ME_ExecuteScript_ReturnInt__SWIG_1(void * jarg1, char * jarg2) {
-  int jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  int32_t result;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (int32_t)(arg1)->ExecuteScript_ReturnInt((std::string const &)*arg2);
-  jresult = result;
-  return jresult;
-}
-
-
-SWIGEXPORT void D_OT_ME_ExecuteScript_ReturnVoid__SWIG_0(void * jarg1, char * jarg2, char * jarg3) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  std::string arg3 ;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return ;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  if (!jarg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return ;
-  }
-  (&arg3)->assign(jarg3); 
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2,arg3);
-}
-
-
-SWIGEXPORT void D_OT_ME_ExecuteScript_ReturnVoid__SWIG_1(void * jarg1, char * jarg2) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return ;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  (arg1)->ExecuteScript_ReturnVoid((std::string const &)*arg2);
-}
-
-
-SWIGEXPORT void D_OT_ME_AddVariable(void * jarg1, char * jarg2, void * jarg3) {
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  OTVariable *arg3 = 0 ;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return ;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  arg3 = (OTVariable *)jarg3;
-  if (!arg3) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "OTVariable & type is null");
-    return ;
-  } 
-  (arg1)->AddVariable((std::string const &)*arg2,*arg3);
-}
-
-
-SWIGEXPORT void * D_OT_ME_FindVariable(void * jarg1, char * jarg2) {
-  void * jresult ;
-  OT_ME *arg1 = (OT_ME *) 0 ;
-  std::string *arg2 = 0 ;
-  OTVariable *result = 0 ;
-  
-  arg1 = (OT_ME *)jarg1;
-  if (!jarg2) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg2_str(jarg2);
-  arg2 = &arg2_str; 
-  result = (OTVariable *)(arg1)->FindVariable((std::string const &)*arg2);
-  jresult = (void *)result;
-  return jresult;
-}
-
-
-SWIGEXPORT void * D_OT_ME_FindVariable2(char * jarg1) {
-  void * jresult ;
-  std::string *arg1 = 0 ;
-  OTVariable *result = 0 ;
-  
-  if (!jarg1) {
-    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
-    return 0;
-  }
-  std::string arg1_str(jarg1);
-  arg1 = &arg1_str; 
-  result = (OTVariable *)OT_ME::FindVariable2((std::string const &)*arg1);
-  jresult = (void *)result;
   return jresult;
 }
 
@@ -20187,12 +20209,42 @@ SWIGEXPORT void * D_AddressBook_ot_dynamic_cast(void * jarg1) {
 
 SWIGEXPORT char * D_OTRecord_GetTypeString(int jarg1) {
   char * jresult ;
-  int arg1 ;
+  int32_t arg1 ;
   std::string *result = 0 ;
   
-  arg1 = (int)jarg1;
+  arg1 = (int32_t)jarg1;
   result = (std::string *) &OTRecord_GetTypeString(arg1);
   jresult = SWIG_d_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void D_OTRecord_SetSpecialMail__SWIG_0(void * jarg1, unsigned int jarg2) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  bool arg2 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  arg2 = jarg2 ? true : false;
+  (arg1)->SetSpecialMail(arg2);
+}
+
+
+SWIGEXPORT void D_OTRecord_SetSpecialMail__SWIG_1(void * jarg1) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  (arg1)->SetSpecialMail();
+}
+
+
+SWIGEXPORT unsigned int D_OTRecord_IsSpecialMail(void * jarg1) {
+  unsigned int jresult ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  bool result;
+  
+  arg1 = (OTRecord *)jarg1;
+  result = (bool)((OTRecord const *)arg1)->IsSpecialMail();
+  jresult = result;
   return jresult;
 }
 
@@ -20632,6 +20684,109 @@ SWIGEXPORT void D_OTRecord_SetBoxIndex(void * jarg1, int jarg2) {
 }
 
 
+SWIGEXPORT int D_OTRecord_GetMethodID(void * jarg1) {
+  int jresult ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t result;
+  
+  arg1 = (OTRecord *)jarg1;
+  result = (int32_t)((OTRecord const *)arg1)->GetMethodID();
+  jresult = result;
+  return jresult;
+}
+
+
+SWIGEXPORT void D_OTRecord_SetMethodID(void * jarg1, int jarg2) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  int32_t arg2 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  arg2 = (int32_t)jarg2;
+  (arg1)->SetMethodID(arg2);
+}
+
+
+SWIGEXPORT char * D_OTRecord_GetMsgID(void * jarg1) {
+  char * jresult ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgID();
+  jresult = SWIG_d_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void D_OTRecord_SetMsgID(void * jarg1, char * jarg2) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->SetMsgID((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT char * D_OTRecord_GetMsgType(void * jarg1) {
+  char * jresult ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgType();
+  jresult = SWIG_d_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void D_OTRecord_SetMsgType(void * jarg1, char * jarg2) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->SetMsgType((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT char * D_OTRecord_GetMsgTypeDisplay(void * jarg1) {
+  char * jresult ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  result = (std::string *) &((OTRecord const *)arg1)->GetMsgTypeDisplay();
+  jresult = SWIG_d_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void D_OTRecord_SetMsgTypeDisplay(void * jarg1, char * jarg2) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->SetMsgTypeDisplay((std::string const &)*arg2);
+}
+
+
 SWIGEXPORT long long D_OTRecord_GetTransactionNum(void * jarg1) {
   long long jresult ;
   OTRecord *arg1 = (OTRecord *) 0 ;
@@ -20748,6 +20903,18 @@ SWIGEXPORT char * D_OTRecord_GetAccountID(void * jarg1) {
 }
 
 
+SWIGEXPORT char * D_OTRecord_GetAddress(void * jarg1) {
+  char * jresult ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  result = (std::string *) &((OTRecord const *)arg1)->GetAddress();
+  jresult = SWIG_d_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
 SWIGEXPORT char * D_OTRecord_GetOtherNymID(void * jarg1) {
   char * jresult ;
   OTRecord *arg1 = (OTRecord *) 0 ;
@@ -20767,6 +20934,18 @@ SWIGEXPORT char * D_OTRecord_GetOtherAccountID(void * jarg1) {
   
   arg1 = (OTRecord *)jarg1;
   result = (std::string *) &((OTRecord const *)arg1)->GetOtherAccountID();
+  jresult = SWIG_d_string_callback(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * D_OTRecord_GetOtherAddress(void * jarg1) {
+  char * jresult ;
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *result = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  result = (std::string *) &((OTRecord const *)arg1)->GetOtherAddress();
   jresult = SWIG_d_string_callback(result->c_str()); 
   return jresult;
 }
@@ -20871,6 +21050,36 @@ SWIGEXPORT void D_OTRecord_SetOtherAccountID(void * jarg1, char * jarg2) {
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
   (arg1)->SetOtherAccountID((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void D_OTRecord_SetAddress(void * jarg1, char * jarg2) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->SetAddress((std::string const &)*arg2);
+}
+
+
+SWIGEXPORT void D_OTRecord_SetOtherAddress(void * jarg1, char * jarg2) {
+  OTRecord *arg1 = (OTRecord *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  arg1 = (OTRecord *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  (arg1)->SetOtherAddress((std::string const &)*arg2);
 }
 
 
@@ -21437,11 +21646,49 @@ SWIGEXPORT char * D_OTNameLookup_GetAcctNameSwigExplicitOTNameLookup__SWIG_3(voi
 }
 
 
-SWIGEXPORT void D_OTNameLookup_director_connect(void *objarg, void *dobj, SwigDirector_OTNameLookup::SWIG_Callback0_t callback0, SwigDirector_OTNameLookup::SWIG_Callback1_t callback1, SwigDirector_OTNameLookup::SWIG_Callback2_t callback2, SwigDirector_OTNameLookup::SWIG_Callback3_t callback3, SwigDirector_OTNameLookup::SWIG_Callback4_t callback4, SwigDirector_OTNameLookup::SWIG_Callback5_t callback5) {
+SWIGEXPORT char * D_OTNameLookup_GetAddressName(void * jarg1, char * jarg2) {
+  char * jresult ;
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (OTNameLookup *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = ((OTNameLookup const *)arg1)->GetAddressName((std::string const &)*arg2);
+  jresult = SWIG_d_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * D_OTNameLookup_GetAddressNameSwigExplicitOTNameLookup(void * jarg1, char * jarg2) {
+  char * jresult ;
+  OTNameLookup *arg1 = (OTNameLookup *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (OTNameLookup *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = ((OTNameLookup const *)arg1)->OTNameLookup::GetAddressName((std::string const &)*arg2);
+  jresult = SWIG_d_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void D_OTNameLookup_director_connect(void *objarg, void *dobj, SwigDirector_OTNameLookup::SWIG_Callback0_t callback0, SwigDirector_OTNameLookup::SWIG_Callback1_t callback1, SwigDirector_OTNameLookup::SWIG_Callback2_t callback2, SwigDirector_OTNameLookup::SWIG_Callback3_t callback3, SwigDirector_OTNameLookup::SWIG_Callback4_t callback4, SwigDirector_OTNameLookup::SWIG_Callback5_t callback5, SwigDirector_OTNameLookup::SWIG_Callback6_t callback6) {
   OTNameLookup *obj = (OTNameLookup *)objarg;
   SwigDirector_OTNameLookup *director = dynamic_cast<SwigDirector_OTNameLookup *>(obj);
   if (director) {
-    director->swig_connect_director(dobj, callback0, callback1, callback2, callback3, callback4, callback5);
+    director->swig_connect_director(dobj, callback0, callback1, callback2, callback3, callback4, callback5, callback6);
   }
 }
 
@@ -21629,6 +21876,25 @@ SWIGEXPORT char * D_OTLookupCaller_GetAcctName__SWIG_3(void * jarg1, char * jarg
   std::string arg2_str(jarg2);
   arg2 = &arg2_str; 
   result = ((OTLookupCaller const *)arg1)->GetAcctName((std::string const &)*arg2);
+  jresult = SWIG_d_string_callback((&result)->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT char * D_OTLookupCaller_GetAddressName(void * jarg1, char * jarg2) {
+  char * jresult ;
+  OTLookupCaller *arg1 = (OTLookupCaller *) 0 ;
+  std::string *arg2 = 0 ;
+  std::string result;
+  
+  arg1 = (OTLookupCaller *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return 0;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  result = ((OTLookupCaller const *)arg1)->GetAddressName((std::string const &)*arg2);
   jresult = SWIG_d_string_callback((&result)->c_str()); 
   return jresult;
 }
@@ -21906,6 +22172,18 @@ SWIGEXPORT void D_OTRecordList_ClearAccounts(void * jarg1) {
 }
 
 
+SWIGEXPORT void * D_OTRecordList_GetNyms(void * jarg1) {
+  void * jresult ;
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  list_of_strings *result = 0 ;
+  
+  arg1 = (OTRecordList *)jarg1;
+  result = (list_of_strings *) &((OTRecordList const *)arg1)->GetNyms();
+  jresult = (void *)result;
+  return jresult;
+}
+
+
 SWIGEXPORT void D_OTRecordList_AcceptChequesAutomatically__SWIG_0(void * jarg1, unsigned int jarg2) {
   OTRecordList *arg1 = (OTRecordList *) 0 ;
   bool arg2 ;
@@ -22055,6 +22333,196 @@ SWIGEXPORT void D_OTRecordList_ClearContents(void * jarg1) {
   
   arg1 = (OTRecordList *)jarg1;
   (arg1)->ClearContents();
+}
+
+
+SWIGEXPORT void D_OTRecordList_SortRecords(void * jarg1) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  
+  arg1 = (OTRecordList *)jarg1;
+  (arg1)->SortRecords();
+}
+
+
+SWIGEXPORT void D_OTRecordList_AddSpecialMsg__SWIG_0(void * jarg1, char * jarg2, unsigned int jarg3, int jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, char * jarg9, char * jarg10, void * jarg11) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  time64_t arg11 ;
+  time64_t *argp11 ;
+  
+  arg1 = (OTRecordList *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = jarg3 ? true : false;
+  arg4 = (int32_t)jarg4;
+  if (!jarg5) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg5_str(jarg5);
+  arg5 = &arg5_str; 
+  if (!jarg6) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg6_str(jarg6);
+  arg6 = &arg6_str; 
+  if (!jarg7) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg7_str(jarg7);
+  arg7 = &arg7_str; 
+  if (!jarg8) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg8_str(jarg8);
+  arg8 = &arg8_str; 
+  if (!jarg9) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg9_str(jarg9);
+  arg9 = &arg9_str; 
+  if (!jarg10) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  (&arg10)->assign(jarg10); 
+  argp11 = (time64_t *)jarg11;
+  if (!argp11) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "Attempt to dereference null time64_t");
+    return ;
+  }
+  arg11 = *argp11; 
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10,arg11);
+}
+
+
+SWIGEXPORT void D_OTRecordList_AddSpecialMsg__SWIG_1(void * jarg1, char * jarg2, unsigned int jarg3, int jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, char * jarg9, char * jarg10) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  std::string arg10 ;
+  
+  arg1 = (OTRecordList *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = jarg3 ? true : false;
+  arg4 = (int32_t)jarg4;
+  if (!jarg5) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg5_str(jarg5);
+  arg5 = &arg5_str; 
+  if (!jarg6) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg6_str(jarg6);
+  arg6 = &arg6_str; 
+  if (!jarg7) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg7_str(jarg7);
+  arg7 = &arg7_str; 
+  if (!jarg8) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg8_str(jarg8);
+  arg8 = &arg8_str; 
+  if (!jarg9) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg9_str(jarg9);
+  arg9 = &arg9_str; 
+  if (!jarg10) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  (&arg10)->assign(jarg10); 
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9,arg10);
+}
+
+
+SWIGEXPORT void D_OTRecordList_AddSpecialMsg__SWIG_2(void * jarg1, char * jarg2, unsigned int jarg3, int jarg4, char * jarg5, char * jarg6, char * jarg7, char * jarg8, char * jarg9) {
+  OTRecordList *arg1 = (OTRecordList *) 0 ;
+  std::string *arg2 = 0 ;
+  bool arg3 ;
+  int32_t arg4 ;
+  std::string *arg5 = 0 ;
+  std::string *arg6 = 0 ;
+  std::string *arg7 = 0 ;
+  std::string *arg8 = 0 ;
+  std::string *arg9 = 0 ;
+  
+  arg1 = (OTRecordList *)jarg1;
+  if (!jarg2) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg2_str(jarg2);
+  arg2 = &arg2_str; 
+  arg3 = jarg3 ? true : false;
+  arg4 = (int32_t)jarg4;
+  if (!jarg5) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg5_str(jarg5);
+  arg5 = &arg5_str; 
+  if (!jarg6) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg6_str(jarg6);
+  arg6 = &arg6_str; 
+  if (!jarg7) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg7_str(jarg7);
+  arg7 = &arg7_str; 
+  if (!jarg8) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg8_str(jarg8);
+  arg8 = &arg8_str; 
+  if (!jarg9) {
+    SWIG_DSetPendingException(SWIG_DIllegalArgumentException, "null string");
+    return ;
+  }
+  std::string arg9_str(jarg9);
+  arg9 = &arg9_str; 
+  (arg1)->AddSpecialMsg((std::string const &)*arg2,arg3,arg4,(std::string const &)*arg5,(std::string const &)*arg6,(std::string const &)*arg7,(std::string const &)*arg8,(std::string const &)*arg9);
 }
 
 

@@ -130,20 +130,14 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTStash.hpp>
+#include "OTStash.hpp"
 
-#include <OTAccount.hpp>
-#include <OTAgreement.hpp>
-#include <OTBylaw.hpp>
-#include <OTContract.hpp>
-#include <OTLog.hpp>
-#include <OTPseudonym.hpp>
-#include <OTScript.hpp>
-#include <OTScriptable.hpp>
-#include <OTSmartContract.hpp>
-#include <OTStashItem.hpp>
+#include "OTContract.hpp"
+#include "OTLog.hpp"
+#include "OTStashItem.hpp"
+#include "OTStorage.hpp"
 
 #include "irrxml/irrXML.hpp"
 

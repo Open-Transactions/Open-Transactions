@@ -12,25 +12,31 @@ opentxs_include_dir	=	$(top_srcdir)/include
 opentxs_swig_dir	=	$(top_srcdir)/swig
 
 otlib_build_dir		=	$(top_builddir)/src/otlib
+otextensions_build_dir	=	$(top_builddir)/src/otextensions
 
 common_includes		=	$(AM_CXXFLAGS)          		\
 				-I$(top_builddir)/include/otlib		\
 				-I$(opentxs_include_dir)		\
 				-I$(opentxs_include_dir)/otlib		\
+				-I$(opentxs_include_dir)/otextensions	\
 				-I$(opentxs_include_dir)/otapi		\
+				-I$(top_srcdir)/deps/include/simpleini	\
 				-I$(top_srcdir)/deps/include/misc	\
 				-I$(top_srcdir)/deps/include/
 
 
 ########################
 
-libotapi_la_SOURCES		=	$(otapi_sources) $(otapi_headers)	\
-					$(simpleini_headers)
+libotapi_la_SOURCES		=	$(otapi_sources) $(otapi_headers)
 
 libotapi_la_CXXFLAGS		=	$(common_includes)
 
-libotapi_la_LIBADD		=	$(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_la_DEPENDENCIES	=	$(otlib_build_dir)/libot.la
+libotapi_la_LIBADD		=	$(otextensions_build_dir)/libotextensions.la	\
+					$(otlib_build_dir)/libot.la			\
+					$(DEPS_LIBS)
+					
+libotapi_la_DEPENDENCIES	=	$(otextensions_build_dir)/libotextensions.la	\
+					$(otlib_build_dir)/libot.la
 
 libotapi_la_LDFLAGS		=	--no-undefined
 
@@ -54,8 +60,8 @@ libotapi_java_la_SOURCES	=	$(opentxs_swig_dir)/otapi/OTAPI-java.cxx	\
 
 libotapi_java_la_CXXFLAGS	=	$(common_includes) $(JNI_CPPFLAGS)
 
-libotapi_java_la_LIBADD 	=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_java_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
+libotapi_java_la_LIBADD 	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_java_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_java_la_LDFLAGS 	=	--no-undefined
 
 if TRANSPORT_ZMQ2
@@ -72,8 +78,8 @@ libotapi_perl5_la_SOURCES	=	$(opentxs_swig_dir)/otapi/OTAPI-perl5.cxx
 libotapi_perl5_la_CXXFLAGS	=	$(common_includes)			\
 					$(PERL_EXT_CPPFLAGS)			\
 					-I$(PERL_EXT_INC)
-libotapi_perl5_la_LIBADD	=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_perl5_la_DEPENDENCIES =	libotapi.la $(otlib_build_dir)/libot.la
+libotapi_perl5_la_LIBADD	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_perl5_la_DEPENDENCIES =	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_perl5_la_LDFLAGS	=	$(PERL_EXT_LDFLAGS) --no-undefined
 
 if TRANSPORT_ZMQ2
@@ -91,8 +97,8 @@ libotapi_php_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-php.cpp	\
 libotapi_php_la_CXXFLAGS	=	$(common_includes)			\
 					-I$(opentxs_swig_dir)/glue/php		\
 					$(PHP_INCLUDES)
-libotapi_php_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_php_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
+libotapi_php_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_php_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_php_la_LDFLAGS		=	$(PHP_LDFLAGS) --no-undefined
 
 if TRANSPORT_ZMQ2
@@ -111,8 +117,8 @@ _otapi_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-python.cxx	\
 _otapi_la_CXXFLAGS		= 	$(common_includes)				\
 					$(PYTHON_CPPFLAGS)				\
 					$(PYTHON_EXTRA_LIBS)
-_otapi_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-_otapi_la_DEPENDENCIES		= 	libotapi.la $(otlib_build_dir)/libot.la
+_otapi_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+_otapi_la_DEPENDENCIES		= 	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 _otapi_la_LDFLAGS		=	--no-undefined                  \
 					-module -avoid-version          \
 					$(PYTHON_LDFLAGS)               \
@@ -133,8 +139,8 @@ libotapi_ruby_la_SOURCES	=	$(opentxs_swig_dir)/otapi/OTAPI-ruby.cxx	\
 libotapi_ruby_la_CXXFLAGS	=	$(common_includes)				\
 					$(RUBY_CPPFLAGS)				\
 					$(RUBY_EXTRA_LIBS)
-libotapi_ruby_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_ruby_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
+libotapi_ruby_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_ruby_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_ruby_la_LDFLAGS	=	$(RUBY_LDFLAGS) --no-undefined
 
 if TRANSPORT_ZMQ2
@@ -149,8 +155,8 @@ endif
 
 libotapi_tcl_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-tcl.cxx
 libotapi_tcl_la_CXXFLAGS	=	$(common_includes)
-libotapi_tcl_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_tcl_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
+libotapi_tcl_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_tcl_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_tcl_la_LDFLAGS		=	--no-undefined
 
 if TRANSPORT_ZMQ2
@@ -166,8 +172,8 @@ endif
 libotapi_csharp_la_SOURCES      =       $(opentxs_swig_dir)/otapi/OTAPI-csharp.cxx      \
                                         $(opentxs_swig_dir)/otapi/OTAPI-csharp.hpp
 libotapi_csharp_la_CXXFLAGS     =       $(common_includes)
-libotapi_csharp_la_LIBADD       =       libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_csharp_la_DEPENDENCIES =       libotapi.la $(otlib_build_dir)/libot.la
+libotapi_csharp_la_LIBADD       =       libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_csharp_la_DEPENDENCIES =       libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_csharp_la_LDFLAGS      =       --no-undefined
 
 if TRANSPORT_ZMQ2
@@ -183,8 +189,8 @@ endif
 libotapi_d_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-d.cxx		\
 					$(opentxs_swig_dir)/otapi/OTAPI-d.hpp
 libotapi_d_la_CXXFLAGS		=	$(common_includes)
-libotapi_d_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_d_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
+libotapi_d_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_d_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_d_la_LDFLAGS		=	--no-undefined
 
 if TRANSPORT_ZMQ2
@@ -200,8 +206,8 @@ endif
 libotapi_go_la_SOURCES		=	$(opentxs_swig_dir)/otapi/OTAPI-go.cxx		\
 					$(opentxs_swig_dir)/otapi/OTAPI-go.hpp
 libotapi_go_la_CXXFLAGS		=	$(common_includes)
-libotapi_go_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(DEPS_LIBS)
-libotapi_go_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la
+libotapi_go_la_LIBADD		=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la $(DEPS_LIBS)
+libotapi_go_la_DEPENDENCIES	=	libotapi.la $(otlib_build_dir)/libot.la $(otextensions_build_dir)/libotextensions.la
 libotapi_go_la_LDFLAGS		=	--no-undefined
 
 if TRANSPORT_ZMQ2
@@ -209,18 +215,6 @@ libotapi_go_la_CXXFLAGS		+=	-DOT_ZMQ_MODE
 endif
 
 ########################
-
-####	Simple Ini
-
-simpleini_headers_dir	=	$(top_srcdir)/deps/include/simpleini
-
-simpleini_headers	=	$(simpleini_headers_dir)/ConvertUTF.h		\
-				$(simpleini_headers_dir)/SimpleIni.hpp
-
-simpleini_sources_dir	= 	$(top_srcdir)/deps/src/simpleini
-
-simpleini_sources	=	$(simpleini_sources_dir)/ConvertUTF.cpp		\
-				$(simpleini_sources_dir)/snippets.cpp
 
 ####  OTAPI
 

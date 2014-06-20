@@ -19,12 +19,13 @@ public:
     virtual ~SwigDirector_OTNameLookup();
     virtual std::string GetNymName(std::string const &str_id, std::string const *p_server_id = NULL) const;
     virtual std::string GetAcctName(std::string const &str_id, std::string const *p_nym_id = NULL, std::string const *p_server_id = NULL, std::string const *p_asset_id = NULL) const;
+    virtual std::string GetAddressName(std::string const &str_address) const;
 public:
     bool swig_overrides(int n) {
-      return (n < 6 ? swig_override[n] : false);
+      return (n < 7 ? swig_override[n] : false);
     }
 protected:
-    bool swig_override[6];
+    bool swig_override[7];
 };
 
 

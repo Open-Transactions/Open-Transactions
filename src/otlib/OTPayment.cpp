@@ -130,19 +130,17 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTPayment.hpp>
+#include "OTPayment.hpp"
 
-#include <OTLog.hpp>
-#include <OTCheque.hpp>
-#include <OTPaymentPlan.hpp>
-#include <OTSmartContract.hpp>
-#include <OTPurse.hpp>
+#include "OTCheque.hpp"
+#include "OTLog.hpp"
+#include "OTPaymentPlan.hpp"
+#include "OTPurse.hpp"
+#include "OTSmartContract.hpp"
 
 #include "irrxml/irrXML.hpp"
-
-#include <time.h>
 
 
 char const * const __TypeStrings[] = 

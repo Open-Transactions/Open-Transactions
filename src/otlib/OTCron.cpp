@@ -130,24 +130,19 @@
  -----END PGP SIGNATURE-----
  **************************************************************/
 
-#include <stdafx.hpp>
+#include "stdafx.hpp"
 
-#include <OTCron.hpp>
+#include "OTCron.hpp"
+
+#include "OTASCIIArmor.hpp"
+#include "OTCronItem.hpp"
+#include "OTFolders.hpp"
+#include "OTLog.hpp"
+#include "OTMarket.hpp"
 
 #include "irrxml/irrXML.hpp"
 
-#include <OTASCIIArmor.hpp>
-#include <OTCronItem.hpp>
-#include <OTFolders.hpp>
-#include <OTLog.hpp>
-#include <OTMarket.hpp>
-#include <OTPaths.hpp>
-#include <OTStorage.hpp>
-
 #include <Timer.hpp>
-
-using namespace irr;
-using namespace io;
 
 
 // Note: these are only code defaults -- the values are actually loaded from ~/.ot/server.cfg.
