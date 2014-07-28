@@ -153,6 +153,8 @@ protected:
 	OTString		m_strPurportedLocalDir;	// This is the subdirectory according to the file.
 	OTString		m_strPurportedFilename;	// This is the filename according to the file.
 
+    OTString        m_strSignerNymID;       // Optional. Here in case you ever want to use it.
+    
 	// THOUGHT: What if someone switched the file for an older version of itself? Seems to me that he could
 	// make the server accept the file, in that case. Like maybe an account file with a higher balance?
 	// Similarly, what if someone erased a spent token file? Then the software would accept it as a new
@@ -179,8 +181,11 @@ EXPORT	bool SaveFile();
                             // (You should still verify the signature on it as well, if you are doing this.)
         void SetFilename(const OTString & LOCAL_SUBDIR, const OTString & FILE_NAME);
 // ----------------------------------
-inline OTString & GetFilePayload()                       { return m_strSignedFilePayload;   }
-inline void       SetFilePayload(const OTString &strArg) { m_strSignedFilePayload = strArg; }
+EXPORT OTString & GetFilePayload();
+EXPORT void       SetFilePayload(const OTString &strArg);
+// ----------------------------------
+EXPORT OTString & GetSignerNymID();
+EXPORT void       SetSignerNymID(const OTString &strArg);
 // ----------------------------------
 EXPORT	virtual ~OTSignedFile();
         virtual void Release();

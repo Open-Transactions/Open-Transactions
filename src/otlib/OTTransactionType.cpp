@@ -153,16 +153,16 @@ OTTransactionType * OTTransactionType::TransactionFactory(OTString strInput)
         OTTransactionType * pContract = NULL;
 
         if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION-----"))  // this string is 34 chars long.
-        {	pContract = new OTTransaction();	OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTTransaction;	OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED TRANSACTION ITEM-----"))  // this string is 39 chars long.
-        {	pContract = new OTItem();           OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTItem;           OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED LEDGER-----"))  // this string is 29 chars long.
-        {	pContract = new OTLedger();			OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTLedger;			OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED ACCOUNT-----"))  // this string is 30 chars long.
-        {	pContract = new OTAccount();		OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTAccount;		OT_ASSERT(NULL != pContract); }
 
         // ----------------------------------------------
         // The string didn't match any of the options in the factory.

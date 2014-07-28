@@ -366,8 +366,8 @@ def stat_party(strSmartContract, strPartyName, nDepth)
     {
         // Iterate the agents and the asset accounts.
         //
-        var bStatAgents   = stat_partyagents(strSmartContract, strPartyName, nDepth-1)
-        var bStatAccounts = stat_partyaccounts(strSmartContract, strPartyName, nDepth-1)
+        var bStatAgents   = stat_partyagents(strSmartContract, strPartyName, int32_t(nDepth-1))
+        var bStatAccounts = stat_partyaccounts(strSmartContract, strPartyName, int32_t(nDepth-1))
         // ----------------------------------
         return bStatAgents && bStatAccounts
     }
