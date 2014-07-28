@@ -212,7 +212,7 @@ OTScriptable * OTScriptable::InstantiateScriptable(const OTString & strInput)
 	// There are actually two factories that load smart contracts. See OTCronItem.
 	//
 	else if (strFirstLine.Contains("-----BEGIN SIGNED SMARTCONTRACT-----"))  // this string is 36 chars long.
-	{	pItem = new OTSmartContract();	OT_ASSERT(NULL != pItem); }
+	{	pItem = new OTSmartContract;	OT_ASSERT(NULL != pItem); }
 
 	// Coming soon.
 //	else if (strFirstLine.Contains("-----BEGIN SIGNED ENTITY-----"))  // this string is 29 chars long.

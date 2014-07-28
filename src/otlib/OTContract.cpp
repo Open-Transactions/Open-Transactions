@@ -231,34 +231,34 @@ OTContract * OTContract::InstantiateContract(OTString strInput)
 //      {	pContract = new OTAgreement();		OT_ASSERT(NULL != pContract); }
 
         if (strFirstLine.Contains("-----BEGIN SIGNED SMARTCONTRACT-----"))  // this string is 36 chars long.
-        {	pContract = new OTSmartContract();	OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTSmartContract;	OT_ASSERT(NULL != pContract); }
 
         if (strFirstLine.Contains("-----BEGIN SIGNED PAYMENT PLAN-----"))  // this string is 35 chars long.
-        {	pContract = new OTPaymentPlan();	OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTPaymentPlan;	OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED TRADE-----"))  // this string is 28 chars long.
-        {	pContract = new OTTrade();			OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTTrade;			OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED OFFER-----"))
-        {	pContract = new OTOffer();			OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTOffer;			OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED INVOICE-----"))
-        {	pContract = new OTCheque();			OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTCheque;			OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED VOUCHER-----"))
-        {	pContract = new OTCheque();			OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTCheque;			OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED CHEQUE-----"))
-        {	pContract = new OTCheque();			OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTCheque;			OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED MESSAGE-----"))
-        {	pContract = new OTMessage();		OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTMessage;		OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED MINT-----"))
         {	pContract = OTMint::MintFactory();	OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED FILE-----"))
-        {	pContract = new OTSignedFile();		OT_ASSERT(NULL != pContract); }
+        {	pContract = new OTSignedFile;		OT_ASSERT(NULL != pContract); }
 
         else if (strFirstLine.Contains("-----BEGIN SIGNED CASH-----"))
         {	pContract = OTToken::LowLevelInstantiate(strFirstLine); OT_ASSERT(NULL != pContract); }
@@ -301,9 +301,9 @@ OTContract * OTContract::InstantiateContract(OTString strInput)
         else if (strFirstLine.Contains("-----BEGIN SIGNED CONTRACT-----"))
         {
             if (strContract.Contains("<notaryProviderContract version=\"1.0\">"))
-            {	pContract = new OTServerContract();		OT_ASSERT(NULL != pContract); }
+            {	pContract = new OTServerContract;		OT_ASSERT(NULL != pContract); }
             else if (strContract.Contains("<digitalAssetContract version=\"1.0\">"))
-            {	pContract = new OTAssetContract();		OT_ASSERT(NULL != pContract); }
+            {	pContract = new OTAssetContract;		OT_ASSERT(NULL != pContract); }
         }
 
         // ----------------------------------------------

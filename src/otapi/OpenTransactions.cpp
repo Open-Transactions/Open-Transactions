@@ -3072,7 +3072,7 @@ bool OT_API::Encrypt(const OTIdentifier & theRecipientNymID, const OTString & st
 		strOutput.Release();
 
         bSuccess = ascCiphertext.WriteArmoredString(strOutput,
-                                                    "ENCRYPTED TEXT" // -----BEGIN OT ENCRYPTED TEXT-----
+                                                    "ENVELOPE" // -----BEGIN OT ARMORED ENVELOPE-----
                                                     ); // (bool bEscaped=false by default.)
 	}
 	return bSuccess;
@@ -3402,7 +3402,7 @@ bool OT_API::VerifyAndRetrieveXMLContents(const OTString		&	strContract,
 	strOutput.Release();
 
 	if (NULL != pContract) // pContract will always exist, if we were successful.
-		return (bSuccess && pContract->SaveContractRaw(strOutput));
+		return (bSuccess && pContract->SaveContents(strOutput));
 
 	return bSuccess; // In practice this will only happen on failure. (Could have put "return false".)
 }

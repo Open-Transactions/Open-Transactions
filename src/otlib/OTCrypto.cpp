@@ -2812,8 +2812,8 @@ bool OTCrypto_OpenSSL::Open(OTData & dataInput, const OTPseudonym & theRecipient
     uint8_t	buffer_out[4096 + EVP_MAX_IV_LENGTH];
     uint8_t	iv[EVP_MAX_IV_LENGTH];
     // ------------------------------------
-    uint32_t    len     = 0;
-    int32_t         len_out = 0;
+    uint32_t    len        = 0;
+    int32_t     len_out    = 0;
     bool        bFinalized = false;  // We only clean up the ctx if the Open "Final" function hasn't been called, since it does that automatically already.
 	// ------------------------------------------------
 	memset(buffer, 0, 4096);

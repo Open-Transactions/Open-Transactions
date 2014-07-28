@@ -141,8 +141,23 @@
 #include "irrxml/irrXML.hpp"
 
 
+
+OTString & OTSignedFile::GetFilePayload()                       { return m_strSignedFilePayload;   }
+void       OTSignedFile::SetFilePayload(const OTString &strArg) { m_strSignedFilePayload = strArg; }
+// ----------------------------------
+OTString & OTSignedFile::GetSignerNymID()                       { return m_strSignerNymID;   }
+void       OTSignedFile::SetSignerNymID(const OTString &strArg) { m_strSignerNymID = strArg; }
+
+
 void OTSignedFile::UpdateContents()
 {
+    OTString strSignerNym("");
+    
+    if (m_strSignerNymID.Exists())
+    {
+        strSignerNym.Format("\n signer=\"%s\"", m_strSignerNymID.Get());
+    }
+    
 	// I release this because I'm about to repopulate it.
 	m_xmlUnsigned.Release();
 
@@ -150,11 +165,12 @@ void OTSignedFile::UpdateContents()
 
 	m_xmlUnsigned.Concatenate("<signedFile\n version=\"%s\"\n"
 							  " localDir=\"%s\"\n"
-							  " filename=\"%s\""
+							  " filename=\"%s\"%s"
 							  " >\n\n",
 							  m_strVersion.Get(),
 							  m_strLocalDir.Get(),
-							  m_strSignedFilename.Get());
+							  m_strSignedFilename.Get(),
+                              strSignerNym.Get());
 
 	if (m_strSignedFilePayload.Exists())
 	{
@@ -187,6 +203,7 @@ int32_t OTSignedFile::ProcessXMLNode(irr::io::IrrXMLReader*& xml)
 
 		m_strPurportedLocalDir	= xml->getAttributeValue("localDir");
 		m_strPurportedFilename	= xml->getAttributeValue("filename");
+		m_strSignerNymID        = xml->getAttributeValue("signer");
 
 		// ---------------------
 
